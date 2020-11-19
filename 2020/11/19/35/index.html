@@ -4,28 +4,36 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>0day预告-我的第一个java组件反序列化漏洞 | novy&#39;s Blog</title>
+    <title>若依管理系统2.2.0逻辑缺陷+未授权访问漏洞 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="某产品序列化">
+    <meta name="description" content="若依管理系统漏洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="0day预告-我的第一个java组件反序列化漏洞">
-<meta property="og:url" content="http://example.com/2020/10/12/17/index.html">
+<meta property="og:title" content="若依管理系统2.2.0逻辑缺陷+未授权访问漏洞">
+<meta property="og:url" content="http://example.com/2020/11/19/35/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="某产品序列化">
+<meta property="og:description" content="若依管理系统漏洞">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605668362942.png">
-<meta property="article:published_time" content="2020-10-12T05:52:29.000Z">
-<meta property="article:modified_time" content="2020-11-18T03:00:08.303Z">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605778028815.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777407630.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777604797.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777693589.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777731296.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777918103.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777825105.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777983102.png">
+<meta property="article:published_time" content="2020-11-19T03:14:21.000Z">
+<meta property="article:modified_time" content="2020-11-19T09:30:31.391Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="JAVA代码审计">
-<meta property="article:tag" content="反序列化">
+<meta property="article:tag" content="druid未授权访问">
+<meta property="article:tag" content="信息泄露">
+<meta property="article:tag" content="ruoyicms">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605668362942.png">
+<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605778028815.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -89,14 +97,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/10/12/17/" title="0day预告-我的第一个java组件反序列化漏洞" itemprop="url">0day预告-我的第一个java组件反序列化漏洞</a>
+      <a href="/2020/11/19/35/" title="若依管理系统2.2.0逻辑缺陷+未授权访问漏洞" itemprop="url">若依管理系统2.2.0逻辑缺陷+未授权访问漏洞</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2020-10-12T05:52:29.000Z" itemprop="datePublished"> Published 2020-10-12</time>
+    <time datetime="2020-11-19T03:14:21.000Z" itemprop="datePublished"> Published 2020-11-19</time>
     
   </p>
 </header>
@@ -105,11 +113,20 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%BC%BA%E9%99%B7%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">逻辑缺陷（信息泄露）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">漏洞验证：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE"><span class="toc-number">2.</span> <span class="toc-text">未授权访问</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="toc-number">2.1.</span> <span class="toc-text">漏洞验证</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>某上市公司产品<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605668362942.png"></p>
+		<p>官网下载最新版<br><a target="_blank" rel="noopener" href="https://gitee.com/joolun/JooLun-wx" title="ruoyicms">ruoyicms</a></p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605778028815.png"></p>
+<h1 id="逻辑缺陷（信息泄露）"><a href="#逻辑缺陷（信息泄露）" class="headerlink" title="逻辑缺陷（信息泄露）"></a>逻辑缺陷（信息泄露）</h1><p>账号密码直接保存在前端中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ruoyi-ui/src/views/login.vue</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777407630.png"></p>
+<h2 id="漏洞验证："><a href="#漏洞验证：" class="headerlink" title="漏洞验证："></a>漏洞验证：</h2><p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777604797.png"><br>随便点进一个<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777693589.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777731296.png"></p>
+<h1 id="未授权访问"><a href="#未授权访问" class="headerlink" title="未授权访问"></a>未授权访问</h1><p>首先看引用的组件<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777918103.png"><br>在<code>SecurityConfig</code>类中默认开启了匿名访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruoyi/src/main/java/com/ruoyi/framework/config/SecurityConfig.java </span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777825105.png"></p>
+<h2 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1605777983102.png"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -123,7 +140,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/JAVA代码审计/">JAVA代码审计</a><a href="/tags/反序列化/">反序列化</a>
+  <span></span> <a href="/tags/druid未授权访问/">druid未授权访问</a><a href="/tags/信息泄露/">信息泄露</a><a href="/tags/ruoyicms/">ruoyicms</a>
   </div>
 
 </div>
@@ -132,7 +149,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/10/12/17/" data-title="0day预告-我的第一个java组件反序列化漏洞 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/11/19/35/" data-title="若依管理系统2.2.0逻辑缺陷+未授权访问漏洞 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -145,19 +162,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/10/20/33/" title="反序列化-在利用链里利用socket进行shell回显">
-  <strong>上一篇：</strong><br/>
-  <span>
-  反序列化-在利用链里利用socket进行shell回显</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2020/10/10/31/"  title="spring boot Thymeleaf模板注入 payload">
+<a href="/2020/11/17/34/"  title="CVE-2020-26217 XStream RCE复现">
  <strong>下一篇：</strong><br/> 
- <span>spring boot Thymeleaf模板注入 payload
+ <span>CVE-2020-26217 XStream RCE复现
 </span>
 </a>
 </div>
@@ -174,7 +183,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%BC%BA%E9%99%B7%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">逻辑缺陷（信息泄露）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">漏洞验证：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE"><span class="toc-number">2.</span> <span class="toc-text">未授权访问</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="toc-number">2.1.</span> <span class="toc-text">漏洞验证</span></a></li></ol></li></ol>
  
   </div>
 
