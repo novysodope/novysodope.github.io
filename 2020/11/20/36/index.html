@@ -30,10 +30,11 @@
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117344866.png">
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117374598.png">
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117559912.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606471792181.png">
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117803020.png">
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117868155.png">
 <meta property="article:published_time" content="2020-11-20T03:14:21.000Z">
-<meta property="article:modified_time" content="2020-11-23T07:57:59.007Z">
+<meta property="article:modified_time" content="2020-11-27T10:10:08.275Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="shiro权限绕过">
 <meta property="article:tag" content="存储型XSS">
@@ -137,7 +138,7 @@
 <h2 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117317467.png"><br>发表<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117344866.png"><br>文章详情<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117374598.png"></p>
 <h1 id="shiro权限绕过"><a href="#shiro权限绕过" class="headerlink" title="shiro权限绕过"></a>shiro权限绕过</h1><p>引用了1.4.0版本的shiro<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117559912.png"><br>在该版本的shiro中有一个权限绕过的漏洞，查看过滤器</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/mtons/mblog/config/ShiroConfiguration.java</span><br></pre></td></tr></table></figure>
-<p>根据过滤规则进行绕过即可，比如密码重置，正常没登陆访问是这样的：<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117803020.png"><br>在/pwd后加一个/即可绕过进行未授权密码重置<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117868155.png"></p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606471792181.png"><br>根据过滤规则进行绕过即可，比如密码重置，正常没登陆访问是这样的：<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117803020.png"><br>在/pwd后加一个/即可绕过进行未授权密码重置<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606117868155.png"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -326,11 +327,11 @@
 			
 		
 			
-				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+				<li><a href="/tags/浏览器密码提取/" title="浏览器密码提取">浏览器密码提取<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/浏览器密码提取/" title="浏览器密码提取">浏览器密码提取<sup>1</sup></a></li>
+				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
 			
 		
 			
