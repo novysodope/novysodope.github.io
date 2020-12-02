@@ -4,40 +4,31 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>C++后门免杀 | novy&#39;s Blog</title>
+    <title>某大型框架存储型XSS | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="cobalt strike免杀">
+    <meta name="description" content="登陆处XSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++后门免杀">
-<meta property="og:url" content="http://example.com/2020/08/18/9/index.html">
+<meta property="og:title" content="某大型框架存储型XSS">
+<meta property="og:url" content="http://example.com/2020/11/26/39/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="cobalt strike免杀">
+<meta property="og:description" content="登陆处XSS">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994127975.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994197161.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994218963.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994248314.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994282911.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994398569.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995267128.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994503512.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995720098.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995122689.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995153374.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995804197.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995846470.png">
-<meta property="article:published_time" content="2020-08-18T05:18:10.000Z">
-<meta property="article:modified_time" content="2020-11-10T05:23:12.131Z">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896446898.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896550237.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896779619.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896845369.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896869849.png">
+<meta property="article:published_time" content="2020-11-26T08:14:21.000Z">
+<meta property="article:modified_time" content="2020-12-02T08:18:37.712Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="cobalt strike后门">
-<meta property="article:tag" content="免杀">
+<meta property="article:tag" content="Java代码审计">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994127975.png">
+<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896446898.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -101,14 +92,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/08/18/9/" title="C++后门免杀" itemprop="url">C++后门免杀</a>
+      <a href="/2020/11/26/39/" title="某大型框架存储型XSS" itemprop="url">某大型框架存储型XSS</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2020-08-18T05:18:10.000Z" itemprop="datePublished"> Published 2020-08-18</time>
+    <time datetime="2020-11-26T08:14:21.000Z" itemprop="datePublished"> Published 2020-11-26</time>
     
   </p>
 </header>
@@ -117,12 +108,18 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">详细介绍：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%94%A8%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">简单用例</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="详细介绍："><a href="#详细介绍：" class="headerlink" title="详细介绍："></a>详细介绍：</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg4OTM2ODgyMw==&mid=2247483687&idx=1&sn=892275228419900e2bbf2e488909e94d&chksm=cfedb8bff89a31a949643a94f6a7248f22159c97a4a7ebfcb9c9f6eeb80ebe70d767a2910f29&mpshare=1&scene=1&srcid=08189egbvwgzQ8P3kRObfYVc&sharer_sharetime=1597718108261&sharer_shareid=591bd17d9ff0cfa0f0099bfe9c6009d5&key=b6de4a213a64b729cb10f5f6715c569e058b18f37449955a78fc5ef15f70251524a81c5980efe843e25f4caf918d497591377346d4cc975106432cb7f7134a3e0deb10de618cb3a7655b18ec2469739ba2727478187f93b1307706d3d9945241322bb8f8329ea3f14c5143ba2eed862497b57ee135e6da9288322479f22dc3ca&ascene=1&uin=MjkyMzYzMDUzMg==&devicetype=Windows+10+x64&version=62090529&lang=zh_CN&exportkey=A1k2nyaAJNBsGOOfBJ0VGo0=&pass_ticket=sI6ma7r0VNkLp9brita8cyZw3IM7RGX3/cw7aR5wt7N89ecQ3T0WT7Lp6v6EDQoi" title="免杀项目推荐">免杀项目推荐</a></p>
-<h1 id="简单用例"><a href="#简单用例" class="headerlink" title="简单用例"></a>简单用例</h1><p>首先CS生成一个shellcode<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994127975.png"><br>然后混淆一下<br>先把\x都删了<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994197161.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994218963.png"><br>0替换成*<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994248314.png"><br>再把剩下的倒序<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994282911.png"><br>打开项目，在FileItem.cpp里的第17行ch1内容替换成shellcode，然后计算字符数<em>2，比如我的shellcode是1853个字符，</em>2之后就是3706<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994398569.png"><br>不要调试，直接编译生成<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995267128.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597994503512.png"><br>上线<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995720098.png"><br>查杀<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995122689.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995153374.png"><br>微步<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995804197.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1597995846470.png"></p>
+		<p>漏洞验证：<br>登陆的时候用户名插入xss payload</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="number">1</span> onerror=alert(<span class="number">1</span>)&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896446898.png"><br>后台会记录登陆日志，当查看登陆日志时就会触发xss<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896550237.png"></p>
+<p>代码分析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/xxx/xxx/admin/controller/LogController.java 53行</span><br></pre></td></tr></table></figure>
+<p>日志查询，跟进<code>getLogByPage</code>方法<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896779619.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/xxx/xxx/admin/service/SysLogService.java</span><br></pre></td></tr></table></figure>
+<p>跟进Page查看具体实现<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896845369.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896869849.png"><br>实体处理，流程到此处结束，没有XSS防护</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -130,13 +127,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/%E5%85%8D%E6%9D%80/">免杀</a>
+  <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/cobalt-strike后门/">cobalt strike后门</a><a href="/tags/免杀/">免杀</a>
+  <span></span> <a href="/tags/Java代码审计/">Java代码审计</a>
   </div>
 
 </div>
@@ -145,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/08/18/9/" data-title="C++后门免杀 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/11/26/39/" data-title="某大型框架存储型XSS | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -159,18 +156,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2020/08/20/27/" title="java中的this标识">
+ <a href="/2020/12/02/38/" title="MTV-漏洞复现/验证专用框架">
   <strong>上一篇：</strong><br/>
   <span>
-  java中的this标识</span>
+  MTV-漏洞复现/验证专用框架</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2020/08/16/26/"  title="Java审计找url&amp;实现类往上跟controller">
+<a href="/2020/11/21/37/"  title="某数据分析平台fastjson反序列化">
  <strong>下一篇：</strong><br/> 
- <span>Java审计找url&amp;实现类往上跟controller
+ <span>某数据分析平台fastjson反序列化
 </span>
 </a>
 </div>
@@ -187,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">详细介绍：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%94%A8%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">简单用例</span></a></li></ol>
+ 
  
   </div>
 
