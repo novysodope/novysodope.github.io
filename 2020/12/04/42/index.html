@@ -4,30 +4,33 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>某组件反序列化 | novy&#39;s Blog</title>
+    <title>某Struts框架平台sql注入记录 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="组件反序列化">
+    <meta name="description" content="漏洞记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="某组件反序列化">
-<meta property="og:url" content="http://example.com/2020/12/04/40/index.html">
+<meta property="og:title" content="某Struts框架平台sql注入记录">
+<meta property="og:url" content="http://example.com/2020/12/04/42/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="组件反序列化">
+<meta property="og:description" content="漏洞记录">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607068837550.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607068966102.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607069112396.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673219931.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673237909.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673299226.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673385415.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673410884.png">
+<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673444152.png">
 <meta property="article:published_time" content="2020-12-04T08:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-04T08:21:02.180Z">
+<meta property="article:modified_time" content="2020-12-11T07:59:06.785Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="Java代码审计">
-<meta property="article:tag" content="反序列化漏洞">
+<meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607068837550.png">
+<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673219931.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -91,7 +94,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/12/04/40/" title="某组件反序列化" itemprop="url">某组件反序列化</a>
+      <a href="/2020/12/04/42/" title="某Struts框架平台sql注入记录" itemprop="url">某Struts框架平台sql注入记录</a>
   </h1>
   <p class="article-author">By
        
@@ -107,13 +110,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">代码分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">漏洞验证</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">代码分析</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><p>因为是组件jar包，启动是一个服务，所以首先找到main方法，在启动类中我们可以看到设置了监听端口，随后转到LoggingReceiver类处理Socket连接日志<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607068837550.png"></p>
-<p>跟进LoggingReceiver类<br>在run方法里，用ois接收数据并封装成一个Object对象，随后直接进行反序列化<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607068966102.png"></p>
-<h1 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h1><p>虚拟机环境1.8.0_151，启动组件，攻击机发送payload<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607069112396.png"></p>
+		<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\action\systemmanage\UserManagerAction.java 35行</span><br></pre></td></tr></table></figure>
+<p>在<code>searchUserByLoginName</code>方法中定义了字符串参数loginName，然后转到<code>userService</code>的<code>searchUserByLoginName</code>方法处理loginName</p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673219931.png"></p>
+<p>跟进<code>userService</code></p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673237909.png"></p>
+<p>定义接口，继续跟进<code>IUserManagerService</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\service\sysManager\IUserManagerService.java</span><br></pre></td></tr></table></figure>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673299226.png"></p>
+<p>还是接口定义，在该接口里没有对<code>searchUserByLoginName</code>方法做具体实现，全局搜索<code>implements IUserManagerService</code>查看其实现类</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\service\sysManager\impl\UserManagerServiceImpl.java</span><br></pre></td></tr></table></figure>
+<p>查看<code>searchUserByLoginName</code>方法</p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673385415.png"></p>
+<p>跟进查看<code>userDao</code></p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673410884.png"></p>
+<p>全局搜索<code>implements IUserManagerDAO</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\dao\sysManager\impl\UserManagerDAOImpl.java</span><br></pre></td></tr></table></figure>
+<p>查看<code>searchUserByLoginName</code>方法</p>
+<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673444152.png"></p>
+<p>参数拼接，然后把sql语句直接带入数据库查询,注入产生</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,7 +146,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java代码审计/">Java代码审计</a><a href="/tags/反序列化漏洞/">反序列化漏洞</a>
+  <span></span> <a href="/tags/Java代码审计/">Java代码审计</a><a href="/tags/SQL注入/">SQL注入</a>
   </div>
 
 </div>
@@ -136,7 +155,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/12/04/40/" data-title="某组件反序列化 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/12/04/42/" data-title="某Struts框架平台sql注入记录 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -149,11 +168,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2020/12/04/40/" title="某组件反序列化">
+  <strong>上一篇：</strong><br/>
+  <span>
+  某组件反序列化</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2020/12/04/42/"  title="某Struts框架平台sql注入记录">
+<a href="/2020/12/02/38/"  title="MTV-漏洞复现/验证专用框架">
  <strong>下一篇：</strong><br/> 
- <span>某Struts框架平台sql注入记录
+ <span>MTV-漏洞复现/验证专用框架
 </span>
 </a>
 </div>
@@ -170,7 +197,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">代码分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">漏洞验证</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">代码分析</span></a></li></ol>
  
   </div>
 
