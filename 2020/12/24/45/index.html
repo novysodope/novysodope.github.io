@@ -4,33 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>App测试从0到精通（四大组件之activity组件篇） | novy&#39;s Blog</title>
+    <title>2020年代码审计总结 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="app测试入门">
+    <meta name="description" content="3月份学审计以来的心得总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="App测试从0到精通（四大组件之activity组件篇）">
-<meta property="og:url" content="http://example.com/2019/12/09/4/index.html">
+<meta property="og:title" content="2020年代码审计总结">
+<meta property="og:url" content="http://example.com/2020/12/24/45/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="app测试入门">
+<meta property="og:description" content="3月份学审计以来的心得总结">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161180691.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161203499.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161225773.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161308327.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161356001.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161451862.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161468197.png">
-<meta property="article:published_time" content="2019-12-09T09:56:45.000Z">
-<meta property="article:modified_time" content="2020-11-09T10:11:46.753Z">
+<meta property="article:published_time" content="2020-12-24T08:14:21.000Z">
+<meta property="article:modified_time" content="2020-12-24T01:50:27.427Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="app测试">
+<meta property="article:tag" content="java审计">
+<meta property="article:tag" content="审计思路">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161180691.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -94,14 +87,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/12/09/4/" title="App测试从0到精通（四大组件之activity组件篇）" itemprop="url">App测试从0到精通（四大组件之activity组件篇）</a>
+      <a href="/2020/12/24/45/" title="2020年代码审计总结" itemprop="url">2020年代码审计总结</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2019-12-09T09:56:45.000Z" itemprop="datePublished"> Published 2019-12-09</time>
+    <time datetime="2020-12-24T08:14:21.000Z" itemprop="datePublished"> Published 2020-12-24</time>
     
   </p>
 </header>
@@ -110,36 +103,25 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E5%85%B7-%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">准备工具&#x2F;环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01"><span class="toc-number">2.</span> <span class="toc-text">0x01</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="准备工具-环境"><a href="#准备工具-环境" class="headerlink" title="准备工具/环境"></a>准备工具/环境</h1><p>1.安装drozer<br>2.模拟器<br>什么模拟器都行，这里用到的是逍遥模拟器</p>
-<h1 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h1><p>首先做个端口转发</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:31415 tcp:31415</span><br></pre></td></tr></table></figure>
-<p>然后连接上模拟器上的控制台</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drozer console connect</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161180691.png"><br>然后选择一个要日的app，一顿操作之后获得它的包名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.winsun.IntelligentMarketingAssistant，怎么获得包名请自行百度，drozer命令是</span><br><span class="line">run app.package.list -f （安装后的app名称）</span><br></pre></td></tr></table></figure>
-<p>或者到反编译后的AndroidManifest.xml文件找<br>首先查看有哪些组件开放：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run app.activity.info -a 包名</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161203499.png"><br>尝试调用一下io.dcloud.PandoraEntry</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run app.activity.start --component  apk包名 组件名</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161225773.png"><br>出现这个提示是因为做了策略了，组件劫持漏洞不可利用，试试其他的<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161308327.png"><br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161356001.png"><br>组件可以被越权调用且没有提示<br>也就是说除了可以在未登录状态下进行登录之后的操作（绕过登录）之外，还可以尝试利用可以越权的组件做钓鱼劫持：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161451862.png"><br>监听刚刚可以调用且没有提示的组件后打开app：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161468197.png"><br>全文结束，文末附我的心得</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">adb手册</span><br><span class="line">监听设备/模拟器</span><br><span class="line">adb devices</span><br><span class="line"></span><br><span class="line">备份数据</span><br><span class="line">adb backup -nosystem -noshared -apk -f 备份名字.ab apk包名</span><br><span class="line">//-nosystem表示不备份系统应用 -noshared表示不备份应用存储在SD中的数据 -apk表示备份应用APK安装包 -f 表示备份的.ab文件路径和文件名 最后是要备份应用的packageName，如果不设置路径就会显示在模拟器的根目录</span><br><span class="line"></span><br><span class="line">还原数据</span><br><span class="line">关闭ADB</span><br><span class="line">adb kill-server</span><br><span class="line"></span><br><span class="line">重新启动ADB，检测手机2是否成功连接</span><br><span class="line">adb devices</span><br><span class="line"></span><br><span class="line">还原数据</span><br><span class="line">adb restore 备份名字.ab</span><br><span class="line"></span><br><span class="line">打开手机日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">drozer手册</span><br><span class="line">端口转发</span><br><span class="line">adb forward tcp:31415 tcp:31415</span><br><span class="line"></span><br><span class="line">连接控制台</span><br><span class="line">drozer console connect</span><br><span class="line"></span><br><span class="line">检索包名</span><br><span class="line">run app.package.list -f （安装后的app名称）</span><br><span class="line"></span><br><span class="line">检查包的详细信息</span><br><span class="line">run app.package.info -a 包名</span><br><span class="line"></span><br><span class="line">扫描可利用攻击</span><br><span class="line">run app.package.attacksurface 包名</span><br><span class="line"></span><br><span class="line">activity组件检测</span><br><span class="line">dz&gt; run app.activity.info -a apk包名</span><br><span class="line"></span><br><span class="line">越权调用</span><br><span class="line">dz&gt; run app.activity.start --component  apk包名 组件名</span><br><span class="line"></span><br><span class="line">services组件检测</span><br><span class="line">dz&gt; run app.service.info -a apk包名</span><br><span class="line"></span><br><span class="line">越权调用</span><br><span class="line">dz&gt; run app.service.start --component  apk包名 组件名</span><br><span class="line"></span><br><span class="line">提升权限</span><br><span class="line">run app.service.start --action xxx --extra xxxx</span><br><span class="line"></span><br><span class="line">Broadcast Receiver组件检测</span><br><span class="line">dz&gt; run app.broadcast.info -a apk包名</span><br><span class="line"></span><br><span class="line">发送恶意广播</span><br><span class="line">run app.broadcast.send --component 包名 广播名 --extra string phoneNumber 222</span><br><span class="line"></span><br><span class="line">组件Content Provider配置检测</span><br><span class="line">dz&gt; run app.provider.info -a apk包名</span><br><span class="line"></span><br><span class="line">sql注入</span><br><span class="line">run scanner.provider.injection -a com.mwr.example.sieve</span><br><span class="line"></span><br><span class="line">目录遍历</span><br><span class="line">run scanner.provider.traversal -a com.mwr.example.sieve</span><br><span class="line"></span><br><span class="line">aapt的使用</span><br><span class="line">检测app详细信息</span><br><span class="line">aapt list -v -a  apk文件名（同目录）</span><br></pre></td></tr></table></figure>  
+		<p>内容太多了，写md太麻烦，直接贴doc吧<br><a target="_blank" rel="noopener" href="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/%E5%87%A0%E4%B8%AA%E6%9C%88%E6%9D%A5java%E5%AE%A1%E8%AE%A1%E7%9A%84%E4%B8%80%E7%82%B9%E5%BF%83%E5%BE%97%E6%80%BB%E7%BB%931608774541294.docx" title="文档下载地址">文档下载地址</a></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/%E5%AE%89%E5%8D%93%E6%B5%8B%E8%AF%95/">安卓测试</a>
+  <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/app测试/">app测试</a>
+  <span></span> <a href="/tags/java审计/">java审计</a><a href="/tags/审计思路/">审计思路</a>
   </div>
 
 </div>
@@ -148,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2019/12/09/4/" data-title="App测试从0到精通（四大组件之activity组件篇） | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/12/24/45/" data-title="2020年代码审计总结 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -161,19 +143,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/04/10/22/" title="java审计代码跟进流程(spring)">
-  <strong>上一篇：</strong><br/>
-  <span>
-  java审计代码跟进流程(spring)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/08/17/3/"  title="记一次护网拿下公鸡队的肉鸡">
+<a href="/2020/12/15/44/"  title="oasys前台SQL注入">
  <strong>下一篇：</strong><br/> 
- <span>记一次护网拿下公鸡队的肉鸡
+ <span>oasys前台SQL注入
 </span>
 </a>
 </div>
@@ -190,7 +164,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E5%85%B7-%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">准备工具&#x2F;环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01"><span class="toc-number">2.</span> <span class="toc-text">0x01</span></a></li></ol>
+ 
  
   </div>
 
