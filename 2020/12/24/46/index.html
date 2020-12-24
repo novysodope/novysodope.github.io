@@ -11,15 +11,15 @@
     
 
     
-    <meta name="description" content="精准打击">
+    <meta name="description" content="精准打击（20201224更新）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码审计关键字">
 <meta property="og:url" content="http://example.com/2020/12/24/46/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="精准打击">
+<meta property="og:description" content="精准打击（20201224更新）">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-12-24T09:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-24T02:52:05.316Z">
+<meta property="article:modified_time" content="2020-12-24T02:56:50.134Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="java审计">
 <meta property="article:tag" content="审计思路">
@@ -115,7 +115,7 @@
 
 <h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/upload（/uploadfile、upload）</span><br><span class="line">/file</span><br><span class="line">/save</span><br><span class="line">/add</span><br></pre></td></tr></table></figure>
 
-<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runtime.getRuntime().exec</span><br></pre></td></tr></table></figure>
+<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runtime.getRuntime().exec</span><br><span class="line"><span class="keyword">case</span> shell</span><br><span class="line">ShellProcessor</span><br><span class="line">processor</span><br></pre></td></tr></table></figure>
 
 <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">order by</span><br><span class="line">= <span class="string">&#x27;&quot;+</span></span><br><span class="line"><span class="string">query（queryList）</span></span><br><span class="line"><span class="string">like &quot;%</span></span><br><span class="line"><span class="string">.call</span></span><br><span class="line"><span class="string">$&#123;</span></span><br></pre></td></tr></table></figure>
 
@@ -338,15 +338,15 @@
 			
 		
 			
-				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/浏览器密码提取/" title="浏览器密码提取">浏览器密码提取<sup>1</sup></a></li>
+				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
 			
 		
 		</ul>
