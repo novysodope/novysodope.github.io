@@ -4,33 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>App测试从0到精通（四大组件之activity组件篇） | novy&#39;s Blog</title>
+    <title>代码审计关键字 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="app测试入门">
+    <meta name="description" content="精准打击">
 <meta property="og:type" content="article">
-<meta property="og:title" content="App测试从0到精通（四大组件之activity组件篇）">
-<meta property="og:url" content="http://example.com/2019/12/09/4/index.html">
+<meta property="og:title" content="代码审计关键字">
+<meta property="og:url" content="http://example.com/2020/12/24/46/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="app测试入门">
+<meta property="og:description" content="精准打击">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161180691.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161203499.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161225773.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161308327.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161356001.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161451862.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161468197.png">
-<meta property="article:published_time" content="2019-12-09T09:56:45.000Z">
-<meta property="article:modified_time" content="2020-11-09T10:11:46.753Z">
+<meta property="article:published_time" content="2020-12-24T09:14:21.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:52:05.316Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="app测试">
+<meta property="article:tag" content="java审计">
+<meta property="article:tag" content="审计思路">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161180691.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -96,14 +89,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/12/09/4/" title="App测试从0到精通（四大组件之activity组件篇）" itemprop="url">App测试从0到精通（四大组件之activity组件篇）</a>
+      <a href="/2020/12/24/46/" title="代码审计关键字" itemprop="url">代码审计关键字</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2019-12-09T09:56:45.000Z" itemprop="datePublished"> Published 2019-12-09</time>
+    <time datetime="2020-12-24T09:14:21.000Z" itemprop="datePublished"> Published 2020-12-24</time>
     
   </p>
 </header>
@@ -112,36 +105,57 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E5%85%B7-%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">准备工具&#x2F;环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01"><span class="toc-number">2.</span> <span class="toc-text">0x01</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">原生反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="准备工具-环境"><a href="#准备工具-环境" class="headerlink" title="准备工具/环境"></a>准备工具/环境</h1><p>1.安装drozer<br>2.模拟器<br>什么模拟器都行，这里用到的是逍遥模拟器</p>
-<h1 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h1><p>首先做个端口转发</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:31415 tcp:31415</span><br></pre></td></tr></table></figure>
-<p>然后连接上模拟器上的控制台</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drozer console connect</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161180691.png"><br>然后选择一个要日的app，一顿操作之后获得它的包名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">com.winsun.IntelligentMarketingAssistant，怎么获得包名请自行百度，drozer命令是</span><br><span class="line">run app.package.list -f （安装后的app名称）</span><br></pre></td></tr></table></figure>
-<p>或者到反编译后的AndroidManifest.xml文件找<br>首先查看有哪些组件开放：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run app.activity.info -a 包名</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161203499.png"><br>尝试调用一下io.dcloud.PandoraEntry</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run app.activity.start --component  apk包名 组件名</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161225773.png"><br>出现这个提示是因为做了策略了，组件劫持漏洞不可利用，试试其他的<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161308327.png"><br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161356001.png"><br>组件可以被越权调用且没有提示<br>也就是说除了可以在未登录状态下进行登录之后的操作（绕过登录）之外，还可以尝试利用可以越权的组件做钓鱼劫持：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161451862.png"><br>监听刚刚可以调用且没有提示的组件后打开app：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161468197.png"><br>全文结束，文末附我的心得</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">adb手册</span><br><span class="line">监听设备/模拟器</span><br><span class="line">adb devices</span><br><span class="line"></span><br><span class="line">备份数据</span><br><span class="line">adb backup -nosystem -noshared -apk -f 备份名字.ab apk包名</span><br><span class="line">//-nosystem表示不备份系统应用 -noshared表示不备份应用存储在SD中的数据 -apk表示备份应用APK安装包 -f 表示备份的.ab文件路径和文件名 最后是要备份应用的packageName，如果不设置路径就会显示在模拟器的根目录</span><br><span class="line"></span><br><span class="line">还原数据</span><br><span class="line">关闭ADB</span><br><span class="line">adb kill-server</span><br><span class="line"></span><br><span class="line">重新启动ADB，检测手机2是否成功连接</span><br><span class="line">adb devices</span><br><span class="line"></span><br><span class="line">还原数据</span><br><span class="line">adb restore 备份名字.ab</span><br><span class="line"></span><br><span class="line">打开手机日志</span><br><span class="line">adb logcat</span><br><span class="line"></span><br><span class="line">drozer手册</span><br><span class="line">端口转发</span><br><span class="line">adb forward tcp:31415 tcp:31415</span><br><span class="line"></span><br><span class="line">连接控制台</span><br><span class="line">drozer console connect</span><br><span class="line"></span><br><span class="line">检索包名</span><br><span class="line">run app.package.list -f （安装后的app名称）</span><br><span class="line"></span><br><span class="line">检查包的详细信息</span><br><span class="line">run app.package.info -a 包名</span><br><span class="line"></span><br><span class="line">扫描可利用攻击</span><br><span class="line">run app.package.attacksurface 包名</span><br><span class="line"></span><br><span class="line">activity组件检测</span><br><span class="line">dz&gt; run app.activity.info -a apk包名</span><br><span class="line"></span><br><span class="line">越权调用</span><br><span class="line">dz&gt; run app.activity.start --component  apk包名 组件名</span><br><span class="line"></span><br><span class="line">services组件检测</span><br><span class="line">dz&gt; run app.service.info -a apk包名</span><br><span class="line"></span><br><span class="line">越权调用</span><br><span class="line">dz&gt; run app.service.start --component  apk包名 组件名</span><br><span class="line"></span><br><span class="line">提升权限</span><br><span class="line">run app.service.start --action xxx --extra xxxx</span><br><span class="line"></span><br><span class="line">Broadcast Receiver组件检测</span><br><span class="line">dz&gt; run app.broadcast.info -a apk包名</span><br><span class="line"></span><br><span class="line">发送恶意广播</span><br><span class="line">run app.broadcast.send --component 包名 广播名 --extra string phoneNumber 222</span><br><span class="line"></span><br><span class="line">组件Content Provider配置检测</span><br><span class="line">dz&gt; run app.provider.info -a apk包名</span><br><span class="line"></span><br><span class="line">sql注入</span><br><span class="line">run scanner.provider.injection -a com.mwr.example.sieve</span><br><span class="line"></span><br><span class="line">目录遍历</span><br><span class="line">run scanner.provider.traversal -a com.mwr.example.sieve</span><br><span class="line"></span><br><span class="line">aapt的使用</span><br><span class="line">检测app详细信息</span><br><span class="line">aapt list -v -a  apk文件名（同目录）</span><br></pre></td></tr></table></figure>  
+		<h1 id="fastjson反序列化"><a href="#fastjson反序列化" class="headerlink" title="fastjson反序列化"></a>fastjson反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">json.parseObject</span><br><span class="line">JSONObject.parseObject</span><br><span class="line"><span class="meta">@RequestBody</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="原生反序列化"><a href="#原生反序列化" class="headerlink" title="原生反序列化"></a>原生反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">request.getinputstream</span><br><span class="line">ObjectInputStream</span><br><span class="line">.readObject()</span><br><span class="line">deserialize</span><br><span class="line">Serialize</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/upload（/uploadfile、upload）</span><br><span class="line">/file</span><br><span class="line">/save</span><br><span class="line">/add</span><br></pre></td></tr></table></figure>
+
+<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runtime.getRuntime().exec</span><br></pre></td></tr></table></figure>
+
+<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">order by</span><br><span class="line">= <span class="string">&#x27;&quot;+</span></span><br><span class="line"><span class="string">query（queryList）</span></span><br><span class="line"><span class="string">like &quot;%</span></span><br><span class="line"><span class="string">.call</span></span><br><span class="line"><span class="string">$&#123;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/down （/download 、/downfile、down）</span><br><span class="line">/file</span><br></pre></td></tr></table></figure>
+
+<h1 id="越权（信息泄露）"><a href="#越权（信息泄露）" class="headerlink" title="越权（信息泄露）"></a>越权（信息泄露）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/user/&#123;</span><br><span class="line">/&#123;</span><br></pre></td></tr></table></figure>
+<p>或者直接看controller里的业务逻辑，看有无对登陆/权限的校验</p>
+<h1 id="目录遍历-ssrf"><a href="#目录遍历-ssrf" class="headerlink" title="目录遍历/ssrf"></a>目录遍历/ssrf</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;url&quot;</span></span><br><span class="line">filepath</span><br><span class="line">fileurlpath</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件包含（jsp文件）"><a href="#文件包含（jsp文件）" class="headerlink" title="文件包含（jsp文件）"></a>文件包含（jsp文件）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include</span><br></pre></td></tr></table></figure>
+
+<h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parseX</span><br><span class="line">parseT</span><br></pre></td></tr></table></figure>
+
+<h1 id="业务逻辑漏洞"><a href="#业务逻辑漏洞" class="headerlink" title="业务逻辑漏洞"></a>业务逻辑漏洞</h1><p>走if的时候根据判断status是否等于true来进行流程，比如<code>status/resultCode==0</code>时允许进行下一步<br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0：成功 1：失败</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;0&quot;</span>.equals(resultCode)) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="密码硬编码"><a href="#密码硬编码" class="headerlink" title="密码硬编码"></a>密码硬编码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password</span><br></pre></td></tr></table></figure>
+
+<h1 id="springmvc业务逻辑"><a href="#springmvc业务逻辑" class="headerlink" title="springmvc业务逻辑"></a>springmvc业务逻辑</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*Controller.java</span><br></pre></td></tr></table></figure>
+
+<h1 id="tapestry框架业务逻辑"><a href="#tapestry框架业务逻辑" class="headerlink" title="tapestry框架业务逻辑"></a>tapestry框架业务逻辑</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extends BusiPage</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implemtns</span><br></pre></td></tr></table></figure>
+
+<h1 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CrossOrigin</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.application</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/%E5%AE%89%E5%8D%93%E6%B5%8B%E8%AF%95/">安卓测试</a>
+  <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/app测试/">app测试</a>
+  <span></span> <a href="/tags/java审计/">java审计</a><a href="/tags/审计思路/">审计思路</a>
   </div>
 
 </div>
@@ -150,7 +164,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2019/12/09/4/" data-title="App测试从0到精通（四大组件之activity组件篇） | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/12/24/46/" data-title="代码审计关键字 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -163,19 +177,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/04/10/22/" title="java审计代码跟进流程(spring)">
-  <strong>上一篇：</strong><br/>
-  <span>
-  java审计代码跟进流程(spring)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/08/17/3/"  title="记一次护网拿下公鸡队的肉鸡">
+<a href="/2020/12/24/45/"  title="2020年代码审计总结">
  <strong>下一篇：</strong><br/> 
- <span>记一次护网拿下公鸡队的肉鸡
+ <span>2020年代码审计总结
 </span>
 </a>
 </div>
@@ -192,7 +198,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E5%85%B7-%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">准备工具&#x2F;环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01"><span class="toc-number">2.</span> <span class="toc-text">0x01</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">原生反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li></ol>
  
   </div>
 
