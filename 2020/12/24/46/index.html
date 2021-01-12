@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>java代码审计关键字 | novy&#39;s Blog</title>
+    <title>java代码审计关键字讲解 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="精准打击（20201224更新）">
+    <meta name="description" content="根据框架或路由定义自行去除斜杠">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java代码审计关键字">
+<meta property="og:title" content="java代码审计关键字讲解">
 <meta property="og:url" content="http://example.com/2020/12/24/46/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="精准打击（20201224更新）">
+<meta property="og:description" content="根据框架或路由定义自行去除斜杠">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-12-24T09:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-28T08:27:33.721Z">
+<meta property="article:modified_time" content="2021-01-12T09:49:17.597Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="java审计">
 <meta property="article:tag" content="审计思路">
@@ -89,7 +89,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/12/24/46/" title="java代码审计关键字" itemprop="url">java代码审计关键字</a>
+      <a href="/2020/12/24/46/" title="java代码审计关键字讲解" itemprop="url">java代码审计关键字讲解</a>
   </h1>
   <p class="article-author">By
        
@@ -105,7 +105,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">原生反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">引用的接口：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E6%8E%A5%E5%8F%A3%E5%86%99%E6%B3%95%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">各接口写法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-DocumentBuilder"><span class="toc-number">10.2.1.</span> <span class="toc-text">javax.xml.parsers.DocumentBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-stream-XMLInputFactory"><span class="toc-number">10.2.2.</span> <span class="toc-text">javax.xml.stream.XMLInputFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-SAXParser"><span class="toc-number">10.2.3.</span> <span class="toc-text">javax.xml.parsers.SAXParser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#org-xml-sax-XMLReader"><span class="toc-number">10.2.4.</span> <span class="toc-text">org.xml.sax.XMLReader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-number">10.3.</span> <span class="toc-text">xml反序列化写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">原生反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">引用的接口：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E6%8E%A5%E5%8F%A3%E5%86%99%E6%B3%95%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">各接口写法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-DocumentBuilder"><span class="toc-number">10.2.1.</span> <span class="toc-text">javax.xml.parsers.DocumentBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-stream-XMLInputFactory"><span class="toc-number">10.2.2.</span> <span class="toc-text">javax.xml.stream.XMLInputFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-SAXParser"><span class="toc-number">10.2.3.</span> <span class="toc-text">javax.xml.parsers.SAXParser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#org-xml-sax-XMLReader"><span class="toc-number">10.2.4.</span> <span class="toc-text">org.xml.sax.XMLReader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-number">10.3.</span> <span class="toc-text">xml反序列化写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">18.</span> <span class="toc-text">接口</span></a></li></ol>
 		
 		</div>
 		
@@ -113,16 +113,15 @@
 
 <h1 id="原生反序列化"><a href="#原生反序列化" class="headerlink" title="原生反序列化"></a>原生反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">request.getinputstream</span><br><span class="line">ObjectInputStream</span><br><span class="line">.readObject()</span><br><span class="line">deserialize</span><br><span class="line">Serialize</span><br></pre></td></tr></table></figure>
 
-<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/upload（/uploadfile、upload）</span><br><span class="line">/file</span><br><span class="line">/save</span><br><span class="line">/add</span><br></pre></td></tr></table></figure>
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/upload</span><br><span class="line">/file</span><br><span class="line">/save</span><br><span class="line">/add</span><br></pre></td></tr></table></figure>
 
 <h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runtime.getRuntime().exec</span><br><span class="line"><span class="keyword">case</span> shell</span><br><span class="line">ShellProcessor</span><br><span class="line">processor</span><br></pre></td></tr></table></figure>
 
 <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">order by</span><br><span class="line">= <span class="string">&#x27;&quot;+</span></span><br><span class="line"><span class="string">query（queryList）</span></span><br><span class="line"><span class="string">like &quot;%</span></span><br><span class="line"><span class="string">.call</span></span><br><span class="line"><span class="string">$&#123;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/down （/download 、/downfile、down）</span><br><span class="line">/file</span><br></pre></td></tr></table></figure>
+<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/down</span><br><span class="line">/file</span><br><span class="line">/export</span><br><span class="line">/file</span><br></pre></td></tr></table></figure>
 
-<h1 id="越权（信息泄露）"><a href="#越权（信息泄露）" class="headerlink" title="越权（信息泄露）"></a>越权（信息泄露）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/user/&#123;</span><br><span class="line">/&#123;</span><br></pre></td></tr></table></figure>
-<p>直接看controller里的业务逻辑，看有无对登陆/权限的校验</p>
+<h1 id="越权（信息泄露）"><a href="#越权（信息泄露）" class="headerlink" title="越权（信息泄露）"></a>越权（信息泄露）</h1><p>直接看业务逻辑，看有无对登陆/权限的校验</p>
 <h1 id="目录遍历-ssrf"><a href="#目录遍历-ssrf" class="headerlink" title="目录遍历/ssrf"></a>目录遍历/ssrf</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;url&quot;</span></span><br><span class="line">filepath</span><br><span class="line">fileurlpath</span><br></pre></td></tr></table></figure>
 
 <h1 id="文件包含（jsp文件）"><a href="#文件包含（jsp文件）" class="headerlink" title="文件包含（jsp文件）"></a>文件包含（jsp文件）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include</span><br></pre></td></tr></table></figure>
@@ -151,7 +150,9 @@
 
 <h1 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CrossOrigin</span><br></pre></td></tr></table></figure>
 
-<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.application</span><br></pre></td></tr></table></figure>  
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.application</span><br></pre></td></tr></table></figure>
+
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span></span></span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -173,7 +174,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/12/24/46/" data-title="java代码审计关键字 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/12/24/46/" data-title="java代码审计关键字讲解 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -186,6 +187,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2021/01/12/47/" title=".getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路">
+  <strong>上一篇：</strong><br/>
+  <span>
+  .getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2020/12/24/45/"  title="2020年代码审计总结">
@@ -207,7 +216,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">原生反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">引用的接口：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E6%8E%A5%E5%8F%A3%E5%86%99%E6%B3%95%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">各接口写法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-DocumentBuilder"><span class="toc-number">10.2.1.</span> <span class="toc-text">javax.xml.parsers.DocumentBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-stream-XMLInputFactory"><span class="toc-number">10.2.2.</span> <span class="toc-text">javax.xml.stream.XMLInputFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-SAXParser"><span class="toc-number">10.2.3.</span> <span class="toc-text">javax.xml.parsers.SAXParser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#org-xml-sax-XMLReader"><span class="toc-number">10.2.4.</span> <span class="toc-text">org.xml.sax.XMLReader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-number">10.3.</span> <span class="toc-text">xml反序列化写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">原生反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">引用的接口：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E6%8E%A5%E5%8F%A3%E5%86%99%E6%B3%95%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">各接口写法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-DocumentBuilder"><span class="toc-number">10.2.1.</span> <span class="toc-text">javax.xml.parsers.DocumentBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-stream-XMLInputFactory"><span class="toc-number">10.2.2.</span> <span class="toc-text">javax.xml.stream.XMLInputFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-SAXParser"><span class="toc-number">10.2.3.</span> <span class="toc-text">javax.xml.parsers.SAXParser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#org-xml-sax-XMLReader"><span class="toc-number">10.2.4.</span> <span class="toc-text">org.xml.sax.XMLReader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-number">10.3.</span> <span class="toc-text">xml反序列化写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">18.</span> <span class="toc-text">接口</span></a></li></ol>
  
   </div>
 
@@ -238,7 +247,7 @@
 		  
 		
 		  
-			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>21</sup></a></li>
+			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>22</sup></a></li>
 		  
 		
 		  
@@ -299,6 +308,14 @@
 			
 		
 			
+				<li><a href="/tags/java审计/" title="java审计">java审计<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
 			
 		
@@ -312,14 +329,6 @@
 		
 			
 				<li><a href="/tags/JAVA反序列化/" title="JAVA反序列化">JAVA反序列化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java审计/" title="java审计">java审计<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>2</sup></a></li>
 			
 		
 			
@@ -355,7 +364,7 @@
 			
 		
 			
-				<li><a href="/tags/浏览器密码提取/" title="浏览器密码提取">浏览器密码提取<sup>1</sup></a></li>
+				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -428,7 +437,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2020 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2021 
 		
 		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
 		
