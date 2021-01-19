@@ -19,7 +19,7 @@
 <meta property="og:description" content="根据框架或路由定义自行去除斜杠">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-12-24T09:14:21.000Z">
-<meta property="article:modified_time" content="2021-01-12T09:49:17.597Z">
+<meta property="article:modified_time" content="2021-01-19T08:09:10.194Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="java审计">
 <meta property="article:tag" content="审计思路">
@@ -111,7 +111,7 @@
 		
 		<h1 id="fastjson反序列化"><a href="#fastjson反序列化" class="headerlink" title="fastjson反序列化"></a>fastjson反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">json.parseObject</span><br><span class="line">JSONObject.parseObject</span><br><span class="line"><span class="meta">@RequestBody</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="原生反序列化"><a href="#原生反序列化" class="headerlink" title="原生反序列化"></a>原生反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">request.getinputstream</span><br><span class="line">ObjectInputStream</span><br><span class="line">.readObject()</span><br><span class="line">deserialize</span><br><span class="line">Serialize</span><br></pre></td></tr></table></figure>
+<h1 id="原生反序列化"><a href="#原生反序列化" class="headerlink" title="原生反序列化"></a>原生反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.getinputstream</span><br><span class="line">ObjectInputStream</span><br><span class="line">.readObject()</span><br><span class="line">deserialize</span><br><span class="line">Serialize</span><br><span class="line"><span class="meta">@RequestBody</span></span><br><span class="line">ObjectInputStream.readUnshared</span><br><span class="line">XMLDecoder.readObject</span><br><span class="line">Yaml.load</span><br><span class="line">XStream.fromXML</span><br><span class="line">ObjectMapper.readValue</span><br></pre></td></tr></table></figure>
 
 <h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/upload</span><br><span class="line">/file</span><br><span class="line">/save</span><br><span class="line">/add</span><br></pre></td></tr></table></figure>
 
@@ -364,7 +364,7 @@
 			
 		
 			
-				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+				<li><a href="/tags/浏览器密码提取/" title="浏览器密码提取">浏览器密码提取<sup>1</sup></a></li>
 			
 		
 		</ul>
