@@ -4,20 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>novy&#39;s Blog</title>
+    <title>梭哈40分钟 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="novy&#39;s Blog">
-<meta property="og:url" content="http://example.com/page/4/index.html">
+    <meta name="description" content="混子的一天">
+<meta property="og:type" content="article">
+<meta property="og:title" content="梭哈40分钟">
+<meta property="og:url" content="http://example.com/2021/01/20/48/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="混子的一天">
 <meta property="og:locale">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611232359x1700340378.jpg">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611232720x989559121.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611231395x1700340378.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611231507x1700340378.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611231878x1700340438.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611231896x989559130.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611232533x992239403.png">
+<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=382399289,3059525514&fm=26&gp=0.jpg">
+<meta property="article:published_time" content="2021-01-20T15:14:21.000Z">
+<meta property="article:modified_time" content="2021-01-21T12:38:57.206Z">
 <meta property="article:author" content="novy&#39;s Blog">
+<meta property="article:tag" content="amf反序列化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://chuantu.xyz/t6/741/1611232359x1700340378.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -77,215 +91,96 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/08/10/23/" title="xss bypass小记" itemprop="url">
-  
-    <h1 itemprop="name">xss bypass小记</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-      <p itemprop="description" >xss bypass</p>
-      
+      <a href="/2021/01/20/48/" title="梭哈40分钟" itemprop="url">梭哈40分钟</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
+		
+  <p class="article-time">
+    <time datetime="2021-01-20T15:14:21.000Z" itemprop="datePublished"> Published 2021-01-20</time>
     
-    <time datetime="2020-08-10T06:57:56.000Z" itemprop="datePublished">2020-08-10</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<p><img src="http://chuantu.xyz/t6/741/1611232359x1700340378.jpg"><br>在这里有两个项目，一个是代码审计一个是渗透测试，qax是代码审计，qm是渗透测试，按照客户要求晚上配合qm的做季度渗透，因为审计过的原因知道这个系统引用的组件版本存在漏洞，通过过滤器知道flex作用于messagebroker/*<br><img src="http://chuantu.xyz/t6/741/1611232720x989559121.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp ColdFusionPwn-0.0.1-SNAPSHOT-all.jar:ysoserial-0.0.8-SNAPSHOT-all.jar com.codewhitesec.coldfusionpwn.ColdFusionPwner -e CommonsBeanutils1 <span class="string">&quot;sleep-check-20&quot;</span>  poc.amf</span><br></pre></td></tr></table></figure>
+<p><img src="http://chuantu.xyz/t6/741/1611231395x1700340378.png"><br>生成一个休眠20秒的poc直接打过去<br><img src="http://chuantu.xyz/t6/741/1611231507x1700340378.png"></p>
+<p>根据以往的审计报告<br>再顺手捡个任意文件上传<br><img src="http://chuantu.xyz/t6/741/1611231878x1700340438.png"><br>任意文件下载<br><img src="http://chuantu.xyz/t6/741/1611231896x989559130.png"></p>
+<p><img src="http://chuantu.xyz/t6/741/1611232533x992239403.png"><br>本来是要求渗透到第二天七点的，但是都这样了我怎么可能允许自己再通宵，下班，让qm的继续去透吧<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=382399289,3059525514&fm=26&gp=0.jpg"></p>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E8%B6%A3%E4%BA%8B/">项目趣事</a>
+</div>
+
+
+  <div class="article-tags">
   
-    <a href="/2020/07/10/21/" title="IDEA打包JAR包的两种方法" itemprop="url">
-  
-    <h1 itemprop="name">IDEA打包JAR包的两种方法</h1>
-    
-     
-      <p itemprop="description" >java打包</p>
-      
-    
-    <time datetime="2020-07-10T06:48:18.000Z" itemprop="datePublished">2020-07-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/07/10/15/" title="JSPXCMS任意重定向" itemprop="url">
-  
-    <h1 itemprop="name">JSPXCMS任意重定向</h1>
-    
-     
-      <p itemprop="description" >JSPXCMS任意重定向</p>
-      
-    
-    <time datetime="2020-07-10T05:45:18.000Z" itemprop="datePublished">2020-07-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/07/10/14/" title="java审计学习笔记-JEECMSx1.4.0两处XSS" itemprop="url">
-  
-    <h1 itemprop="name">java审计学习笔记-JEECMSx1.4.0两处XSS</h1>
-    
-     
-      <p itemprop="description" >jeeCMS XSS</p>
-      
-    
-    <time datetime="2020-07-10T05:43:43.000Z" itemprop="datePublished">2020-07-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/07/10/8/" title="cs免杀后门" itemprop="url">
-  
-    <h1 itemprop="name">cs免杀后门</h1>
-    
-     
-      <p itemprop="description" >cobalt strike免杀</p>
-      
-    
-    <time datetime="2020-07-10T05:11:59.000Z" itemprop="datePublished">2020-07-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2020/04/10/22/" title="java审计代码跟进流程(spring)" itemprop="url">
-  
-    <h1 itemprop="name">java审计代码跟进流程(spring)</h1>
-    
-     
-      <p itemprop="description" >spring流程</p>
-      
-    
-    <time datetime="2020-04-10T06:52:47.000Z" itemprop="datePublished">2020-04-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2019/12/09/4/" title="App测试从0到精通（四大组件之activity组件篇）" itemprop="url">
-  
-    <h1 itemprop="name">App测试从0到精通（四大组件之activity组件篇）</h1>
-    
-     
-      <p itemprop="description" >app测试入门</p>
-      
-    
-    <time datetime="2019-12-09T09:56:45.000Z" itemprop="datePublished">2019-12-09</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2019/08/17/3/" title="记一次护网拿下公鸡队的肉鸡" itemprop="url">
-  
-    <h1 itemprop="name">记一次护网拿下公鸡队的肉鸡</h1>
-    
-     
-      <p itemprop="description" >护网趣事</p>
-      
-    
-    <time datetime="2019-08-17T09:53:10.000Z" itemprop="datePublished">2019-08-17</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2019/06/20/2/" title="有道笔记windows桌面版6.8.0.1代码执行" itemprop="url">
-  
-    <h1 itemprop="name">有道笔记windows桌面版6.8.0.1代码执行</h1>
-    
-     
-      <p itemprop="description" >有道笔记windows桌面版6.8.0.1代码执行</p>
-      
-    
-    <time datetime="2019-06-20T09:25:21.000Z" itemprop="datePublished">2019-06-20</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2019/06/20/1/" title="印象笔记6.18.8.718最新版XSS漏洞" itemprop="url">
-  
-    <h1 itemprop="name">印象笔记6.18.8.718最新版XSS漏洞</h1>
-    
-     
-      <p itemprop="description" >印象笔记6.18.8.718最新版xss漏洞</p>
-      
-    
-    <time datetime="2019-06-20T09:25:13.000Z" itemprop="datePublished">2019-06-20</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/3/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">下一页</a>
-  </nav>
+  <span></span> <a href="/tags/amf反序列化/">amf反序列化</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://example.com/2021/01/20/48/" data-title="梭哈40分钟 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2021/01/12/47/"  title=".getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路">
+ <strong>下一篇：</strong><br/> 
+ <span>.getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -599,12 +494,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -677,4 +649,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
