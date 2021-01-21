@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>某大型框架存储型XSS | novy&#39;s Blog</title>
+    <title>某大型框架登陆存储型XSS | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
@@ -13,18 +13,18 @@
     
     <meta name="description" content="登陆处XSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="某大型框架存储型XSS">
+<meta property="og:title" content="某大型框架登陆存储型XSS">
 <meta property="og:url" content="http://example.com/2020/11/26/39/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="登陆处XSS">
 <meta property="og:locale">
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896446898.png">
 <meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896550237.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896779619.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896845369.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896869849.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611230125x1700340378.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611230159x989559130.png">
+<meta property="og:image" content="http://chuantu.xyz/t6/741/1611230192x989559121.png">
 <meta property="article:published_time" content="2020-11-26T08:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-02T08:18:37.712Z">
+<meta property="article:modified_time" content="2021-01-21T11:57:35.336Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="Java代码审计">
 <meta name="twitter:card" content="summary">
@@ -94,7 +94,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/11/26/39/" title="某大型框架存储型XSS" itemprop="url">某大型框架存储型XSS</a>
+      <a href="/2020/11/26/39/" title="某大型框架登陆存储型XSS" itemprop="url">某大型框架登陆存储型XSS</a>
   </h1>
   <p class="article-author">By
        
@@ -118,10 +118,12 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="number">1</span> onerror=alert(<span class="number">1</span>)&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896446898.png"><br>后台会记录登陆日志，当查看登陆日志时就会触发xss<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896550237.png"></p>
 <p>代码分析：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/xxx/xxx/admin/controller/LogController.java 53行</span><br></pre></td></tr></table></figure>
-<p>日志查询，跟进<code>getLogByPage</code>方法<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896779619.png"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/xxx/xxx/admin/service/SysLogService.java</span><br></pre></td></tr></table></figure>
-<p>跟进Page查看具体实现<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896845369.png"><br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606896869849.png"><br>实体处理，流程到此处结束，没有XSS防护</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/pig4cloud/pig/admin/controller/LogController.java <span class="number">53</span>行</span><br></pre></td></tr></table></figure>
+<p>日志查询，查看<code>sysLogService</code>在哪里被定义<br><img src="http://chuantu.xyz/t6/741/1611230125x1700340378.png"><br>跟进<code>SysLogService</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/pig4cloud/pig/admin/service/SysLogService.java</span><br></pre></td></tr></table></figure>
+<p>在此接口中无具体实现，所以全局搜索其实现类<br><img src="http://chuantu.xyz/t6/741/1611230159x989559130.png"><br>在实现里搜索调用到的<code>getLogByPage</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/pig4cloud/pig/admin/service/impl/SysLogServiceImpl.java</span><br></pre></td></tr></table></figure>
+<p><img src="http://chuantu.xyz/t6/741/1611230192x989559121.png"><br>经过查询后直接返回结果集，漏洞产生</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -144,7 +146,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/11/26/39/" data-title="某大型框架存储型XSS | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2020/11/26/39/" data-title="某大型框架登陆存储型XSS | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -217,7 +219,7 @@
 		  
 		
 		  
-			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>22</sup></a></li>
+			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>20</sup></a></li>
 		  
 		
 		  
@@ -258,7 +260,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>7</sup></a></li>
+				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
 			
 		
 			
@@ -267,10 +269,6 @@
 		
 			
 				<li><a href="/tags/SQL注入/" title="SQL注入">SQL注入<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>3</sup></a></li>
 			
 		
 			
@@ -283,6 +281,10 @@
 		
 			
 				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>2</sup></a></li>
 			
 		
 			
