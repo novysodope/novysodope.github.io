@@ -18,19 +18,19 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="漏洞记录">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673219931.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673237909.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673299226.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673385415.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673410884.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673444152.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/42/1.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/42/2.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/42/3.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/42/4.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/42/5.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/42/6.png">
 <meta property="article:published_time" content="2020-12-04T08:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-11T07:59:06.785Z">
+<meta property="article:modified_time" content="2021-01-22T07:47:37.617Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="Java代码审计">
 <meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673219931.png">
+<meta name="twitter:image" content="http://634880.haituie.cn/634880/42/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -118,22 +118,22 @@
 		
 		<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\action\systemmanage\UserManagerAction.java 35行</span><br></pre></td></tr></table></figure>
 <p>在<code>searchUserByLoginName</code>方法中定义了字符串参数loginName，然后转到<code>userService</code>的<code>searchUserByLoginName</code>方法处理loginName</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673219931.png"></p>
+<p><img src="http://634880.haituie.cn/634880/42/1.png"></p>
 <p>跟进<code>userService</code></p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673237909.png"></p>
+<p><img src="http://634880.haituie.cn/634880/42/2.png"></p>
 <p>定义接口，继续跟进<code>IUserManagerService</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\service\sysManager\IUserManagerService.java</span><br></pre></td></tr></table></figure>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673299226.png"></p>
+<p><img src="http://634880.haituie.cn/634880/42/3.png"></p>
 <p>还是接口定义，在该接口里没有对<code>searchUserByLoginName</code>方法做具体实现，全局搜索<code>implements IUserManagerService</code>查看其实现类</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\service\sysManager\impl\UserManagerServiceImpl.java</span><br></pre></td></tr></table></figure>
 <p>查看<code>searchUserByLoginName</code>方法</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673385415.png"></p>
+<p><img src="http://634880.haituie.cn/634880/42/4.png"></p>
 <p>跟进查看<code>userDao</code></p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673410884.png"></p>
+<p><img src="http://634880.haituie.cn/634880/42/5.png"></p>
 <p>全局搜索<code>implements IUserManagerDAO</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\com\asiainfo\newBam\dao\sysManager\impl\UserManagerDAOImpl.java</span><br></pre></td></tr></table></figure>
 <p>查看<code>searchUserByLoginName</code>方法</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1607673444152.png"></p>
+<p><img src="http://634880.haituie.cn/634880/42/6.png"></p>
 <p>参数拼接，然后把sql语句直接带入数据库查询,注入产生</p>
   
 	</div>

