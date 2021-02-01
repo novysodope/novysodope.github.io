@@ -62,7 +62,7 @@
 <meta property="og:image" content="https://novysodope.github.io/images/xianzhi/41.png">
 <meta property="og:image" content="https://novysodope.github.io/images/xianzhi/42.png">
 <meta property="article:published_time" content="2020-12-24T08:14:21.000Z">
-<meta property="article:modified_time" content="2021-02-01T03:28:29.811Z">
+<meta property="article:modified_time" content="2021-02-01T03:30:13.510Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="java审计">
 <meta property="article:tag" content="审计思路">
@@ -189,7 +189,7 @@
 <h1 id="4-小技巧"><a href="#4-小技巧" class="headerlink" title="4.小技巧"></a>4.小技巧</h1><h2 id="4-1-命名"><a href="#4-1-命名" class="headerlink" title="4.1.命名"></a>4.1.命名</h2><p>无论是struts还是springmvc/boot，按照我的理解，为了方便区分和后续其他开发，除非另类命名（比如<strong>3.1.3</strong>），在整个请求处理流程中对于类名的前置命名都是一致的，比如<br><strong>Novy</strong>Controller-&gt;<strong>NovyService</strong>-&gt;(<strong>NovyService</strong>Impl-&gt;)<strong>Novy</strong>Mapper.xml<br>而不会出现<br><strong>Novy</strong>Controller-&gt;<strong>TestService</strong>-&gt;(<strong>WhyService</strong>Impl-&gt;)<strong>Oasd</strong>Mapper.xml<br>这种情况，所以在审计过程中跟进代码时利用idea的全局搜索能更好的提高审计效率<br><img src="https://novysodope.github.io/images/xianzhi/40.png"></p>
 <h2 id="4-2-方法的跟进"><a href="#4-2-方法的跟进" class="headerlink" title="4.2.方法的跟进"></a>4.2.方法的跟进</h2><p>通常调用方法时都是<code>类名.方法名</code>，或者写了一个EntityManager接口，然后再定义一次:<br><code>private EntityManager em;</code><br>这样em就可以用到EntityManager里的方法<br>比如某个项目有一个序列化工具类SerializeUtil，在该类里有一个deserialize方法来反序列化接收的request数据<br><img src="https://novysodope.github.io/images/xianzhi/41.png"><br>而在controller中定义了一个接口<br><code>private SerializeUtil fvlh;</code><br>然后在某个<code>@PostMapping</code>注解下的方法进行调用<br><code>fvlh.deserialize(request);</code><br>如果我们想找反序列化漏洞就在跟进时可以直接ctrl+左键（idea）来跟进deserialize方法查看具体实现，或者先查看哪里定义了fvlh，然后再根据接口去跟进deserialize方法进行漏洞跟踪,最后确定该漏洞是否利用<br><img src="https://novysodope.github.io/images/xianzhi/42.png"></p>
 <h1 id="5-其他"><a href="#5-其他" class="headerlink" title="5.其他"></a>5.其他</h1><p>还有tapestry框架，这个我在公司项目中审的，开源没碰见过，所以不好解释，等哪天碰到了再另说。总的来说跟进思路就这样，其他漏洞同理。感谢shxjia对相关专业知识的解答，感谢白帽100少先队的技术分享</p>
-<p><a href="/images/45/%E5%87%A0%E4%B8%AA%E6%9C%88%E6%9D%A5java%E5%AE%A1%E8%AE%A1%E7%9A%84%E4%B8%80%E7%82%B9%E5%BF%83%E5%BE%97%E6%80%BB%E7%BB%93.docx" title="文档下载地址">文档下载地址（文档比较老，本文章对比文档有改动）</a></p>
+<p><a href="/images/45/%E5%87%A0%E4%B8%AA%E6%9C%88%E6%9D%A5java%E5%AE%A1%E8%AE%A1%E7%9A%84%E4%B8%80%E7%82%B9%E5%BF%83%E5%BE%97%E6%80%BB%E7%BB%93.docx" title="文档下载地址">文档比较老，本文章对比文档有改动</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -398,11 +398,11 @@
 			
 		
 			
-				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
+				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
+				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
 			
 		
 			
