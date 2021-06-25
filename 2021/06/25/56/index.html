@@ -1,0 +1,694 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>我是个没用的安服仔 | novy&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="novy&#39;s Blog">
+    
+
+    
+    <meta name="description" content="记一次get不了shell的渗透测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我是个没用的安服仔">
+<meta property="og:url" content="http://example.com/2021/06/25/56/index.html">
+<meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="记一次get不了shell的渗透测试">
+<meta property="og:locale">
+<meta property="og:image" content="http://example.com/images/56/1.png">
+<meta property="og:image" content="http://example.com/images/56/2.png">
+<meta property="og:image" content="http://example.com/images/56/3.png">
+<meta property="og:image" content="http://example.com/images/56/4.png">
+<meta property="og:image" content="http://example.com/images/56/5.png">
+<meta property="og:image" content="http://example.com/images/56/6.png">
+<meta property="og:image" content="http://example.com/images/56/7.png">
+<meta property="og:image" content="http://example.com/images/56/8.png">
+<meta property="og:image" content="http://example.com/images/56/9.png">
+<meta property="og:image" content="http://example.com/images/56/10.png">
+<meta property="og:image" content="http://example.com/images/56/11.png">
+<meta property="og:image" content="http://example.com/images/56/12.png">
+<meta property="og:image" content="http://example.com/images/56/13.png">
+<meta property="og:image" content="http://example.com/images/56/14.png">
+<meta property="og:image" content="http://example.com/images/56/15.png">
+<meta property="og:image" content="http://example.com/images/56/16.png">
+<meta property="og:image" content="http://example.com/images/56/17.png">
+<meta property="og:image" content="http://example.com/images/56/18.png">
+<meta property="og:image" content="http://example.com/images/56/19.png">
+<meta property="og:image" content="http://example.com/images/56/20.png">
+<meta property="og:image" content="http://example.com/images/56/22.png">
+<meta property="article:published_time" content="2021-06-25T02:14:21.000Z">
+<meta property="article:modified_time" content="2021-06-25T06:24:19.441Z">
+<meta property="article:author" content="novy&#39;s Blog">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/56/1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/logo2.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/logo2.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo2.jpg" alt="novy&#39;s Blog" title="novy&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="novy&#39;s Blog">novy&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/life">生活</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:example.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/06/25/56/" title="我是个没用的安服仔" itemprop="url">我是个没用的安服仔</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
+		
+  <p class="article-time">
+    <time datetime="2021-06-25T02:14:21.000Z" itemprop="datePublished"> Published 2021-06-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			
+		
+		</div>
+		
+		<p>接到一个任务，两个目标：某一线市教育局跟某500强集团两个主站，要求是要getshell，主站get不了就去找归属资产get也行</p>
+<p>先看教育局，主站一通乱点全被waf拦截了，主站收集了站点上出现的所有下属的资产<br><img src="/images/56/1.png"><br>发现在同一个ip段，猜测可能整个段都是他家的，直接扫c段看到一堆开了web服务的，丢给我的富婆扫一下<br><img src="/images/56/2.png"><br>偶尔出现几个tomcat页面几个swagger接口但是利用不了，弱口令进去几个代码仓库管理系统但是找不到getshell的点，有个jumpserver堡垒机但是漏洞不存在，用域名证书查子域也啥都没有，旁站全是其他gov，不敢动，偶尔出现几个个人站点，但是有的wp5.7.2没发现什么插件，有的是dzx3.4没搞头，fofa也没发现什么能利用的，教育局先拉闸</p>
+<p>转到某集团，老规矩收集资产，把能点的都点了，没有可以利用的点，ping一下发现上了知道创宇的cdn，fofa搜一下集团名字，筛选一下出现700多个结果。但是没有会员只能看第一页（卑微），发现全是集团的国外品牌vpn登录页<br><img src="/images/56/3.png"><br>搜了一圈没有这个vpn牌子的漏洞，拉闸<br>整理一下得到的东西<br><img src="/images/56/4.png"><br>在供应商平台发现可以注册，注册的时候上传营业执照有个上传漏洞<br><img src="/images/56/5.png"><br>虎躯一震，感觉有救<br>但是最后发现目录不解析，文件重命名，只能传个html，拉闸<br><img src="/images/56/6.png"><br>扫这个ip的端口开放情况，最后根据端口情况对一些登录做爆破，拉闸，子域名拉闸，找到一个过期的域名，拉闸</p>
+<p>继续闲逛集团官网，在关于集团处看到了<br><img src="/images/56/7.png"><br>再次虎躯一震，马上去搜一下第一家公司的情况，得到三个域名<br><img src="/images/56/8.png"><br>主站一通乱点拉闸，fofa搜了一下发现这个公司下面有一个支付平台而且可以注册商户，但是跟上一个上传漏洞类似，拉闸，扫端口发现有一个自研商城系统，但是注册功能异常，注入xss全被waf拦了，爆破拉闸，放弃直接去看第二家公司，一通操作得到几个资产<br><img src="/images/56/9.png"><br>测到一半发现没有什么可以利用的点，眼看资产就要测没了，心已经凉了一半，但是当我眼角瞄到可以注册的时候又开始感觉有救，一通操作下来结合代码审计的经验感觉下载处后端会这么写<br>/uploadfiles/2018/02/{$filepath}<br>试了一下发现下载处的确可以用../穿越目录进行文件访问<br>比如从下载目录到首页<br><img src="/images/56/10.png"><br><img src="/images/56/11.png"><br>但是访问config的后缀文件就会被拒绝，穿越系统目录也会被限制，拉闸，权限被限制的死死的，<br>考虑到是aspx，尝试找找注入，在首页各种功能点一遍，看到一处可疑的url /xx/xx/list_1.aspx，根据以往代码审计的经验感觉这里后端会这样写：list_{$id}.aspx，尝试一下，waf拦截了<br><img src="/images/56/12.png"><br>双重编码可以绕过，但是后端只解一次<br><img src="/images/56/13.png"><br>从报错信息猜测是云空间之类的，站长之家搜一下同ip网站<br><img src="/images/56/14.png"><br>旁站3个，但是没有利用的点，端口扫了一下没看到有什么面板<br>找万能的群友看看有没有什么姿势<br><img src="/images/56/15.png"><br>考虑到时间紧迫不想再爆破了，身体开始颤抖了，抽烟，冷静，还有最后一个扫出来的子域名asp站，打开，点击产品列表，愣住<br><img src="/images/56/16.png"><br>好家伙，sql注入靶场都没你这么明显，凭借年仅20岁但是有30年工作经验的我感觉这里就是有注入，直接上sqlmap<br><img src="/images/56/17.png"><br><img src="/images/56/18.png"><br>因为过于兴奋导致精神错乱之下没注意看数据库类型，只想到之前的报错里的绝对路径，赶紧试一下os shell，结果<br><img src="/images/56/19.png"><br>冷静下来终于看到了dbms：microsoft access<br><img src="/images/56/20.png"><br>注入shell不了那就登录后台shell吧，但是刚跑完表时间到了要上报了，罢了，这么菜getshell不了sql注入总得报一下吧<br><img src="/images/56/22.png"></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98/">渗透实战</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://example.com/2021/06/25/56/" data-title="我是个没用的安服仔 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2021/05/19/55/"  title="ysoserial URLDNS  gadget分析笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>ysoserial URLDNS  gadget分析笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github Card</p>
+<div class="github-card" data-github="novysodope" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JAVA/" title="JAVA">JAVA<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Java审计/" title="Java审计">Java审计<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>20</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/免杀/" title="免杀">免杀<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/安卓测试/" title="安卓测试">安卓测试<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/客户端漏洞/" title="客户端漏洞">客户端漏洞<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/插件/" title="插件">插件<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/渗透实战/" title="渗透实战">渗透实战<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞复现/" title="漏洞复现">漏洞复现<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/漏洞挖掘/" title="漏洞挖掘">漏洞挖掘<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/项目趣事/" title="项目趣事">项目趣事<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java代码审计/" title="Java代码审计">Java代码审计<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SQL注入/" title="SQL注入">SQL注入<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java审计/" title="java审计">java审计<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OWASPTOP10漏洞/" title="OWASPTOP10漏洞">OWASPTOP10漏洞<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JAVA反序列化/" title="JAVA反序列化">JAVA反序列化<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/免杀/" title="免杀">免杀<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/印象笔记/" title="印象笔记">印象笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/有道云笔记/" title="有道云笔记">有道云笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://whitecap100.org" target="_blank" title="分享技术文章，分享骚姿势">白帽100安全攻防实验室</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://nbchengit.github.io" target="_blank" title="chensir`Blog">chensir`Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.kongxin.org" target="_blank" title="空心&#39;s Blog">空心&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.9821.ink" target="_blank" title="免杀&内网渗透实录">九八二一</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.ch1ng.com" target="_blank" title="Ch1ng's Blog">金枪银矛小霸王</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://feng4.github.io" target="_blank" title="Fengx&#39;s blog">Fengx&#39;s blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer>
+<div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 记录日常所学所遇. <br/>
+			Have a great fucking day!</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/novysodope" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:novysodope@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2021 
+		
+		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
+		
+		<br />
+		<script>
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }</script>
+<script type="text/javascript" language="javascript">
+    function setTime() {
+        var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+                + '秒';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }    setInterval(setTime, 1000);</script>
+    本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span>
+    <br/>
+  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    你是第<span id="busuanzi_value_site_uv"></span>个小伙伴
+		</p>
+
+
+
+</div>
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
