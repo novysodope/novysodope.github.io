@@ -1,0 +1,101 @@
+﻿adb手册
+监听设备/模拟器
+adb devices
+
+备份数据
+adb backup -nosystem -noshared -apk -f 备份名字.ab apk包名
+//-nosystem表示不备份系统应用 -noshared表示不备份应用存储在SD中的数据 -apk表示备份应用APK安装包 -f 表示备份的.ab文件路径和文件名 最后是要备份应用的packageName，如果不设置路径就会显示在模拟器的根目录
+
+还原数据
+关闭ADB
+adb kill-server
+
+重新启动ADB，检测手机2是否成功连接
+adb devices
+
+还原数据
+adb restore 备份名字.ab
+
+打开手机日志
+adb logcat
+
+drozer手册
+端口转发
+adb forward tcp:31415 tcp:31415
+
+连接控制台
+drozer console connect
+
+检索包名
+run app.package.list -f （安装后的app名称）
+
+检查包的详细信息
+run app.package.info -a 包名
+
+扫描可利用攻击
+run app.package.attacksurface 包名
+
+activity组件检测
+dz> run app.activity.info -a apk包名
+
+越权调用
+dz>   apk包名 组件名
+
+services组件检测
+dz> run app.service.info -a apk包名
+
+越权调用
+dz> run app.service.start --component  apk包名 组件名
+
+提升权限
+run app.service.start --action xxx --extra xxxx
+
+Broadcast Receiver组件检测
+dz> run app.broadcast.info -a apk包名
+
+发送恶意广播
+run app.broadcast.send --component 包名 广播名 --extra string phoneNumber 222
+拒绝服务
+run app.broadcast.send --component 包名 组件名
+
+组件Content Provider配置检测
+dz> run app.provider.info -a apk包名
+
+sql注入
+run scanner.provider.injection -a com.mwr.example.sieve
+
+目录遍历
+run scanner.provider.traversal -a com.mwr.example.sieve
+
+aapt的使用
+检测app详细信息
+aapt list -v -a  apk文件名（同目录）
+
+http://www.pinlue.com/article/2021/01/1915/2311496435057.html
+https://www.cnblogs.com/peterpan0707007/p/9481510.html
+
+2.1 查看apk包的packageName、versionCode、applicationLabel、launcherActivity、permission等各种详细信息
+aapt dump badging <file_path.apk>
+
+
+2.2 查看权限
+aapt dump permissions <file_path.apk>
+
+
+2.3 查看资源列表
+aapt dump resources <file_path.apk>
+一般都会输出很多的信息，如要全部查看，请用下面这两句：
+aapt dump resources <file_path.apk>   > sodino.txt
+sodino.txt
+这样会把所有的信息通过重定向符">"输出到sodino.txt文件中，然后再打开该文件即可查看。
+
+
+2.4 查看apk配置信息
+aapt dump configurations <file_path.apk>
+
+
+2.5 查看指定apk的指定xml文件。
+aapt dump xmltree <file_path.apk> res/***.xml
+以树形结构输出的xml信息。
+aapt dump xmlstrings <file_path.apk> res/***.xml
+输出xml文件中所有的字符串信息。

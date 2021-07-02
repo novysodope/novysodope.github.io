@@ -18,27 +18,27 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="java打包">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445551">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445563">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445571">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445572">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445579">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445580">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445591">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445597">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445596">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445600">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445602">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445611">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445619">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445617">
+<meta property="og:image" content="http://example.com/images/21/1.png">
+<meta property="og:image" content="http://example.com/images/21/2.png">
+<meta property="og:image" content="http://example.com/images/21/3.png">
+<meta property="og:image" content="http://example.com/images/21/4.png">
+<meta property="og:image" content="http://example.com/images/21/5.png">
+<meta property="og:image" content="http://example.com/images/21/6.png">
+<meta property="og:image" content="http://example.com/images/21/7.png">
+<meta property="og:image" content="http://example.com/images/21/8.png">
+<meta property="og:image" content="http://example.com/images/21/9.png">
+<meta property="og:image" content="http://example.com/images/21/10.png">
+<meta property="og:image" content="http://example.com/images/21/11.png">
+<meta property="og:image" content="http://example.com/images/21/12.png">
+<meta property="og:image" content="http://example.com/images/21/13.png">
+<meta property="og:image" content="http://example.com/images/21/14.png">
 <meta property="article:published_time" content="2020-07-10T06:48:18.000Z">
-<meta property="article:modified_time" content="2020-11-10T06:51:53.384Z">
+<meta property="article:modified_time" content="2021-07-02T02:06:44.537Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="JAVA">
 <meta property="article:tag" content="IDEA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445551">
+<meta name="twitter:image" content="http://example.com/images/21/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -79,8 +79,6 @@
 						<li><a href="/">首页</a></li>
 					
 						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/life">生活</a></li>
 					
 						<li><a href="/about">关于</a></li>
 					
@@ -124,9 +122,9 @@
 		
 		</div>
 		
-		<p>首先要了解一下在java中maven项目想要打包war或jar是取决于pom.xml中的标明，比如这是mave普通的java项目<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445551"><br>这是javaweb的项目<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445563"><br>今天记录一下idea打包jar包的两种方法</p>
-<h1 id="一、Maven-Lifecycle"><a href="#一、Maven-Lifecycle" class="headerlink" title="一、Maven Lifecycle"></a>一、Maven Lifecycle</h1><p>依次打开右上方的Maven - Lifecycle，按图中顺序执行<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445571"><br>如果代码有错误，在进行到compile时会有报错，所以我们首先要确定代码无报错，也就是代码没有红线，比如这种：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445572"><br>全部错误排除完成后再运行一次，全部成功后就会在target目录生成一个jar包<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445579"></p>
-<h1 id="二、Project-Structure"><a href="#二、Project-Structure" class="headerlink" title="二、Project Structure"></a>二、Project Structure</h1><p>在上述的方法中普遍会报错，出现类似找不到入口的情况<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445580"><br>这时候就会用到Project Structure里的打包jar方法，会比较麻烦。<br>首先依次选择file-Project Structure-Artifacts,然后点击+，选From module with depenencies（empty麻烦一点，相当于自定义）<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445591"><br>然后选择主类（程序入口），一般会默认给你列出来的<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445597"><br>点击OK之后下面的META-INF就会亮起来，选一个META-INF文件存放的地方，一般都是在main目录下，跟java并排，我们直接在main下新建一个resources目录用来存放META-INF文件，最终就是这样：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445596"><br>点击OK之后就是这样子，然后再OK一次<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445600"><br>然后依次选择Build-Artifacts<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445602"><br>然后build<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445611"><br>最后就会在你的项目目录里生成一个out目录，jar包就在里面<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445619"><br>运行：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/1595911445617"></p>
+		<p>首先要了解一下在java中maven项目想要打包war或jar是取决于pom.xml中的标明，比如这是mave普通的java项目<br><img src="/images/21/1.png"><br>这是javaweb的项目<br><img src="/images/21/2.png"><br>今天记录一下idea打包jar包的两种方法</p>
+<h1 id="一、Maven-Lifecycle"><a href="#一、Maven-Lifecycle" class="headerlink" title="一、Maven Lifecycle"></a>一、Maven Lifecycle</h1><p>依次打开右上方的Maven - Lifecycle，按图中顺序执行<br><img src="/images/21/3.png"><br>如果代码有错误，在进行到compile时会有报错，所以我们首先要确定代码无报错，也就是代码没有红线，比如这种：<br><img src="/images/21/4.png"><br>全部错误排除完成后再运行一次，全部成功后就会在target目录生成一个jar包<br><img src="/images/21/5.png"></p>
+<h1 id="二、Project-Structure"><a href="#二、Project-Structure" class="headerlink" title="二、Project Structure"></a>二、Project Structure</h1><p>在上述的方法中普遍会报错，出现类似找不到入口的情况<br><img src="/images/21/6.png"><br>这时候就会用到Project Structure里的打包jar方法，会比较麻烦。<br>首先依次选择file-Project Structure-Artifacts,然后点击+，选From module with depenencies（empty麻烦一点，相当于自定义）<br><img src="/images/21/7.png"><br>然后选择主类（程序入口），一般会默认给你列出来的<br><img src="/images/21/8.png"><br>点击OK之后下面的META-INF就会亮起来，选一个META-INF文件存放的地方，一般都是在main目录下，跟java并排，我们直接在main下新建一个resources目录用来存放META-INF文件，最终就是这样：<br><img src="/images/21/9.png"><br>点击OK之后就是这样子，然后再OK一次<br><img src="/images/21/10.png"><br>然后依次选择Build-Artifacts<br><img src="/images/21/11.png"><br>然后build<br><img src="/images/21/12.png"><br>最后就会在你的项目目录里生成一个out目录，jar包就在里面<br><img src="/images/21/13.png"><br>运行：<br><img src="/images/21/14.png"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -209,67 +207,6 @@
 
 
   
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/JAVA/" title="JAVA">JAVA<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Java审计/" title="Java审计">Java审计<sup>6</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/java审计/" title="java审计">java审计<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/免杀/" title="免杀">免杀<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/安卓测试/" title="安卓测试">安卓测试<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/客户端漏洞/" title="客户端漏洞">客户端漏洞<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/插件/" title="插件">插件<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/渗透实战/" title="渗透实战">渗透实战<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/漏洞复现/" title="漏洞复现">漏洞复现<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/漏洞挖掘/" title="漏洞挖掘">漏洞挖掘<sup>5</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/项目趣事/" title="项目趣事">项目趣事<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
 <div class="tagslist">
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
@@ -343,7 +280,7 @@
 			
 		
 			
-				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
+				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
 			
 		
 			
@@ -351,7 +288,7 @@
 			
 		
 			
-				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
 			
 		
 		</ul>

