@@ -1,17 +1,22 @@
 
- <!DOCTYPE HTML>
-<html lang="zh">
+
+<!DOCTYPE html>
+<html lang="zh" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    <title>java代码审计关键字讲解 | novy&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="novy&#39;s Blog">
-    
-
-    
-    <meta name="description" content="根据框架或路由定义自行去除斜杠">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="根据框架或路由定义自行去除斜杠">
+  <meta name="author" content="novy&#39;s Blog">
+  <meta name="keywords" content="">
+  <meta name="description" content="根据框架或路由定义自行去除斜杠">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java代码审计关键字讲解">
 <meta property="og:url" content="http://example.com/2020/12/24/46/index.html">
@@ -23,639 +28,465 @@
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="java审计">
 <meta property="article:tag" content="审计思路">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>java代码审计关键字讲解 - novy&#39;s Blog</title>
 
-    
-    <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/logo2.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/logo2.jpg">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/%02.css">
-<link rel="stylesheet" href="/.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo2.jpg" alt="novy&#39;s Blog" title="novy&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="novy&#39;s Blog">novy&#39;s Blog</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">首页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:example.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2020/12/24/46/" title="java代码审计关键字讲解" itemprop="url">java代码审计关键字讲解</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
-		
-  <p class="article-time">
-    <time datetime="2020-12-24T09:14:21.000Z" itemprop="datePublished"> Published 2020-12-24</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">其他反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">引用的接口：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E5%86%99%E6%B3%95%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">修复写法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-DocumentBuilder"><span class="toc-number">10.2.1.</span> <span class="toc-text">javax.xml.parsers.DocumentBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-stream-XMLInputFactory"><span class="toc-number">10.2.2.</span> <span class="toc-text">javax.xml.stream.XMLInputFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-SAXParser"><span class="toc-number">10.2.3.</span> <span class="toc-text">javax.xml.parsers.SAXParser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#org-xml-sax-XMLReader"><span class="toc-number">10.2.4.</span> <span class="toc-text">org.xml.sax.XMLReader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-number">10.3.</span> <span class="toc-text">xml反序列化写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">18.</span> <span class="toc-text">接口</span></a></li></ol>
-		
-		</div>
-		
-		<h1 id="fastjson反序列化"><a href="#fastjson反序列化" class="headerlink" title="fastjson反序列化"></a>fastjson反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">json.parseObject</span><br><span class="line">JSONObject.parseObject</span><br><span class="line"><span class="meta">@RequestBody</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="其他反序列化"><a href="#其他反序列化" class="headerlink" title="其他反序列化"></a>其他反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">request.getinputstream</span><br><span class="line">ObjectInputStream</span><br><span class="line">.readObject()</span><br><span class="line">deserialize</span><br><span class="line">Serialize</span><br><span class="line"><span class="meta">@RequestBody</span></span><br><span class="line">ObjectInputStream.readUnshared</span><br><span class="line">XMLDecoder.readObject</span><br><span class="line">Yaml.load</span><br><span class="line">XStream.fromXML</span><br><span class="line">ObjectMapper.readValue</span><br></pre></td></tr></table></figure>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
-<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/upload</span><br><span class="line">/file</span><br><span class="line">/save</span><br><span class="line">/add</span><br></pre></td></tr></table></figure>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Runtime.getRuntime().exec</span><br><span class="line"><span class="keyword">case</span> shell</span><br><span class="line">ShellProcessor</span><br><span class="line">processor</span><br></pre></td></tr></table></figure>
-
-<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">order by</span><br><span class="line">= <span class="string">&#x27;&quot;+</span></span><br><span class="line"><span class="string">query（queryList）</span></span><br><span class="line"><span class="string">like &quot;%</span></span><br><span class="line"><span class="string">.call</span></span><br><span class="line"><span class="string">$&#123;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/down</span><br><span class="line">/file</span><br><span class="line">/export</span><br><span class="line">/file</span><br></pre></td></tr></table></figure>
-
-<h1 id="越权（信息泄露）"><a href="#越权（信息泄露）" class="headerlink" title="越权（信息泄露）"></a>越权（信息泄露）</h1><p>直接看业务逻辑，看有无对登陆/权限的校验</p>
-<h1 id="目录遍历-ssrf"><a href="#目录遍历-ssrf" class="headerlink" title="目录遍历/ssrf"></a>目录遍历/ssrf</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;url&quot;</span></span><br><span class="line">filepath</span><br><span class="line">fileurlpath</span><br></pre></td></tr></table></figure>
-
-<h1 id="文件包含（jsp文件）"><a href="#文件包含（jsp文件）" class="headerlink" title="文件包含（jsp文件）"></a>文件包含（jsp文件）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include</span><br></pre></td></tr></table></figure>
-
-<h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parseX</span><br><span class="line">parseT</span><br></pre></td></tr></table></figure>
-<h2 id="引用的接口："><a href="#引用的接口：" class="headerlink" title="引用的接口："></a>引用的接口：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">javax.xml.parsers.DocumentBuilder</span><br><span class="line">javax.xml.stream.XMLInputFactoryr</span><br><span class="line">org.jdom.input.SAXBuilder</span><br><span class="line">org.jdom2.input.SAXBuilder</span><br><span class="line">javax.xml.parsers.SAXParser</span><br><span class="line">org.dom4j.io.SAXReader </span><br><span class="line">org.xml.sax.XMLReader</span><br><span class="line">javax.xml.transform.sax.SAXSource </span><br><span class="line">javax.xml.transform.TransformerFactory </span><br><span class="line">javax.xml.transform.sax.SAXTransformerFactory </span><br><span class="line">javax.xml.validation.SchemaFactory</span><br><span class="line">javax.xml.bind.Unmarshaller</span><br><span class="line">javax.xml.xpath.XPathExpression</span><br></pre></td></tr></table></figure>
-<h2 id="修复写法："><a href="#修复写法：" class="headerlink" title="修复写法："></a>修复写法：</h2><h3 id="javax-xml-parsers-DocumentBuilder"><a href="#javax-xml-parsers-DocumentBuilder" class="headerlink" title="javax.xml.parsers.DocumentBuilder"></a><code>javax.xml.parsers.DocumentBuilder</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span><br><span class="line">dbf.setAttribute(<span class="string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">dbf.setAttribute(<span class="string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">dbf.setAttribute(<span class="string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">dbf.setAttribute(<span class="string">&quot;http://apache.org/xml/features/nonvalidating/load-external-dtd&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">dbf.setAttribute(XMLConstants.FEATURE_SECURE_PROCESSING, <span class="keyword">true</span>);</span><br><span class="line">dbf.setExpandEntityReferences(<span class="keyword">false</span>);</span><br><span class="line">DocumentBuilder db = dbf.newDocumentBuilder();</span><br></pre></td></tr></table></figure>
-
-<h3 id="javax-xml-stream-XMLInputFactory"><a href="#javax-xml-stream-XMLInputFactory" class="headerlink" title="javax.xml.stream.XMLInputFactory"></a><code>javax.xml.stream.XMLInputFactory</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">XMLInputFactory xif = XMLInputFactory.newInstance();</span><br><span class="line">xif.setProperty(XMLInputFactory.SUPPORT_DTD, <span class="keyword">false</span>);</span><br><span class="line">xif.setProperty(<span class="string">&quot;javax.xml.stream.isSupportingExternalEntities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">XMLStreamReader reader = xif.createXMLStreamReader(<span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(path)));</span><br><span class="line">org.jdom.input.SAXBuilder</span><br><span class="line">SAXBuilder saxBuilder = <span class="keyword">new</span> SAXBuilder();</span><br><span class="line">saxBuilder.setFeature(<span class="string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">saxBuilder.setFeature(<span class="string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">saxBuilder.setFeature(<span class="string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">org.jdom2.Document build = saxBuilder.build(<span class="keyword">new</span> File(path));</span><br></pre></td></tr></table></figure>
-
-<h3 id="javax-xml-parsers-SAXParser"><a href="#javax-xml-parsers-SAXParser" class="headerlink" title="javax.xml.parsers.SAXParser"></a><code>javax.xml.parsers.SAXParser</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SAXParserFactory spf =SAXParserFactory.newInstance();</span><br><span class="line">spf.setFeature(<span class="string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">spf.setFeature(<span class="string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">spf.setFeature(<span class="string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">SAXParser parser =spf.newSAXParser();</span><br><span class="line">MyDefaultHandler myHandler = <span class="keyword">new</span> MyDefaultHandler();</span><br></pre></td></tr></table></figure>
-
-<h3 id="org-xml-sax-XMLReader"><a href="#org-xml-sax-XMLReader" class="headerlink" title="org.xml.sax.XMLReader"></a><code>org.xml.sax.XMLReader</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileReader  fileReader = <span class="keyword">new</span> FileReader(path);</span><br><span class="line">XMLReader parser = XMLReaderFactory.createXMLReader();</span><br><span class="line">parser.setFeature(<span class="string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">parser.setFeature(<span class="string">&quot;http://apache.org/xml/features/nonvalidating/load-external-dtd&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">parser.setFeature(<span class="string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">parser.setFeature(<span class="string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="xml反序列化写法"><a href="#xml反序列化写法" class="headerlink" title="xml反序列化写法"></a>xml反序列化写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">XMLDecoder</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">File file = <span class="keyword">new</span> File(path);</span><br><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(fis);</span><br><span class="line">XMLDecoder xd = <span class="keyword">new</span> XMLDecoder(bis);</span><br><span class="line">xd.readObject();</span><br><span class="line">xd.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="业务逻辑漏洞"><a href="#业务逻辑漏洞" class="headerlink" title="业务逻辑漏洞"></a>业务逻辑漏洞</h1><p>走if的时候根据判断status是否等于true来进行流程，比如<code>status/resultCode==0</code>时允许进行下一步<br>示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0：成功 1：失败</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;0&quot;</span>.equals(resultCode)) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="密码硬编码"><a href="#密码硬编码" class="headerlink" title="密码硬编码"></a>密码硬编码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password</span><br></pre></td></tr></table></figure>
-
-<h1 id="springmvc业务逻辑"><a href="#springmvc业务逻辑" class="headerlink" title="springmvc业务逻辑"></a>springmvc业务逻辑</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*Controller.java</span><br></pre></td></tr></table></figure>
-
-<h1 id="tapestry框架业务逻辑"><a href="#tapestry框架业务逻辑" class="headerlink" title="tapestry框架业务逻辑"></a>tapestry框架业务逻辑</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extends BusiPage</span><br></pre></td></tr></table></figure>
-
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implemtns</span><br></pre></td></tr></table></figure>
-
-<h1 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CrossOrigin</span><br></pre></td></tr></table></figure>
-
-<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.application</span><br></pre></td></tr></table></figure>
-
-<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span></span></span><br></pre></td></tr></table></figure>  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/java审计/">java审计</a><a href="/tags/审计思路/">审计思路</a>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                ホーム
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                アーカイブ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                カテゴリー
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                タグ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                本ブログ情報　
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://example.com/2020/12/24/46/" data-title="java代码审计关键字讲解 | novy&#39;s Blog" data-tsina="" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2021/01/12/47/" title=".getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路">
-  <strong>上一篇：</strong><br/>
-  <span>
-  .getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2020/12/24/45/"  title="2020年代码审计总结">
- <strong>下一篇：</strong><br/> 
- <span>2020年代码审计总结
-</span>
-</a>
-</div>
-
 </nav>
 
-	
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="java代码审计关键字讲解">
+              
+            </span>
 
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-24 17:14" pubdate>
+        December 24, 2020 pm
+      </time>
+    </span>
+  
+</div>
 
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">fastjson反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">其他反序列化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">命令执行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">5.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">文件下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">越权（信息泄露）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86-ssrf"><span class="toc-number">8.</span> <span class="toc-text">目录遍历&#x2F;ssrf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%EF%BC%88jsp%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">文件包含（jsp文件）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XXE"><span class="toc-number">10.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9A"><span class="toc-number">10.1.</span> <span class="toc-text">引用的接口：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E5%86%99%E6%B3%95%EF%BC%9A"><span class="toc-number">10.2.</span> <span class="toc-text">修复写法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-DocumentBuilder"><span class="toc-number">10.2.1.</span> <span class="toc-text">javax.xml.parsers.DocumentBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-stream-XMLInputFactory"><span class="toc-number">10.2.2.</span> <span class="toc-text">javax.xml.stream.XMLInputFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javax-xml-parsers-SAXParser"><span class="toc-number">10.2.3.</span> <span class="toc-text">javax.xml.parsers.SAXParser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#org-xml-sax-XMLReader"><span class="toc-number">10.2.4.</span> <span class="toc-text">org.xml.sax.XMLReader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%86%99%E6%B3%95"><span class="toc-number">10.3.</span> <span class="toc-text">xml反序列化写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="toc-number">11.</span> <span class="toc-text">业务逻辑漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%A1%AC%E7%BC%96%E7%A0%81"><span class="toc-number">12.</span> <span class="toc-text">密码硬编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#springmvc%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">13.</span> <span class="toc-text">springmvc业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tapestry%E6%A1%86%E6%9E%B6%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91"><span class="toc-number">14.</span> <span class="toc-text">tapestry框架业务逻辑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">15.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CORS"><span class="toc-number">16.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">17.</span> <span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number">18.</span> <span class="toc-text">接口</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.8k 字
+    </span>
+  
 
   
-<div class="github-card">
-<p class="asidetitle">Github Card</p>
-<div class="github-card" data-github="novysodope" data-theme="medium"></div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java代码审计/" title="Java代码审计">Java代码审计<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/SQL注入/" title="SQL注入">SQL注入<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA反序列化/" title="JAVA反序列化">JAVA反序列化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java审计/" title="java审计">java审计<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/OWASPTOP10漏洞/" title="OWASPTOP10漏洞">OWASPTOP10漏洞<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/fastjson反序列化/" title="fastjson反序列化">fastjson反序列化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XXE/" title="XXE">XXE<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存马/" title="内存马">内存马<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/免杀/" title="免杀">免杀<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/印象笔记/" title="印象笔记">印象笔记<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://whitecap100.org" target="_blank" title="分享技术文章，分享骚姿势">白帽100安全攻防实验室</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://nbchengit.github.io" target="_blank" title="chensir`Blog">chensir`Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.kongxin.org" target="_blank" title="空心&#39;s Blog">空心&#39;s Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://jiubaeryi9821.github.io/" target="_blank" title="免杀&内网渗透实录">九八二一</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.ch1ng.com" target="_blank" title="Ch1ng's Blog">金枪银矛小霸王</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://feng4.github.io" target="_blank" title="Fengx&#39;s blog">Fengx&#39;s blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer>
-<div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> 不断的推翻以前学到的知识，不断的重建笔记 <br/>
-			Have a great fucking day!</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/novysodope" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:novysodope@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2021 
-		
-		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
-		
-		<br />
-		<script>
-    function secondToDate(second) {
-        if (!second) {
-            return 0;
-        }
-        var time = new Array(0, 0, 0, 0, 0);
-        if (second >= 365 * 24 * 3600) {
-            time[0] = parseInt(second / (365 * 24 * 3600));
-            second %= 365 * 24 * 3600;
-        }
-        if (second >= 24 * 3600) {
-            time[1] = parseInt(second / (24 * 3600));
-            second %= 24 * 3600;
-        }
-        if (second >= 3600) {
-            time[2] = parseInt(second / 3600);
-            second %= 3600;
-        }
-        if (second >= 60) {
-            time[3] = parseInt(second / 60);
-            second %= 60;
-        }
-        if (second > 0) {
-            time[4] = second;
-        }
-        return time;
-    }</script>
-<script type="text/javascript" language="javascript">
-    function setTime() {
-        var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000);
-        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
-        currentTime = secondToDate((timestamp - create_time));
-        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
-                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
-                + '秒';
-        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
-    }    setInterval(setTime, 1000);</script>
-    本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span>
-    <br/>
-  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    你是第<span id="busuanzi_value_site_uv"></span>个小伙伴
-		</p>
-
-
-
-</div>
-
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
       
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
+      
+      12 分钟
+    </span>
+  
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java代码审计关键字讲解</h1>
+            
+            <div class="markdown-body">
+              <h1 id="fastjson反序列化"><a href="#fastjson反序列化" class="headerlink" title="fastjson反序列化"></a>fastjson反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">json.parseObject<br>JSONObject.parseObject<br><span class="hljs-meta">@RequestBody</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="其他反序列化"><a href="#其他反序列化" class="headerlink" title="其他反序列化"></a>其他反序列化</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">request.getinputstream<br>ObjectInputStream<br>.readObject()<br>deserialize<br>Serialize<br><span class="hljs-meta">@RequestBody</span><br>ObjectInputStream.readUnshared<br>XMLDecoder.readObject<br>Yaml.load<br>XStream.fromXML<br>ObjectMapper.readValue<br></code></pre></td></tr></table></figure>
+
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">/upload<br>/file<br>/save<br>/add<br></code></pre></td></tr></table></figure>
+
+<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Runtime.getRuntime().exec<br><span class="hljs-keyword">case</span> shell<br>ShellProcessor<br>processor<br></code></pre></td></tr></table></figure>
+
+<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">order by<br>= <span class="hljs-string">&#x27;&quot;+</span><br><span class="hljs-string">query（queryList）</span><br><span class="hljs-string">like &quot;%</span><br><span class="hljs-string">.call</span><br><span class="hljs-string">$&#123;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">/down<br>/file<br>/export<br>/file<br></code></pre></td></tr></table></figure>
+
+<h1 id="越权（信息泄露）"><a href="#越权（信息泄露）" class="headerlink" title="越权（信息泄露）"></a>越权（信息泄露）</h1><p>直接看业务逻辑，看有无对登陆/权限的校验</p>
+<h1 id="目录遍历-ssrf"><a href="#目录遍历-ssrf" class="headerlink" title="目录遍历/ssrf"></a>目录遍历/ssrf</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-string">&quot;url&quot;</span><br>filepath<br>fileurlpath<br></code></pre></td></tr></table></figure>
+
+<h1 id="文件包含（jsp文件）"><a href="#文件包含（jsp文件）" class="headerlink" title="文件包含（jsp文件）"></a>文件包含（jsp文件）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">include<br></code></pre></td></tr></table></figure>
+
+<h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">parseX<br>parseT<br></code></pre></td></tr></table></figure>
+<h2 id="引用的接口："><a href="#引用的接口：" class="headerlink" title="引用的接口："></a>引用的接口：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">javax.xml.parsers.DocumentBuilder<br>javax.xml.stream.XMLInputFactoryr<br>org.jdom.input.SAXBuilder<br>org.jdom2.input.SAXBuilder<br>javax.xml.parsers.SAXParser<br>org.dom4j.io.SAXReader <br>org.xml.sax.XMLReader<br>javax.xml.transform.sax.SAXSource <br>javax.xml.transform.TransformerFactory <br>javax.xml.transform.sax.SAXTransformerFactory <br>javax.xml.validation.SchemaFactory<br>javax.xml.bind.Unmarshaller<br>javax.xml.xpath.XPathExpression<br></code></pre></td></tr></table></figure>
+<h2 id="修复写法："><a href="#修复写法：" class="headerlink" title="修复写法："></a>修复写法：</h2><h3 id="javax-xml-parsers-DocumentBuilder"><a href="#javax-xml-parsers-DocumentBuilder" class="headerlink" title="javax.xml.parsers.DocumentBuilder"></a><code>javax.xml.parsers.DocumentBuilder</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();<br>dbf.setAttribute(<span class="hljs-string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="hljs-keyword">true</span>);<br>dbf.setAttribute(<span class="hljs-string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>dbf.setAttribute(<span class="hljs-string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>dbf.setAttribute(<span class="hljs-string">&quot;http://apache.org/xml/features/nonvalidating/load-external-dtd&quot;</span>, <span class="hljs-keyword">false</span>);<br>dbf.setAttribute(XMLConstants.FEATURE_SECURE_PROCESSING, <span class="hljs-keyword">true</span>);<br>dbf.setExpandEntityReferences(<span class="hljs-keyword">false</span>);<br>DocumentBuilder db = dbf.newDocumentBuilder();<br></code></pre></td></tr></table></figure>
+
+<h3 id="javax-xml-stream-XMLInputFactory"><a href="#javax-xml-stream-XMLInputFactory" class="headerlink" title="javax.xml.stream.XMLInputFactory"></a><code>javax.xml.stream.XMLInputFactory</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java">XMLInputFactory xif = XMLInputFactory.newInstance();<br>xif.setProperty(XMLInputFactory.SUPPORT_DTD, <span class="hljs-keyword">false</span>);<br>xif.setProperty(<span class="hljs-string">&quot;javax.xml.stream.isSupportingExternalEntities&quot;</span>, <span class="hljs-keyword">false</span>);<br>XMLStreamReader reader = xif.createXMLStreamReader(<span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-keyword">new</span> File(path)));<br>org.jdom.input.SAXBuilder<br>SAXBuilder saxBuilder = <span class="hljs-keyword">new</span> SAXBuilder();<br>saxBuilder.setFeature(<span class="hljs-string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="hljs-keyword">true</span>);<br>saxBuilder.setFeature(<span class="hljs-string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>saxBuilder.setFeature(<span class="hljs-string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>org.jdom2.Document build = saxBuilder.build(<span class="hljs-keyword">new</span> File(path));<br></code></pre></td></tr></table></figure>
+
+<h3 id="javax-xml-parsers-SAXParser"><a href="#javax-xml-parsers-SAXParser" class="headerlink" title="javax.xml.parsers.SAXParser"></a><code>javax.xml.parsers.SAXParser</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">SAXParserFactory spf =SAXParserFactory.newInstance();<br>spf.setFeature(<span class="hljs-string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="hljs-keyword">true</span>);<br>spf.setFeature(<span class="hljs-string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>spf.setFeature(<span class="hljs-string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>SAXParser parser =spf.newSAXParser();<br>MyDefaultHandler myHandler = <span class="hljs-keyword">new</span> MyDefaultHandler();<br></code></pre></td></tr></table></figure>
+
+<h3 id="org-xml-sax-XMLReader"><a href="#org-xml-sax-XMLReader" class="headerlink" title="org.xml.sax.XMLReader"></a><code>org.xml.sax.XMLReader</code></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">FileReader  fileReader = <span class="hljs-keyword">new</span> FileReader(path);<br>XMLReader parser = XMLReaderFactory.createXMLReader();<br>parser.setFeature(<span class="hljs-string">&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;</span>, <span class="hljs-keyword">true</span>);<br>parser.setFeature(<span class="hljs-string">&quot;http://apache.org/xml/features/nonvalidating/load-external-dtd&quot;</span>, <span class="hljs-keyword">false</span>);<br>parser.setFeature(<span class="hljs-string">&quot;http://xml.org/sax/features/external-general-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br>parser.setFeature(<span class="hljs-string">&quot;http://xml.org/sax/features/external-parameter-entities&quot;</span>, <span class="hljs-keyword">false</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="xml反序列化写法"><a href="#xml反序列化写法" class="headerlink" title="xml反序列化写法"></a>xml反序列化写法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">XMLDecoder</span><span class="hljs-params">(String path)</span> </span>&#123;<br><span class="hljs-keyword">try</span> &#123;<br>File file = <span class="hljs-keyword">new</span> File(path);<br>FileInputStream fis = <span class="hljs-keyword">new</span> FileInputStream(file);<br>BufferedInputStream bis = <span class="hljs-keyword">new</span> BufferedInputStream(fis);<br>XMLDecoder xd = <span class="hljs-keyword">new</span> XMLDecoder(bis);<br>xd.readObject();<br>xd.close();<br>&#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e) &#123;<br>e.printStackTrace();<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="业务逻辑漏洞"><a href="#业务逻辑漏洞" class="headerlink" title="业务逻辑漏洞"></a>业务逻辑漏洞</h1><p>走if的时候根据判断status是否等于true来进行流程，比如<code>status/resultCode==0</code>时允许进行下一步<br>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 0：成功 1：失败</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;0&quot;</span>.equals(resultCode)) &#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="密码硬编码"><a href="#密码硬编码" class="headerlink" title="密码硬编码"></a>密码硬编码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">password<br></code></pre></td></tr></table></figure>
+
+<h1 id="springmvc业务逻辑"><a href="#springmvc业务逻辑" class="headerlink" title="springmvc业务逻辑"></a>springmvc业务逻辑</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">*Controller.java<br></code></pre></td></tr></table></figure>
+
+<h1 id="tapestry框架业务逻辑"><a href="#tapestry框架业务逻辑" class="headerlink" title="tapestry框架业务逻辑"></a>tapestry框架业务逻辑</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">extends BusiPage<br></code></pre></td></tr></table></figure>
+
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">implemtns<br></code></pre></td></tr></table></figure>
+
+<h1 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">CrossOrigin<br></code></pre></td></tr></table></figure>
+
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">.application<br></code></pre></td></tr></table></figure>
+
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">interface</span></span><br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java%E5%AE%A1%E8%AE%A1/">java审计</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AE%A1%E8%AE%A1%E6%80%9D%E8%B7%AF/">审计思路</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/12/47/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">.getBean("") .callMethod("")的思路</span>
+                        <span class="visible-mobile">前の記事</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/24/45/">
+                        <span class="hidden-mobile">2020年代码审计总结</span>
+                        <span class="visible-mobile">次の記事</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
 
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+    
 
-  $('.hoverqrcode').hide();
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">キーワード</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
 
 
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
 
 
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
-<!-- Analytics Begin -->
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+  
 
 
 
-<!-- Analytics End -->
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
 
-<!-- Tiny_search End -->
 
-  </body>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

@@ -1,17 +1,22 @@
 
- <!DOCTYPE HTML>
-<html lang="zh">
+
+<!DOCTYPE html>
+<html lang="zh" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    <title>python批量解压 | novy&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="novy&#39;s Blog">
-    
-
-    
-    <meta name="description" content="python批量解压">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="python批量解压">
+  <meta name="author" content="novy&#39;s Blog">
+  <meta name="keywords" content="">
+  <meta name="description" content="python批量解压">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python批量解压">
 <meta property="og:url" content="http://example.com/2020/09/10/16/index.html">
@@ -25,601 +30,425 @@
 <meta property="article:modified_time" content="2021-07-02T02:20:20.116Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="python小工具">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/16/1.png">
+  
+  <title>python批量解压 - novy&#39;s Blog</title>
 
-    
-    <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/logo2.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/logo2.jpg">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/%02.css">
-<link rel="stylesheet" href="/.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo2.jpg" alt="novy&#39;s Blog" title="novy&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="novy&#39;s Blog">novy&#39;s Blog</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">首页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:example.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2020/09/10/16/" title="python批量解压" itemprop="url">python批量解压</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
-		
-  <p class="article-time">
-    <time datetime="2020-09-10T05:49:03.000Z" itemprop="datePublished"> Published 2020-09-10</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CODE"><span class="toc-number">1.</span> <span class="toc-text">CODE</span></a></li></ol>
-		
-		</div>
-		
-		<h1 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import shutil</span><br><span class="line">import zipfile</span><br><span class="line">import rarfile</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 首先引入需要的工具包</span></span><br><span class="line"><span class="comment"># shutil为后期移动文件所需</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 路径改这里！</span></span><br><span class="line">parent_path = input(<span class="string">&#x27;请输入要解压的文件路径：&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 文件类型选择</span></span><br><span class="line">file_flag = <span class="string">&#x27;.&#x27;</span> + input(<span class="string">&#x27;请输入一种需要解压的压缩类型（例：zip或rar）解压后会删除原有压缩文件，请注意备份：&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 删除已解压过的文件</span></span><br><span class="line"><span class="comment"># 一定要先测试，不然很麻烦</span></span><br><span class="line">def del_old_zip(file_path):</span><br><span class="line">    os.remove(file_path)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">def zip_decompress(file_path, root):</span><br><span class="line">    <span class="comment"># 开始</span></span><br><span class="line">    <span class="comment"># zipfile打开zip文件</span></span><br><span class="line">    z = zipfile.ZipFile(f<span class="string">&#x27;&#123;file_path&#125;&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 解压</span></span><br><span class="line">    z.extractall(path=f<span class="string">&quot;&#123;root&#125;&quot;</span>)  <span class="comment"># path为解压路径，解包后位于该路径下</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 判断是否需要重复解包</span></span><br><span class="line">    <span class="keyword">for</span> names <span class="keyword">in</span> z.namelist():</span><br><span class="line">        <span class="keyword">if</span> names.endswith(file_flag):</span><br><span class="line">            z.close()</span><br><span class="line">            <span class="built_in">return</span> 1</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 结束</span></span><br><span class="line">    z.close()</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">return</span> 0</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">def rar_decompress(file_path, root):</span><br><span class="line">    <span class="comment"># 开始</span></span><br><span class="line">    <span class="comment"># rarfile打开rar文件</span></span><br><span class="line">    z = rarfile.RarFile(f<span class="string">&#x27;&#123;file_path&#125;&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 解压</span></span><br><span class="line">    z.extractall(path=f<span class="string">&quot;&#123;root&#125;&quot;</span>)  <span class="comment"># path为解压路径，解包后位于该路径下</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 判断是否需要重复解包</span></span><br><span class="line">    <span class="keyword">for</span> names <span class="keyword">in</span> z.namelist():</span><br><span class="line">        <span class="keyword">if</span> names.endswith(file_flag):</span><br><span class="line">            z.close()</span><br><span class="line">            <span class="built_in">return</span> 1</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 结束</span></span><br><span class="line">    z.close()</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">return</span> 0</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">decompress = None</span><br><span class="line"><span class="keyword">if</span> file_flag == <span class="string">&#x27;.zip&#x27;</span>:</span><br><span class="line">    decompress = zip_decompress</span><br><span class="line"><span class="keyword">elif</span> file_flag == <span class="string">&#x27;.rar&#x27;</span>:</span><br><span class="line">    decompress = rar_decompress</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;格式输入错误或不支持当前格式&#x27;</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;pause&#x27;</span>)</span><br><span class="line">    <span class="built_in">exit</span>(0)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 因为我在使用过程中发现有些文件解包后会混在一起</span></span><br><span class="line"><span class="comment"># 在平时大家手动解压时可能也会遇到提示是否覆盖的问题</span></span><br><span class="line"><span class="comment"># 下面的两个函数解决这一问题</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 开始要先创建一个大文件夹  与压缩包名字相同</span></span><br><span class="line"><span class="comment"># 避免后期混乱和麻烦</span></span><br><span class="line">def start_dir_make(root, dirname):</span><br><span class="line">    os.chdir(root)</span><br><span class="line">    os.mkdir(dirname)</span><br><span class="line">    <span class="built_in">return</span> os.path.join(root, dirname)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 去除多余文件夹</span></span><br><span class="line">def rem_dir_extra(root, father_dir_name):</span><br><span class="line">    <span class="comment"># 递归要注意信息的正常处理  搞不好上一个调用已经改变了东西  而下面的调用还是使用之前的数据</span></span><br><span class="line"> </span><br><span class="line">    try:</span><br><span class="line"> </span><br><span class="line">        <span class="comment"># 判断文件夹重名  开始</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> os.listdir(os.path.join(root, father_dir_name)):</span><br><span class="line"> </span><br><span class="line">            <span class="comment"># 第一步判断是不是一个文件夹，如果不是则跳过本次循环</span></span><br><span class="line">            <span class="keyword">if</span> not os.path.isdir(os.path.join(root, father_dir_name, item)):</span><br><span class="line">                <span class="built_in">continue</span></span><br><span class="line"> </span><br><span class="line">            <span class="comment"># 判断是否要脱掉一层目录结构</span></span><br><span class="line">            <span class="comment"># 文件夹名字要相同，且子目录中只有单独的一个文件夹</span></span><br><span class="line">            <span class="keyword">if</span> item == father_dir_name and len(</span><br><span class="line">                    os.listdir(os.path.join(root, father_dir_name))) == 1:</span><br><span class="line"> </span><br><span class="line">                <span class="comment"># 改变工作目录</span></span><br><span class="line">                os.chdir(root)</span><br><span class="line"> </span><br><span class="line">                <span class="comment"># 将无用文件夹重命名，因为直接移动会有重名错误</span></span><br><span class="line">                os.rename(father_dir_name, father_dir_name + <span class="string">&#x27;-old&#x27;</span>)</span><br><span class="line"> </span><br><span class="line">                <span class="comment"># 移动文件后删除空文件夹</span></span><br><span class="line">                shutil.move(os.path.join(root, father_dir_name + <span class="string">&#x27;-old&#x27;</span>, item), os.path.join(root))</span><br><span class="line">                os.rmdir(os.path.join(root, father_dir_name + <span class="string">&#x27;-old&#x27;</span>))</span><br><span class="line"> </span><br><span class="line">                <span class="comment"># 将去掉一层目录结构后的文件夹继续作为父本递归处理下去</span></span><br><span class="line">                <span class="comment"># 这里要注意，上面已经发生过数据的改动，所以下面递归传参一定要正确！</span></span><br><span class="line">                rem_dir_extra(root, item)</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line"> </span><br><span class="line">                <span class="comment"># 处理那些不满足上面条件的文件夹</span></span><br><span class="line">                rem_dir_extra(os.path.join(root, father_dir_name), item)</span><br><span class="line"> </span><br><span class="line">    except Exception as e:</span><br><span class="line"> </span><br><span class="line">        <span class="comment"># 打印错误信息</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;清除文件夹出错&quot;</span> + str(e))</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 入口</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"> </span><br><span class="line">    flag = 1</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> flag:</span><br><span class="line"> </span><br><span class="line">        <span class="comment">#  循环遍历文件夹</span></span><br><span class="line">        <span class="keyword">for</span> root, <span class="built_in">dirs</span>, files <span class="keyword">in</span> os.walk(parent_path):</span><br><span class="line"> </span><br><span class="line">            <span class="comment"># 读取文件名</span></span><br><span class="line">            <span class="keyword">for</span> name <span class="keyword">in</span> files:</span><br><span class="line"> </span><br><span class="line">                <span class="keyword">if</span> name.endswith(file_flag):</span><br><span class="line">                    <span class="comment"># 创建文件夹</span></span><br><span class="line">                    new_ws = start_dir_make(root, name.replace(file_flag, <span class="string">&#x27;&#x27;</span>))</span><br><span class="line"> </span><br><span class="line">                    <span class="comment"># zip文件地址</span></span><br><span class="line">                    zip_path = os.path.join(root, name)</span><br><span class="line"> </span><br><span class="line">                    <span class="comment"># 解压</span></span><br><span class="line">                    flag = decompress(zip_path, new_ws)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">                    <span class="comment"># 一定要备份或先测试，不然可能会凉，自己选择修改</span></span><br><span class="line">                    del_old_zip(zip_path)</span><br><span class="line"> </span><br><span class="line">                    <span class="comment"># 去掉多余的文件结构</span></span><br><span class="line">                    rem_dir_extra(root, name.replace(file_flag, <span class="string">&#x27;&#x27;</span>))</span><br><span class="line"> </span><br><span class="line">                    <span class="built_in">print</span>(f<span class="string">&#x27;&#123;root&#125;\\&#123;name&#125;&#x27;</span>.join([<span class="string">&#x27;文件：&#x27;</span>, <span class="string">&#x27;\n解压完成\n&#x27;</span>]))</span><br><span class="line"> </span><br><span class="line">    <span class="comment"># 由于解压可能解了好几次 所以可能会有已经解压好的父级目录重名无法处理 这里要再处理一次</span></span><br><span class="line">    rem_dir_extra(os.path.split(parent_path)[0], os.path.split(parent_path)[1])</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;解压完成啦，记得检查有没有&#123;&#125;格式之外的呀!\n\n其他格式需要自己改一下了&quot;</span>.format(file_flag))</span><br><span class="line"> </span><br><span class="line">    os.system(<span class="string">&#x27;pause&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>在全量代码审计项目中经常会遇到开发把所有目录压缩的情况，这时候有这个就非常方便了，但是要注意一下解压之后会把压缩文件给删了，所以注意备份，用法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python unzip.py</span><br></pre></td></tr></table></figure>
-<p><img src="/images/16/1.png"><br>原文件<br><img src="/images/16/2.png"><br>效果<br><img src="/images/16/3.png"></p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/python/">python</a>
-</div>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/python小工具/">python小工具</a>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                ホーム
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                アーカイブ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                カテゴリー
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                タグ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                本ブログ情報　
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://example.com/2020/09/10/16/" data-title="python批量解压 | novy&#39;s Blog" data-tsina="" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2020/09/10/20/" title="Cobalt Strike常用命令">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Cobalt Strike常用命令</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2020/09/09/6/"  title="某些发卡平台任意密码重置">
- <strong>下一篇：</strong><br/> 
- <span>某些发卡平台任意密码重置
-</span>
-</a>
-</div>
-
 </nav>
 
-	
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="python批量解压">
+              
+            </span>
 
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-10 13:49" pubdate>
+        September 10, 2020 pm
+      </time>
+    </span>
+  
+</div>
 
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CODE"><span class="toc-number">1.</span> <span class="toc-text">CODE</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
 
   
-<div class="github-card">
-<p class="asidetitle">Github Card</p>
-<div class="github-card" data-github="novysodope" data-theme="medium"></div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java代码审计/" title="Java代码审计">Java代码审计<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/SQL注入/" title="SQL注入">SQL注入<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA反序列化/" title="JAVA反序列化">JAVA反序列化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java审计/" title="java审计">java审计<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/OWASPTOP10漏洞/" title="OWASPTOP10漏洞">OWASPTOP10漏洞<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/fastjson反序列化/" title="fastjson反序列化">fastjson反序列化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XXE/" title="XXE">XXE<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存马/" title="内存马">内存马<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/免杀/" title="免杀">免杀<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/印象笔记/" title="印象笔记">印象笔记<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://whitecap100.org" target="_blank" title="分享技术文章，分享骚姿势">白帽100安全攻防实验室</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://nbchengit.github.io" target="_blank" title="chensir`Blog">chensir`Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.kongxin.org" target="_blank" title="空心&#39;s Blog">空心&#39;s Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://jiubaeryi9821.github.io/" target="_blank" title="免杀&内网渗透实录">九八二一</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.ch1ng.com" target="_blank" title="Ch1ng's Blog">金枪银矛小霸王</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://feng4.github.io" target="_blank" title="Fengx&#39;s blog">Fengx&#39;s blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer>
-<div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> 不断的推翻以前学到的知识，不断的重建笔记 <br/>
-			Have a great fucking day!</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/novysodope" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:novysodope@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2021 
-		
-		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
-		
-		<br />
-		<script>
-    function secondToDate(second) {
-        if (!second) {
-            return 0;
-        }
-        var time = new Array(0, 0, 0, 0, 0);
-        if (second >= 365 * 24 * 3600) {
-            time[0] = parseInt(second / (365 * 24 * 3600));
-            second %= 365 * 24 * 3600;
-        }
-        if (second >= 24 * 3600) {
-            time[1] = parseInt(second / (24 * 3600));
-            second %= 24 * 3600;
-        }
-        if (second >= 3600) {
-            time[2] = parseInt(second / 3600);
-            second %= 3600;
-        }
-        if (second >= 60) {
-            time[3] = parseInt(second / 60);
-            second %= 60;
-        }
-        if (second > 0) {
-            time[4] = second;
-        }
-        return time;
-    }</script>
-<script type="text/javascript" language="javascript">
-    function setTime() {
-        var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000);
-        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
-        currentTime = secondToDate((timestamp - create_time));
-        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
-                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
-                + '秒';
-        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
-    }    setInterval(setTime, 1000);</script>
-    本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span>
-    <br/>
-  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    你是第<span id="busuanzi_value_site_uv"></span>个小伙伴
-		</p>
-
-
-
-</div>
-
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
       
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
+      
+      10 分钟
+    </span>
+  
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+  
+  
+</div>
 
+            
+          </div>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+          
+        </div>
+      </div>
+    </div>
+  </header>
 
-  $('.hoverqrcode').hide();
+  <main>
+    
+      
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python批量解压</h1>
+            
+            <div class="markdown-body">
+              <h1 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br></pre></td><td class="code"><pre><code class="hljs bash">import os<br>import shutil<br>import zipfile<br>import rarfile<br> <br><span class="hljs-comment"># 首先引入需要的工具包</span><br><span class="hljs-comment"># shutil为后期移动文件所需</span><br> <br> <br><span class="hljs-comment"># 路径改这里！</span><br>parent_path = input(<span class="hljs-string">&#x27;请输入要解压的文件路径：&#x27;</span>)<br> <br><span class="hljs-comment"># 文件类型选择</span><br>file_flag = <span class="hljs-string">&#x27;.&#x27;</span> + input(<span class="hljs-string">&#x27;请输入一种需要解压的压缩类型（例：zip或rar）解压后会删除原有压缩文件，请注意备份：&#x27;</span>)<br> <br> <br><span class="hljs-comment"># 删除已解压过的文件</span><br><span class="hljs-comment"># 一定要先测试，不然很麻烦</span><br>def del_old_zip(file_path):<br>    os.remove(file_path)<br> <br> <br><span class="hljs-comment"># 解压</span><br>def zip_decompress(file_path, root):<br>    <span class="hljs-comment"># 开始</span><br>    <span class="hljs-comment"># zipfile打开zip文件</span><br>    z = zipfile.ZipFile(f<span class="hljs-string">&#x27;&#123;file_path&#125;&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>)<br> <br>    <span class="hljs-comment"># 解压</span><br>    z.extractall(path=f<span class="hljs-string">&quot;&#123;root&#125;&quot;</span>)  <span class="hljs-comment"># path为解压路径，解包后位于该路径下</span><br> <br>    <span class="hljs-comment"># 判断是否需要重复解包</span><br>    <span class="hljs-keyword">for</span> names <span class="hljs-keyword">in</span> z.namelist():<br>        <span class="hljs-keyword">if</span> names.endswith(file_flag):<br>            z.close()<br>            <span class="hljs-built_in">return</span> 1<br> <br>    <span class="hljs-comment"># 结束</span><br>    z.close()<br> <br>    <span class="hljs-built_in">return</span> 0<br> <br> <br>def rar_decompress(file_path, root):<br>    <span class="hljs-comment"># 开始</span><br>    <span class="hljs-comment"># rarfile打开rar文件</span><br>    z = rarfile.RarFile(f<span class="hljs-string">&#x27;&#123;file_path&#125;&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>)<br> <br>    <span class="hljs-comment"># 解压</span><br>    z.extractall(path=f<span class="hljs-string">&quot;&#123;root&#125;&quot;</span>)  <span class="hljs-comment"># path为解压路径，解包后位于该路径下</span><br> <br>    <span class="hljs-comment"># 判断是否需要重复解包</span><br>    <span class="hljs-keyword">for</span> names <span class="hljs-keyword">in</span> z.namelist():<br>        <span class="hljs-keyword">if</span> names.endswith(file_flag):<br>            z.close()<br>            <span class="hljs-built_in">return</span> 1<br> <br>    <span class="hljs-comment"># 结束</span><br>    z.close()<br> <br>    <span class="hljs-built_in">return</span> 0<br> <br> <br>decompress = None<br><span class="hljs-keyword">if</span> file_flag == <span class="hljs-string">&#x27;.zip&#x27;</span>:<br>    decompress = zip_decompress<br><span class="hljs-keyword">elif</span> file_flag == <span class="hljs-string">&#x27;.rar&#x27;</span>:<br>    decompress = rar_decompress<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;格式输入错误或不支持当前格式&#x27;</span>)<br>    os.system(<span class="hljs-string">&#x27;pause&#x27;</span>)<br>    <span class="hljs-built_in">exit</span>(0)<br> <br> <br><span class="hljs-comment"># 因为我在使用过程中发现有些文件解包后会混在一起</span><br><span class="hljs-comment"># 在平时大家手动解压时可能也会遇到提示是否覆盖的问题</span><br><span class="hljs-comment"># 下面的两个函数解决这一问题</span><br> <br><span class="hljs-comment"># 开始要先创建一个大文件夹  与压缩包名字相同</span><br><span class="hljs-comment"># 避免后期混乱和麻烦</span><br>def start_dir_make(root, dirname):<br>    os.chdir(root)<br>    os.mkdir(dirname)<br>    <span class="hljs-built_in">return</span> os.path.join(root, dirname)<br> <br> <br><span class="hljs-comment"># 去除多余文件夹</span><br>def rem_dir_extra(root, father_dir_name):<br>    <span class="hljs-comment"># 递归要注意信息的正常处理  搞不好上一个调用已经改变了东西  而下面的调用还是使用之前的数据</span><br> <br>    try:<br> <br>        <span class="hljs-comment"># 判断文件夹重名  开始</span><br>        <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> os.listdir(os.path.join(root, father_dir_name)):<br> <br>            <span class="hljs-comment"># 第一步判断是不是一个文件夹，如果不是则跳过本次循环</span><br>            <span class="hljs-keyword">if</span> not os.path.isdir(os.path.join(root, father_dir_name, item)):<br>                <span class="hljs-built_in">continue</span><br> <br>            <span class="hljs-comment"># 判断是否要脱掉一层目录结构</span><br>            <span class="hljs-comment"># 文件夹名字要相同，且子目录中只有单独的一个文件夹</span><br>            <span class="hljs-keyword">if</span> item == father_dir_name and len(<br>                    os.listdir(os.path.join(root, father_dir_name))) == 1:<br> <br>                <span class="hljs-comment"># 改变工作目录</span><br>                os.chdir(root)<br> <br>                <span class="hljs-comment"># 将无用文件夹重命名，因为直接移动会有重名错误</span><br>                os.rename(father_dir_name, father_dir_name + <span class="hljs-string">&#x27;-old&#x27;</span>)<br> <br>                <span class="hljs-comment"># 移动文件后删除空文件夹</span><br>                shutil.move(os.path.join(root, father_dir_name + <span class="hljs-string">&#x27;-old&#x27;</span>, item), os.path.join(root))<br>                os.rmdir(os.path.join(root, father_dir_name + <span class="hljs-string">&#x27;-old&#x27;</span>))<br> <br>                <span class="hljs-comment"># 将去掉一层目录结构后的文件夹继续作为父本递归处理下去</span><br>                <span class="hljs-comment"># 这里要注意，上面已经发生过数据的改动，所以下面递归传参一定要正确！</span><br>                rem_dir_extra(root, item)<br> <br>            <span class="hljs-keyword">else</span>:<br> <br>                <span class="hljs-comment"># 处理那些不满足上面条件的文件夹</span><br>                rem_dir_extra(os.path.join(root, father_dir_name), item)<br> <br>    except Exception as e:<br> <br>        <span class="hljs-comment"># 打印错误信息</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;清除文件夹出错&quot;</span> + str(e))<br> <br> <br><span class="hljs-comment"># 入口</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br> <br>    flag = 1<br> <br>    <span class="hljs-keyword">while</span> flag:<br> <br>        <span class="hljs-comment">#  循环遍历文件夹</span><br>        <span class="hljs-keyword">for</span> root, <span class="hljs-built_in">dirs</span>, files <span class="hljs-keyword">in</span> os.walk(parent_path):<br> <br>            <span class="hljs-comment"># 读取文件名</span><br>            <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> files:<br> <br>                <span class="hljs-keyword">if</span> name.endswith(file_flag):<br>                    <span class="hljs-comment"># 创建文件夹</span><br>                    new_ws = start_dir_make(root, name.replace(file_flag, <span class="hljs-string">&#x27;&#x27;</span>))<br> <br>                    <span class="hljs-comment"># zip文件地址</span><br>                    zip_path = os.path.join(root, name)<br> <br>                    <span class="hljs-comment"># 解压</span><br>                    flag = decompress(zip_path, new_ws)<br> <br> <br>                    <span class="hljs-comment"># 一定要备份或先测试，不然可能会凉，自己选择修改</span><br>                    del_old_zip(zip_path)<br> <br>                    <span class="hljs-comment"># 去掉多余的文件结构</span><br>                    rem_dir_extra(root, name.replace(file_flag, <span class="hljs-string">&#x27;&#x27;</span>))<br> <br>                    <span class="hljs-built_in">print</span>(f<span class="hljs-string">&#x27;&#123;root&#125;\\&#123;name&#125;&#x27;</span>.join([<span class="hljs-string">&#x27;文件：&#x27;</span>, <span class="hljs-string">&#x27;\n解压完成\n&#x27;</span>]))<br> <br>    <span class="hljs-comment"># 由于解压可能解了好几次 所以可能会有已经解压好的父级目录重名无法处理 这里要再处理一次</span><br>    rem_dir_extra(os.path.split(parent_path)[0], os.path.split(parent_path)[1])<br> <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;解压完成啦，记得检查有没有&#123;&#125;格式之外的呀!\n\n其他格式需要自己改一下了&quot;</span>.format(file_flag))<br> <br>    os.system(<span class="hljs-string">&#x27;pause&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>在全量代码审计项目中经常会遇到开发把所有目录压缩的情况，这时候有这个就非常方便了，但是要注意一下解压之后会把压缩文件给删了，所以注意备份，用法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python unzip.py<br></code></pre></td></tr></table></figure>
+<p><img src="/images/16/1.png" srcset="/img/loading.gif" lazyload><br>原文件<br><img src="/images/16/2.png" srcset="/img/loading.gif" lazyload><br>效果<br><img src="/images/16/3.png" srcset="/img/loading.gif" lazyload></p>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/python/">python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/python%E5%B0%8F%E5%B7%A5%E5%85%B7/">python小工具</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/10/20/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Cobalt Strike常用命令</span>
+                        <span class="visible-mobile">前の記事</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/09/6/">
+                        <span class="hidden-mobile">某些发卡平台任意密码重置</span>
+                        <span class="visible-mobile">次の記事</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+      </div>
+    
+  </div>
+</div>
 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
+<!-- Custom -->
 
 
+    
 
-<!-- Analytics Begin -->
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">キーワード</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
-<!-- Tiny_search End -->
 
-  </body>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

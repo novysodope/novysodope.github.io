@@ -1,17 +1,22 @@
 
- <!DOCTYPE HTML>
-<html lang="zh">
+
+<!DOCTYPE html>
+<html lang="zh" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    <title>burpsuite高亮插件 | novy&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="novy&#39;s Blog">
-    
-
-    
-    <meta name="description" content="burpsuite高亮插件,关键字高亮">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="burpsuite高亮插件,关键字高亮">
+  <meta name="author" content="novy&#39;s Blog">
+  <meta name="keywords" content="">
+  <meta name="description" content="burpsuite高亮插件,关键字高亮">
 <meta property="og:type" content="article">
 <meta property="og:title" content="burpsuite高亮插件">
 <meta property="og:url" content="http://example.com/2020/09/11/30/index.html">
@@ -25,595 +30,417 @@
 <meta property="article:published_time" content="2020-09-11T07:48:16.000Z">
 <meta property="article:modified_time" content="2021-07-02T02:26:29.332Z">
 <meta property="article:author" content="novy&#39;s Blog">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/30/1.png">
+  
+  <title>burpsuite高亮插件 - novy&#39;s Blog</title>
 
-    
-    <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/logo2.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/logo2.jpg">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/%02.css">
-<link rel="stylesheet" href="/.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo2.jpg" alt="novy&#39;s Blog" title="novy&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="novy&#39;s Blog">novy&#39;s Blog</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">首页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:example.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2020/09/11/30/" title="burpsuite高亮插件" itemprop="url">burpsuite高亮插件</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
-		
-  <p class="article-time">
-    <time datetime="2020-09-11T07:48:16.000Z" itemprop="datePublished"> Published 2020-09-11</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CODE"><span class="toc-number">1.</span> <span class="toc-text">CODE</span></a></li></ol>
-		
-		</div>
-		
-		<p>插件为python环境开发<br>自定义信息单独泄露和组合泄露高亮颜色<br><img src="/images/30/1.png"><br>当发生信息泄露以外的情况时标其他颜色，比如脚本攻击：<br><img src="/images/30/2.png"><br>自定义正则：<br><img src="/images/30/3.png"><br>示例：<br>使用插件后访问写好的目标，点击HTTP history就可以看到高亮请求，点进请求后会有个Keyword栏标出相应信息<br>效果图<br><img src="/images/30/4.png"><br>用法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">burpsuite - Extender - Add</span><br></pre></td></tr></table></figure>
-<p>ps：目前因为不懂正则的原因未完成userpss及orderid，ip（内网）正则有缺陷，xss正则待完善<br>可以自定义其他漏洞挖掘功能，只需要一点点的python基础</p>
-<h1 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># Improve: by novy</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> burp <span class="keyword">import</span> IBurpExtender</span><br><span class="line"><span class="keyword">from</span> burp <span class="keyword">import</span> IHttpListener</span><br><span class="line"><span class="keyword">from</span> burp <span class="keyword">import</span> IMessageEditorTab</span><br><span class="line"><span class="keyword">from</span> burp <span class="keyword">import</span> IMessageEditorTabFactory</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> java.io <span class="keyword">import</span> PrintWriter</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BurpExtender</span>(<span class="params">IBurpExtender, IHttpListener, IMessageEditorTabFactory</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">registerExtenderCallbacks</span>(<span class="params">self, callbacks</span>):</span></span><br><span class="line">        self._callbacks = callbacks</span><br><span class="line">        self._helpers = callbacks.getHelpers()</span><br><span class="line">        callbacks.setExtensionName(<span class="string">&quot;Spartan - Wheel king&quot;</span>)</span><br><span class="line">        self._stdout = PrintWriter(callbacks.getStdout(), <span class="literal">True</span>)</span><br><span class="line">        callbacks.registerHttpListener(self)</span><br><span class="line">        callbacks.registerMessageEditorTabFactory(self)</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        [+] #####################################</span></span><br><span class="line"><span class="string">        [+] chao bie ren de</span></span><br><span class="line"><span class="string">        [+] Improve: novy</span></span><br><span class="line"><span class="string">        [+] novy.baklib.com</span></span><br><span class="line"><span class="string">        Readme:</span></span><br><span class="line"><span class="string">        [+] Leakage of regular information such as order number, mobile phone number, account password, ID card, etc.</span></span><br><span class="line"><span class="string">        [+] Yellow represents a single information leak, red represents multiple information leaks</span></span><br><span class="line"><span class="string">        [+] Please add more functions by yourself, support unlimited customization</span></span><br><span class="line"><span class="string">        [+] Not just for mining information leakage.You can create your own plug-in with just a little knowledge of python</span></span><br><span class="line"><span class="string">        [+] #####################################</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">createNewInstance</span>(<span class="params">self, controller, editable</span>):</span></span><br><span class="line">        <span class="keyword">return</span> MarkINFOTab(self, controller, editable)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">processHttpMessage</span>(<span class="params">self, toolFlag, messageIsRequest, messageInfo</span>):</span></span><br><span class="line">        <span class="keyword">if</span> messageIsRequest:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        content = messageInfo.getResponse()</span><br><span class="line">        r = self._helpers.analyzeResponse(content)</span><br><span class="line">        msg = content[r.getBodyOffset():].tostring()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> isPhone(msg) <span class="keyword">or</span> isIdCard(msg) <span class="keyword">or</span> isEmail(msg) <span class="keyword">or</span> ossinfo(msg) <span class="keyword">or</span> ipaddress(msg) <span class="keyword">or</span> userpass(msg) <span class="keyword">or</span> orderid(msg):</span><br><span class="line">            messageInfo.setHighlight(<span class="string">&#x27;yellow&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isPhone(msg) <span class="keyword">and</span> isIdCard(msg)) <span class="keyword">or</span> (isPhone(msg) <span class="keyword">and</span> isEmail(msg)) <span class="keyword">or</span> (isIdCard(msg) <span class="keyword">and</span> isEmail(msg)) <span class="keyword">or</span> (ipaddress(msg) <span class="keyword">and</span> userpass(msg)) <span class="keyword">or</span> (ossinfo(msg) <span class="keyword">and</span> ipaddress(msg)) <span class="keyword">or</span> (isEmail(msg) <span class="keyword">and</span> ossinfo(msg)) <span class="keyword">or</span> (userpass(msg) <span class="keyword">and</span> orderid(msg)):</span><br><span class="line">            messageInfo.setHighlight(<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">#  if xsspayload(msg):</span></span><br><span class="line">       <span class="comment">#  	messageInfo.setHighlight(&#x27;blue&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MarkINFOTab</span>(<span class="params">IMessageEditorTab</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, extender, controller, editable</span>):</span></span><br><span class="line">        self._extender = extender</span><br><span class="line">        self._helpers = extender._helpers</span><br><span class="line">        self._editable = editable</span><br><span class="line">        self._txtInput = extender._callbacks.createTextEditor()</span><br><span class="line">        self._txtInput.setEditable(editable)</span><br><span class="line">        self.isInfo = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getTabCaption</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Keyword&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getUiComponent</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self._txtInput.getComponent()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEnabled</span>(<span class="params">self, content, isRequest</span>):</span></span><br><span class="line">        r = self._helpers.analyzeResponse(content)</span><br><span class="line">        msg = content[r.getBodyOffset():].tostring()</span><br><span class="line">        iphone = isPhone(msg)</span><br><span class="line">        email = isEmail(msg)</span><br><span class="line">        idcard = isIdCard(msg)</span><br><span class="line">        oss = ossinfo(msg)</span><br><span class="line">        address = ipaddress(msg)</span><br><span class="line">        userp = userpass(msg)</span><br><span class="line">        order = orderid(msg)</span><br><span class="line">      <span class="comment">#  payload = xsspayload(msg)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isRequest:</span><br><span class="line">            <span class="keyword">if</span> iphone <span class="keyword">or</span> email <span class="keyword">or</span> idcard <span class="keyword">or</span> oss <span class="keyword">or</span> address <span class="keyword">or</span> userp <span class="keyword">or</span> order:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setMessage</span>(<span class="params">self, content, isRequest</span>):</span></span><br><span class="line">        <span class="keyword">if</span> content:</span><br><span class="line">            <span class="keyword">if</span> isRequest:</span><br><span class="line">                r = self._helpers.analyzeRequest(content)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                r = self._helpers.analyzeResponse(content)</span><br><span class="line">            msg = content[r.getBodyOffset():].tostring()</span><br><span class="line">            info = <span class="string">&quot;&quot;</span></span><br><span class="line">            iphone = isPhone(msg)</span><br><span class="line">            email = isEmail(msg)</span><br><span class="line">            idcard = isIdCard(msg)</span><br><span class="line">            oss = ossinfo(msg)</span><br><span class="line">            address = ipaddress(msg)</span><br><span class="line">            userp = userpass(msg)</span><br><span class="line">            order = orderid(msg)</span><br><span class="line">         <span class="comment">#   payload = xsspayload(msg)</span></span><br><span class="line">            <span class="keyword">if</span> iphone:</span><br><span class="line">                info += <span class="string">&#x27;[Phone] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(iphone) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> email:</span><br><span class="line">                info += <span class="string">&#x27;[Mail] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(email) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> idcard:</span><br><span class="line">                info += <span class="string">&#x27;[IDCard] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(idcard) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> oss:</span><br><span class="line">                info += <span class="string">&#x27;[Oss] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(oss) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> address:</span><br><span class="line">                info += <span class="string">&#x27;[Address] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(address) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> userp:</span><br><span class="line">                info += <span class="string">&#x27;[Userp] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(userp) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> order:</span><br><span class="line">                info += <span class="string">&#x27;[Order] &#x27;</span> + <span class="string">&#x27;,&#x27;</span>.join(order) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">#      if payload:</span></span><br><span class="line">            <span class="comment">#    info += &#x27;[Payload] &#x27; + &#x27;,&#x27;.join(payload) + &#x27;\n&#x27;</span></span><br><span class="line"></span><br><span class="line">            self._txtInput.setText(info)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPhone</span>(<span class="params">string</span>):</span></span><br><span class="line">    iphones = re.findall(<span class="string">r&#x27;((13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]&#123;8&#125;)&#x27;</span>, string)</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">if</span> iphones != []:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> iphones:</span><br><span class="line">            lens = string.find(i[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">if</span> (string[lens<span class="number">-1</span>:lens].isdigit()) <span class="keyword">or</span> (string[lens+<span class="number">11</span>:lens+<span class="number">12</span>].isdigit()):</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(i[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> res != []:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isIdCard</span>(<span class="params">string</span>):</span></span><br><span class="line">    coefficient = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line">    parityBit = <span class="string">&#x27;10X98765432&#x27;</span></span><br><span class="line">    idcards = re.findall(<span class="string">r&#x27;([1-9]\d&#123;5&#125;[1-9]\d&#123;3&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d&#123;4&#125;)|\d&#123;3&#125;[xX]))&#x27;</span>, string)</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">if</span> idcards != []:</span><br><span class="line">        <span class="keyword">for</span> idcard <span class="keyword">in</span> idcards:</span><br><span class="line">            sumnumber = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">17</span>):</span><br><span class="line">                sumnumber += <span class="built_in">int</span>(idcard[<span class="number">0</span>][i]) * coefficient[i]</span><br><span class="line">            <span class="keyword">if</span> parityBit[sumnumber % <span class="number">11</span>] == idcard[<span class="number">0</span>][<span class="number">-1</span>]:</span><br><span class="line">                res.append(idcard[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> res != []:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isEmail</span>(<span class="params">string</span>):</span></span><br><span class="line">    emails = re.findall(<span class="string">r&#x27;[a-z0-9A-Z_]&#123;1,19&#125;@[0-9a-zA-Z]&#123;1,13&#125;\.[a-z]&#123;1,6&#125;&#x27;</span>, string)</span><br><span class="line">    <span class="keyword">if</span> emails != [<span class="string">&#x27;&#x27;</span>]:</span><br><span class="line">        <span class="keyword">return</span> emails</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ossinfo</span>(<span class="params">string</span>):</span></span><br><span class="line">    ossinfom = re.findall(<span class="string">r&#x27;([A|a]ccess[K|k]ey[I|i]d|[A|a]ccess[K|k]ey[S|s]ecret)&#x27;</span>, string)</span><br><span class="line">    <span class="keyword">if</span> ossinfom != [<span class="string">&#x27;&#x27;</span>]:</span><br><span class="line">        <span class="keyword">return</span> ossinfom</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ipaddress</span>(<span class="params">string</span>):</span></span><br><span class="line">    addressip = re.findall(<span class="string">r&#x27;(?:10\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;)|(?:172\.(?:(?:1[6-9])|(?:2\d)|(?:3[01]))\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;)|(?:192\.168\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;)&#x27;</span>, string)</span><br><span class="line">    <span class="keyword">if</span> addressip != [<span class="string">&#x27;&#x27;</span>]:</span><br><span class="line">        <span class="keyword">return</span> addressip</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">userpass</span>(<span class="params">string</span>):</span></span><br><span class="line">    passuser = re.findall(<span class="string">r&#x27;(i?)\S.*[user]&#x27;</span>, string)</span><br><span class="line">    <span class="keyword">if</span> passuser != [<span class="string">&#x27;&#x27;</span>]:</span><br><span class="line">        <span class="keyword">return</span> passuser</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">orderid</span>(<span class="params">string</span>):</span></span><br><span class="line">    orid = re.findall(<span class="string">r&#x27;(^\d&#123;8,18&#125;$)&#x27;</span>, string)</span><br><span class="line">    <span class="keyword">if</span> orid != [<span class="string">&#x27;&#x27;</span>]:</span><br><span class="line">        <span class="keyword">return</span> orid</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#def xsspayload(string):</span></span><br><span class="line"> <span class="comment">#   xss = re.findall(r&#x27;&#x27;, string)</span></span><br><span class="line"> <span class="comment">#   if xss != [&#x27;&#x27;]:</span></span><br><span class="line">  <span class="comment">#      return xss</span></span><br><span class="line"> <span class="comment">#   else:</span></span><br><span class="line">  <span class="comment">#      return False</span></span><br></pre></td></tr></table></figure>  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/%E6%8F%92%E4%BB%B6/">插件</a>
-</div>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://example.com/2020/09/11/30/" data-title="burpsuite高亮插件 | novy&#39;s Blog" data-tsina="" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2020/10/10/31/" title="spring boot Thymeleaf模板注入 payload">
-  <strong>上一篇：</strong><br/>
-  <span>
-  spring boot Thymeleaf模板注入 payload</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2020/09/10/29/"  title="springmvc SQL注入逆向跟进">
- <strong>下一篇：</strong><br/> 
- <span>springmvc SQL注入逆向跟进
-</span>
-</a>
-</div>
-
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                ホーム
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                アーカイブ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                カテゴリー
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                タグ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                本ブログ情報　
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </nav>
 
-	
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="burpsuite高亮插件">
+              
+            </span>
 
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-11 15:48" pubdate>
+        September 11, 2020 pm
+      </time>
+    </span>
+  
+</div>
 
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CODE"><span class="toc-number">1.</span> <span class="toc-text">CODE</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.2k 字
+    </span>
+  
 
   
-<div class="github-card">
-<p class="asidetitle">Github Card</p>
-<div class="github-card" data-github="novysodope" data-theme="medium"></div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java代码审计/" title="Java代码审计">Java代码审计<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/SQL注入/" title="SQL注入">SQL注入<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA反序列化/" title="JAVA反序列化">JAVA反序列化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java审计/" title="java审计">java审计<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/OWASPTOP10漏洞/" title="OWASPTOP10漏洞">OWASPTOP10漏洞<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/fastjson反序列化/" title="fastjson反序列化">fastjson反序列化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XXE/" title="XXE">XXE<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存马/" title="内存马">内存马<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/免杀/" title="免杀">免杀<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/印象笔记/" title="印象笔记">印象笔记<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://whitecap100.org" target="_blank" title="分享技术文章，分享骚姿势">白帽100安全攻防实验室</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://nbchengit.github.io" target="_blank" title="chensir`Blog">chensir`Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.kongxin.org" target="_blank" title="空心&#39;s Blog">空心&#39;s Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://jiubaeryi9821.github.io/" target="_blank" title="免杀&内网渗透实录">九八二一</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.ch1ng.com" target="_blank" title="Ch1ng's Blog">金枪银矛小霸王</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://feng4.github.io" target="_blank" title="Fengx&#39;s blog">Fengx&#39;s blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer>
-<div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> 不断的推翻以前学到的知识，不断的重建笔记 <br/>
-			Have a great fucking day!</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/novysodope" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:novysodope@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2021 
-		
-		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
-		
-		<br />
-		<script>
-    function secondToDate(second) {
-        if (!second) {
-            return 0;
-        }
-        var time = new Array(0, 0, 0, 0, 0);
-        if (second >= 365 * 24 * 3600) {
-            time[0] = parseInt(second / (365 * 24 * 3600));
-            second %= 365 * 24 * 3600;
-        }
-        if (second >= 24 * 3600) {
-            time[1] = parseInt(second / (24 * 3600));
-            second %= 24 * 3600;
-        }
-        if (second >= 3600) {
-            time[2] = parseInt(second / 3600);
-            second %= 3600;
-        }
-        if (second >= 60) {
-            time[3] = parseInt(second / 60);
-            second %= 60;
-        }
-        if (second > 0) {
-            time[4] = second;
-        }
-        return time;
-    }</script>
-<script type="text/javascript" language="javascript">
-    function setTime() {
-        var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000);
-        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
-        currentTime = secondToDate((timestamp - create_time));
-        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
-                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
-                + '秒';
-        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
-    }    setInterval(setTime, 1000);</script>
-    本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span>
-    <br/>
-  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    你是第<span id="busuanzi_value_site_uv"></span>个小伙伴
-		</p>
-
-
-
-</div>
-
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
       
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
+      
+      19 分钟
+    </span>
+  
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+  
+  
+</div>
 
+            
+          </div>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+          
+        </div>
+      </div>
+    </div>
+  </header>
 
-  $('.hoverqrcode').hide();
+  <main>
+    
+      
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">burpsuite高亮插件</h1>
+            
+            <div class="markdown-body">
+              <p>插件为python环境开发<br>自定义信息单独泄露和组合泄露高亮颜色<br><img src="/images/30/1.png" srcset="/img/loading.gif" lazyload><br>当发生信息泄露以外的情况时标其他颜色，比如脚本攻击：<br><img src="/images/30/2.png" srcset="/img/loading.gif" lazyload><br>自定义正则：<br><img src="/images/30/3.png" srcset="/img/loading.gif" lazyload><br>示例：<br>使用插件后访问写好的目标，点击HTTP history就可以看到高亮请求，点进请求后会有个Keyword栏标出相应信息<br>效果图<br><img src="/images/30/4.png" srcset="/img/loading.gif" lazyload><br>用法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">burpsuite - Extender - Add<br></code></pre></td></tr></table></figure>
+<p>ps：目前因为不懂正则的原因未完成userpss及orderid，ip（内网）正则有缺陷，xss正则待完善<br>可以自定义其他漏洞挖掘功能，只需要一点点的python基础</p>
+<h1 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding:utf-8 -*-</span><br><span class="hljs-comment"># Improve: by novy</span><br><br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> json<br><span class="hljs-keyword">import</span> re<br><br><span class="hljs-keyword">from</span> burp <span class="hljs-keyword">import</span> IBurpExtender<br><span class="hljs-keyword">from</span> burp <span class="hljs-keyword">import</span> IHttpListener<br><span class="hljs-keyword">from</span> burp <span class="hljs-keyword">import</span> IMessageEditorTab<br><span class="hljs-keyword">from</span> burp <span class="hljs-keyword">import</span> IMessageEditorTabFactory<br><br><span class="hljs-keyword">from</span> java.io <span class="hljs-keyword">import</span> PrintWriter<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BurpExtender</span>(<span class="hljs-params">IBurpExtender, IHttpListener, IMessageEditorTabFactory</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">registerExtenderCallbacks</span>(<span class="hljs-params">self, callbacks</span>):</span><br>        self._callbacks = callbacks<br>        self._helpers = callbacks.getHelpers()<br>        callbacks.setExtensionName(<span class="hljs-string">&quot;Spartan - Wheel king&quot;</span>)<br>        self._stdout = PrintWriter(callbacks.getStdout(), <span class="hljs-literal">True</span>)<br>        callbacks.registerHttpListener(self)<br>        callbacks.registerMessageEditorTabFactory(self)<br>        <span class="hljs-built_in">print</span> <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">        [+] #####################################</span><br><span class="hljs-string">        [+] chao bie ren de</span><br><span class="hljs-string">        [+] Improve: novy</span><br><span class="hljs-string">        [+] novy.baklib.com</span><br><span class="hljs-string">        Readme:</span><br><span class="hljs-string">        [+] Leakage of regular information such as order number, mobile phone number, account password, ID card, etc.</span><br><span class="hljs-string">        [+] Yellow represents a single information leak, red represents multiple information leaks</span><br><span class="hljs-string">        [+] Please add more functions by yourself, support unlimited customization</span><br><span class="hljs-string">        [+] Not just for mining information leakage.You can create your own plug-in with just a little knowledge of python</span><br><span class="hljs-string">        [+] #####################################</span><br><span class="hljs-string">        &#x27;&#x27;&#x27;</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">createNewInstance</span>(<span class="hljs-params">self, controller, editable</span>):</span><br>        <span class="hljs-keyword">return</span> MarkINFOTab(self, controller, editable)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">processHttpMessage</span>(<span class="hljs-params">self, toolFlag, messageIsRequest, messageInfo</span>):</span><br>        <span class="hljs-keyword">if</span> messageIsRequest:<br>            <span class="hljs-keyword">return</span><br>        content = messageInfo.getResponse()<br>        r = self._helpers.analyzeResponse(content)<br>        msg = content[r.getBodyOffset():].tostring()<br><br>        <span class="hljs-keyword">if</span> isPhone(msg) <span class="hljs-keyword">or</span> isIdCard(msg) <span class="hljs-keyword">or</span> isEmail(msg) <span class="hljs-keyword">or</span> ossinfo(msg) <span class="hljs-keyword">or</span> ipaddress(msg) <span class="hljs-keyword">or</span> userpass(msg) <span class="hljs-keyword">or</span> orderid(msg):<br>            messageInfo.setHighlight(<span class="hljs-string">&#x27;yellow&#x27;</span>)<br><br>        <span class="hljs-keyword">if</span> (isPhone(msg) <span class="hljs-keyword">and</span> isIdCard(msg)) <span class="hljs-keyword">or</span> (isPhone(msg) <span class="hljs-keyword">and</span> isEmail(msg)) <span class="hljs-keyword">or</span> (isIdCard(msg) <span class="hljs-keyword">and</span> isEmail(msg)) <span class="hljs-keyword">or</span> (ipaddress(msg) <span class="hljs-keyword">and</span> userpass(msg)) <span class="hljs-keyword">or</span> (ossinfo(msg) <span class="hljs-keyword">and</span> ipaddress(msg)) <span class="hljs-keyword">or</span> (isEmail(msg) <span class="hljs-keyword">and</span> ossinfo(msg)) <span class="hljs-keyword">or</span> (userpass(msg) <span class="hljs-keyword">and</span> orderid(msg)):<br>            messageInfo.setHighlight(<span class="hljs-string">&#x27;red&#x27;</span>)<br><br>      <span class="hljs-comment">#  if xsspayload(msg):</span><br>       <span class="hljs-comment">#  	messageInfo.setHighlight(&#x27;blue&#x27;)</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MarkINFOTab</span>(<span class="hljs-params">IMessageEditorTab</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, extender, controller, editable</span>):</span><br>        self._extender = extender<br>        self._helpers = extender._helpers<br>        self._editable = editable<br>        self._txtInput = extender._callbacks.createTextEditor()<br>        self._txtInput.setEditable(editable)<br>        self.isInfo = <span class="hljs-literal">False</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getTabCaption</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Keyword&quot;</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getUiComponent</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self._txtInput.getComponent()<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isEnabled</span>(<span class="hljs-params">self, content, isRequest</span>):</span><br>        r = self._helpers.analyzeResponse(content)<br>        msg = content[r.getBodyOffset():].tostring()<br>        iphone = isPhone(msg)<br>        email = isEmail(msg)<br>        idcard = isIdCard(msg)<br>        oss = ossinfo(msg)<br>        address = ipaddress(msg)<br>        userp = userpass(msg)<br>        order = orderid(msg)<br>      <span class="hljs-comment">#  payload = xsspayload(msg)</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> isRequest:<br>            <span class="hljs-keyword">if</span> iphone <span class="hljs-keyword">or</span> email <span class="hljs-keyword">or</span> idcard <span class="hljs-keyword">or</span> oss <span class="hljs-keyword">or</span> address <span class="hljs-keyword">or</span> userp <span class="hljs-keyword">or</span> order:<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setMessage</span>(<span class="hljs-params">self, content, isRequest</span>):</span><br>        <span class="hljs-keyword">if</span> content:<br>            <span class="hljs-keyword">if</span> isRequest:<br>                r = self._helpers.analyzeRequest(content)<br>            <span class="hljs-keyword">else</span>:<br>                r = self._helpers.analyzeResponse(content)<br>            msg = content[r.getBodyOffset():].tostring()<br>            info = <span class="hljs-string">&quot;&quot;</span><br>            iphone = isPhone(msg)<br>            email = isEmail(msg)<br>            idcard = isIdCard(msg)<br>            oss = ossinfo(msg)<br>            address = ipaddress(msg)<br>            userp = userpass(msg)<br>            order = orderid(msg)<br>         <span class="hljs-comment">#   payload = xsspayload(msg)</span><br>            <span class="hljs-keyword">if</span> iphone:<br>                info += <span class="hljs-string">&#x27;[Phone] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(iphone) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>            <span class="hljs-keyword">if</span> email:<br>                info += <span class="hljs-string">&#x27;[Mail] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(email) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>            <span class="hljs-keyword">if</span> idcard:<br>                info += <span class="hljs-string">&#x27;[IDCard] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(idcard) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>            <span class="hljs-keyword">if</span> oss:<br>                info += <span class="hljs-string">&#x27;[Oss] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(oss) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>            <span class="hljs-keyword">if</span> address:<br>                info += <span class="hljs-string">&#x27;[Address] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(address) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>            <span class="hljs-keyword">if</span> userp:<br>                info += <span class="hljs-string">&#x27;[Userp] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(userp) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>            <span class="hljs-keyword">if</span> order:<br>                info += <span class="hljs-string">&#x27;[Order] &#x27;</span> + <span class="hljs-string">&#x27;,&#x27;</span>.join(order) + <span class="hljs-string">&#x27;\n&#x27;</span><br><br>      <span class="hljs-comment">#      if payload:</span><br>            <span class="hljs-comment">#    info += &#x27;[Payload] &#x27; + &#x27;,&#x27;.join(payload) + &#x27;\n&#x27;</span><br><br>            self._txtInput.setText(info)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isPhone</span>(<span class="hljs-params">string</span>):</span><br>    iphones = re.findall(<span class="hljs-string">r&#x27;((13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]&#123;8&#125;)&#x27;</span>, string)<br>    res = []<br>    <span class="hljs-keyword">if</span> iphones != []:<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> iphones:<br>            lens = string.find(i[<span class="hljs-number">0</span>])<br>            <span class="hljs-keyword">if</span> (string[lens<span class="hljs-number">-1</span>:lens].isdigit()) <span class="hljs-keyword">or</span> (string[lens+<span class="hljs-number">11</span>:lens+<span class="hljs-number">12</span>].isdigit()):<br>                <span class="hljs-keyword">pass</span><br>            <span class="hljs-keyword">else</span>:<br>                res.append(i[<span class="hljs-number">0</span>])<br>        <span class="hljs-keyword">if</span> res != []:<br>            <span class="hljs-keyword">return</span> res<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isIdCard</span>(<span class="hljs-params">string</span>):</span><br>    coefficient = [<span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>]<br>    parityBit = <span class="hljs-string">&#x27;10X98765432&#x27;</span><br>    idcards = re.findall(<span class="hljs-string">r&#x27;([1-9]\d&#123;5&#125;[1-9]\d&#123;3&#125;((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d&#123;4&#125;)|\d&#123;3&#125;[xX]))&#x27;</span>, string)<br>    res = []<br>    <span class="hljs-keyword">if</span> idcards != []:<br>        <span class="hljs-keyword">for</span> idcard <span class="hljs-keyword">in</span> idcards:<br>            sumnumber = <span class="hljs-number">0</span><br>            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">17</span>):<br>                sumnumber += <span class="hljs-built_in">int</span>(idcard[<span class="hljs-number">0</span>][i]) * coefficient[i]<br>            <span class="hljs-keyword">if</span> parityBit[sumnumber % <span class="hljs-number">11</span>] == idcard[<span class="hljs-number">0</span>][<span class="hljs-number">-1</span>]:<br>                res.append(idcard[<span class="hljs-number">0</span>])<br>        <span class="hljs-keyword">if</span> res != []:<br>            <span class="hljs-keyword">return</span> res<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isEmail</span>(<span class="hljs-params">string</span>):</span><br>    emails = re.findall(<span class="hljs-string">r&#x27;[a-z0-9A-Z_]&#123;1,19&#125;@[0-9a-zA-Z]&#123;1,13&#125;\.[a-z]&#123;1,6&#125;&#x27;</span>, string)<br>    <span class="hljs-keyword">if</span> emails != [<span class="hljs-string">&#x27;&#x27;</span>]:<br>        <span class="hljs-keyword">return</span> emails<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ossinfo</span>(<span class="hljs-params">string</span>):</span><br>    ossinfom = re.findall(<span class="hljs-string">r&#x27;([A|a]ccess[K|k]ey[I|i]d|[A|a]ccess[K|k]ey[S|s]ecret)&#x27;</span>, string)<br>    <span class="hljs-keyword">if</span> ossinfom != [<span class="hljs-string">&#x27;&#x27;</span>]:<br>        <span class="hljs-keyword">return</span> ossinfom<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ipaddress</span>(<span class="hljs-params">string</span>):</span><br>    addressip = re.findall(<span class="hljs-string">r&#x27;(?:10\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;)|(?:172\.(?:(?:1[6-9])|(?:2\d)|(?:3[01]))\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;)|(?:192\.168\.\d&#123;1,3&#125;\.\d&#123;1,3&#125;)&#x27;</span>, string)<br>    <span class="hljs-keyword">if</span> addressip != [<span class="hljs-string">&#x27;&#x27;</span>]:<br>        <span class="hljs-keyword">return</span> addressip<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">userpass</span>(<span class="hljs-params">string</span>):</span><br>    passuser = re.findall(<span class="hljs-string">r&#x27;(i?)\S.*[user]&#x27;</span>, string)<br>    <span class="hljs-keyword">if</span> passuser != [<span class="hljs-string">&#x27;&#x27;</span>]:<br>        <span class="hljs-keyword">return</span> passuser<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">orderid</span>(<span class="hljs-params">string</span>):</span><br>    orid = re.findall(<span class="hljs-string">r&#x27;(^\d&#123;8,18&#125;$)&#x27;</span>, string)<br>    <span class="hljs-keyword">if</span> orid != [<span class="hljs-string">&#x27;&#x27;</span>]:<br>        <span class="hljs-keyword">return</span> orid<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><span class="hljs-comment">#def xsspayload(string):</span><br> <span class="hljs-comment">#   xss = re.findall(r&#x27;&#x27;, string)</span><br> <span class="hljs-comment">#   if xss != [&#x27;&#x27;]:</span><br>  <span class="hljs-comment">#      return xss</span><br> <span class="hljs-comment">#   else:</span><br>  <span class="hljs-comment">#      return False</span><br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8F%92%E4%BB%B6/">插件</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/10/31/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spring boot Thymeleaf模板注入 payload</span>
+                        <span class="visible-mobile">前の記事</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/10/29/">
+                        <span class="hidden-mobile">springmvc SQL注入逆向跟进</span>
+                        <span class="visible-mobile">次の記事</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+      </div>
+    
+  </div>
+</div>
 
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
+<!-- Custom -->
 
 
+    
 
-<!-- Analytics Begin -->
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">キーワード</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
 
 
-<!-- MathJax End -->
 
-<!-- Tiny_search Begin -->
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
-<!-- Tiny_search End -->
 
-  </body>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>

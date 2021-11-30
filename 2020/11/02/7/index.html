@@ -1,17 +1,22 @@
 
- <!DOCTYPE HTML>
-<html lang="zh">
+
+<!DOCTYPE html>
+<html lang="zh" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    <title>安服漏洞测试流程(附从常规实战拿shell到提权) | novy&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="novy&#39;s Blog">
-    
-
-    
-    <meta name="description" content="安服项目中的渗透流程">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="安服项目中的渗透流程">
+  <meta name="author" content="novy&#39;s Blog">
+  <meta name="keywords" content="">
+  <meta name="description" content="安服项目中的渗透流程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安服漏洞测试流程(附从常规实战拿shell到提权)">
 <meta property="og:url" content="http://example.com/2020/11/02/7/index.html">
@@ -59,616 +64,440 @@
 <meta property="article:modified_time" content="2021-07-02T02:41:54.764Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="安服">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/7/1.png">
+  
+  <title>安服漏洞测试流程(附从常规实战拿shell到提权) - novy&#39;s Blog</title>
 
-    
-    <link rel="alternative" href="/atom.xml" title="novy&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/logo2.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/logo2.jpg">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/%02.css">
-<link rel="stylesheet" href="/.css">
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0"></head>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo2.jpg" alt="novy&#39;s Blog" title="novy&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="novy&#39;s Blog">novy&#39;s Blog</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">首页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-					<li>
- 					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
-						<input type="hidden" name="q" value="site:example.com">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-  
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2020/11/02/7/" title="安服漏洞测试流程(附从常规实战拿shell到提权)" itemprop="url">安服漏洞测试流程(附从常规实战拿shell到提权)</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="novy&#39;s Blog" target="_blank" itemprop="author">novy&#39;s Blog</a>
-		
-  <p class="article-time">
-    <time datetime="2020-11-02T10:05:07.000Z" itemprop="datePublished"> Published 2020-11-02</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E4%B8%A4%E7%A7%8D%E6%83%85%E5%86%B5"><span class="toc-number">1.</span> <span class="toc-text">分两种情况</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%B5%84%E4%BA%A7%E6%98%AFip%E7%9A%84%E6%97%B6%E5%80%99"><span class="toc-number">1.1.</span> <span class="toc-text">一、资产是ip的时候</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A6%96%E5%85%88%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、首先信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、漏洞测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B5%84%E4%BA%A7%E6%98%AFurl%E4%B8%94%E6%9C%89%E8%B4%A6%E5%8F%B7%E7%9A%84%E6%97%B6%E5%80%99"><span class="toc-number">1.2.</span> <span class="toc-text">二、资产是url且有账号的时候</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">2.</span> <span class="toc-text">实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">2.1.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">2.2.</span> <span class="toc-text">目录扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">2.4.</span> <span class="toc-text">提权</span></a></li></ol></li></ol>
-		
-		</div>
-		
-		<h1 id="分两种情况"><a href="#分两种情况" class="headerlink" title="分两种情况"></a>分两种情况</h1><h2 id="一、资产是ip的时候"><a href="#一、资产是ip的时候" class="headerlink" title="一、资产是ip的时候"></a>一、资产是ip的时候</h2><p><img src="/images/7/1.png"></p>
-<h3 id="1、首先信息收集"><a href="#1、首先信息收集" class="headerlink" title="1、首先信息收集"></a>1、首先信息收集</h3><p>先扫描ip段，探测存活、端口开放情况<br>此处为了更直观的教学，这里用railgun工具做例子（实战时没有这个工具可以用nmap）<br><img src="/images/7/2.png"><br>看看开了什么端口，可以根据扫描结果获得指纹信息（中间件类型/CMS类型）<br><img src="/images/7/3.png"><br>看到有什么远程连接或者数据库的端口比如3389、21、22、1433、3306的可以尝试弱口令/爆破</p>
-<h3 id="2、漏洞测试"><a href="#2、漏洞测试" class="headerlink" title="2、漏洞测试"></a>2、漏洞测试</h3><p>根据扫描结果得到一个正在运行的web服务<br><img src="/images/7/4.png"><br>首先进行目录扫描，查看有无敏感信息，比如备份文件、数据库文件等信息，也可以通过目录扫描得到的结果尝试直接访问看看是否存在越权/未授权访问<br>目录扫描后打开该站点查看有哪些功能可以测试<br><img src="/images/7/5.png"><br><strong>URL：</strong>是否存在ref=、target=、forward=、redirect=、services=等转发参数，可以尝试URL任意重定向；如果存在其他参数则可以根据参数尝试XSS、SQL注入、SSRF、文件包含（内容读取）等,根据框架可以尝试自己fuzz一些接口，比如spring的swagger等<br><strong>登陆框：</strong>弱口令、爆破、SQL注入<br>先尝试弱口令登陆，看是否存在测试账号、管理员账号弱密码；<br>根据尝试登陆返回的状态比如“用户不存在”以及验证码状态（验证码不变）来判断是否可以进行爆破；可以尝试如admin’ or’=’or’#来尝试万能密码登陆或者抓包进行SQL注入检测<br><strong>账号注册：</strong>在注册的时候可以尝试用跟管理员一样的账号注册来覆盖他的密码；还可以尝试短信轰炸/邮件轰炸、SQL注入等漏洞<br><strong>忘记密码：</strong>可以尝试任意密码重置、SQL注入、短信轰炸/邮件轰炸<br><strong>F12查看网页源代码：</strong>看页面源码是否存在敏感信息，比如账号密码、验证码接口、其他隐藏接口等<br><strong>其他功能：</strong>测试流程如上<br><strong>数据包：</strong><br><img src="/images/7/6.png"><br>可以测试的点有：CORS（修改Origin）、不安全的HTTP请求方法（PUT/DELETE等）<br><img src="/images/7/7.png"><br>此外可以尝试HOST头攻击（修改host值为恶意值）、SQL注入（POST）、明文传输、反序列化等</p>
-<h2 id="二、资产是url且有账号的时候"><a href="#二、资产是url且有账号的时候" class="headerlink" title="二、资产是url且有账号的时候"></a>二、资产是url且有账号的时候</h2><p><img src="/images/7/8.png"><br>判断指纹，网上搜该cms的漏洞进行验证<br>按照上述流程测试，这里以注册账号后测试为例<br>测试可以测试的所有功能，流程跟一同<br><img src="/images/7/9.png"><br><strong>Xss</strong><br>有框就插<br><img src="/images/7/10.png"><br><img src="/images/7/11.png"><br><strong>文件读取，看参数请求</strong><br><img src="/images/7/12.png"><br><img src="/images/7/13.png"><br>或者从旁站入手<br>涉及到的知识：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Nmap使用</span><br><span class="line">目录扫描</span><br><span class="line">条件竞争</span><br><span class="line">HOST头攻击</span><br><span class="line">端口服务</span><br><span class="line">敏感高危端口</span><br><span class="line">登陆爆破</span><br><span class="line">万能账号密码</span><br><span class="line">WEB指纹</span><br><span class="line">XSS</span><br><span class="line">SQL注入</span><br><span class="line">URL任意重定向</span><br><span class="line">任意文件读取</span><br><span class="line">任意密码重置</span><br><span class="line">敏感信息泄露</span><br><span class="line">不安全的HTTP方法</span><br><span class="line">跨域资源访问（CORS）</span><br><span class="line">跨域请求伪造（CORF）</span><br><span class="line">服务器端请求伪造（SSRF）</span><br><span class="line">Weblogic命令执行</span><br><span class="line">Redis未授权访问</span><br><span class="line">Struts2命令执行</span><br><span class="line">Shiro反序列化</span><br><span class="line">Seeyon任意文件写入</span><br><span class="line">Tomcat默认页面</span><br><span class="line">Weblogic默认页面</span><br><span class="line">Nginx默认页面内网ip泄露</span><br><span class="line">中间件版本信息泄露</span><br><span class="line">任意文件上传</span><br><span class="line">越权</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>测试时要关注数据参数，参数可控还会造成的各类衍生结合利用</p>
-<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><p>得到一个ip 192.168..6.131</p>
-<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p><img src="/images/7/14.png"><br>得到端口为27689的web服务<br><img src="/images/7/15.png"></p>
-<h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><p><img src="/images/7/16.png"><br>得到备份文件web.config.bak<br><img src="/images/7/17.png"><br>在备份文件里得到数据库的账号密码，直接连接<br><img src="/images/7/18.png"><br><img src="/images/7/19.png"><br>利用目录扫描得到的后台登陆账号密码进入后台<br><img src="/images/7/20.png"></p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>此处上传只允许上传图片，利用一点上传绕过知识进行拿webshell<br><img src="/images/7/21.png"><br>如果返回包不返回文件路径，可以通过报错来回显路径来登陆webshell<br><img src="/images/7/22.png"><br><img src="/images/7/23.png"></p>
-<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>拿到webshell后通过cmd功能得知当前权限为www<br><img src="/images/7/24.png"><br>直接添加账号提示拒绝访问<br><img src="/images/7/15.png"><br>上传nc，进程已经启动，但是连接不了，判断开了防火墙<br>无果，另寻他法<br>翻看网站根目录还有一个备份文件，得到sa账号密码（在渗透到时候信息收集不能断，总会有意想不到的惊喜）<br><img src="/images/7/26.png"><br>连接<br><img src="/images/7/27.png"><br>利用system权限关掉防火墙<br><img src="/images/7/28.png"><br>结合sql语句构造</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC master.dbo.xp_cmdshell ‘netsh firewall <span class="built_in">set</span> opmode mode=<span class="built_in">disable</span>’</span><br></pre></td></tr></table></figure>
-<p><img src="/images/7/29.png"><br>再次尝试nc<br><img src="/images/7/30.png"><br>开启3389<br><img src="/images/7/31.png"><br>结合xp_cmdshell构造</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC xp_cmdshell ‘REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal<span class="string">&quot; &quot;</span>Server /v fDenyTSConnections /t REG_DWORD /d 0 /f’</span><br></pre></td></tr></table></figure>
-<p><img src="/images/7/32.png"><br>添加账号<br><img src="/images/7/33.png"><br><img src="/images/7/34.png"><br>远程连接<br><img src="/images/7/35.png"><br>添加到管理员组<br><img src="/images/7/36.png"><br>再次连接<br><img src="/images/7/37.png"><br>假如登陆sa之后发现未启用cmdshell，就手动启动一下<br>启用高级选项：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> sp_configure <span class="string">&#x27;show advanced options&#x27;</span>,1</span><br></pre></td></tr></table></figure>
-<p>0是关闭，1是开启，这时候会提示<code>RECONFIGURE</code>，那就按照提示运行一下<code>RECONFIGURE</code><br>启用cmdshell：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> sp_configure <span class="string">&#x27;xp_cmdshell&#x27;</span>,1</span><br></pre></td></tr></table></figure>
-<p>再次提示<code>RECONFIGURE</code>，再运行一下<br>这个时候就可以用cmdshell了</p>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
-</div>
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/安服/">安服</a>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                ホーム
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                アーカイブ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                カテゴリー
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                タグ
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                本ブログ情報　
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://example.com/2020/11/02/7/" data-title="安服漏洞测试流程(附从常规实战拿shell到提权) | novy&#39;s Blog" data-tsina="" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2020/11/17/34/" title="CVE-2020-26217 XStream RCE复现">
-  <strong>上一篇：</strong><br/>
-  <span>
-  CVE-2020-26217 XStream RCE复现</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2020/10/28/32/"  title="手工提权-mssql启用cmdshell">
- <strong>下一篇：</strong><br/> 
- <span>手工提权-mssql启用cmdshell
-</span>
-</a>
-</div>
-
 </nav>
 
-	
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="安服漏洞测试流程(附从常规实战拿shell到提权)">
+              
+            </span>
 
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-02 18:05" pubdate>
+        November 2, 2020 pm
+      </time>
+    </span>
+  
+</div>
 
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E4%B8%A4%E7%A7%8D%E6%83%85%E5%86%B5"><span class="toc-number">1.</span> <span class="toc-text">分两种情况</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%B5%84%E4%BA%A7%E6%98%AFip%E7%9A%84%E6%97%B6%E5%80%99"><span class="toc-number">1.1.</span> <span class="toc-text">一、资产是ip的时候</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A6%96%E5%85%88%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、首先信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、漏洞测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%B5%84%E4%BA%A7%E6%98%AFurl%E4%B8%94%E6%9C%89%E8%B4%A6%E5%8F%B7%E7%9A%84%E6%97%B6%E5%80%99"><span class="toc-number">1.2.</span> <span class="toc-text">二、资产是url且有账号的时候</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">2.</span> <span class="toc-text">实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">2.1.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">2.2.</span> <span class="toc-text">目录扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">2.4.</span> <span class="toc-text">提权</span></a></li></ol></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
-<aside class="clearfix">
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
 
   
-<div class="github-card">
-<p class="asidetitle">Github Card</p>
-<div class="github-card" data-github="novysodope" data-theme="medium"></div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
-</div>
-
-
-
-  
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/JAVA代码审计/" title="JAVA代码审计">JAVA代码审计<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/反序列化/" title="反序列化">反序列化<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java代码审计/" title="Java代码审计">Java代码审计<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/SQL注入/" title="SQL注入">SQL注入<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA/" title="JAVA">JAVA<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JAVA反序列化/" title="JAVA反序列化">JAVA反序列化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/java审计/" title="java审计">java审计<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/审计思路/" title="审计思路">审计思路<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/php代码审计/" title="php代码审计">php代码审计<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/python小工具/" title="python小工具">python小工具<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/OWASPTOP10漏洞/" title="OWASPTOP10漏洞">OWASPTOP10漏洞<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/fastjson反序列化/" title="fastjson反序列化">fastjson反序列化<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XXE/" title="XXE">XXE<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/渗透测试/" title="渗透测试">渗透测试<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存马/" title="内存马">内存马<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cobalt-strike后门/" title="cobalt strike后门">cobalt strike后门<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/免杀/" title="免杀">免杀<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/印象笔记/" title="印象笔记">印象笔记<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/XSS/" title="XSS">XSS<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">Links</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="https://whitecap100.org" target="_blank" title="分享技术文章，分享骚姿势">白帽100安全攻防实验室</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://nbchengit.github.io" target="_blank" title="chensir`Blog">chensir`Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.kongxin.org" target="_blank" title="空心&#39;s Blog">空心&#39;s Blog</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://jiubaeryi9821.github.io/" target="_blank" title="免杀&内网渗透实录">九八二一</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://www.ch1ng.com" target="_blank" title="Ch1ng's Blog">金枪银矛小霸王</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="https://feng4.github.io" target="_blank" title="Fengx&#39;s blog">Fengx&#39;s blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer>
-<div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> 不断的推翻以前学到的知识，不断的重建笔记 <br/>
-			Have a great fucking day!</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		
-		<a href="https://github.com/novysodope" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:novysodope@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2021 
-		
-		<a href="/about" target="_blank" title="novy&#39;s Blog">novy&#39;s Blog</a>
-		
-		<br />
-		<script>
-    function secondToDate(second) {
-        if (!second) {
-            return 0;
-        }
-        var time = new Array(0, 0, 0, 0, 0);
-        if (second >= 365 * 24 * 3600) {
-            time[0] = parseInt(second / (365 * 24 * 3600));
-            second %= 365 * 24 * 3600;
-        }
-        if (second >= 24 * 3600) {
-            time[1] = parseInt(second / (24 * 3600));
-            second %= 24 * 3600;
-        }
-        if (second >= 3600) {
-            time[2] = parseInt(second / 3600);
-            second %= 3600;
-        }
-        if (second >= 60) {
-            time[3] = parseInt(second / 60);
-            second %= 60;
-        }
-        if (second > 0) {
-            time[4] = second;
-        }
-        return time;
-    }</script>
-<script type="text/javascript" language="javascript">
-    function setTime() {
-        var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000);
-        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
-        currentTime = secondToDate((timestamp - create_time));
-        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
-                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
-                + '秒';
-        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
-    }    setInterval(setTime, 1000);</script>
-    本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span>
-    <br/>
-  <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    你是第<span id="busuanzi_value_site_uv"></span>个小伙伴
-		</p>
-
-
-
-</div>
-
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
       
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
+      
+      6 分钟
+    </span>
+  
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
+  
+  
+</div>
 
+            
+          </div>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
+          
+        </div>
+      </div>
+    </div>
+  </header>
 
-  $('.hoverqrcode').hide();
+  <main>
+    
+      
 
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">安服漏洞测试流程(附从常规实战拿shell到提权)</h1>
+            
+            <div class="markdown-body">
+              <h1 id="分两种情况"><a href="#分两种情况" class="headerlink" title="分两种情况"></a>分两种情况</h1><h2 id="一、资产是ip的时候"><a href="#一、资产是ip的时候" class="headerlink" title="一、资产是ip的时候"></a>一、资产是ip的时候</h2><p><img src="/images/7/1.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1、首先信息收集"><a href="#1、首先信息收集" class="headerlink" title="1、首先信息收集"></a>1、首先信息收集</h3><p>先扫描ip段，探测存活、端口开放情况<br>此处为了更直观的教学，这里用railgun工具做例子（实战时没有这个工具可以用nmap）<br><img src="/images/7/2.png" srcset="/img/loading.gif" lazyload><br>看看开了什么端口，可以根据扫描结果获得指纹信息（中间件类型/CMS类型）<br><img src="/images/7/3.png" srcset="/img/loading.gif" lazyload><br>看到有什么远程连接或者数据库的端口比如3389、21、22、1433、3306的可以尝试弱口令/爆破</p>
+<h3 id="2、漏洞测试"><a href="#2、漏洞测试" class="headerlink" title="2、漏洞测试"></a>2、漏洞测试</h3><p>根据扫描结果得到一个正在运行的web服务<br><img src="/images/7/4.png" srcset="/img/loading.gif" lazyload><br>首先进行目录扫描，查看有无敏感信息，比如备份文件、数据库文件等信息，也可以通过目录扫描得到的结果尝试直接访问看看是否存在越权/未授权访问<br>目录扫描后打开该站点查看有哪些功能可以测试<br><img src="/images/7/5.png" srcset="/img/loading.gif" lazyload><br><strong>URL：</strong>是否存在ref=、target=、forward=、redirect=、services=等转发参数，可以尝试URL任意重定向；如果存在其他参数则可以根据参数尝试XSS、SQL注入、SSRF、文件包含（内容读取）等,根据框架可以尝试自己fuzz一些接口，比如spring的swagger等<br><strong>登陆框：</strong>弱口令、爆破、SQL注入<br>先尝试弱口令登陆，看是否存在测试账号、管理员账号弱密码；<br>根据尝试登陆返回的状态比如“用户不存在”以及验证码状态（验证码不变）来判断是否可以进行爆破；可以尝试如admin’ or’=’or’#来尝试万能密码登陆或者抓包进行SQL注入检测<br><strong>账号注册：</strong>在注册的时候可以尝试用跟管理员一样的账号注册来覆盖他的密码；还可以尝试短信轰炸/邮件轰炸、SQL注入等漏洞<br><strong>忘记密码：</strong>可以尝试任意密码重置、SQL注入、短信轰炸/邮件轰炸<br><strong>F12查看网页源代码：</strong>看页面源码是否存在敏感信息，比如账号密码、验证码接口、其他隐藏接口等<br><strong>其他功能：</strong>测试流程如上<br><strong>数据包：</strong><br><img src="/images/7/6.png" srcset="/img/loading.gif" lazyload><br>可以测试的点有：CORS（修改Origin）、不安全的HTTP请求方法（PUT/DELETE等）<br><img src="/images/7/7.png" srcset="/img/loading.gif" lazyload><br>此外可以尝试HOST头攻击（修改host值为恶意值）、SQL注入（POST）、明文传输、反序列化等</p>
+<h2 id="二、资产是url且有账号的时候"><a href="#二、资产是url且有账号的时候" class="headerlink" title="二、资产是url且有账号的时候"></a>二、资产是url且有账号的时候</h2><p><img src="/images/7/8.png" srcset="/img/loading.gif" lazyload><br>判断指纹，网上搜该cms的漏洞进行验证<br>按照上述流程测试，这里以注册账号后测试为例<br>测试可以测试的所有功能，流程跟一同<br><img src="/images/7/9.png" srcset="/img/loading.gif" lazyload><br><strong>Xss</strong><br>有框就插<br><img src="/images/7/10.png" srcset="/img/loading.gif" lazyload><br><img src="/images/7/11.png" srcset="/img/loading.gif" lazyload><br><strong>文件读取，看参数请求</strong><br><img src="/images/7/12.png" srcset="/img/loading.gif" lazyload><br><img src="/images/7/13.png" srcset="/img/loading.gif" lazyload><br>或者从旁站入手<br>涉及到的知识：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs bash">Nmap使用<br>目录扫描<br>条件竞争<br>HOST头攻击<br>端口服务<br>敏感高危端口<br>登陆爆破<br>万能账号密码<br>WEB指纹<br>XSS<br>SQL注入<br>URL任意重定向<br>任意文件读取<br>任意密码重置<br>敏感信息泄露<br>不安全的HTTP方法<br>跨域资源访问（CORS）<br>跨域请求伪造（CORF）<br>服务器端请求伪造（SSRF）<br>Weblogic命令执行<br>Redis未授权访问<br>Struts2命令执行<br>Shiro反序列化<br>Seeyon任意文件写入<br>Tomcat默认页面<br>Weblogic默认页面<br>Nginx默认页面内网ip泄露<br>中间件版本信息泄露<br>任意文件上传<br>越权<br>...<br></code></pre></td></tr></table></figure>
+<p>测试时要关注数据参数，参数可控还会造成的各类衍生结合利用</p>
+<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><p>得到一个ip 192.168..6.131</p>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p><img src="/images/7/14.png" srcset="/img/loading.gif" lazyload><br>得到端口为27689的web服务<br><img src="/images/7/15.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h2><p><img src="/images/7/16.png" srcset="/img/loading.gif" lazyload><br>得到备份文件web.config.bak<br><img src="/images/7/17.png" srcset="/img/loading.gif" lazyload><br>在备份文件里得到数据库的账号密码，直接连接<br><img src="/images/7/18.png" srcset="/img/loading.gif" lazyload><br><img src="/images/7/19.png" srcset="/img/loading.gif" lazyload><br>利用目录扫描得到的后台登陆账号密码进入后台<br><img src="/images/7/20.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>此处上传只允许上传图片，利用一点上传绕过知识进行拿webshell<br><img src="/images/7/21.png" srcset="/img/loading.gif" lazyload><br>如果返回包不返回文件路径，可以通过报错来回显路径来登陆webshell<br><img src="/images/7/22.png" srcset="/img/loading.gif" lazyload><br><img src="/images/7/23.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>拿到webshell后通过cmd功能得知当前权限为www<br><img src="/images/7/24.png" srcset="/img/loading.gif" lazyload><br>直接添加账号提示拒绝访问<br><img src="/images/7/15.png" srcset="/img/loading.gif" lazyload><br>上传nc，进程已经启动，但是连接不了，判断开了防火墙<br>无果，另寻他法<br>翻看网站根目录还有一个备份文件，得到sa账号密码（在渗透到时候信息收集不能断，总会有意想不到的惊喜）<br><img src="/images/7/26.png" srcset="/img/loading.gif" lazyload><br>连接<br><img src="/images/7/27.png" srcset="/img/loading.gif" lazyload><br>利用system权限关掉防火墙<br><img src="/images/7/28.png" srcset="/img/loading.gif" lazyload><br>结合sql语句构造</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">EXEC master.dbo.xp_cmdshell ‘netsh firewall <span class="hljs-built_in">set</span> opmode mode=<span class="hljs-built_in">disable</span>’<br></code></pre></td></tr></table></figure>
+<p><img src="/images/7/29.png" srcset="/img/loading.gif" lazyload><br>再次尝试nc<br><img src="/images/7/30.png" srcset="/img/loading.gif" lazyload><br>开启3389<br><img src="/images/7/31.png" srcset="/img/loading.gif" lazyload><br>结合xp_cmdshell构造</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">EXEC xp_cmdshell ‘REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal<span class="hljs-string">&quot; &quot;</span>Server /v fDenyTSConnections /t REG_DWORD /d 0 /f’<br></code></pre></td></tr></table></figure>
+<p><img src="/images/7/32.png" srcset="/img/loading.gif" lazyload><br>添加账号<br><img src="/images/7/33.png" srcset="/img/loading.gif" lazyload><br><img src="/images/7/34.png" srcset="/img/loading.gif" lazyload><br>远程连接<br><img src="/images/7/35.png" srcset="/img/loading.gif" lazyload><br>添加到管理员组<br><img src="/images/7/36.png" srcset="/img/loading.gif" lazyload><br>再次连接<br><img src="/images/7/37.png" srcset="/img/loading.gif" lazyload><br>假如登陆sa之后发现未启用cmdshell，就手动启动一下<br>启用高级选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">exec</span> sp_configure <span class="hljs-string">&#x27;show advanced options&#x27;</span>,1<br></code></pre></td></tr></table></figure>
+<p>0是关闭，1是开启，这时候会提示<code>RECONFIGURE</code>，那就按照提示运行一下<code>RECONFIGURE</code><br>启用cmdshell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">exec</span> sp_configure <span class="hljs-string">&#x27;xp_cmdshell&#x27;</span>,1<br></code></pre></td></tr></table></figure>
+<p>再次提示<code>RECONFIGURE</code>，再运行一下<br>这个时候就可以用cmdshell了</p>
 
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AE%89%E6%9C%8D/">安服</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/17/34/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CVE-2020-26217 XStream RCE复现</span>
+                        <span class="visible-mobile">前の記事</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/28/32/">
+                        <span class="hidden-mobile">手工提权-mssql启用cmdshell</span>
+                        <span class="visible-mobile">次の記事</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;ディレクトリ</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
+      </div>
+    
+  </div>
+</div>
 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<!-- Custom -->
 
 
+    
 
-<!-- Analytics End -->
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-<!-- Totop Begin -->
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">キーワード</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
 
-	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
+    
+  </main>
 
-<!-- Totop End -->
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
 
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
+  
+
+  
+</footer>
 
 
-<!-- MathJax End -->
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
 
-<!-- Tiny_search Begin -->
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
-<!-- Tiny_search End -->
 
-  </body>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
 </html>
