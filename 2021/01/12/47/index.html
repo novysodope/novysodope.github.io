@@ -238,9 +238,9 @@
             <h1 style="display: none">.getBean(&#34;&#34;) .callMethod(&#34;&#34;)的思路</h1>
             
             <div class="markdown-body">
-              <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">CallMethodService service = ContextUtil.getBean(<span class="hljs-string">&quot;aiasset-obsoleteservice&quot;</span>);	<br>JSONObject json = service.callMethod(<span class="hljs-string">&quot;exportObsoleteResmDetail&quot;</span>, pagequery) ;<br></code></pre></td></tr></table></figure>
+              <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">CallMethodService service = ContextUtil.getBean(<span class="hljs-string">&quot;aiasset-obsoleteservice&quot;</span>);	<br>JSONObject json = service.callMethod(<span class="hljs-string">&quot;exportObsoleteResmDetail&quot;</span>, pagequery) ;<br></code></pre></div></td></tr></table></figure>
 <p>相当于</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Obsoleteservice service = <span class="hljs-keyword">new</span> Obsoleteservice();<br>JSONObject json = service.exportObsoleteResmDetail(pagequery);<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">Obsoleteservice service = <span class="hljs-keyword">new</span> Obsoleteservice();<br>JSONObject json = service.exportObsoleteResmDetail(pagequery);<br></code></pre></div></td></tr></table></figure>
 <p>再碰到此类问题的时候就跟进obsoleteservice类的exportObsoleteResmDetail方法，往下就是跟springMVC的跟进思路相同</p>
 <p>为什么要这样写不直接new呢，问了一下同事说是因为直接new的话只能调用当前模块的类，而第一个写法可以跨模块获取</p>
 

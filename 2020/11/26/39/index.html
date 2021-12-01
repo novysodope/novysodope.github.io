@@ -244,14 +244,14 @@
             
             <div class="markdown-body">
               <p>漏洞验证：<br>登陆的时候用户名插入xss payload</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&lt;img src=<span class="hljs-number">1</span> onerror=alert(<span class="hljs-number">1</span>)&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;img src=<span class="hljs-number">1</span> onerror=alert(<span class="hljs-number">1</span>)&gt;<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/39/1.png" srcset="/img/loading.gif" lazyload><br>后台会记录登陆日志，当查看登陆日志时就会触发xss<br><img src="/images/39/2.png" srcset="/img/loading.gif" lazyload></p>
 <p>代码分析：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">src/main/java/com/pig4cloud/pig/admin/controller/LogController.java <span class="hljs-number">53</span>行<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">src/main/java/com/pig4cloud/pig/admin/controller/LogController.java <span class="hljs-number">53</span>行<br></code></pre></div></td></tr></table></figure>
 <p>日志查询，查看<code>sysLogService</code>在哪里被定义<br><img src="/images/39/3.png" srcset="/img/loading.gif" lazyload><br>跟进<code>SysLogService</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">src/main/java/com/pig4cloud/pig/admin/service/SysLogService.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">src/main/java/com/pig4cloud/pig/admin/service/SysLogService.java<br></code></pre></div></td></tr></table></figure>
 <p>在此接口中无具体实现，所以全局搜索其实现类<br><img src="/images/39/4.png" srcset="/img/loading.gif" lazyload><br>在实现里搜索调用到的<code>getLogByPage</code>方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">src/main/java/com/pig4cloud/pig/admin/service/impl/SysLogServiceImpl.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">src/main/java/com/pig4cloud/pig/admin/service/impl/SysLogServiceImpl.java<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/39/5.png" srcset="/img/loading.gif" lazyload><br>经过查询后直接返回结果集，漏洞产生</p>
 
             </div>

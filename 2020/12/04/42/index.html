@@ -245,22 +245,22 @@
             <h1 style="display: none">某Struts框架平台sql注入记录</h1>
             
             <div class="markdown-body">
-              <h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">\src\com\asiainfo\newBam\action\systemmanage\UserManagerAction.java 35行<br></code></pre></td></tr></table></figure>
+              <h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">\src\com\asiainfo\newBam\action\systemmanage\UserManagerAction.java 35行<br></code></pre></div></td></tr></table></figure>
 <p>在<code>searchUserByLoginName</code>方法中定义了字符串参数loginName，然后转到<code>userService</code>的<code>searchUserByLoginName</code>方法处理loginName</p>
 <p><img src="/images/42/1.png" srcset="/img/loading.gif" lazyload></p>
 <p>跟进<code>userService</code></p>
 <p><img src="/images/42/2.png" srcset="/img/loading.gif" lazyload></p>
 <p>定义接口，继续跟进<code>IUserManagerService</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">\src\com\asiainfo\newBam\service\sysManager\IUserManagerService.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">\src\com\asiainfo\newBam\service\sysManager\IUserManagerService.java<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/42/3.png" srcset="/img/loading.gif" lazyload></p>
 <p>还是接口定义，在该接口里没有对<code>searchUserByLoginName</code>方法做具体实现，全局搜索<code>implements IUserManagerService</code>查看其实现类</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">\src\com\asiainfo\newBam\service\sysManager\impl\UserManagerServiceImpl.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">\src\com\asiainfo\newBam\service\sysManager\impl\UserManagerServiceImpl.java<br></code></pre></div></td></tr></table></figure>
 <p>查看<code>searchUserByLoginName</code>方法</p>
 <p><img src="/images/42/4.png" srcset="/img/loading.gif" lazyload></p>
 <p>跟进查看<code>userDao</code></p>
 <p><img src="/images/42/5.png" srcset="/img/loading.gif" lazyload></p>
 <p>全局搜索<code>implements IUserManagerDAO</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">\src\com\asiainfo\newBam\dao\sysManager\impl\UserManagerDAOImpl.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">\src\com\asiainfo\newBam\dao\sysManager\impl\UserManagerDAOImpl.java<br></code></pre></div></td></tr></table></figure>
 <p>查看<code>searchUserByLoginName</code>方法</p>
 <p><img src="/images/42/6.png" srcset="/img/loading.gif" lazyload></p>
 <p>参数拼接，然后把sql语句直接带入数据库查询,注入产生</p>

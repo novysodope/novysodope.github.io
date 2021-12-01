@@ -248,19 +248,19 @@
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>按照官方文档，部署的war包要以o2的框架来开发编译：<br><a target="_blank" rel="noopener" href="https://www.yuque.com/o2oa/course/tuef8c" title="搭建自定义工程及开发">自定义服务-搭建自定义工程及开发</a></p>
 <p>工程模板：（文末有成品）<br><a target="_blank" rel="noopener" href="https://git.o2oa.net/o2oa/o2custom-sample/-/archive/master/o2custom-sample-master.zip">https://git.o2oa.net/o2oa/o2custom-sample/-/archive/master/o2custom-sample-master.zip</a></p>
 <p>首先跟着提示修改基本信息，然后改<code>SampleEntityClassNameAction</code>类的代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/x_ahtest_assemble_control/src/main/java/com/x/ahtest/assemble/control/jaxrs/sample/SampleEntityClassNameAction.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/x_ahtest_assemble_control/src/main/java/com/x/ahtest/assemble/control/jaxrs/sample/SampleEntityClassNameAction.java<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/67/2.png" srcset="/img/loading.gif" lazyload><br>还要注意一下改filter，不然这个shell以后还得管理员登录才能访问：<br><code>AnonymousJaxrsServicePathFilter</code>类是定义可以在不登录的情况下访问请求，加上mapping<br><img src="/images/67/3.png" srcset="/img/loading.gif" lazyload><br>修改打包完成后上传war包<br><img src="/images/67/1.png" srcset="/img/loading.gif" lazyload><br>重启服务(实际场景中还得想办法让目标重启或者等他有一天重启。。)<br><img src="/images/67/4.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以通过接口查看有没有部署成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/x_program_center/jest/list.html<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/x_program_center/jest/list.html<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/67/6.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后访问服务就可以执行命令了<br><img src="/images/67/5.png" srcset="/img/loading.gif" lazyload></p>
 <p>路由一般为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/模块名/jaxrs/sample/<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/模块名/jaxrs/sample/<br></code></pre></div></td></tr></table></figure>
 
 
 <p>成品放github上了<br><a target="_blank" rel="noopener" href="https://github.com/novysodope/O2OA-getshell">https://github.com/novysodope/O2OA-getshell</a></p>
 <p>这个只是一个验证，具体shell实现还是要自己改一下，在SampleEntityClassNameAction类：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/x_ahtest_assemble_control/src/main/java/com/x/ahtest/assemble/control/jaxrs/sample/SampleEntityClassNameAction.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/x_ahtest_assemble_control/src/main/java/com/x/ahtest/assemble/control/jaxrs/sample/SampleEntityClassNameAction.java<br></code></pre></div></td></tr></table></figure>
 
 <p>可以改成内存马什么的</p>
 <p>如果只是改类其他地方没改的话部署后的路由为<br><a target="_blank" rel="noopener" href="http://localhost/x_ahtest_assemble_control/jaxrs/sample/cmd?cmd=calc">http://localhost/x_ahtest_assemble_control/jaxrs/sample/cmd?cmd=calc</a></p>

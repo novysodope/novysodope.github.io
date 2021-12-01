@@ -255,17 +255,17 @@
             
             <div class="markdown-body">
               <p><a target="_blank" rel="noopener" href="https://github.com/zhangdaiscott/jeecg-boot">https://github.com/zhangdaiscott/jeecg-boot</a></p>
-<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/api/controller/SystemAPIController.java 167行<br></code></pre></td></tr></table></figure>
+<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/api/controller/SystemAPIController.java 167行<br></code></pre></div></td></tr></table></figure>
 <p>根据注释发现这里是一处查询，且<code>table</code>、<code>text</code>、<code>code</code>参数可控，这里把table、text、code传入<code>queryTableDictItemsByCode</code>进行进一步的参数处理</p>
 <p><img src="/images/41/1.png" srcset="/img/loading.gif" lazyload></p>
 <p>跟进看看哪里定义了<code>sysBaseAPI</code></p>
 <p><img src="/images/41/2.png" srcset="/img/loading.gif" lazyload></p>
 <p>接口定义，继续跟进<code>ISysBaseAPI</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/org/jeecg/common/system/api/ISysBaseAPI.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/common/system/api/ISysBaseAPI.java<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/41/3.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里为接口，往下看<code>queryTableDictItemsByCode</code>方法为空实现，所以全局搜索<code>implements ISysBaseAPI</code>查看其实现类</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/impl/SysBaseApiImpl.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/impl/SysBaseApiImpl.java<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/41/4.png" srcset="/img/loading.gif" lazyload></p>
 <p>在此处搜索刚刚<code>SystemAPIController</code>调用到的里的<code>queryTableDictItemsByCode</code>方法，也就是这里</p>
@@ -277,11 +277,11 @@
 <p>此处不算针对注入做的安全措施，所以回到<code>SysBaseApiImpl</code>里继续跟进查看哪里定义了<code>sysDictService</code></p>
 <p><img src="/images/41/8.png" srcset="/img/loading.gif" lazyload><br><img src="/images/41/9.png" srcset="/img/loading.gif" lazyload></p>
 <p>跟进<code>ISysDictService</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/ISysDictService.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/ISysDictService.java<br></code></pre></div></td></tr></table></figure>
 <p>是一个接口</p>
 <p><img src="/images/41/10.png" srcset="/img/loading.gif" lazyload></p>
 <p>全局搜索<code>implements ISysDictService</code>查看其实现类</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/impl/SysDictServiceImpl.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/impl/SysDictServiceImpl.java<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/41/11.png" srcset="/img/loading.gif" lazyload></p>
 <p>在该实现类里搜索<code>SysBaseApiImpl</code>调用的<code>queryTableDictItemsByCode</code>方法，也就是这里</p>
@@ -289,13 +289,13 @@
 <p>搜索结果</p>
 <p><img src="/images/41/13.png" srcset="/img/loading.gif" lazyload></p>
 <p>在这里把前台的table，text，code参数传入mapper进行数据查询，跟进<code>sysDictMapper.xml</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/mapper/xml/SysDictMapper.xml<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/mapper/xml/SysDictMapper.xml<br></code></pre></div></td></tr></table></figure>
 <p>搜索<code>queryTableDictItemsByCode</code>，发现传入的参数使用了<code>$&#123;&#125;</code>直接进行查询，导致了注入的产生</p>
 <p><img src="/images/41/14.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="漏洞验证："><a href="#漏洞验证：" class="headerlink" title="漏洞验证："></a>漏洞验证：</h1><p>注册一个普通用户<br>根据controller的路由构造url为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">http://localhost/sys/api/queryTableDictItemsByCode?table= &amp;text= &amp;code=<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">http://localhost/sys/api/queryTableDictItemsByCode?table= &amp;text= &amp;code=<br></code></pre></div></td></tr></table></figure>
 <p>根据mysql的特征查系统默认数据库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">http://localhost/sys/api/queryTableDictItemsByCode?table=mysql.user&amp;text=User&amp;code=password<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">http://localhost/sys/api/queryTableDictItemsByCode?table=mysql.user&amp;text=User&amp;code=password<br></code></pre></div></td></tr></table></figure>
 
 <p><img src="/images/41/15.png" srcset="/img/loading.gif" lazyload></p>
 

@@ -247,7 +247,7 @@
               <p>mblog4.0：<a target="_blank" rel="noopener" href="https://github.com/langhsu/mblog" title="下载地址">下载地址</a><br><img src="/images/36/1.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h1><p>不分析了</p>
 <h1 id="shiro权限绕过"><a href="#shiro权限绕过" class="headerlink" title="shiro权限绕过"></a>shiro权限绕过</h1><p>引用了1.4.0版本的shiro<br><img src="/images/36/3.png" srcset="/img/loading.gif" lazyload><br>在该版本的shiro中有一个权限绕过的漏洞，查看过滤配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">src/main/java/com/mtons/mblog/config/ShiroConfiguration.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/mtons/mblog/config/ShiroConfiguration.java<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/36/4.png" srcset="/img/loading.gif" lazyload><br>根据过滤规则进行绕过即可，比如密码重置，正常没登陆访问是这样的：<br><img src="/images/36/5.png" srcset="/img/loading.gif" lazyload><br>在/pwd后加一个/即可绕过进行未授权密码重置<br><img src="/images/36/6.png" srcset="/img/loading.gif" lazyload></p>
 
             </div>

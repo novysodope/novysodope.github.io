@@ -247,15 +247,15 @@
             <div class="markdown-body">
               <h1 id="准备工具-环境"><a href="#准备工具-环境" class="headerlink" title="准备工具/环境"></a>准备工具/环境</h1><p>1.安装drozer<br>2.模拟器<br>什么模拟器都行，这里用到的是逍遥模拟器</p>
 <h1 id="0x01"><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h1><p>首先做个端口转发</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">adb forward tcp:31415 tcp:31415<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">adb forward tcp:31415 tcp:31415<br></code></pre></div></td></tr></table></figure>
 <p>然后连接上模拟器上的控制台</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">drozer console connect<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">drozer console connect<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/4/1.png" srcset="/img/loading.gif" lazyload><br>然后选择一个要日的app，一顿操作之后获得它的包名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">com.winsun.IntelligentMarketingAssistant，怎么获得包名请自行百度，drozer命令是<br>run app.package.list -f （安装后的app名称）<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">com.winsun.IntelligentMarketingAssistant，怎么获得包名请自行百度，drozer命令是<br>run app.package.list -f （安装后的app名称）<br></code></pre></div></td></tr></table></figure>
 <p>或者到反编译后的AndroidManifest.xml文件找<br>首先查看有哪些组件开放：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">run app.activity.info -a 包名<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">run app.activity.info -a 包名<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/4/2.png" srcset="/img/loading.gif" lazyload><br>尝试调用一下io.dcloud.PandoraEntry</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">run app.activity.start --component  apk包名 组件名<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">run app.activity.start --component  apk包名 组件名<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/4/3.png" srcset="/img/loading.gif" lazyload><br>出现这个提示是因为做了策略了，组件劫持漏洞不可利用，试试其他的<br><img src="/images/4/4.png" srcset="/img/loading.gif" lazyload><br><img src="/images/4/5.png" srcset="/img/loading.gif" lazyload><br>组件可以被越权调用且没有提示<br>也就是说除了可以在未登录状态下进行登录之后的操作（绕过登录）之外，还可以尝试利用可以越权的组件做钓鱼劫持：<br><img src="/images/4/6.png" srcset="/img/loading.gif" lazyload><br>监听刚刚可以调用且没有提示的组件后打开app：<br><img src="/images/4/7.png" srcset="/img/loading.gif" lazyload><br>全文结束，文末附我的心得<br><a href="/file/anzhuo.txt" title="安卓测试笔记.txt">安卓测试笔记</a></p>
 
             </div>
