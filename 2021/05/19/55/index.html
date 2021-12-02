@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/55/10.png">
 <meta property="og:image" content="http://novysodope.github.io/images/55/8.png">
 <meta property="article:published_time" content="2021-05-19T09:14:21.000Z">
-<meta property="article:modified_time" content="2021-12-02T02:35:13.438Z">
+<meta property="article:modified_time" content="2021-12-02T02:36:51.312Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="ysoserial">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,7 +214,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      523 字
+      503 字
     </span>
   
 
@@ -256,7 +256,7 @@
             
             <div class="markdown-body">
               <p>首先查看给出的gadget chain<br><img src="/images/55/1.png" srcset="/img/loading.gif" lazyload><br>因为反序列化时如果被反序列化的类里实现了Serializable接口且有readObject的话就会执行该方法里的实现，所以跟进readObject，<br> <img src="/images/55/2.png" srcset="/img/loading.gif" lazyload><br>重写反序列化，计算流的字节，然后使用putval方法来处理HashMap.hash()方法处理key返回的结果<br><img src="/images/55/3.png" srcset="/img/loading.gif" lazyload><br>跟进hash，在该方法中对传来的参数做了一次判断，当key不为空时调用到key.hashCode<br><img src="/images/55/4.png" srcset="/img/loading.gif" lazyload><br>因为key是前面传过来的对象u<br><img src="/images/55/5.png" srcset="/img/loading.gif" lazyload><br>所以根据URLDNS类得知实际为URL类中的hashcode方法<br><img src="/images/55/6.png" srcset="/img/loading.gif" lazyload><br>在该方法中做了一次判断，当hashcode的值为-1时就进入到handler.hashCode，在URLStreamHandler.hashCode中做了发起dns的请求的操作，具体为：<br><img src="/images/55/7.png" srcset="/img/loading.gif" lazyload><br>参数传入了getHostAddress，在该方法里将u.getHost的值传进getByName，u.getHost即传来的参数url：<br><img src="/images/55/9.png" srcset="/img/loading.gif" lazyload><br><img src="/images/55/10.png" srcset="/img/loading.gif" lazyload><br>最后使用InetAddress.getByName(host)获取主机名，也就是在这里发出了dnslog请求<br><img src="/images/55/8.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="关于putval方法的思考"><a href="#关于putval方法的思考" class="headerlink" title="关于putval方法的思考"></a>关于putval方法的思考</h2><p>在序列化的时候会调用到put方法，put方法里也会用到hash，说明生成的时候会触发，反序列化也会触发？</p>
+<h2 id="关于put方法的思考"><a href="#关于put方法的思考" class="headerlink" title="关于put方法的思考"></a>关于put方法的思考</h2><p>put方法里也会用到hash，说明生成的时候会触发，反序列化也会触发？</p>
 
             </div>
             <hr>
