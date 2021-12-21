@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>若依对sql注入的修复</title>
+    <link href="/2021/12/21/68/"/>
+    <url>/2021/12/21/68/</url>
+    
+    <content type="html"><![CDATA[<p>在看了几个若依的注入后发现其最新版还是会存在<code>$&#123;params.dataScope&#125;</code>，那这个参数是从哪来的呢，<code>$&#123;params.dataScope&#125;</code>的意思就是入参参数的dataScope属性,即 SysDept对象的dataScope属性，可能有点懵逼，随便找个有注入的点跟下去就知道，拿</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">src/main/java/com/ruoyi/web/controller/system/SysRoleController.java<br></code></pre></div></td></tr></table></figure><p>来说，在该层中有两处存在注入，拿其中的<code>unallocatedList</code>方法为例<br><img src="/images/68/1.png"><br>传入<code>selectUnallocatedList</code>方法查询，参数参考SysUser<br><img src="/images/68/2.png"><br>这个时候还没有dataScope，跟进<code>selectUnallocatedList</code>方法<br><img src="/images/68/3.png"><br>查看实现类对<code>selectUnallocatedList</code>方法的实现<br><img src="/images/68/4.png"><br>在方法的前面有一个注解<code>@DataScope(deptAlias = “d” )</code>，该注解为应用自定义，会根据权限来分配赋值，也就是在这里开始有了<code>params[dataScope]</code>，即<code>$&#123;params.dataScope&#125;</code><br><img src="/images/68/5.png"><br>其实现为<code>DataScopeAspect</code>类<br><img src="/images/68/6.png"><br>在该类的<code>dataScopeFilter</code>方法中有对dataScope参数做拼接的操作<br><img src="/images/68/7.png"><br>若依对<code>$&#123;params.dataScope&#125;</code>的修复比较逗，因为如果使用<code>#&#123;params.dataScope&#125;</code>的话是使用不了的，所以他们在对<code>DATA_SCOPE</code>做拼接查询之前直接把<code>$&#123;params.dataScope&#125;</code>的参数清空<br><img src="/images/68/8.png"><br><code>clearDataScope</code>方法<br><img src="/images/68/9.png"></p><p>这应该是无解了吧</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>o2oa 6.3.4后台getshell</title>
     <link href="/2021/11/30/67/"/>
     <url>/2021/11/30/67/</url>
