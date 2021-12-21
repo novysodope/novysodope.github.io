@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="A component found during a code audit at the customer site">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wutajox XXE">
+<meta property="og:title" content="wutkajox XXE">
 <meta property="og:url" content="http://novysodope.github.io/2021/10/29/64/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="A component found during a code audit at the customer site">
@@ -25,13 +25,13 @@
 <meta property="og:image" content="http://novysodope.github.io/images/64/3.png">
 <meta property="og:image" content="http://novysodope.github.io/images/64/7.png">
 <meta property="article:published_time" content="2021-10-29T10:24:21.000Z">
-<meta property="article:modified_time" content="2021-10-29T01:11:45.243Z">
+<meta property="article:modified_time" content="2021-12-21T05:56:14.184Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="XXE">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://novysodope.github.io/images/64/1.png">
   
-  <title>wutajox XXE - novy&#39;s Blog</title>
+  <title>wutkajox XXE - novy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -187,7 +187,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="wutajox XXE">
+            <span class="h2" id="subtitle" title="wutkajox XXE">
               
             </span>
 
@@ -208,7 +208,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.3k 字
     </span>
   
 
@@ -246,10 +246,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">wutajox XXE</h1>
+            <h1 style="display: none">wutkajox XXE</h1>
             
             <div class="markdown-body">
-              <p>A component found during a code audit at the customer site.</p>
+              <p>A component found during a code audit at the customer site.<br>The affected version is &lt;=1.16</p>
 <p><a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/com.wutka/jox/1.16">https://mvnrepository.com/artifact/com.wutka/jox/1.16</a></p>
 <p>According to the official demo, the data will first be passed to the readObject method of JOXBeanInputStream:<br><img src="/images/64/1.png" srcset="/img/loading.gif" lazyload><br>In the readObejct method of the object JOXBeanInputStream, the parameters will continue to be passed into the readObejct method of the JOXSAXBeanInput class for processing:<br><img src="/images/64/2.png" srcset="/img/loading.gif" lazyload><br>Follow up with the JOXSAXBeanInput class:<br><img src="/images/64/3.png" srcset="/img/loading.gif" lazyload><br>In the readObject method of this class, the parse method of SAXParser is called to directly parse the XML document. No other verification is performed, so that the malicious xml data can be used to trigger the vulnerability.</p>
 <p>Vulnerability verification:<br>Reference dependencies in pom files:</p>
