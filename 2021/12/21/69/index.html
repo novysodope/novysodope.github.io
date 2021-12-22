@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/69/10.png">
 <meta property="og:image" content="http://novysodope.github.io/images/69/11.png">
 <meta property="article:published_time" content="2021-12-21T02:14:21.000Z">
-<meta property="article:modified_time" content="2021-12-22T07:22:04.193Z">
+<meta property="article:modified_time" content="2021-12-22T07:33:51.528Z">
 <meta property="article:author" content="novy&#39;s Blog">
 <meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,7 +214,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      3.1k 字
     </span>
   
 
@@ -223,7 +223,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9 分钟
+      10 分钟
     </span>
   
 
@@ -255,7 +255,8 @@
             <h1 style="display: none">dtdparser1.21 SSRF</h1>
             
             <div class="markdown-body">
-              <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">com\wutka\dtdparser\1.21\dtdparser-1.21.jar!\com\wutka\dtd\Tokenize.class<br></code></pre></div></td></tr></table></figure>
+              <p>dtdparser is a component that parses DTD documents. The component does not correctly process the incoming parameters, resulting in ssrf vulnerabilities.</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">com\wutka\dtdparser\1.21\dtdparser-1.21.jar!\com\wutka\dtd\Tokenize.class<br></code></pre></div></td></tr></table></figure>
 <p>In the main method of the jar package, determine which method to process the parameters by judging whether it contains ://<br><img src="/images/69/1.png" srcset="/img/loading.gif" lazyload><br>When the parameter is http://, it will enter the DTDParser method that receives the URL object type parameter. After the parameter (that is, url) is passed in, the openStream method of the URL object will be used to open the request. There is no other verification before that. In order to cause the vulnerability, when the attacker passes parameters containing sensitive resources to it, this method will directly initiate a request for the resource through its own server<br><img src="/images/69/2.png" srcset="/img/loading.gif" lazyload><br>When the parameter is other, it will enter the DTDParser method that receives the File object type parameter, and then use the FileReader object to read the parameter content one by one<br><img src="/images/69/3.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="verify"><a href="#verify" class="headerlink" title="verify"></a>verify</h1><p>See the startup class as Tokenize through the MANIFEST.MF file<br>Through the entry method, the parameter can be directly followed.<br>Such as probing port service<br>java -jar dtdparser-1.21.jar <a target="_blank" rel="noopener" href="http://127.0.0.1:9000/">http://127.0.0.1:9000</a><br>There will be response data when there is a service on the port<br><img src="/images/69/4.png" srcset="/img/loading.gif" lazyload><br>Because there is an analysis of the target dtd content in the main method, if it is not in the dtd format, an error will be reported (the parameter does not meet the conditions of \com\wutka\dtd\Scanner.class, and the method of the File object type handles the newline character of the parameter Because the condition of Scanner is not met an error will be reported, so only the first line will be displayed when the file is read<br><img src="/images/69/5.png" srcset="/img/loading.gif" lazyload><br>When the port is not open, it will prompt that the connection is refused:<br><img src="/images/69/6.png" srcset="/img/loading.gif" lazyload><br>When the port exists but there is no service, it will prompt the connection reset:<br><img src="/images/69/7.png" srcset="/img/loading.gif" lazyload></p>
 <p>In practical applications, the main trigger point is the DTDParser class, in which methods of various object types are provided, such as Reader object type, URL object type, File object type<br><img src="/images/69/8.png" srcset="/img/loading.gif" lazyload></p>
