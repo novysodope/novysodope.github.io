@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>O2OAgetshell前传</title>
+    <link href="/2021/12/21/70/"/>
+    <url>/2021/12/21/70/</url>
+    
+    <content type="html"><![CDATA[<h1 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h1><p>在&lt;=6.4.4（20211121）版本后台中允许用户上传部署自定义jar/war服务，如果用户选customwar选项上传，<code>ActionUploadFile</code>类就会将文件以socket形式发送到服务端</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/x/program/center/jaxrs/<span class="hljs-built_in">command</span>/CommandAction.java<br></code></pre></div></td></tr></table></figure><p><img src="/images/70/1.png"><br> <code>execute-&gt;executeCommand</code><br><img src="/images/70/2.png"><br>随后服务端接收文件</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/x/server/console/NodeAgent.java<br></code></pre></div></td></tr></table></figure><p>在<code>run</code>方法中通过判断模式来执行相应模块，此处为部署服务<br><img src="/images/70/3.png"><br>跟进<code>redeploy</code>方法<br>前面说到了<code>strCommand</code>的值是<code>customWar</code>，所以直接看<code>case “customWar“</code><br><img src="/images/70/4.png"><br>转到<code>customWar</code>方法就可以看到文件已经被上传到指定位置<br><img src="/images/70/5.png"><br><img src="/images/70/6.png"></p><h1 id="查找执行命令的接口"><a href="#查找执行命令的接口" class="headerlink" title="查找执行命令的接口"></a>查找执行命令的接口</h1><p>但是上传后还要重启才可以部署完war<br><img src="/images/70/7.png"><br>那总不能干等目标重启吧，在上传的类中还有一个<code>executeCommand</code>方法</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/x/program/center/jaxrs/<span class="hljs-built_in">command</span>/CommandAction.java<br></code></pre></div></td></tr></table></figure><p><img src="/images/70/8.png"><br>跟进<code>execute</code><br>先看他的参数是什么<br><img src="/images/70/9.png"><br><img src="/images/70/10.png"><br>根据代码构造参数</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">&#123;<span class="hljs-string">&quot;ctl&quot;</span>:<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-string">&quot;nodeName&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>,<span class="hljs-string">&quot;nodePort&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>&#125;<br></code></pre></div></td></tr></table></figure><p>回到<code>execute</code>方法<br>跟上传一样通过socket发送数据到服务端<br><img src="/images/70/11.png"><br>服务端接收数据根据模式进入相应的实现<br><img src="/images/70/12.png"><br>此处的<code>strCommand</code>就是前面<code>ActionCommand.executeCommand</code>存的值（前面文件上传思路一样）<br><img src="/images/70/13.png"><br>服务端接收数据后根据正则匹配到的值跳到相应实现<br><img src="/images/70/14.png"><br>回到服务端<code>execute_command_pattern</code>模式，命令存放到<code>commandQueue</code>，<code>commandQueue</code>为<code>LinkedBlockingQueue</code>类定义的接口（文末介绍LinkedBlockingQueue类），在该类中有一个<code>take</code>方法取出存放的元素<br><img src="/images/70/15.png"><br>所以下一步就找到调用这个方法的类<br>在</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/com/x/server/console/Main.java<br></code></pre></div></td></tr></table></figure><p>中调用<code>commandQueue.take</code>取出元素来判断进入相应的实现<br><img src="/images/70/16.png"><br>往下看可以看到，当取出的元素包含有<code>restart_pattern</code>的值时就会进入<code>restart</code>方法<br><img src="/images/70/17.png"><br>查看<code>restart_pattern</code>的值<br><img src="/images/70/18.png"><br>从正则可知值为<code>restart</code>，所以参数如下</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">&#123;<span class="hljs-string">&quot;ctl&quot;</span>:<span class="hljs-string">&quot;restart&quot;</span>,<span class="hljs-string">&quot;nodeName&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>,<span class="hljs-string">&quot;nodePort&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>&#125;<br></code></pre></div></td></tr></table></figure><p><code>restart</code>方法就是停止所有服务然后调用相应脚本再在新线程里重新启动服务<br><img src="/images/70/19.png"></p><p>至此就可以通过参数来通过请求重启服务而不用等目标管理员重启了<br>根据路由构造请求</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">POST xxx/xxx/<span class="hljs-built_in">command</span>/execute<br></code></pre></div></td></tr></table></figure><p>根据前面构造的参数拼接</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">POST xxx/xxx/<span class="hljs-built_in">command</span>/execute<br><br><br><br>&#123;<span class="hljs-string">&quot;ctl&quot;</span>:<span class="hljs-string">&quot;restart&quot;</span>,<span class="hljs-string">&quot;nodeName&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>,<span class="hljs-string">&quot;nodePort&quot;</span>:<span class="hljs-string">&quot;*&quot;</span>&#125;<br></code></pre></div></td></tr></table></figure><p>这样就可以重启所有服务了<br><img src="/images/70/20.png"><br>重启一般是20秒左右</p><p>完整的验证详见<br><a href="https://novysodope.github.io/2021/11/30/67/">https://novysodope.github.io/2021/11/30/67/</a></p><p>改进<br>根据注释介绍<code>*</code>是所有节点，实际我们可以根据页面显示的选项来填对应主机部署重启，<br>也可以看<code>CommandAction</code>类，在该类中还有一个<code>nodeInfoList</code>方法是获取所有服务器信息的<br><img src="/images/70/21.png"><br>直接请求看一下就可以得到信息定点打击了<br><img src="/images/70/22.png"></p><h1 id="LinkedBlockingQueue类"><a href="#LinkedBlockingQueue类" class="headerlink" title="LinkedBlockingQueue类"></a>LinkedBlockingQueue类</h1><p>这个<code>LinkedBlockingQueue</code>跟<code>ArrayBlockingQueue类</code>差不多，而<code>ArrayList</code>跟<code>ArrayBlockingQueue</code>一样，所以可以理解为<code>LinkedBlockingQueue</code>也是用来存放东西的，即命令存到了<code>LinkedBlockingQueue</code>里，有关<code>LinkedBlockingQueue</code> 类的介绍可以看<br><a href="https://blog.csdn.net/tonywu1992/article/details/83419448">https://blog.csdn.net/tonywu1992/article/details/83419448</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>dtdparser1.21 SSRF</title>
     <link href="/2021/12/21/69/"/>
     <url>/2021/12/21/69/</url>
@@ -1004,9 +1029,9 @@
     
     <tags>
       
-      <tag>JAVA反序列化</tag>
-      
       <tag>shell回显</tag>
+      
+      <tag>JAVA反序列化</tag>
       
     </tags>
     
