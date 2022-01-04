@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>通过js信息泄露扩大攻击面</title>
+    <link href="/2022/01/04/72/"/>
+    <url>/2022/01/04/72/</url>
+    
+    <content type="html"><![CDATA[<p>在每个站点的前端页面里都会有一个app开头的js文件</p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;script type=text/javascript src=<span class="hljs-regexp">/static/</span>js/app.xxxx.js&gt;&lt;/script&gt;<br></code></pre></div></td></tr></table></figure><p>一般这个会写在最后（不一定），在前面一般是config.js之类的</p><p>在这类js文件里会有一些有用的其他的信息，比如账户密码、各种接口等，在做渗透测试时可以右键查看源码，然后找到app开头的js文件会有意想不到的惊喜</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>渗透测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>渗透测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>O2OA另一种方式shell</title>
     <link href="/2021/12/23/71/"/>
     <url>/2021/12/23/71/</url>
@@ -734,9 +759,9 @@
     
     <tags>
       
-      <tag>Jfinal漏洞</tag>
-      
       <tag>SQL注入</tag>
+      
+      <tag>Jfinal漏洞</tag>
       
     </tags>
     
@@ -1054,9 +1079,9 @@
     
     <tags>
       
-      <tag>shell回显</tag>
-      
       <tag>JAVA反序列化</tag>
+      
+      <tag>shell回显</tag>
       
     </tags>
     
