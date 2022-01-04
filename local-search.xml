@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>O2OA另一种方式shell</title>
+    <link href="/2021/12/23/71/"/>
+    <url>/2021/12/23/71/</url>
+    
+    <content type="html"><![CDATA[<p>三种组合漏洞<br>通过任意文件下载下载o2server下的相应脚本，在脚本里加上自己的恶意命令</p><p>通过任意文件上传把脚本再上传替换</p><p>通过重启接口重启，然后脚本就会被执行了<br><img src="/images/71/1.png"></p><p>前提是上传后没有被系统当作副本来命名为文件-副本 (ˉ▽ˉ；)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>O2OAgetshell前传</title>
     <link href="/2021/12/22/70/"/>
     <url>/2021/12/22/70/</url>
