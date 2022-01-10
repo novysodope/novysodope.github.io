@@ -29,6 +29,31 @@
   
   
   <entry>
+    <title>细分一个漏洞</title>
+    <link href="/2022/01/10/74/"/>
+    <url>/2022/01/10/74/</url>
+    
+    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>通过js信息泄露扩大攻击面</title>
     <link href="/2022/01/04/72/"/>
     <url>/2022/01/04/72/</url>
