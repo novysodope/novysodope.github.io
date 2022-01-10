@@ -4,11 +4,36 @@
   
   
   <entry>
+    <title>纠正一个漏洞</title>
+    <link href="/2022/01/10/73/"/>
+    <url>/2022/01/10/73/</url>
+    
+    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>通过js信息泄露扩大攻击面</title>
     <link href="/2022/01/04/72/"/>
     <url>/2022/01/04/72/</url>
     
-    <content type="html"><![CDATA[<p>在每个站点的前端页面里都会有一个app开头的js文件</p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;script type=text/javascript src=<span class="hljs-regexp">/static/</span>js/app.xxxx.js&gt;&lt;/script&gt;<br></code></pre></div></td></tr></table></figure><p>一般这个会写在最后（不一定），在前面一般是config.js之类的</p><p>在这类js文件里会有一些有用的其他的信息，比如账户密码、各种接口等，在做渗透测试时可以右键查看源码，然后找到app开头的js文件会有意想不到的惊喜</p>]]></content>
+    <content type="html"><![CDATA[<p>在每个站点的前端页面里都会有一个app开头的js文件</p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;script type=text/javascript src=<span class="hljs-regexp">/static/</span>js/app.xxxx.js&gt;&lt;/script&gt;<br></code></pre></div></td></tr></table></figure><p>还有其他的js文件，一般文件名带有跟配置沾点边的英文名或者跟项目名组合之类的都可以尝试，常规长文件名一般不用浪费时间看</p>]]></content>
     
     
     <categories>
@@ -1079,9 +1104,9 @@
     
     <tags>
       
-      <tag>JAVA反序列化</tag>
-      
       <tag>shell回显</tag>
+      
+      <tag>JAVA反序列化</tag>
       
     </tags>
     

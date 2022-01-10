@@ -13,18 +13,50 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类 - 代码审计">
-<meta property="og:url" content="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/page/4/index.html">
+  <meta name="description" content="惭愧，没仔细看的后果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="纠正一个漏洞">
+<meta property="og:url" content="http://novysodope.github.io/2022/01/10/73/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="惭愧，没仔细看的后果">
 <meta property="og:locale">
+<meta property="og:image" content="http://novysodope.github.io/images/73/1.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/2.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/3.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/4.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/5.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/6.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/7.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/9.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/10.png">
+<meta property="og:image" content="http://novysodope.github.io/images/73/11.png">
+<meta property="article:published_time" content="2022-01-10T05:14:21.000Z">
+<meta property="article:modified_time" content="2022-01-10T07:23:26.850Z">
 <meta property="article:author" content="novy">
+<meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://novysodope.github.io/images/73/1.png">
   
-  <title>分类 - 代码审计 - novy&#39;s Blog</title>
+  <title>纠正一个漏洞 - novy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -49,7 +81,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -162,9 +194,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类 - 代码审计">
+            <span class="h2" id="subtitle" title="纠正一个漏洞">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-10 13:14" pubdate>
+        January 10, 2022 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      421 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -177,55 +243,102 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 32 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2019</p>
-    
-    <a href="/2019/01/09/12/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">齐博CMS审计-SSRF</span>
-      <time style="float: right;">01-09</time>
-    </a>
-  
-    
-      
-      <p class="h5">2018</p>
-    
-    <a href="/2018/12/10/10/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">齐博CMS审计-CSRF</span>
-      <time style="float: right;">12-10</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">纠正一个漏洞</h1>
+            
+            <div class="markdown-body">
+              <p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>但后来发现并不是<br><img src="/images/73/2.png" srcset="/img/loading.gif" lazyload></p>
+<p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png" srcset="/img/loading.gif" lazyload><br>但是上传后的确又可以马上触发</p>
+<p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png" srcset="/img/loading.gif" lazyload><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png" srcset="/img/loading.gif" lazyload><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png" srcset="/img/loading.gif" lazyload><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png" srcset="/img/loading.gif" lazyload><br><img src="/images/73/8.png" srcset="/img/loading.gif" lazyload></p>
+<p>事情还没结束</p>
+<p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png" srcset="/img/loading.gif" lazyload><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png" srcset="/img/loading.gif" lazyload></p>
+<p>以后得仔细看了</p>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">1</a><a class="page-number" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/page/2/#board">2</a><a class="page-number" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/page/3/#board">3</a><span class="page-number current">4</span>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    声明：<br>   本文章用于学习交流，严禁用于非法操作，出现后果一切自行承担，阅读此文章表示你已同意本声明。<br> <br> Disclaimer: <br>   This article is for study and communication. It is strictly forbidden to use it for illegal operations. All consequences shall be borne by yourself. Reading this article means that you have agreed to this statement.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/04/72/">
+                        <span class="hidden-mobile">通过js信息泄露扩大攻击面</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="/img/aa.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;"><p></p> <p style="text-align:center"><span>扫一扫关注我们</span></p>
+    </div>
+  </div>
+
+
     
 
     
@@ -310,6 +423,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 
