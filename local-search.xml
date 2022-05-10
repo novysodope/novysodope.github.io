@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>滴滴</title>
+    <link href="/2022/05/07/76/"/>
+    <url>/2022/05/07/76/</url>
+    
+    <content type="html"><![CDATA[<p>近期没时间，晚点更新几个产出</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>日常生活</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>日常生活</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>s2-052</title>
     <link href="/2022/02/08/75/"/>
     <url>/2022/02/08/75/</url>
@@ -21,31 +46,6 @@
     <tags>
       
       <tag>代码审计</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>滴滴</title>
-    <link href="/2022/02/08/76/"/>
-    <url>/2022/02/08/76/</url>
-    
-    <content type="html"><![CDATA[<p>近期没时间，晚点更新几个产出</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>日常生活</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>日常生活</tag>
       
     </tags>
     
@@ -510,7 +510,7 @@
     <link href="/2021/05/19/55/"/>
     <url>/2021/05/19/55/</url>
     
-    <content type="html"><![CDATA[<p>首先查看给出的gadget chain<br><img src="/images/55/1.png"><br>因为反序列化时如果被反序列化的类里实现了Serializable接口且有readObject的话就会执行该方法里的实现，所以跟进readObject，<br> <img src="/images/55/2.png"><br>重写反序列化，计算流的字节，然后使用putval方法来处理HashMap.hash()方法处理key返回的结果<br><img src="/images/55/3.png"><br>跟进hash，在该方法中对传来的参数做了一次判断，当key不为空时调用到key.hashCode<br><img src="/images/55/4.png"><br>因为key是前面传过来的对象u<br><img src="/images/55/5.png"><br>所以根据URLDNS类得知实际为URL类中的hashcode方法<br><img src="/images/55/6.png"><br>在该方法中做了一次判断，当hashcode的值为-1时就进入到handler.hashCode，在URLStreamHandler.hashCode中做了发起dns的请求的操作，具体为：<br><img src="/images/55/7.png"><br>参数传入了getHostAddress，在该方法里将u.getHost的值传进getByName，u.getHost即传来的参数url：<br><img src="/images/55/9.png"><br><img src="/images/55/10.png"><br>最后使用InetAddress.getByName(host)获取主机名，也就是在这里发出了dnslog请求<br><img src="/images/55/8.png"></p><h2 id="关于put方法的思考"><a href="#关于put方法的思考" class="headerlink" title="关于put方法的思考"></a>关于put方法的思考</h2><p>put方法里也会用到hash，说明生成的时候会触发，反序列化也会触发？</p>]]></content>
+    <content type="html"><![CDATA[<p>首先查看给出的gadget chain<br><img src="/images/55/1.png"><br>因为反序列化时如果被反序列化的类里实现了Serializable接口且有readObject的话就会执行该方法里的实现，所以跟进readObject，<br> <img src="/images/55/2.png"><br>重写反序列化，计算流的字节，然后使用putval方法来处理HashMap.hash()方法处理key返回的结果<br><img src="/images/55/3.png"><br>跟进hash，在该方法中对传来的参数做了一次判断，当key不为空时调用到key.hashCode<br><img src="/images/55/4.png"><br>因为key是前面传过来的对象u<br><img src="/images/55/5.png"><br>所以根据URLDNS类得知实际为URL类中的hashcode方法<br><img src="/images/55/6.png"><br>在该方法中做了一次判断，当hashcode的值为-1时就进入到handler.hashCode，在URLStreamHandler.hashCode中做了发起dns的请求的操作，具体为：<br><img src="/images/55/7.png"><br>参数传入了getHostAddress，在该方法里将u.getHost的值传进getByName，u.getHost即传来的参数url：<br><img src="/images/55/9.png"><br><img src="/images/55/10.png"><br>最后使用InetAddress.getByName(host)获取主机名，也就是在这里发出了dnslog请求<br><img src="/images/55/8.png"></p>]]></content>
     
     
     <categories>
@@ -1179,9 +1179,9 @@
     
     <tags>
       
-      <tag>JAVA反序列化</tag>
-      
       <tag>shell回显</tag>
+      
+      <tag>JAVA反序列化</tag>
       
     </tags>
     
