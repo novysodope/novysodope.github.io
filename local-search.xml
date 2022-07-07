@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>java忽略ssl证书校验</title>
+    <link href="/2022/07/07/87/"/>
+    <url>/2022/07/07/87/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &#123;<br>        <span class="hljs-keyword">try</span> &#123;<br>            SSLContext sslContext = SSLContext.getInstance(<span class="hljs-string">&quot;SSL&quot;</span>, <span class="hljs-string">&quot;SunJSSE&quot;</span>);<br>            sslContext.init(<span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> TrustManager[]&#123;<span class="hljs-keyword">new</span> TrustAll()&#125;, <span class="hljs-keyword">new</span> java.security.SecureRandom());<br>            HostnameVerifier ignoreHostnameVerifier = <span class="hljs-keyword">new</span> HostnameVerifier() &#123;<br>                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">verify</span><span class="hljs-params">(String s, SSLSession sslsession)</span> </span>&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>                &#125;<br>            &#125;;<br>            HttpsURLConnection.setDefaultHostnameVerifier(ignoreHostnameVerifier);<br>            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());<br><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br>    &#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TrustAll</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">X509TrustManager</span> </span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">checkClientTrusted</span><span class="hljs-params">(X509Certificate[] chain, String authType)</span> <span class="hljs-keyword">throws</span> CertificateException </span>&#123;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">checkServerTrusted</span><span class="hljs-params">(X509Certificate[] chain, String authType)</span> <span class="hljs-keyword">throws</span> CertificateException </span>&#123;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> X509Certificate[] getAcceptedIssuers() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>    &#125;<br>&#125;<br><br><br><br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具利用</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具利用</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>base64编解码class文件</title>
     <link href="/2022/07/06/86/"/>
     <url>/2022/07/06/86/</url>
@@ -1429,9 +1454,9 @@
     
     <tags>
       
-      <tag>JAVA反序列化</tag>
-      
       <tag>shell回显</tag>
+      
+      <tag>JAVA反序列化</tag>
       
     </tags>
     
