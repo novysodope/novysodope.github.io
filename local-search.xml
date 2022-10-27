@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>windows查看程序运行参数</title>
+    <link href="/2022/10/11/90/"/>
+    <url>/2022/10/11/90/</url>
+    
+    <content type="html"><![CDATA[<p>wmic查看程序运行命令</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><br>wmic process <span class="hljs-built_in">where</span> caption=<span class="hljs-string">&quot;cmd.exe&quot;</span> get caption,commandline /value<br><br></code></pre></div></td></tr></table></figure><p><img src="/images/90/1.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>应急响应</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>应急</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>windows无文件提取密码</title>
     <link href="/2022/09/11/89/"/>
     <url>/2022/09/11/89/</url>
@@ -1504,9 +1529,9 @@
     
     <tags>
       
-      <tag>shell回显</tag>
-      
       <tag>JAVA反序列化</tag>
+      
+      <tag>shell回显</tag>
       
     </tags>
     
