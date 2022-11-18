@@ -58,7 +58,7 @@
     <link href="/2022/10/18/91/"/>
     <url>/2022/10/18/91/</url>
     
-    <content type="html"><![CDATA[<p>准备两个文件</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">链接：https://pan.baidu.com/s/1aie5Y4EX9VMzEanKYffyMg <br>提取码：zy5i <br></code></pre></div></td></tr></table></figure><p>一、<a href="/file/LSPosed-v1.8.5-6649-zygisk-release.zip">点击下载LSPosed-v1.8.5-6649-zygisk-release.zip</a><br>二、<a href="/file/TrustMeAlready-v1.11-release.apk">点击下载TrustMeAlready-v1.11-release.apk</a></p><p>其中<code>LSPosed-v1.8.5-6649-zygisk-release.zip</code>使用面具安装（模块-从本地安装）<br><img src="/images/91/1.png"></p><p>安装好后把<code>TrustMeAlready-v1.11-release.apk</code>安装到测试机，随后打开LSPosed，激活TrustMeAlready后，勾选需要抓包的app即可，<br><img src="/images/91/2.png"><br>剩下的就按照正常抓包那样配置代理就行了</p>]]></content>
+    <content type="html"><![CDATA[<p>准备两个文件</p><p>一、<a href="/file/LSPosed-v1.8.5-6649-zygisk-release.zip">点击下载LSPosed-v1.8.5-6649-zygisk-release.zip</a><br>二、<a href="/file/TrustMeAlready-v1.11-release.apk">点击下载TrustMeAlready-v1.11-release.apk</a></p><p>其中<code>LSPosed-v1.8.5-6649-zygisk-release.zip</code>使用面具安装（模块-从本地安装）<br><img src="/images/91/1.png"></p><p>安装好后把<code>TrustMeAlready-v1.11-release.apk</code>安装到测试机，随后打开LSPosed，激活TrustMeAlready后，勾选需要抓包的app即可，<br><img src="/images/91/2.png"><br>剩下的就按照正常抓包那样配置代理就行了</p>]]></content>
     
     
     <categories>
@@ -1604,9 +1604,9 @@
     
     <tags>
       
-      <tag>shell回显</tag>
-      
       <tag>JAVA反序列化</tag>
+      
+      <tag>shell回显</tag>
       
     </tags>
     
