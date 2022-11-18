@@ -4,6 +4,81 @@
   
   
   <entry>
+    <title>iptables开启透明代理绕过APP代理检测</title>
+    <link href="/2022/10/18/93/"/>
+    <url>/2022/10/18/93/</url>
+    
+    <content type="html"><![CDATA[<p>有时候前端弹提示的检测，透明比较好用</p><p>开启透明代理命令</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner 进程所有者 -j DNAT --to-destination 代理ip:端口<br></code></pre></div></td></tr></table></figure><p>其中进程所有者需要查看启动应用的uid<br>在adb shell里执行</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">ps -ef | grep 包名<br><br></code></pre></div></td></tr></table></figure><p><img src="/images/93/1.png"></p><p>然后执行开头的命令就可以开启透明代理<br><img src="/images/93/2.png"></p><p>burp还需如下配置<br><img src="/images/93/3.png"><br>此时不用在手机设置代理就可以抓包了</p><p>删除代理</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">iptables -t nat -D OUTPUT -p tcp -m owner --uid-owner 进程所有者 -j DNAT --to-destination 代理ip:端口<br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>app测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>app测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>使用面具zygisk绕过app环境检测</title>
+    <link href="/2022/10/18/92/"/>
+    <url>/2022/10/18/92/</url>
+    
+    <content type="html"><![CDATA[<p>在面具设置中开启Zygisk并关闭遵守排除列表，暂时不要重启手机，在配置排除列表里勾选上需要测试的app即可<br><img src="/images/92/1.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>app测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>app测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>使用面具LSPosed模块绕过代理检测</title>
+    <link href="/2022/10/18/91/"/>
+    <url>/2022/10/18/91/</url>
+    
+    <content type="html"><![CDATA[<p>准备两个文件</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">链接：https://pan.baidu.com/s/1aie5Y4EX9VMzEanKYffyMg <br>提取码：zy5i <br></code></pre></div></td></tr></table></figure><p>一、<a href="/file/LSPosed-v1.8.5-6649-zygisk-release.zip">点击下载LSPosed-v1.8.5-6649-zygisk-release.zip</a><br>二、<a href="/file/TrustMeAlready-v1.11-release.apk">点击下载TrustMeAlready-v1.11-release.apk</a></p><p>其中<code>LSPosed-v1.8.5-6649-zygisk-release.zip</code>使用面具安装（模块-从本地安装）<br><img src="/images/91/1.png"></p><p>安装好后把<code>TrustMeAlready-v1.11-release.apk</code>安装到测试机，随后打开LSPosed，激活TrustMeAlready后，勾选需要抓包的app即可，<br><img src="/images/91/2.png"><br>剩下的就按照正常抓包那样配置代理就行了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>app测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>app测试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>windows查看程序运行参数</title>
     <link href="/2022/10/11/90/"/>
     <url>/2022/10/11/90/</url>
@@ -1529,9 +1604,9 @@
     
     <tags>
       
-      <tag>JAVA反序列化</tag>
-      
       <tag>shell回显</tag>
+      
+      <tag>JAVA反序列化</tag>
       
     </tags>
     
