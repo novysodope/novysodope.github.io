@@ -504,6 +504,31 @@
   
   
   <entry>
+    <title>某报表微服务jdbc反序列化</title>
+    <link href="/2022/05/09/98/"/>
+    <url>/2022/05/09/98/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">ConfigController.class<br></code></pre></div></td></tr></table></figure><p><code>saveDBInfo</code>方法中有一个文件配置，将参数传进<code>saveConfig</code>进行处理</p><p><img src="/images/98/tYsUKszy4ORRJbOINNDMbSM-YzUR_fMvsSDuBfvna3s.jpg" alt="image"></p><p>参数表现为</p><p><img src="/images/98/epjjQA-7JsYSQHCjnJ-ZcK8SMENdBoZ5279-MtGkOBo.jpg" alt="image"></p><p>在<code>saveConfig</code>方法中，会对配置做一次测试连接</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">ReportServiceUtil.class<br></code></pre></div></td></tr></table></figure><p><img src="/images/98/_p-Q8hBN1yGwxAcrrr2MaTZ-k1Ya2pnmKrUx0DJZ5cI.jpg" alt="image"></p><p><img src="/images/98/KXW7_UIBnN6vylsHSU3WD_rW8PkQzs00rWMa4BEX1e8.jpg" alt="image"></p><p>而该应用默认带有一个含有漏洞版本的mysqlDriver</p><p><img src="/images/98/SFzDPMvc6-ldrO3nv_zNKJUkR6TjCHH30ddhiFNKM2I.png" alt="image"></p><p>由于数据源地址可控导致可以利用mysql jdbc反序列化漏洞进行攻击</p><p>验证：</p><p>使用<code>MySQL_Fake_Server</code>工具启动一个服务</p><p>利用依赖中的cb链执行命令</p><p><img src="/images/98/yQ680Ps1xCg7-RTjQsw2_5tNY-bQ01voaeuNfPh0qH4.png" alt="image"></p><p> </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>s2-052</title>
     <link href="/2022/02/08/75/"/>
     <url>/2022/02/08/75/</url>
