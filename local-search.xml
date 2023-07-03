@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>PowerJob全版本RCE</title>
+    <link href="/2023/07/02/99/"/>
+    <url>/2023/07/02/99/</url>
+    
+    <content type="html"><![CDATA[<p>最近看到好几个公众号发这个系统的未授权，我也发一下20年的rce</p><p>powerjob本身可以未授权访问，不过多分析</p><p>因为时间问题先大概说一下，后面补充详情：</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">v3可以直接通过shell脚本直接执行系统命令，但仅限于linux<br><br>v4可以通过内置插件的方式执行任意系统的系统命令<br><br>假如配置了特定依赖，v3的poc也可以用于v4<br></code></pre></div></td></tr></table></figure><p> </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码审计</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码审计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Nevado JMS反序列化审计tips</title>
     <link href="/2023/04/01/95/"/>
     <url>/2023/04/01/95/</url>

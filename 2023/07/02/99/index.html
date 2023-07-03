@@ -13,18 +13,38 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="标签 - 代码审计">
-<meta property="og:url" content="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/page/2/index.html">
+  <meta name="description" content="20年的时候看了3系列，现在更新一下4系列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerJob全版本RCE">
+<meta property="og:url" content="http://novysodope.github.io/2023/07/02/99/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="20年的时候看了3系列，现在更新一下4系列">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-07-02T05:15:21.000Z">
+<meta property="article:modified_time" content="2023-07-03T09:06:00.240Z">
 <meta property="article:author" content="novy">
+<meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>标签 - 代码审计 - novy&#39;s Blog</title>
+  <title>PowerJob全版本RCE - novy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -49,7 +69,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -162,17 +182,60 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="标签 - 代码审计">
+            <span class="h2" id="subtitle" title="PowerJob全版本RCE">
               
             </span>
 
             
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      novy
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-07-02 13:15" pubdate>
+        July 2, 2023 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      160 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+    
+
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -181,58 +244,101 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 13 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/12/22/69/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">dtdparser1.21 SSRF</span>
-      <time style="float: right;">12-22</time>
-    </a>
-  
-    
-    <a href="/2021/12/21/68/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">若依对sql注入的修复</span>
-      <time style="float: right;">12-21</time>
-    </a>
-  
-    
-    <a href="/2021/03/11/57/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">fastjson1.2.24反序列化jndi注入利用调试跟进</span>
-      <time style="float: right;">03-11</time>
-    </a>
-  
-</div>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PowerJob全版本RCE</h1>
+            
+            <div class="markdown-body">
+              <p>最近看到好几个公众号发这个系统的未授权，我也发一下20年的rce</p>
+<p>powerjob本身可以未授权访问，不过多分析</p>
+<p>因为时间问题先大概说一下，后面补充详情：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">v3可以直接通过shell脚本直接执行系统命令，但仅限于linux<br><br>v4可以通过内置插件的方式执行任意系统的系统命令<br><br>假如配置了特定依赖，v3的poc也可以用于v4<br></code></pre></div></td></tr></table></figure>
 
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
+<p> </p>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    声明：<br>   本文章用于学习交流，严禁用于非法操作，出现后果一切自行承担，阅读此文章表示你已同意本声明。<br> <br> Disclaimer: <br>   This article is for study and communication. It is strictly forbidden to use it for illegal operations. All consequences shall be borne by yourself. Reading this article means that you have agreed to this statement.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/01/95/">
+                        <span class="hidden-mobile">Nevado JMS反序列化审计tips</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="/img/aa.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;"><p></p> <p style="text-align:center"><span>扫一扫关注我们</span></p>
+    </div>
+  </div>
+
+
     
 
     
@@ -317,6 +423,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 
