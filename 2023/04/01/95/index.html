@@ -44,7 +44,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/95/lwQATXcGna5Hvxq3F3tuXcbGr5NaqMaplRkME4LfikA.png">
 <meta property="og:image" content="http://novysodope.github.io/images/95/2sgdNydTmydgrLRpddf8Mmjn-DzaSnukVyDAD22hcmk.png">
 <meta property="article:published_time" content="2023-04-01T05:15:21.000Z">
-<meta property="article:modified_time" content="2023-06-25T07:05:22.346Z">
+<meta property="article:modified_time" content="2023-07-05T01:52:23.510Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="代码审计">
 <meta name="twitter:card" content="summary_large_image">
@@ -294,7 +294,7 @@
 <p>在上面的流程中，会创建一个test队列传到receive方法，具体为：</p>
 <p>队列“test”传进createConsumer方法，在createConsumer方法时被传递进了NevadoMessageConsumer对象</p>
 <p><img src="/images/95/n5uan030E3squUEvxTctmwQeQpDvDUB1BlEoRDhB6vQ.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<p>在构造函数NevadoMessageConsumer中，因为传进的时queque类型，所以会进入else，此时_destination就是队列test</p>
+<p>在构造函数NevadoMessageConsumer中，因为传进的是queque类型，所以会进入else，此时<code>_destination</code>就是队列test</p>
 <p><img src="/images/95/xnH6iGAC0yvy6THveI21YWLua_zJn-1jZMpxYHF2tnc.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>回到消息接收中，receive()方法会监听队列，从队列中接收消息</p>
 <p><img src="/images/95/Jxnd3vfAi34OZXAqI8xHhWGe_Wohh77OCSvN8T2Bxak.png" srcset="/img/loading.gif" lazyload alt="image"></p>
