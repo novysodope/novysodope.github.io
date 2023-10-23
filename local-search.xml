@@ -133,7 +133,7 @@
     <link href="/2022/12/10/96/"/>
     <url>/2022/12/10/96/</url>
     
-    <content type="html"><![CDATA[<h1 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h1><p>映射配置</p><p><img src="/images/96/XCvZt-IhGVkjX0ImtCg9zN10elLtw8Fmm6fzKg-9wUo.jpg" alt="image"></p><p>大概看了一眼流程，可能所有请求都可以利用jndi注入，随便挑一个跟进：</p><p>查看处理<code>soapRequest.ajax</code>请求的<code>SoapRequestAction</code>类</p><p><img src="/images/96/u06CQY6S2J2EiRSl-YFaPKy16kNLWXpxx9HZCIAlY90.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">SoapRequestAction.class<br></code></pre></div></td></tr></table></figure><p>在<code>execuse</code>方法中获取了两个参数，<code>ws</code>、<code>soap</code></p><p><img src="/images/96/dmznXtSwjQ4hJz-J-gE9LjaFONgXnkFavmbqwyXaIcE.jpg" alt="image"></p><p>然后将两个参数传进<code>sendRequest</code>方法，在<code>sendRequest</code>方法中，会根据传进的<code>ws</code>参数去查找对应的soap接口服务</p><p><img src="/images/96/RAz9idHW5R2t46-HYYwT6kGa3ez2WvyTEz7ee9soLGI.jpg" alt="image"></p><p>传进来的soap参数则作为soap接口参数来进行请求</p><p><img src="/images/96/xPahQLK7r8QyL3hF4So_CZdEQSzR_JRr8AfIULNy2Fg.jpg" alt="image"></p><p>接下来就找一下能利用的WSDL</p><p><code>IMsgCenterWebService.wsdl</code> 看到一个可疑的参数<code>dataSource</code></p><p><img src="/images/96/cYmxHxLuyPZv5QSWFoYq8mLMEsrNEpJy9eLUfBBtVxI.jpg" alt="image"></p><p>往下跟进查看实现</p><p>其接口是<code>IMsgCenterWebService</code></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">IMsgCenterWebService.class<br></code></pre></div></td></tr></table></figure><p><img src="/images/96/-V32Jr13u1HFV_ACli8zlX1mdJecxC3-gf4-dpxD-Io.jpg" alt="image"></p><p>对应的实现类</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">MsgCenterWebServiceImpl.class<br></code></pre></div></td></tr></table></figure><p>但是方法实际调用的是<code>IMsgCenterService</code>接口的实现</p><p><img src="/images/96/i14lPXQGu6t7RuJrC-R7SzWG1OCbAvprpH8HVHLN498.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">IMsgCenterService.class<br></code></pre></div></td></tr></table></figure><p><img src="/images/96/nqF8WLPTAsvXsjyMQUXdFYFfxUI69ShyCpulIul3EpA.jpg" alt="image"></p><p>对应的实现类</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">MsgCenterServiceImpl.class<br></code></pre></div></td></tr></table></figure><p>在<code>uploadAttachment</code>方法中，将<code>dataSource</code>、<code>pk_sourcemsg</code>参数传进<code>resetInvacationInfoByMsgID</code>方法做处理</p><p><img src="/images/96/QI1CLTRor7wWi3feaDrdjP3jecC0hK-8vjcTzBUitv0.jpg" alt="image"></p><p>在<code>resetInvacationInfoByMsgID</code>方法中，首先是做了一个初始化，将<code>dataSource</code>变成变量<code>UserDataSource</code>的值作为新的数据源以方便下面的流程进行</p><p><img src="/images/96/BbI9JbO4s8W0Kdzwsu0NnufL-q6pzkjbqOes_Y_WzJc.jpg" alt="image"></p><p>随后将参数<code>pk_sourcemsg</code>传进<code>retrieveByPK</code>方法</p><p><img src="/images/96/JGyMKBMR9L19Au72IdvNuNkmyomSTpDIQ1JI0f3nBlw.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">BaseDAO.class<br></code></pre></div></td></tr></table></figure><p>在<code>retrieveByPK</code>方法中，对<code>manager</code>对象做了初始化，将刚刚设置的新数据源进行加载以供下面调用</p><p><img src="/images/96/FVykfmRaL7L0W1UsAw8m35MHRclARMIN1B-NWAiQIwY.jpg" alt="image"></p><p>跟进<code>createPersistenceManager</code>方法</p><p><img src="/images/96/yn8RkTS_d6h0RvwXSO3aI4-adCIZmgQbkH5jP_qFx68.jpg" alt="image"></p><p>注意此处的<code>PersistenceManager.getInstance(ds);</code>，因为<code>PersistenceManager</code>是抽象类，所以需要找到继承它的子类来查看对<code>dataSource</code>的实现</p><p><img src="/images/96/MzTN9C1zaFScciFHuD87x5KM9Gc7WakjFtJsogIOkQ0.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">PersistenceManager.class<br></code></pre></div></td></tr></table></figure><p>跟进<code>JdbcPersistenceManager</code>类    </p><p><img src="/images/96/olkcB-aCvKI4pcoXKLr6sA43Kon-6RkFgR-u9eZ1XhI.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">JdbcPersistenceManager.class<br></code></pre></div></td></tr></table></figure><p>在<code>JdbcPersistenceManager</code>对象中做了一次初始化，此时的<code>dataSource</code>即是设置的新数据源</p><p><img src="/images/96/VOs0tcHat7dHHCTBz5WXiI85H-7utus0GIY3zllVTd0.jpg" alt="image"></p><p>进入到<code>init</code>方法，在<code>init</code>方法中，又使用<code>JdbcSession</code>对象来处理<code>dataSource</code></p><p><img src="/images/96/RoMYkH6d4xGNX57MASTQDbn1Az6IxJJ7N145fhBZsAw.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">JdbcSession.class<br></code></pre></div></td></tr></table></figure><p>最终在<code>JdbcSession</code>的构造函数里对<code>dataSource</code>进行连接</p><p><img src="/images/96/jCEY5LlGiOhLZRBN_W2sVPsrHodm9niwL95tVs774bo.jpg" alt="image"></p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">ConnectionFactory.class<br></code></pre></div></td></tr></table></figure><p><code>getConnection</code>方法</p><p><img src="/images/96/VaQzZDSsyg-ZzFOq6-RUH60RKVG768oxRvMPFWcugYY.jpg" alt="image"></p><p>往下就是jdbc的流程了</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">DataSourceCenter.class<br></code></pre></div></td></tr></table></figure><p><img src="/images/96/j7Bp1OGHpH4cGwXPms1jbeZoleD5HLaOiQEZLl07hMU.jpg" alt="image"></p><p>由于<code>dataSource</code>参数可控，所以可以向这个参数传入一个恶意的jndi地址就可以进行利用</p><h1 id="验证："><a href="#验证：" class="headerlink" title="验证："></a>验证：</h1><p>根据<code>IMsgCenterWebService.wsdl</code>构造soap参数</p><p><img src="/images/96/0RyJ9wbJiTPU6SvbCgMr1QevQe6QsTnCXhHzaauMcRk.jpg" alt="image"></p><p> </p><p> </p>]]></content>
+    <content type="html"><![CDATA[<p>乱七八糟的删了</p>]]></content>
     
     
     <categories>
@@ -1082,9 +1082,9 @@
     
     <tags>
       
-      <tag>SQL注入</tag>
-      
       <tag>Jfinal漏洞</tag>
+      
+      <tag>SQL注入</tag>
       
     </tags>
     
@@ -1109,9 +1109,9 @@
     
     <tags>
       
-      <tag>Java代码审计</tag>
-      
       <tag>SQL注入</tag>
+      
+      <tag>Java代码审计</tag>
       
     </tags>
     
@@ -1136,9 +1136,9 @@
     
     <tags>
       
-      <tag>Java代码审计</tag>
-      
       <tag>SQL注入</tag>
+      
+      <tag>Java代码审计</tag>
       
     </tags>
     
