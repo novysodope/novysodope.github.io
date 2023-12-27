@@ -21,7 +21,7 @@
 <meta property="og:description" content="Can的请求和识别、UDS诊断、10服务、报文审计CRC、SecOC机制、ECU刷写等等">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-12-18T05:15:21.000Z">
-<meta property="article:modified_time" content="2023-12-27T02:54:49.359Z">
+<meta property="article:modified_time" content="2023-12-27T02:55:32.474Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,7 +268,7 @@
 <h1 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h1><h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><p>调试口一般是<code>RX</code> <code>TX</code> <code>GND</code>，其中GND是地线，RX是接收，TX是发送，引脚线两端要对好，一般板子都会标明，如果没有标明，则用万用表测试。</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">通断档：黑表笔接到板子的电路或者金属上，红表笔依次触碰测试，如果响了就表示是地线<br>电压档：黑表笔接到板子的电路或者金属上，红表笔依次触碰测试，如果电压为0表示是地线<br></code></pre></div></td></tr></table></figure>
 <p>TX和RX的测试我觉得就两根线换着插更准确,有数据和没数据的区别</p>
-<h1 id="目前复测过的漏洞（真实车零部件）："><a href="#目前复测过的漏洞（真实车零部件）：" class="headerlink" title="目前复测过的漏洞（真实车零部件）："></a>目前复测过的漏洞（真实车零部件）：</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">CAN_FD软硬件强制复位：通过发送报文让设备重启<br><br>CAN_FD DOS：通过一直发送高优先级报文导致拒绝服务<br><br>CAN抗重放测试：没有实车时，审计报文，查看会不会存在重放漏洞，有实车时，重放报文查看车的重放效果<br><br>UDS诊断DID数据篡改测试：通过21篡改RX报文，22请求查看篡改后的报文<br><br>27服务测试： 了解了uds安全访问诊断流程，先是1、客户端发送27 01请求种子，然后2、服务端返回67 01 \[种子\]， 3、客户端使用收到的种子以及一些事先约定的算法，生成一个对称密钥（会话密钥）使用27 02 + 密钥发送，4、服务端收到客户端发送的密钥后，使用预共享的密钥生成算法（通常是与客户端相同的算法），计算出相同的对称密钥，如果密钥是对的，响应67 02 + 密钥，ECU自动解锁，接下来就积极跟客户端通信，如果不对会返回否定响应<br></code></pre></div></td></tr></table></figure>
+<h1 id="目前复测过的漏洞（真实车零部件）："><a href="#目前复测过的漏洞（真实车零部件）：" class="headerlink" title="目前复测过的漏洞（真实车零部件）："></a>目前复测过的漏洞（真实车零部件）：</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">CAN_FD软硬件强制复位：通过发送报文让设备重启<br><br>CAN_FD DOS：通过一直发送高优先级报文导致拒绝服务<br><br>CAN抗重放测试：没有实车时，审计报文，查看会不会存在重放漏洞，有实车时，重放报文查看车的重放效果<br><br>UDS诊断DID数据篡改测试：通过21篡改RX报文，22请求查看篡改后的报文<br><br>27服务测试： 了解了uds安全访问诊断流程，先是1、客户端发送27 01请求种子，然后2、服务端返回67 01 [种子]， 3、客户端使用收到的种子以及一些事先约定的算法，生成一个对称密钥（会话密钥）使用27 02 + 密钥发送，4、服务端收到客户端发送的密钥后，使用预共享的密钥生成算法（通常是与客户端相同的算法），计算出相同的对称密钥，如果密钥是对的，响应67 02 + 密钥，ECU自动解锁，接下来就积极跟客户端通信，如果不对会返回否定响应<br></code></pre></div></td></tr></table></figure>
             </div>
             <hr>
             <div>
