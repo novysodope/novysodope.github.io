@@ -8,7 +8,7 @@
     <link href="/2023/12/18/104/"/>
     <url>/2023/12/18/104/</url>
     
-    <content type="html"><![CDATA[<h1 id="Can通信"><a href="#Can通信" class="headerlink" title="Can通信"></a>Can通信</h1><p>目前接触过的can通信软件：pcan view、zcan pro</p><p>UDS的安全访问服务(0x27)与CAPL实现自动处理<br><a href="https://blog.csdn.net/u013391094/article/details/130911357">https://blog.csdn.net/u013391094/article/details/130911357</a></p><p>安全访问（ISO14229系列之27服务）<br><a href="https://blog.csdn.net/weixin_44536482/article/details/93340252">https://blog.csdn.net/weixin_44536482/article/details/93340252</a></p><p>读会话：<code>7df # 03 22 f1 86</code>，其中7df是标准帧ID， 03 22 f1 86是请求的数据报文，数据报文一般是8位，<code>03 22 f1 86 00 00 00 00</code>，请求时后面的00可以不用带，不是必写</p><p>该请求的响应:<code>04 62 f1 86 xx</code></p><p><code>11 01</code>响应的是<code>51 01</code><br>观察报文的收发发现，服务端响应的报文里，帧类型（服务标识）会比发送的多40，比如发送27 01 ，响应则是67 01 ，发送22 f1，响应则是62 f1，了解这个规则有利于查找对应的响应报文</p><h1 id="报文审计"><a href="#报文审计" class="headerlink" title="报文审计"></a>报文审计</h1><h2 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h2><p>假设CRC-16算法产生的CRC校验码是0xABCD，完整的数据帧可能是：<code>02 27 01 00 00 00 00 00 AB CD</code>，观察普通的标准报文，会发现后面多出了额外字节AB CD</p><h2 id="SecOC机制"><a href="#SecOC机制" class="headerlink" title="SecOC机制"></a>SecOC机制</h2><p>同理，<code>02 27 01 00 00 00 00 00 [数字签名]</code></p><h1 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h1><h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><p>调试口一般是<code>RX</code> <code>TX</code> <code>GND</code>，其中GND是地线，RX是接收，TX是发送，引脚线两端要对好，一般板子都会标明，如果没有标明，则用万用表测试。</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">通断档：黑表笔接到板子的电路或者金属上，红表笔依次触碰测试，如果响了就表示是地线<br>电压档：黑表笔接到板子的电路或者金属上，红表笔依次触碰测试，如果电压为0表示是地线<br></code></pre></div></td></tr></table></figure><p>TX和RX的测试我觉得就两根线换着插更准确,有数据和没数据的区别</p><h1 id="目前复测过的漏洞（真实车零部件）："><a href="#目前复测过的漏洞（真实车零部件）：" class="headerlink" title="目前复测过的漏洞（真实车零部件）："></a>目前复测过的漏洞（真实车零部件）：</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">CAN_FD软硬件强制复位：通过发送报文让设备重启<br><br>CAN_FD DOS：通过一直发送高优先级报文导致拒绝服务<br><br>CAN抗重放测试：没有实车时，审计报文，查看会不会存在重放漏洞，有实车时，重放报文查看车的重放效果<br><br>UDS诊断DID数据篡改测试：通过22篡改RX报文<br><br>27服务测试： 了解了uds安全访问诊断流程，先是1、客户端发送27 01请求种子，然后2、服务端返回67 01 \[种子\]， 3、客户端使用收到的种子以及一些事先约定的算法，生成一个对称密钥（会话密钥）使用27 02 + 密钥发送，4、服务端收到客户端发送的密钥后，使用预共享的密钥生成算法（通常是与客户端相同的算法），计算出相同的对称密钥，如果密钥是对的，响应67 02 + 密钥，ECU自动解锁，接下来就积极跟客户端通信，如果不对会返回否定响应<br></code></pre></div></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="Can通信"><a href="#Can通信" class="headerlink" title="Can通信"></a>Can通信</h1><p>目前接触过的can通信软件：pcan view、zcan pro</p><p>UDS的安全访问服务(0x27)与CAPL实现自动处理<br><a href="https://blog.csdn.net/u013391094/article/details/130911357">https://blog.csdn.net/u013391094/article/details/130911357</a></p><p>安全访问（ISO14229系列之27服务）<br><a href="https://blog.csdn.net/weixin_44536482/article/details/93340252">https://blog.csdn.net/weixin_44536482/article/details/93340252</a></p><p>读会话：<code>7df # 03 22 f1 86</code>，其中7df是标准帧ID， 03 22 f1 86是请求的数据报文，数据报文一般是8位，<code>03 22 f1 86 00 00 00 00</code>，请求时后面的00可以不用带，不是必写</p><p>该请求的响应:<code>04 62 f1 86 xx</code></p><p><code>11 01</code>响应的是<code>51 01</code><br>观察报文的收发发现，服务端响应的报文里，帧类型（服务标识）会比发送的多40，比如发送27 01 ，响应则是67 01 ，发送22 f1，响应则是62 f1，了解这个规则有利于查找对应的响应报文</p><h1 id="报文审计"><a href="#报文审计" class="headerlink" title="报文审计"></a>报文审计</h1><h2 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h2><p>假设CRC-16算法产生的CRC校验码是0xABCD，完整的数据帧可能是：<code>02 27 01 00 00 00 00 00 AB CD</code>，观察普通的标准报文，会发现后面多出了额外字节AB CD</p><h2 id="SecOC机制"><a href="#SecOC机制" class="headerlink" title="SecOC机制"></a>SecOC机制</h2><p>同理，<code>02 27 01 00 00 00 00 00 [数字签名]</code></p><h1 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h1><h2 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h2><p>调试口一般是<code>RX</code> <code>TX</code> <code>GND</code>，其中GND是地线，RX是接收，TX是发送，引脚线两端要对好，一般板子都会标明，如果没有标明，则用万用表测试。</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">通断档：黑表笔接到板子的电路或者金属上，红表笔依次触碰测试，如果响了就表示是地线<br>电压档：黑表笔接到板子的电路或者金属上，红表笔依次触碰测试，如果电压为0表示是地线<br></code></pre></div></td></tr></table></figure><p>TX和RX的测试我觉得就两根线换着插更准确,有数据和没数据的区别</p><h1 id="目前复测过的漏洞（真实车零部件）："><a href="#目前复测过的漏洞（真实车零部件）：" class="headerlink" title="目前复测过的漏洞（真实车零部件）："></a>目前复测过的漏洞（真实车零部件）：</h1><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">CAN_FD软硬件强制复位：通过发送报文让设备重启<br><br>CAN_FD DOS：通过一直发送高优先级报文导致拒绝服务<br><br>CAN抗重放测试：没有实车时，审计报文，查看会不会存在重放漏洞，有实车时，重放报文查看车的重放效果<br><br>UDS诊断DID数据篡改测试：通过21篡改RX报文，22请求查看篡改后的报文<br><br>27服务测试： 了解了uds安全访问诊断流程，先是1、客户端发送27 01请求种子，然后2、服务端返回67 01 \[种子\]， 3、客户端使用收到的种子以及一些事先约定的算法，生成一个对称密钥（会话密钥）使用27 02 + 密钥发送，4、服务端收到客户端发送的密钥后，使用预共享的密钥生成算法（通常是与客户端相同的算法），计算出相同的对称密钥，如果密钥是对的，响应67 02 + 密钥，ECU自动解锁，接下来就积极跟客户端通信，如果不对会返回否定响应<br></code></pre></div></td></tr></table></figure>]]></content>
     
     
     <categories>
@@ -729,11 +729,11 @@
   
   
   <entry>
-    <title>纠正一个漏洞</title>
-    <link href="/2022/01/10/73/"/>
-    <url>/2022/01/10/73/</url>
+    <title>细分一个漏洞</title>
+    <link href="/2022/01/10/74/"/>
+    <url>/2022/01/10/74/</url>
     
-    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
+    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
     
     
     <categories>
@@ -754,11 +754,11 @@
   
   
   <entry>
-    <title>细分一个漏洞</title>
-    <link href="/2022/01/10/74/"/>
-    <url>/2022/01/10/74/</url>
+    <title>纠正一个漏洞</title>
+    <link href="/2022/01/10/73/"/>
+    <url>/2022/01/10/73/</url>
     
-    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
+    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
     
     
     <categories>
@@ -1182,9 +1182,9 @@
     
     <tags>
       
-      <tag>Jfinal漏洞</tag>
-      
       <tag>SQL注入</tag>
+      
+      <tag>Jfinal漏洞</tag>
       
     </tags>
     
@@ -1209,9 +1209,9 @@
     
     <tags>
       
-      <tag>SQL注入</tag>
-      
       <tag>Java代码审计</tag>
+      
+      <tag>SQL注入</tag>
       
     </tags>
     
@@ -1236,9 +1236,9 @@
     
     <tags>
       
-      <tag>SQL注入</tag>
-      
       <tag>Java代码审计</tag>
+      
+      <tag>SQL注入</tag>
       
     </tags>
     
