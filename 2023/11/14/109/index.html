@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html lang="" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="审计记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某平台Groovy任意代码执行思考">
+<meta property="og:url" content="http://novysodope.github.io/2023/11/14/109/index.html">
+<meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="审计记录">
+<meta property="og:locale">
+<meta property="og:image" content="http://novysodope.github.io/images/109/z_0lw289Sidv_j5eGjNkO0qrsN8YGP8d6BPECWoiOQY.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/PZKmVIRuLGRGn_wMhBLjOiKnaWj7q9wQt-e-DXoK028.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/rktP6iIM3KmTyU4QC9slleUrQLkQoTBsAv4KDRyPbmY.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/vgtAOb_C_kREzY69nrJBqJzf0T_pUDy8MWA4PM1P4FI.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/Khw_J8NTh3dK7hCq6_Zd0eLzFlJWxq4tIdoDe_GEwU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/mL23WdCgG-1Hjplsgxw09z77sDA_D81MIJtVnVO_acA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/Kf36lb4aJ6uYJCxavzHdPANULWZozkcJWGsicEPXnZU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/mOLSj4e_vUjidrEyt1kxWW-zS8st4xfgZBl-H1NGUYQ.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/aPoLlSnssmu97O9zDAcpPL5fjpvHnwrUejeHOSj1qSE.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/Nh83EiNNDjtq2NoHLYwn29PyW5S_zQ1sTuqjLF_cAgs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/R7JeqHwBN6CbCwj9rHhOZm9SaOCHRXl6eJX5jOuRRSk.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/5T1KVvoIlA_tjup3R8Zut2Dfb5QMfCgqMfGFd_9YB5M.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/GPyQMrV3BF61WM-hZZ3aXgr1mN8E4WTLtYbPDj3-R3g.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/VwiHCdrFloQHKE6ARBZnwRZjzJDqd5-TfQ5Z2ahymhs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/nl7kYwreYwmWBIMa1ReXTmzGjZmCbIPTjRsX-RGvRm8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/JDzwF8Xj7UUGGZEukrjvjL7zeiQpel4gRAfzqd5l_E.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/7s5hPZqJH5VX9u3qHgmCgwpSsnGZi2Ohkq3dkO_RCu0.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/hfuisCjW9LlaS6jMG9yzYTAUnLzwgPD4D83yXogwrPU.png">
+<meta property="og:image" content="http://novysodope.github.io/images/109/928WR4Ao6k9W1BKMHMAvbSOybmQbdPLaTanK3Djk4l0.png">
+<meta property="article:published_time" content="2023-11-14T05:13:21.000Z">
+<meta property="article:modified_time" content="2024-05-07T08:03:52.731Z">
+<meta property="article:author" content="novy">
+<meta property="article:tag" content="代码审计">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://novysodope.github.io/images/109/z_0lw289Sidv_j5eGjNkO0qrsN8YGP8d6BPECWoiOQY.png">
+  
+  <title>某平台Groovy任意代码执行思考 - novy&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>novy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友情链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="某平台Groovy任意代码执行思考">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      novy
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-11-14 13:13" pubdate>
+        November 14, 2023 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5 分钟
+    </span>
+  
+
+  
+  
+    
+
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">某平台Groovy任意代码执行思考</h1>
+            
+            <div class="markdown-body">
+              <h1 id="原理小分析"><a href="#原理小分析" class="headerlink" title="原理小分析"></a><strong>原理小分析</strong></h1><p>exeGroovyScript方法传入了两个参数，其中scriptParameters是base64编码的json格式</p>
+<p><img src="/images/109/z_0lw289Sidv_j5eGjNkO0qrsN8YGP8d6BPECWoiOQY.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>在exeGroovyScript方法中，又调用了exeGroovyScript方法</p>
+<p><img src="/images/109/PZKmVIRuLGRGn_wMhBLjOiKnaWj7q9wQt-e-DXoK028.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>exeGroovyScript方法里会将传入的参数做解析</p>
+<p><img src="/images/109/rktP6iIM3KmTyU4QC9slleUrQLkQoTBsAv4KDRyPbmY.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>parse方法：</p>
+<p><img src="/images/109/vgtAOb_C_kREzY69nrJBqJzf0T_pUDy8MWA4PM1P4FI.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>具体解析操作发生在CompilationUnit类，由于太难懂了就不继续往下看CompilationUnit类了。大概意思就是CompilationUnit类会根据传入的对象解析生成AST（抽象语法树，对象的各个属性用节点来表示），然后根据AST生成对应的字节码。回到exeGroovyScript方法</p>
+<p><img src="/images/109/Khw_J8NTh3dK7hCq6_Zd0eLzFlJWxq4tIdoDe_GEwU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>此时的shell就是生成的字节码文件<code>Script[int].class</code>，它是Script的子类，生成的文件会重写run方法</p>
+<p><img src="/images/109/mL23WdCgG-1Hjplsgxw09z77sDA_D81MIJtVnVO_acA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>根据代码流程，<code>Script[int].class</code>的入口方法即run方法，生成的class大概如下</p>
+<p>.groovy脚本</p>
+<p><img src="/images/109/Kf36lb4aJ6uYJCxavzHdPANULWZozkcJWGsicEPXnZU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>编译的class</p>
+<p><img src="/images/109/mOLSj4e_vUjidrEyt1kxWW-zS8st4xfgZBl-H1NGUYQ.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>言归正传，最后<code>InvokerHelper.createScript</code>会创建<code>Script[int].class</code>的实例，具体看到createScript方法</p>
+<p><img src="/images/109/aPoLlSnssmu97O9zDAcpPL5fjpvHnwrUejeHOSj1qSE.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>最终newScript会根据Binding提供的上下文信息，获取一个有参构造函数创建实例</p>
+<p><img src="/images/109/Nh83EiNNDjtq2NoHLYwn29PyW5S_zQ1sTuqjLF_cAgs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>纵观源码，发现其最后就是反射动态调用</p>
+<p> </p>
+<h1 id="利用手法"><a href="#利用手法" class="headerlink" title="利用手法"></a><strong>利用手法</strong></h1><p>根据整理，Groovy的命令执行大概有3种利用</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-number">1</span>、可双可单参数写法<br>groovy.lang.GroovyShell parse 先解析语句<br>org.codehaus.groovy.runtime.InvokerHelper createScript 再运行<br> <br><span class="hljs-number">2</span>、单参数写法<br>groovy.lang.GroovyShell evaluate 直接执行<br> <br><span class="hljs-number">3</span>、单参数写法<span class="hljs-number">2</span><br>groovy.lang.GroovyShell parse 先解析<br>groovy.lang.<span class="hljs-function">Script <span class="hljs-title">run</span><span class="hljs-params">()</span> 再运行</span><br></code></pre></div></td></tr></table></figure>
+<p>首先说下参数语法</p>
+<p><img src="/images/109/R7JeqHwBN6CbCwj9rHhOZm9SaOCHRXl6eJX5jOuRRSk.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>execute()用到的是<code>Runtime.getRuntime().exec()</code>，</p>
+<p><img src="/images/109/5T1KVvoIlA_tjup3R8Zut2Dfb5QMfCgqMfGFd_9YB5M.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>text是从Process对象的输入流中读取文本数据并返回</p>
+<p><img src="/images/109/GPyQMrV3BF61WM-hZZ3aXgr1mN8E4WTLtYbPDj3-R3g.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="第一种用法"><a href="#第一种用法" class="headerlink" title="第一种用法"></a><strong>第一种用法</strong></h2><p>也是前面案例的用法，Payload不变，向Binding传递一个Map对象</p>
+<p><img src="/images/109/VwiHCdrFloQHKE6ARBZnwRZjzJDqd5-TfQ5Z2ahymhs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>可以看到如果payload是<code>&quot;whoami&quot;.execute().text</code>，那么hashMap可为空，执行不受影响，双引号内的字符串将以参数的形式传递到execute()进行执行</p>
+<p> </p>
+<p>另外因为传递的是hashMap对象，所以这个payload也可以使用占位符的方式进行利用</p>
+<p><img src="/images/109/nl7kYwreYwmWBIMa1ReXTmzGjZmCbIPTjRsX-RGvRm8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>原因是在代码<code>Constructor constructor = scriptClass.getConstructor(Binding.class);</code>中，<code>Binding.class</code>指定了<code>Constructor</code>的参数类型，即Binding类型。</p>
+<p>在<code>constructor.newInstance(context)</code>中，会使用context对象作为参数创建实例。如果没有找到相应的构造方法，就会执行<code>script = (Script)scriptClass.newInstance();</code>，然后再通过<code>script.setBinding(context)</code>设置context,也就是说，map里的value会被当做scriptClass的参数执行</p>
+<p><img src="/images/109/JDzwF8Xj7UUGGZEukrjvjL7zeiQpel4gRAfzqd5l_E.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>从编译的class中可以看到，是有Binding类型的有参构造函数的</p>
+<p><img src="/images/109/7s5hPZqJH5VX9u3qHgmCgwpSsnGZi2Ohkq3dkO_RCu0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>URL中可以这样表示：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">A=x.execute().text&amp;B=&#123;“x”:”whoami”&#125;<br></code></pre></div></td></tr></table></figure>
+<h2 id="第二种用法"><a href="#第二种用法" class="headerlink" title="第二种用法"></a><strong>第二种用法</strong></h2><p><img src="/images/109/hfuisCjW9LlaS6jMG9yzYTAUnLzwgPD4D83yXogwrPU.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="第三种用法"><a href="#第三种用法" class="headerlink" title="第三种用法"></a><strong>第三种用法</strong></h2><p><img src="/images/109/928WR4Ao6k9W1BKMHMAvbSOybmQbdPLaTanK3Djk4l0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a><strong>结尾</strong></h1><p>所以在审计时可以关注三种用法场景，三种用法都可以执行java代码或者groovy语法</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    声明：<br>   本文章用于学习交流，严禁用于非法操作，出现后果一切自行承担，阅读此文章表示你已同意本声明。<br> <br> Disclaimer: <br>   This article is for study and communication. It is strictly forbidden to use it for illegal operations. All consequences shall be borne by yourself. Reading this article means that you have agreed to this statement.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/18/104/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">车联网学习笔记1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/18/103/">
+                        <span class="hidden-mobile">帆软反序列化黑名单绕过tips</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="/img/aa.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;"><p></p> <p style="text-align:center"><span>扫一扫关注我们</span></p>
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     © 2018-<script type="text/javascript">document.write(new Date().getFullYear());</script> <span> <a href="#" target="_blank" rel="nofollow noopener"><font color="#2ca6cb">novy`s Blog</font>.</a> </span> Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span><font color="#2ca6cb">Hexo</font></span></a><p><script> function secondToDate(second) { if (!second) { return 0; } var time = new Array(0, 0, 0, 0, 0); if (second >= 365 * 24 * 3600) { time[0] = parseInt(second / (365 * 24 * 3600)); second %= 365 * 24 * 3600; } if (second >= 24 * 3600) { time[1] = parseInt(second / (24 * 3600)); second %= 24 * 3600; } if (second >= 3600) { time[2] = parseInt(second / 3600); second %= 3600; } if (second >= 60) { time[3] = parseInt(second / 60); second %= 60; } if (second > 0) { time[4] = second; } return time; }</script> <script type="text/javascript" language="javascript"> function setTime() { var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000); var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000); currentTime = secondToDate((timestamp - create_time)); currentTimeHtml = currentTime[0] + "年" + currentTime[1] + "天" + currentTime[2] + "时" + currentTime[3] + "分" + currentTime[4] + "秒"; document.getElementById("htmer_time").innerHTML = currentTimeHtml; }    setInterval(setTime, 1000);</script> 本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span> <br/> <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+你是第<font color="#2ca6cb"><span id="busuanzi_value_site_uv"></span></font>个小伙伴 </p> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
