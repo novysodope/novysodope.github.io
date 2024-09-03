@@ -69,7 +69,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -264,7 +264,6 @@
               <p>有时候前端弹提示的检测，透明比较好用</p>
 <p>开启透明代理命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">iptables -t nat -A OUTPUT -p tcp -m owner --uid-owner 进程所有者 -j DNAT --to-destination 代理ip:端口<br></code></pre></div></td></tr></table></figure>
-
 <p>其中进程所有者需要查看启动应用的uid<br>在adb shell里执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">ps -ef | grep 包名<br><br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/93/1.png" srcset="/img/loading.gif" lazyload></p>
@@ -272,7 +271,6 @@
 <p>burp还需如下配置<br><img src="/images/93/3.png" srcset="/img/loading.gif" lazyload><br>此时不用在手机设置代理就可以抓包了</p>
 <p>删除代理</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">iptables -t nat -D OUTPUT -p tcp -m owner --uid-owner 进程所有者 -j DNAT --to-destination 代理ip:端口<br></code></pre></div></td></tr></table></figure>
-
 
             </div>
             <hr>

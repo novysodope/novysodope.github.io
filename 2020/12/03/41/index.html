@@ -82,7 +82,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -282,7 +282,6 @@
 <p><img src="/images/41/2.png" srcset="/img/loading.gif" lazyload></p>
 <p>接口定义，继续跟进<code>ISysBaseAPI</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/common/system/api/ISysBaseAPI.java<br></code></pre></div></td></tr></table></figure>
-
 <p><img src="/images/41/3.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里为接口，往下看<code>queryTableDictItemsByCode</code>方法为空实现，所以全局搜索<code>implements ISysBaseAPI</code>查看其实现类</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/impl/SysBaseApiImpl.java<br></code></pre></div></td></tr></table></figure>
@@ -302,7 +301,6 @@
 <p><img src="/images/41/10.png" srcset="/img/loading.gif" lazyload></p>
 <p>全局搜索<code>implements ISysDictService</code>查看其实现类</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">src/main/java/org/jeecg/modules/system/service/impl/SysDictServiceImpl.java<br></code></pre></div></td></tr></table></figure>
-
 <p><img src="/images/41/11.png" srcset="/img/loading.gif" lazyload></p>
 <p>在该实现类里搜索<code>SysBaseApiImpl</code>调用的<code>queryTableDictItemsByCode</code>方法，也就是这里</p>
 <p><img src="/images/41/12.png" srcset="/img/loading.gif" lazyload></p>
@@ -316,7 +314,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">http://localhost/sys/api/queryTableDictItemsByCode?table= &amp;text= &amp;code=<br></code></pre></div></td></tr></table></figure>
 <p>根据mysql的特征查系统默认数据库</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">http://localhost/sys/api/queryTableDictItemsByCode?table=mysql.user&amp;text=User&amp;code=password<br></code></pre></div></td></tr></table></figure>
-
 <p><img src="/images/41/15.png" srcset="/img/loading.gif" lazyload></p>
 
             </div>

