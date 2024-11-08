@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/113/Ukb9zopQqojnJQoD-eBzqC_k51tEPGuZ-bLlcWOw-wY.png">
 <meta property="og:image" content="http://novysodope.github.io/images/113/UMo-rOoW1wIyyWwIKnt4r3RbO7Gli6wVS6xsQ2ElCs0.png">
 <meta property="article:published_time" content="2024-11-07T16:13:21.000Z">
-<meta property="article:modified_time" content="2024-11-08T10:24:27.858Z">
+<meta property="article:modified_time" content="2024-11-08T11:27:21.953Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
@@ -276,7 +276,7 @@
             <h1 style="display: none">车联网安全入门指南</h1>
             
             <div class="markdown-body">
-              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我觉得接触车联网更重要的是要先学会CAN总线的知识，所以就从CAN开始好了，为了避免浪费大家时间，先放出目录：</p>
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我觉得接触车联网更重要的是要先学会CAN总线的知识，所以就从CAN（UDS方向）开始好了，为了避免浪费大家时间，先放出目录：</p>
 <p><img src="/images/113/beCjLRGu8XDwXFRhJciHtM-xUy0PnUM1ldMctaSAFCo.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>下面正式开始</p>
 <h1 id="车都是怎么通信的？"><a href="#车都是怎么通信的？" class="headerlink" title="车都是怎么通信的？"></a>车都是怎么通信的？</h1><h2 id="车内CAN通信"><a href="#车内CAN通信" class="headerlink" title="车内CAN通信"></a>车内CAN通信</h2><h3 id="早期的汽车控制"><a href="#早期的汽车控制" class="headerlink" title="早期的汽车控制"></a>早期的汽车控制</h3><p>在很久以前车刚被造出来的时候，功能单一，只有踏板离合转向控制，其中离合器通过机械连接传递发动机的动力，而制动系统则通过简单的机械连接（比如开关）来控制制动动作。随着单片机的普及，车内功能越来越复杂，零部件越来越多，简单的机械控制已经满足不了车辆的运行，于是<code>CAN总线（Controller Area Network）</code>诞生了。</p>
@@ -293,7 +293,7 @@
 <p>扩展帧：ID区间是<code>0x000000-0x1FFFFFFF</code>（换算成10进制就是0-536870911），<code>1FFFFFFF</code>转换为二进制就是<code>1111111111111111111111111111111</code>（29位）</p>
 <h5 id="报文识别"><a href="#报文识别" class="headerlink" title="报文识别"></a>报文识别</h5><h6 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h6><p>在CAN总线中，标识符用于定义报文的优先级和寻址，标识符后带的就是数据字段，按照预先设计开发的功能进行请求响应。以扩展帧<code>18DBFFF1#0210030000000000</code>为例，在数据部分中，报文格式可以进一步细分：</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">02：02 表示该帧的数据长度为 2 字节，意味着本次传输的数据实际只有 2 个字节，即1003。注意该帧需要随着请求的长度进行变化，要发送几个字节就是零几，比如发送10 03两个字节就是02 10 03，同理，发送27 02 11 22就是4个字节，用04 27 02 11 22；<br><br>1003：1003 是发送的数据内容，分为服务ID+参数。在UDS协议中，这是诊断服务的请求和参数。例如，10表示会话控制服务，03则是参数，表示具体的会话类型，1003即切换扩展模式；<br><br>0000000000：为了使数据字段达到CAN帧的标准8字节长度，填充部分设为00<br></code></pre></div></td></tr></table></figure>
-<h6 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h6><p>有请求就会有响应，CAN的响应分为<code>“肯定”</code>和<code>“否定”</code>响应，否定响应的格式组成为<code>数据长度帧+7F+具体响应码</code>。以扩展帧<code>18DBFFF1#0210030000000000</code>为例，请求后的<code>“肯定”</code>响应为<code>0250030000000000</code>，意思是设备已切换到扩展模式；<code>“否定”</code>响应为<code>037F101100000000</code>（数据长度会随着响应内容长度变化），意思是10这个服务没有做进去；再举个例子：<code>18DBFFF1#0227010000000000</code>，请求后的<code>“肯定”</code>响应为<code>0667011122334400</code>，意思是请求的种子是<code>111223344</code>，<code>“否定”</code>响应为<code>037F2711</code>，意思是27这个服务没有做进去。下图为相关<code>“否定”</code>响应码的解释</p>
+<h6 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h6><p>有请求就会有响应，CAN（UDS）的响应分为<code>“肯定”</code>和<code>“否定”</code>响应，否定响应的格式组成为<code>数据长度帧+7F+具体响应码</code>。以扩展帧<code>18DBFFF1#0210030000000000</code>为例，请求后的<code>“肯定”</code>响应为<code>0250030000000000</code>，意思是设备已切换到扩展模式；<code>“否定”</code>响应为<code>037F101100000000</code>（数据长度会随着响应内容长度变化），意思是10这个服务没有做进去；再举个例子：<code>18DBFFF1#0227010000000000</code>，请求后的<code>“肯定”</code>响应为<code>0667011122334400</code>，意思是请求的种子是<code>111223344</code>，<code>“否定”</code>响应为<code>037F2711</code>，意思是27这个服务没有做进去。下图为相关<code>“否定”</code>响应码的解释</p>
 <p><img src="/images/113/V3-M5XJX69vUTe4CkQfnZ6RDY1Wo4Stcl5JK1GxgPvk.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>观察<code>“肯定”</code>的响应报文我们会发现，服务ID会比发送的多<code>40</code>，比如发送<code>27 01 </code>，响应则是<code>67 01</code> ，发送<code>1003</code>，响应则是<code>5003</code>，了解这个规则有利于查找对应的响应报文，判断设备功能和通信状态</p>
 <h6 id="TIPS-1"><a href="#TIPS-1" class="headerlink" title="TIPS"></a>TIPS</h6><p>以扩展帧的CAN通信为例，在不知道CANID的情况下，通常可以尝试先发送<code>18DBFFF1</code>确认通信地址，比如发送<code>18DBFFF1</code>，回复的是<code>18DAF1EE</code>，其中<code>18DB</code>回复对应的标识符<code>18DA</code>，回复的<code>EE</code>是通信ID，所以后续要跟<code>EE</code>进行通信，最终通信地址就是<code>18DAEEF1</code>：</p>
@@ -527,10 +527,10 @@
 <td>jlink调试</td>
 </tr>
 </tbody></table>
-<p>这里只是列举了部分，实际还有很多，感兴趣的可以看下这个项目，刚转车联网安全的时候基于ubuntu弄的集成系统，各种环境工具都在里面了，开箱即用：</p>
+<p>这里只是列举了部分，实际还有很多，感兴趣的可以看下这个项目，刚转车联网安全的时候弄的基于ubuntu的集成系统，各种环境工具都在里面了，开箱即用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">https://github.com/TianWen-Lab/TranSec<br></code></pre></div></td></tr></table></figure>
 <h1 id="Tips-1"><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h1><p>转车联网安全干到现在已经有1年了，给人感觉最主要的还是需要有通信协议和二进制知识。有的名词解释因为人懒用的GPT生成的，注意辨别。车内通信除了CAN还有很多协议就不全写了，感兴趣的可以根据提到的名词去搜。文章的图不全是自己的，有的是网上+项目报告或者同事的</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>也是一时兴起，写到后面感觉没啥兴趣写了，也有自己菜的一部分原因，不知道写啥了，等后面越来越牛逼了再补充吧。感谢天问实验室所有的同事给予的帮助。文中有不对的地方希望您可以想法设法联系到我然后帮忙指正。别骂，不好的评论我会删</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>也是一时兴起，写到后面感觉没啥兴趣写了，也有自己菜的一部分原因，不知道写啥了，等后面越来越牛逼了再补充吧。感谢天问实验室所有的同事给予的帮助。文中有不对的地方希望您可以想方设法联系到我然后帮忙指正。别骂，不好的评论我会删</p>
 
             </div>
             <hr>
