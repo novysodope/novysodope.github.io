@@ -1,0 +1,768 @@
+
+
+<!DOCTYPE html>
+<html lang="" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="车联网学习笔记2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="车联网安全入门指南">
+<meta property="og:url" content="http://novysodope.github.io/2024/11/08/113/index.html">
+<meta property="og:site_name" content="novy&#39;s Blog">
+<meta property="og:description" content="车联网学习笔记2">
+<meta property="og:locale">
+<meta property="og:image" content="http://novysodope.github.io/images/113/beCjLRGu8XDwXFRhJciHtM-xUy0PnUM1ldMctaSAFCo.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/0Gx9bRQO5UGdoz020F6gYnhHvFBj4hPWNl9axsW9vow.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/4EvWWd7iqEAfLYk0m8ivPPbArr8p1kmKjfzpjKK1kwg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/CuHBffHPYTy7VFg3KMPi92IokxeCw0na26TtT2cDDIA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/V3-M5XJX69vUTe4CkQfnZ6RDY1Wo4Stcl5JK1GxgPvk.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/0Gx9bRQO5UGdoz020F6gYnhHvFBj4hPWNl9axsW9vow.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/x0LoKH-82c7cGYeRcx5bQeJuoSCa65T5h5ni-YWKNKM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/blS541L3vryNKjfL_eyd2MSVPj0NKFIafumXFJ-tqi8.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/ox457pUsffFmqFHfF7CKTbjjd_XCJM-1wQ1HGR4ym-E.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/xWQjrN0R0HYGx5oTHQymo5IFtw2vkFyJDgIu7SXCREg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/Ixigtd_ik24MVhH_G_OCYT9QPDuigHdbG6hpErCanbo.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/UIOgqJAkwVWmSep9hcaFAdmiypyQeQQORCrkxFZNzQo.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/zbO7UVnyUJ4nH2dENu_XygM6Bnk5WbKXU6LCuv2JkIY.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/j-pPJtxCCfC4NWVUZbmLlAv9aLDyUQ89H5UfhDi3iow.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/RiG01KCCg8E9vBUma8A5KAHaC-Bi3ciItSN2MaNVC3Q.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/tE7Y7oKcRUb4W3XtS70xDaZqkl5NdYLSquVoyBx2gfs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/Ukb9zopQqojnJQoD-eBzqC_k51tEPGuZ-bLlcWOw-wY.png">
+<meta property="og:image" content="http://novysodope.github.io/images/113/UMo-rOoW1wIyyWwIKnt4r3RbO7Gli6wVS6xsQ2ElCs0.png">
+<meta property="article:published_time" content="2024-11-07T16:13:21.000Z">
+<meta property="article:modified_time" content="2024-11-08T10:24:27.858Z">
+<meta property="article:author" content="novy">
+<meta property="article:tag" content="车联网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://novysodope.github.io/images/113/beCjLRGu8XDwXFRhJciHtM-xUy0PnUM1ldMctaSAFCo.png">
+  
+  <title>车联网安全入门指南 - novy&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>novy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友情链接
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="车联网安全入门指南">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      novy
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2024-11-08 00:13" pubdate>
+        November 8, 2024 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22 分钟
+    </span>
+  
+
+  
+  
+    
+
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">车联网安全入门指南</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我觉得接触车联网更重要的是要先学会CAN总线的知识，所以就从CAN开始好了，为了避免浪费大家时间，先放出目录：</p>
+<p><img src="/images/113/beCjLRGu8XDwXFRhJciHtM-xUy0PnUM1ldMctaSAFCo.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>下面正式开始</p>
+<h1 id="车都是怎么通信的？"><a href="#车都是怎么通信的？" class="headerlink" title="车都是怎么通信的？"></a>车都是怎么通信的？</h1><h2 id="车内CAN通信"><a href="#车内CAN通信" class="headerlink" title="车内CAN通信"></a>车内CAN通信</h2><h3 id="早期的汽车控制"><a href="#早期的汽车控制" class="headerlink" title="早期的汽车控制"></a>早期的汽车控制</h3><p>在很久以前车刚被造出来的时候，功能单一，只有踏板离合转向控制，其中离合器通过机械连接传递发动机的动力，而制动系统则通过简单的机械连接（比如开关）来控制制动动作。随着单片机的普及，车内功能越来越复杂，零部件越来越多，简单的机械控制已经满足不了车辆的运行，于是<code>CAN总线（Controller Area Network）</code>诞生了。</p>
+<h3 id="CAN总线"><a href="#CAN总线" class="headerlink" title="CAN总线"></a>CAN总线</h3><p>大量的<code>ECU（Electronic Control Unit）</code>被引入汽车，为了管理和协调这些ECU之间的通信，博世公司在1983年开发了控制器区域网络系统，也就是CAN总线。CAN的首次应用是在奔驰500E的车型上。下图为比较经典的CAN架构示例</p>
+<p><img src="/images/113/0Gx9bRQO5UGdoz020F6gYnhHvFBj4hPWNl9axsW9vow.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="CAN高低"><a href="#CAN高低" class="headerlink" title="CAN高低"></a>CAN高低</h4><p>车上的CAN总线通常为双绞线，两根线分别是高电平数据传输线和低电平数据传输线，也就是平常说的<code>CAN_H（CAN_High）</code>和<code>CAN_L（CAN_Low）</code>。</p>
+<p><img src="/images/113/4EvWWd7iqEAfLYk0m8ivPPbArr8p1kmKjfzpjKK1kwg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>两根线的主要原因是为了实现差分信号传输，增强抗干扰能力和提高数据传输的稳定性，总的来说，这个设计是为了在复杂的电磁环境中实现稳定、可靠的数据传输，确保汽车电子控制系统的高效运行。</p>
+<h5 id="TIPS"><a href="#TIPS" class="headerlink" title="TIPS"></a>TIPS</h5><p>有时候线束一大把却没有线束定义，可以参考口诀“<code>黄高绿低”</code>，即业内一般把黄线用作CAN高，绿线用作CAN低</p>
+<h4 id="CAN波特率"><a href="#CAN波特率" class="headerlink" title="CAN波特率"></a>CAN波特率</h4><p>为了确保车内零部件之间数据传输的同步性和可靠性，CAN总线使用波特率来表示速率。CAN协议支持不同的通信速率，以满足不同的应用需求，低速CAN的通信速率范围为<code>10~125kbps</code>；高速CAN的通信速率范围为<code>125kbps</code>到<code>1Mbps</code>（这里的高低指的总线传输速率，不是<code>CAN_H/CAN_L</code>，<code>CAN_H/CAN_L</code>指的是连接CAN接口用来做数据交换的两根数据传输线）</p>
+<p><img src="/images/113/CuHBffHPYTy7VFg3KMPi92IokxeCw0na26TtT2cDDIA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h4 id="CAN报文"><a href="#CAN报文" class="headerlink" title="CAN报文"></a>CAN报文</h4><h5 id="扩展帧和标准帧"><a href="#扩展帧和标准帧" class="headerlink" title="扩展帧和标准帧"></a>扩展帧和标准帧</h5><p>在总线中传送的报文，每帧由7部分组成。CAN协议支持两种报文格式：标准帧和扩展帧。标准格式的CANID为<code>11</code>位，扩展格式的CANID为<code>29</code>位，比如：</p>
+<p>标准帧：ID区间是<code>0x000-0x7FF</code>（换算成10进制就是0-2047），<code>7FF</code>转换为二进制就是<code>11111111111</code>（11位）</p>
+<p>扩展帧：ID区间是<code>0x000000-0x1FFFFFFF</code>（换算成10进制就是0-536870911），<code>1FFFFFFF</code>转换为二进制就是<code>1111111111111111111111111111111</code>（29位）</p>
+<h5 id="报文识别"><a href="#报文识别" class="headerlink" title="报文识别"></a>报文识别</h5><h6 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h6><p>在CAN总线中，标识符用于定义报文的优先级和寻址，标识符后带的就是数据字段，按照预先设计开发的功能进行请求响应。以扩展帧<code>18DBFFF1#0210030000000000</code>为例，在数据部分中，报文格式可以进一步细分：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">02：02 表示该帧的数据长度为 2 字节，意味着本次传输的数据实际只有 2 个字节，即1003。注意该帧需要随着请求的长度进行变化，要发送几个字节就是零几，比如发送10 03两个字节就是02 10 03，同理，发送27 02 11 22就是4个字节，用04 27 02 11 22；<br><br>1003：1003 是发送的数据内容，分为服务ID+参数。在UDS协议中，这是诊断服务的请求和参数。例如，10表示会话控制服务，03则是参数，表示具体的会话类型，1003即切换扩展模式；<br><br>0000000000：为了使数据字段达到CAN帧的标准8字节长度，填充部分设为00<br></code></pre></div></td></tr></table></figure>
+<h6 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h6><p>有请求就会有响应，CAN的响应分为<code>“肯定”</code>和<code>“否定”</code>响应，否定响应的格式组成为<code>数据长度帧+7F+具体响应码</code>。以扩展帧<code>18DBFFF1#0210030000000000</code>为例，请求后的<code>“肯定”</code>响应为<code>0250030000000000</code>，意思是设备已切换到扩展模式；<code>“否定”</code>响应为<code>037F101100000000</code>（数据长度会随着响应内容长度变化），意思是10这个服务没有做进去；再举个例子：<code>18DBFFF1#0227010000000000</code>，请求后的<code>“肯定”</code>响应为<code>0667011122334400</code>，意思是请求的种子是<code>111223344</code>，<code>“否定”</code>响应为<code>037F2711</code>，意思是27这个服务没有做进去。下图为相关<code>“否定”</code>响应码的解释</p>
+<p><img src="/images/113/V3-M5XJX69vUTe4CkQfnZ6RDY1Wo4Stcl5JK1GxgPvk.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>观察<code>“肯定”</code>的响应报文我们会发现，服务ID会比发送的多<code>40</code>，比如发送<code>27 01 </code>，响应则是<code>67 01</code> ，发送<code>1003</code>，响应则是<code>5003</code>，了解这个规则有利于查找对应的响应报文，判断设备功能和通信状态</p>
+<h6 id="TIPS-1"><a href="#TIPS-1" class="headerlink" title="TIPS"></a>TIPS</h6><p>以扩展帧的CAN通信为例，在不知道CANID的情况下，通常可以尝试先发送<code>18DBFFF1</code>确认通信地址，比如发送<code>18DBFFF1</code>，回复的是<code>18DAF1EE</code>，其中<code>18DB</code>回复对应的标识符<code>18DA</code>，回复的<code>EE</code>是通信ID，所以后续要跟<code>EE</code>进行通信，最终通信地址就是<code>18DAEEF1</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">18DAEEF1<span class="hljs-comment">#0210030000000000</span><br></code></pre></div></td></tr></table></figure>
+<h3 id="CAN通信"><a href="#CAN通信" class="headerlink" title="CAN通信"></a>CAN通信</h3><p>在大概了解CAN总线之后我们回归问题，车内零部件之间是怎么通过CAN通信的？</p>
+<p><img src="/images/113/0Gx9bRQO5UGdoz020F6gYnhHvFBj4hPWNl9axsW9vow.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>把整个架构看做是一个局域网，每个ECU当做一个节点，我们发现<code>GW（网关）</code>处于第一层。因为ECU处于不同CAN域以及协议不一致等原因，有些零部件需要通过GW来转发CAN报文。很多汽车中，通常还有一个<code>VCU（整车控制器）</code>也负责域内CAN转发。</p>
+<p>以打开雨刮器为例：司机在方向盘或中控屏操作雨刮器开关后，首先面板会发出一段指令，这里假设是<code>18DBFFF1#0000000000000000</code>，指令会通过GW或VCU转发给雨刮器（看下方TIPS解释），雨刮器再做出肯定响应回复，然后开始执行动作；再举个打转向灯的例子，操作转向灯面板后，会通过GW或VCU发送<code>18DBFFF1#0000000000000000</code>（假设）给转向灯，转向灯回复肯定响应然后做出动作，并把状态信息通过GW或VCU转发给仪表，最终在仪表显示转向灯正在闪烁</p>
+<h4 id="TIPS-2"><a href="#TIPS-2" class="headerlink" title="TIPS"></a>TIPS</h4><p>CAN的收发采用的是广播模式，不是单独给谁发送数据，也就是说，CAN总线上的消息是广播到所有节点的，节点会预先配置好要接收哪些ID的消息，只有当消息的ID符合节点配置的过滤器条件时，该节点才会处理这条消息。比如，假设有一个简单的CAN网络，包含三个节点<code>A、B</code>和<code>C</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">节点A配置为发送ID为0x100的消息。<br>节点B配置为接收ID为0x100的消息。<br>节点C配置为接收ID为0x200的消息。<br></code></pre></div></td></tr></table></figure>
+<p>在这种情况下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">当节点A发送ID为0x100的消息时，总线上的所有节点（包括节点B和节点C）都会接收到这条消息。<br><br>节点B会处理这条消息，因为它配置了接收ID为0x100的消息。<br><br>节点C不会处理这条消息，因为它配置了只接收ID为0x200的消息。<br></code></pre></div></td></tr></table></figure>
+<h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><p>万一冲突了怎么办呢？在CAN总线通信中，冲突（即多个节点同时尝试发送数据）是通过一种称为“非破坏性仲裁”的机制来解决的</p>
+<h5 id="非破坏性仲裁机制"><a href="#非破坏性仲裁机制" class="headerlink" title="非破坏性仲裁机制"></a>非破坏性仲裁机制</h5><p>1、发送开始：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">当一个节点开始发送消息时，它会首先发送一个起始位（Start of Frame, SOF），然后是标识符（ID）。<br></code></pre></div></td></tr></table></figure>
+<p>2、监听总线：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">在发送过程中，每个节点都会监听总线上的信号。如果一个节点检测到总线上的电平与其发送的电平不一致，这意味着另一个节点也在发送消息，并且该节点发送的标识符具有更高的优先级。<br></code></pre></div></td></tr></table></figure>
+<p>3、仲裁过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">仲裁基于标识符的值。标识符越小，优先级越高。如果两个节点同时发送消息，它们会在发送标识符的过程中进行仲裁。标识符是逐位发送的，当某个节点检测到其发送的位与总线上的位不一致时，它会立即停止发送并进入接收模式。<br></code></pre></div></td></tr></table></figure>
+<p>4、继续发送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">优先级高的节点（即标识符较小的节点）会继续发送其消息。优先级低的节点会放弃发送，并等待下一个机会重新发送。<br></code></pre></div></td></tr></table></figure>
+<p>上面整个仲裁过程是自动的，不需要人工干预，我们只要知道标识符越小，优先级越高就行</p>
+<h6 id="TIPS-3"><a href="#TIPS-3" class="headerlink" title="TIPS"></a>TIPS</h6><p>说到这里，我们已经能发现一些问题了：节点根据优先级处理消息，那么攻击者可以通过一直高频发送高优先级的报文来占用通信通道，造成通道拥堵，最后导致业务无法正常通信、服务不可用，这类操作也俗称<code>DOS（Denial Of Service）</code>攻击</p>
+<h3 id="外部接口"><a href="#外部接口" class="headerlink" title="外部接口"></a>外部接口</h3><p><code>OBD（On-Board Diagnostics）</code>接口，即车载自动诊断系统接口，如果把一辆车当做是一台电脑，OBD则可以看做是一个USB接口，该接口可以用来连接车辆进行内部通信。<code>乘用车（小轿车、9座以下小客车）</code>通常在主驾位方向盘下方有且只有一个OBD接口。当然，也可能还存在其他暴露的连接线可以直接连接</p>
+<p><img src="/images/113/x0LoKH-82c7cGYeRcx5bQeJuoSCa65T5h5ni-YWKNKM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><code>商用车（客车、货车）</code>则是不固定，一般位于方向盘下、副驾抽屉、副驾座椅底下等，如果是公交车，一般位于中控仪表下方。部分车可能还存在调试CAN接口，需要打开后盖查找</p>
+<p><img src="/images/113/blS541L3vryNKjfL_eyd2MSVPj0NKFIafumXFJ-tqi8.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="车载以太网通信"><a href="#车载以太网通信" class="headerlink" title="车载以太网通信"></a>车载以太网通信</h2><h3 id="车内"><a href="#车内" class="headerlink" title="车内"></a>车内</h3><p>车内以太网通信是一种在现代汽车中越来越受欢迎的技术，用于连接车辆内部的各种ECU和其他设备。与传统的车载网络（如CAN、LIN和MOST）相比，以太网提供了更高的带宽、更低的延迟以及更好的灵活性。车内以太网含有多种协议，下面以<code>DoIP</code>为例</p>
+<h4 id="DoIP"><a href="#DoIP" class="headerlink" title="DoIP"></a>DoIP</h4><p><code>DoIP（Diagnostics over IP）</code>是一种在以太网上进行车辆诊断的标准协议（基于TCP/IP协议栈）。其允许通过以太网接口进行车辆诊断和软件更新，具体的通信流程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">1、发现阶段：诊断设备发送广播请求，查询网络中的所有ECU。ECU响应请求，返回自己的逻辑地址和其他相关信息。<br><br>2、连接建立：诊断设备选择一个目标ECU，并与其建立TCP连接。通过TCP连接发送诊断请求和服务调用。<br><br>3、诊断通信：通过TCP连接进行诊断数据的交换，包括读取故障码、执行特定的诊断功能等。<br><br>4、断开连接：诊断完成后，关闭TCP连接。<br></code></pre></div></td></tr></table></figure>
+<h4 id="TIPS-4"><a href="#TIPS-4" class="headerlink" title="TIPS"></a>TIPS</h4><p>常见的还有HTTP、MQTT等等。。因为懒得打字整理的原因不一一解释了，负责的场景可能不一样，但是流程大体上差不多</p>
+<h3 id="车外"><a href="#车外" class="headerlink" title="车外"></a>车外</h3><p>与车内通信不同，车外通信有多种场景，考虑人机交互，此处分为车云通信及无线遥控</p>
+<h4 id="车云"><a href="#车云" class="headerlink" title="车云"></a>车云</h4><p>车云常见的有<code>HTTP、MQTT、FTP</code>协议，主要负责OTA升级、事件上报、远程控制等与云端交互的模块。涉及的场景一般在<code>车机（也称IVI，In-Vehicle Infotainment车载信息娱乐系统）</code>、APP</p>
+<h5 id="TIPS-5"><a href="#TIPS-5" class="headerlink" title="TIPS"></a>TIPS</h5><p>车机一般不能直接上网（除了连接热点），通常依赖于<code>TBOX（Telematics Box车载远程通信设备）</code>的4G/5G模块。平时APP控制车辆、OTA升级都是通过TBOX来接收和处理指令的</p>
+<h2 id="无线射频"><a href="#无线射频" class="headerlink" title="无线射频"></a>无线射频</h2><p>无线常见的技术有<code>RF</code>（传统的遥控钥匙（Remote Key Fob），用户按下钥匙上的按钮来解锁或锁定车辆）、<code>NFC</code>（Near Field Communication，如特斯拉卡片钥匙）、<code>蓝牙</code>（车机连接、无钥匙解锁车辆）等</p>
+<h3 id="TIPS-6"><a href="#TIPS-6" class="headerlink" title="TIPS"></a>TIPS</h3><p>之前说的车内通信，除了CAN、LIN之外，一些零部件间也会用到无线技术，如<code>TPMS胎压监测（Tire Pressure Monitoring System）</code>，大概流程就是类似每个轮胎内部或外部安装一个传感器，传感器测量轮胎的压力和温度，然后通过无线信号将这些数据发送到车辆的接收器</p>
+<h1 id="车的信息收集"><a href="#车的信息收集" class="headerlink" title="车的信息收集"></a>车的信息收集</h1><p>了解了车的内外通信后，我们就可以把资产划分为几部分来做信息收集，按难度等级来做进一步测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">1、需要接触车辆的<br>2、不需要接触车辆的<br></code></pre></div></td></tr></table></figure>
+<h2 id="需要接触车辆"><a href="#需要接触车辆" class="headerlink" title="需要接触车辆"></a>需要接触车辆</h2><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">OBD接口：CAN、OBD转以太等等；<br>IVI：热点、蓝牙、系统服务等等；<br>USB接口：ADB等等；<br>零部件（需要拆卸车辆）：芯片、调试接口等等；<br>其他<br></code></pre></div></td></tr></table></figure>
+<h2 id="不需要接触车辆："><a href="#不需要接触车辆：" class="headerlink" title="不需要接触车辆："></a>不需要接触车辆：</h2><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">云端：OTA平台、故障平台等等；<br>车控：APP、无线遥控等等；<br>其他<br></code></pre></div></td></tr></table></figure>
+<p>按照两种类型的资产划分，继续细分可以找出如下图所示的对应功能</p>
+<p><img src="/images/113/ox457pUsffFmqFHfF7CKTbjjd_XCJM-1wQ1HGR4ym-E.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>按照功能划分，可以梳理出如下图所示不同层面的协议栈</p>
+<p><img src="/images/113/xWQjrN0R0HYGx5oTHQymo5IFtw2vkFyJDgIu7SXCREg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h1 id="车的攻击面"><a href="#车的攻击面" class="headerlink" title="车的攻击面"></a>车的攻击面</h1><p>按照我们的测试目的，下一步就可以选出需要测试的资产。比如目的是为了拿到车辆权限，则可以划分出下图所示红框标出的几个不用拆车且容易攻击的功能资产</p>
+<p><img src="/images/113/Ixigtd_ik24MVhH_G_OCYT9QPDuigHdbG6hpErCanbo.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>WIFI：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">通过扫描WIFI IP来探测系统开了什么服务，比如SSH、Telnet、FTP或ADB等调试端口，通过这些暴露面做进一步攻击，如可以尝试未授权访问、口令爆破等手段获取Shell权限。<br></code></pre></div></td></tr></table></figure>
+<p>USB：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">有些USB接口只允许充电，不识别U盘，但有的USB接口不但识别U盘，还会自动执行U盘内的可执行脚本、执行特定名称或后缀的文件，所以可以对此行为发起文件名或后缀Fuzz尝试。除此之外，有的接口还可以直接连接到车内系统<br></code></pre></div></td></tr></table></figure>
+<p>APP：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">许多车控APP里都有通过VIN码、手机号绑定或分享钥匙的功能，可以尝试通过APP的文章评论或其他页面获取个人信息，然后利用越权来分享钥匙，或绑定VIN码，从而控制车辆。当然，通过其他漏洞拿下服务器再控车也没毛病，这里只是大概说一下<br></code></pre></div></td></tr></table></figure>
+<p>IVI：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">隐藏按钮 - 车机一般会有几个隐藏按钮，通过连续点击特定位置就可以打开有关调试工具或工程模式；<br>拨号暗码 - 除此之外，还可以通过拨号暗码（如*<span class="hljs-comment">#xxxx#）来打开某些调试工具或工程模式；联网功能 - WIFI热点功能可参考上述说过的尝试。如果可以上传工具，可以上传如Tcpdump来抓取车机流量，有时候会存在很多未授权的链接可以利用；</span><br>APP - 车机里的APP有许多是车企自研的，可以脱下来反编译查看有无可利用的点<br></code></pre></div></td></tr></table></figure>
+<p>OTA：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">固件篡改 - 可以在闲鱼或其他渠道获取特定车辆的固件然后进行篡改，把篡改的固件重新刷入车辆<br>固件降级 - 此方法适用于固件无法篡改时。类似WEB里的供应链攻击，在其他渠道获取固件后做分析，查看有可无利用的缺陷，有时候旧版本存在缺陷但是新版本没有，可以尝试刷入旧版本软件来利用<br></code></pre></div></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>还有一些要有复杂前提条件才能做测试的，比如需要拆卸车辆或需要得到某个东西的点：</p>
+<p><strong>调试接口</strong> - 黑盒测试不会有引脚定义，可以通过查询芯片上的丝印（一般在<code>datasheet</code>文档）来测量引脚，找到调试接口后，如果是JTAG，则可以连接读取芯片数据，UART则可以登录内部系统（如果遇到需要密码，可以尝试修改<code>bootargs</code>来绕过）</p>
+<p><img src="/images/113/UIOgqJAkwVWmSep9hcaFAdmiypyQeQQORCrkxFZNzQo.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><strong>固件提取</strong> - 没有调试接口时，可以尝试把芯片吹下来使用编程器提取固件；</p>
+<p><strong>射频钥匙</strong> - 拿到钥匙后可以尝试使用HackRF、bladeRF等来录制信号然后重放；</p>
+<p><strong>CAN</strong> - OBD接口（可能会存在OBD转以太）接入后可以测试UDS和重放等问题；</p>
+<p><strong>蓝牙</strong> - 利用一些开发版实现中继（如BLE Relay）和重放</p>
+<h3 id="横向"><a href="#横向" class="headerlink" title="横向"></a>横向</h3><p>前面说到IVI联网依赖于TBOX，所以一辆车里可能会存在多个网段，在拿到shell权限后可以尝试进行横向攻击（此时跟常规内网渗透无异，还需要考虑提权问题）</p>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>有时候电脑连接车机热点做横向渗透时会遇到网段隔离，可以利用反向思路通过让车机连接手机的热点来绕过隔离策略</p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>因为涉及保密，有些现实画面就不放出来了</p>
+<h3 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h3><p>拨号打开ADB，连接车机脱APK，在其中的一个APK中发现OBS硬编码，直接接管OBS，可以用来下发更新</p>
+<p><img src="/images/113/zbO7UVnyUJ4nH2dENu_XygM6Bnk5WbKXU6LCuv2JkIY.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>翻看系统日志，找到升级日志，从日志中找到OTA下载地址</p>
+<p><img src="/images/113/j-pPJtxCCfC4NWVUZbmLlAv9aLDyUQ89H5UfhDi3iow.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>固件包解包重挂载后可以获取车机文件系统</p>
+<p><img src="/images/113/RiG01KCCg8E9vBUma8A5KAHaC-Bi3ciItSN2MaNVC3Q.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h3><p>逆向分析车控APK Frida hook 实现车辆功能控制</p>
+<p><img src="/images/113/tE7Y7oKcRUb4W3XtS70xDaZqkl5NdYLSquVoyBx2gfs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/113/Ukb9zopQqojnJQoD-eBzqC_k51tEPGuZ-bLlcWOw-wY.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="案例三"><a href="#案例三" class="headerlink" title="案例三"></a>案例三</h3><p>APK硬编码MQTT，连接可以监听到OTA升级包和所有车辆位置信息</p>
+<p><img src="/images/113/UMo-rOoW1wIyyWwIKnt4r3RbO7Gli6wVS6xsQ2ElCs0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="案例四"><a href="#案例四" class="headerlink" title="案例四"></a>案例四</h3><p>因为保密关系，很多画面都是看到车或者零部件主板的，所以还有很多很好玩的东西（怎么解锁开车门控车什么的）就不一一分享了</p>
+<h1 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h1><p>列举车辆测试常用工具集合</p>
+<table>
+<thead>
+<tr>
+<th>工具名称</th>
+<th>是否开源</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IDA pro</td>
+<td>否</td>
+<td>二进制逆向分析</td>
+</tr>
+<tr>
+<td>Wireshark</td>
+<td>是</td>
+<td>流量抓包</td>
+</tr>
+<tr>
+<td>jadx-GUI</td>
+<td>是</td>
+<td>安卓逆向分析</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>是</td>
+<td>系统环境</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>是</td>
+<td>系统环境</td>
+</tr>
+<tr>
+<td>GDB</td>
+<td>是</td>
+<td>二进制调试</td>
+</tr>
+<tr>
+<td>GDBServer</td>
+<td>是</td>
+<td>二进制远程调试服务端</td>
+</tr>
+<tr>
+<td>URH</td>
+<td>是</td>
+<td>射频</td>
+</tr>
+<tr>
+<td>Tcpdump</td>
+<td>是</td>
+<td>流量抓包</td>
+</tr>
+<tr>
+<td>Burpsuite</td>
+<td>否</td>
+<td>流量抓包</td>
+</tr>
+<tr>
+<td>Nmap</td>
+<td>是</td>
+<td>端口扫描</td>
+</tr>
+<tr>
+<td>nc</td>
+<td>是</td>
+<td>端口监听</td>
+</tr>
+<tr>
+<td>adb</td>
+<td>是</td>
+<td>安卓debug</td>
+</tr>
+<tr>
+<td>can-utils</td>
+<td>是</td>
+<td>Can收发库</td>
+</tr>
+<tr>
+<td>Pcan</td>
+<td>否</td>
+<td>硬件工具-CAN收发器，可搭配pcanview、kali等</td>
+</tr>
+<tr>
+<td>USBCAN</td>
+<td>否</td>
+<td>硬件工具-CAN收发器，可以搭配ZCANPro</td>
+</tr>
+<tr>
+<td>CANoe</td>
+<td>否</td>
+<td>硬件工具-CAN收发器</td>
+</tr>
+<tr>
+<td>MQTTX</td>
+<td>是</td>
+<td>MQTT客户端</td>
+</tr>
+<tr>
+<td>Proxmark3</td>
+<td>是</td>
+<td>硬件工具-射频工具</td>
+</tr>
+<tr>
+<td>ZCANPro</td>
+<td>否</td>
+<td>Windows CAN工具</td>
+</tr>
+<tr>
+<td>Frida</td>
+<td>是</td>
+<td>hook</td>
+</tr>
+<tr>
+<td>binwalk</td>
+<td>是</td>
+<td>固件分析</td>
+</tr>
+<tr>
+<td>frp-client-server</td>
+<td>是</td>
+<td>内网穿透</td>
+</tr>
+<tr>
+<td>Logic</td>
+<td>是</td>
+<td>协议分析</td>
+</tr>
+<tr>
+<td>Firmadyne</td>
+<td>是</td>
+<td>固件分析</td>
+</tr>
+<tr>
+<td>Firmware Analysis Toolkit</td>
+<td>是</td>
+<td>固件分析</td>
+</tr>
+<tr>
+<td>Firmware Analysis Toolkit (FAT)</td>
+<td>是</td>
+<td>固件分析</td>
+</tr>
+<tr>
+<td>Firmware-Mod-Kit (FMK)</td>
+<td>是</td>
+<td>固件分析</td>
+</tr>
+<tr>
+<td>Jflash</td>
+<td>是</td>
+<td>jlink调试</td>
+</tr>
+</tbody></table>
+<p>这里只是列举了部分，实际还有很多，感兴趣的可以看下这个项目，刚转车联网安全的时候基于ubuntu弄的集成系统，各种环境工具都在里面了，开箱即用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">https://github.com/TianWen-Lab/TranSec<br></code></pre></div></td></tr></table></figure>
+<h1 id="Tips-1"><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h1><p>转车联网安全干到现在已经有1年了，给人感觉最主要的还是需要有通信协议和二进制知识。有的名词解释因为人懒用的GPT生成的，注意辨别。车内通信除了CAN还有很多协议就不全写了，感兴趣的可以根据提到的名词去搜。文章的图不全是自己的，有的是网上+项目报告或者同事的</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>也是一时兴起，写到后面感觉没啥兴趣写了，也有自己菜的一部分原因，不知道写啥了，等后面越来越牛逼了再补充吧。感谢天问实验室所有的同事给予的帮助。文中有不对的地方希望您可以想法设法联系到我然后帮忙指正。别骂，不好的评论我会删</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    声明：<br>   本文章用于学习交流，严禁用于非法操作，出现后果一切自行承担，阅读此文章表示你已同意本声明。<br> <br> Disclaimer: <br>   This article is for study and communication. It is strictly forbidden to use it for illegal operations. All consequences shall be borne by yourself. Reading this article means that you have agreed to this statement.
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/27/110/">
+                        <span class="hidden-mobile">Windows file-explorer#preview-pane-previewers DOS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="/img/aa.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;"><p></p> <p style="text-align:center"><span>扫一扫关注我们</span></p>
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     © 2018-<script type="text/javascript">document.write(new Date().getFullYear());</script> <span> <a href="#" target="_blank" rel="nofollow noopener"><font color="#2ca6cb">novy`s Blog</font>.</a> </span> Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span><font color="#2ca6cb">Hexo</font></span></a><p><script> function secondToDate(second) { if (!second) { return 0; } var time = new Array(0, 0, 0, 0, 0); if (second >= 365 * 24 * 3600) { time[0] = parseInt(second / (365 * 24 * 3600)); second %= 365 * 24 * 3600; } if (second >= 24 * 3600) { time[1] = parseInt(second / (24 * 3600)); second %= 24 * 3600; } if (second >= 3600) { time[2] = parseInt(second / 3600); second %= 3600; } if (second >= 60) { time[3] = parseInt(second / 60); second %= 60; } if (second > 0) { time[4] = second; } return time; }</script> <script type="text/javascript" language="javascript"> function setTime() { var create_time = Math.round(new Date(Date.UTC(2018, 11, 09, 6, 6, 6)).getTime() / 1000); var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000); currentTime = secondToDate((timestamp - create_time)); currentTimeHtml = currentTime[0] + "年" + currentTime[1] + "天" + currentTime[2] + "时" + currentTime[3] + "分" + currentTime[4] + "秒"; document.getElementById("htmer_time").innerHTML = currentTimeHtml; }    setInterval(setTime, 1000);</script> 本博客已经稳定运行：<span id="htmer_time" style="color: #2ca6cb;"></span> <br/> <script async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+你是第<font color="#2ca6cb"><span id="busuanzi_value_site_uv"></span></font>个小伙伴 </p> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a6c1581442f57290135c4581f8de49ff";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
