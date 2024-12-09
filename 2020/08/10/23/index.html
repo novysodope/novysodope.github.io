@@ -64,11 +64,11 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"novysodope.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6,h7,h8,h9","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"a6c1581442f57290135c4581f8de49ff","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"ZyJbAKYmfgJXZGNkDKKBRC0i-gzGzoHsz","app_key":"WXTmIgfHD2JkbhooWMtgYW3C","server_url":"https://zyjbakym.lc-cn-n1-shared.com","path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -228,9 +228,9 @@
   
     
 
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-page-views"></span> 次
       </span>
     
   
@@ -263,11 +263,12 @@
               <p>有时候waf会针对payload过滤onerror、alert等之类的关键字事件属性，或者把关键字事件替换成其他字符，单独的事件属性不会防护，这时候可以用换行来解决</p>
 <figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;img src=<span class="hljs-number">1</span> <br>onerror <br>=alert(<span class="hljs-number">1</span>)<br></code></pre></div></td></tr></table></figure>
 <p><img src="/images/23/1.png" srcset="/img/loading.gif" lazyload><br>如果只单独针对alert做防护的话就可以用拼接的方式来绕过：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;details open ontoggle=top[<span class="hljs-string">&#x27;al&#x27;</span>%<span class="hljs-number">2</span>B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=self[<span class="hljs-string">&#x27;al&#x27;</span>%<span class="hljs-number">2</span>B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=parent[<span class="hljs-string">&#x27;al&#x27;</span>%<span class="hljs-number">2</span>B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=frames[<span class="hljs-string">&#x27;al&#x27;</span>%<span class="hljs-number">2</span>B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=content[<span class="hljs-string">&#x27;al&#x27;</span>%<span class="hljs-number">2</span>B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=<span class="hljs-built_in">window</span>[<span class="hljs-string">&#x27;al&#x27;</span>%<span class="hljs-number">2</span>B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;details open ontoggle=top[<span class="hljs-string">&#x27;al&#x27;</span>%2B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=self[<span class="hljs-string">&#x27;al&#x27;</span>%2B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=parent[<span class="hljs-string">&#x27;al&#x27;</span>%2B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=frames[<span class="hljs-string">&#x27;al&#x27;</span>%2B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=content[<span class="hljs-string">&#x27;al&#x27;</span>%2B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br>&lt;details open ontoggle=<span class="hljs-built_in">window</span>[<span class="hljs-string">&#x27;al&#x27;</span>%2B<span class="hljs-string">&#x27;ert&#x27;</span>](<span class="hljs-number">1</span>) &gt;<br></code></pre></div></td></tr></table></figure>
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+
                 
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
@@ -287,6 +288,16 @@
                   </div>
                 
               </div>
+              <hr>
+              <script src="https://utteranc.es/client.js"
+        repo="novysodope/novysodope.github.io"
+        issue-term="title"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<hr>
               
                 <p class="note note-warning">
                   
@@ -319,6 +330,7 @@
                 </div>
               
             </div>
+
 
             
           </article>
@@ -446,8 +458,8 @@
 
 
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+  <script defer src="/js/leancloud.js" ></script>
 
 
 
