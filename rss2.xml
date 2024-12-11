@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>novy&#39;s Blog</title>
+    <link>http://novysodope.github.io/</link>
+    
+    <image>
+      <url>http://novysodope.github.io/icon.png</url>
+      <title>novy&#39;s Blog</title>
+      <link>http://novysodope.github.io/</link>
+    </image>
+    
+    <atom:link href="http://novysodope.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description></description>
+    <pubDate>Wed, 11 Dec 2024 03:31:58 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>博客新增评论功能</title>
+      <link>http://novysodope.github.io/2024/12/08/114/</link>
+      <guid>http://novysodope.github.io/2024/12/08/114/</guid>
+      <pubDate>Sat, 07 Dec 2024 18:13:21 GMT</pubDate>
+      
+      <description>新增评论功能</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%8D%9A%E5%AE%A2%E5%A4%A7%E4%BA%8B%E4%BB%B6/">博客大事件</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%A4%A7%E4%BA%8B%E4%BB%B6/">博客大事件</category>
+      
+      
+      <comments>http://novysodope.github.io/2024/12/08/114/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>车联网安全入门指南</title>
+      <link>http://novysodope.github.io/2024/11/08/113/</link>
+      <guid>http://novysodope.github.io/2024/11/08/113/</guid>
+      <pubDate>Thu, 07 Nov 2024 16:13:21 GMT</pubDate>
+      
+      <description>车联网学习笔记2</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <comments>http://novysodope.github.io/2024/11/08/113/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Windows file-explorer#preview-pane-previewers DOS</title>
+      <link>http://novysodope.github.io/2024/05/27/110/</link>
+      <guid>http://novysodope.github.io/2024/05/27/110/</guid>
+      <pubDate>Mon, 27 May 2024 07:13:21 GMT</pubDate>
+      
+      <description>windows资源管理器预览DOS</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</category>
+      
+      
+      <comments>http://novysodope.github.io/2024/05/27/110/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>A deserialization</title>
+      <link>http://novysodope.github.io/2024/01/24/111/</link>
+      <guid>http://novysodope.github.io/2024/01/24/111/</guid>
+      <pubDate>Tue, 23 Jan 2024 16:13:21 GMT</pubDate>
+      
+      <description>openjdk jmh的一个反序列化</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2024/01/24/111/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>车联网学习笔记1</title>
+      <link>http://novysodope.github.io/2023/12/18/104/</link>
+      <guid>http://novysodope.github.io/2023/12/18/104/</guid>
+      <pubDate>Mon, 18 Dec 2023 05:15:21 GMT</pubDate>
+      
+      <description>Can的请求和识别、UDS诊断、报文审计、ECU刷写等等</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/12/18/104/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>某平台Groovy任意代码执行思考</title>
+      <link>http://novysodope.github.io/2023/11/14/109/</link>
+      <guid>http://novysodope.github.io/2023/11/14/109/</guid>
+      <pubDate>Tue, 14 Nov 2023 05:13:21 GMT</pubDate>
+      
+      <description>审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/11/14/109/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>帆软反序列化黑名单绕过tips</title>
+      <link>http://novysodope.github.io/2023/09/18/103/</link>
+      <guid>http://novysodope.github.io/2023/09/18/103/</guid>
+      <pubDate>Mon, 18 Sep 2023 05:15:21 GMT</pubDate>
+      
+      <description>使用LdapAttribute绕过帆软黑名单</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/09/18/103/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>By pass security check: do not allow ../ in path</title>
+      <link>http://novysodope.github.io/2023/07/25/102/</link>
+      <guid>http://novysodope.github.io/2023/07/25/102/</guid>
+      <pubDate>Tue, 25 Jul 2023 05:15:21 GMT</pubDate>
+      
+      <description>Hexo任意文件读取修复绕过</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/07/25/102/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>JeePlus某版本JDBC反序列化</title>
+      <link>http://novysodope.github.io/2023/07/07/108/</link>
+      <guid>http://novysodope.github.io/2023/07/07/108/</guid>
+      <pubDate>Fri, 07 Jul 2023 05:35:21 GMT</pubDate>
+      
+      <description>审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/07/07/108/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>javaweb中的权限绕过</title>
+      <link>http://novysodope.github.io/2023/07/05/101/</link>
+      <guid>http://novysodope.github.io/2023/07/05/101/</guid>
+      <pubDate>Wed, 05 Jul 2023 05:15:21 GMT</pubDate>
+      
+      <description>权限绕过细分</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/07/05/101/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>代码审计快速入门2023修改版</title>
+      <link>http://novysodope.github.io/2023/07/03/112/</link>
+      <guid>http://novysodope.github.io/2023/07/03/112/</guid>
+      <pubDate>Sun, 02 Jul 2023 16:13:21 GMT</pubDate>
+      
+      <description>代码审计总结_代码审计快速入门2023修改版</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/07/03/112/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PowerJob Remote Command/Code Execution</title>
+      <link>http://novysodope.github.io/2023/07/02/100/</link>
+      <guid>http://novysodope.github.io/2023/07/02/100/</guid>
+      <pubDate>Sun, 02 Jul 2023 05:16:22 GMT</pubDate>
+      
+      <description>PowerJob全版本RCE审计</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/07/02/100/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>一个bsh任意代码执行</title>
+      <link>http://novysodope.github.io/2023/05/18/107/</link>
+      <guid>http://novysodope.github.io/2023/05/18/107/</guid>
+      <pubDate>Thu, 18 May 2023 05:15:21 GMT</pubDate>
+      
+      <description>任意代码执行审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/05/18/107/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Nevado JMS反序列化审计tips</title>
+      <link>http://novysodope.github.io/2023/04/01/95/</link>
+      <guid>http://novysodope.github.io/2023/04/01/95/</guid>
+      <pubDate>Sat, 01 Apr 2023 05:15:21 GMT</pubDate>
+      
+      <description>Nevado JMS 审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/04/01/95/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>两个审计记录</title>
+      <link>http://novysodope.github.io/2023/02/22/106/</link>
+      <guid>http://novysodope.github.io/2023/02/22/106/</guid>
+      <pubDate>Wed, 22 Feb 2023 05:15:21 GMT</pubDate>
+      
+      <description>JAX-RS接口 XXE及文件上传跟进笔记</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/02/22/106/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>2020代码审计总结（2022修改版_代码审计快速入门）</title>
+      <link>http://novysodope.github.io/2023/01/18/94/</link>
+      <guid>http://novysodope.github.io/2023/01/18/94/</guid>
+      <pubDate>Wed, 18 Jan 2023 05:15:21 GMT</pubDate>
+      
+      <description>代码审计思路、技巧</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2023/01/18/94/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>用友的一处jndi及sql注入审计</title>
+      <link>http://novysodope.github.io/2022/12/10/96/</link>
+      <guid>http://novysodope.github.io/2022/12/10/96/</guid>
+      <pubDate>Sat, 10 Dec 2022 05:15:21 GMT</pubDate>
+      
+      <description>审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/12/10/96/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>反序列化随手</title>
+      <link>http://novysodope.github.io/2022/12/09/97/</link>
+      <guid>http://novysodope.github.io/2022/12/09/97/</guid>
+      <pubDate>Fri, 09 Dec 2022 05:15:21 GMT</pubDate>
+      
+      <description>审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/12/09/97/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>iptables开启透明代理绕过APP代理检测</title>
+      <link>http://novysodope.github.io/2022/10/18/93/</link>
+      <guid>http://novysodope.github.io/2022/10/18/93/</guid>
+      <pubDate>Tue, 18 Oct 2022 05:15:21 GMT</pubDate>
+      
+      <description>app代理检测绕过技巧-2</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/10/18/93/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用面具zygisk绕过app环境检测</title>
+      <link>http://novysodope.github.io/2022/10/18/92/</link>
+      <guid>http://novysodope.github.io/2022/10/18/92/</guid>
+      <pubDate>Tue, 18 Oct 2022 04:15:21 GMT</pubDate>
+      
+      <description>app环境检测绕过技巧-1</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/10/18/92/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用面具LSPosed模块绕过代理检测</title>
+      <link>http://novysodope.github.io/2022/10/18/91/</link>
+      <guid>http://novysodope.github.io/2022/10/18/91/</guid>
+      <pubDate>Tue, 18 Oct 2022 03:15:21 GMT</pubDate>
+      
+      <description>app代理检测绕过技巧-1</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/10/18/91/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>windows查看程序运行参数</title>
+      <link>http://novysodope.github.io/2022/10/11/90/</link>
+      <guid>http://novysodope.github.io/2022/10/11/90/</guid>
+      <pubDate>Tue, 11 Oct 2022 06:15:21 GMT</pubDate>
+      
+      <description>目标环境异常下应急排查技巧</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%BA%94%E6%80%A5/">应急</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/10/11/90/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>windows无文件提取密码</title>
+      <link>http://novysodope.github.io/2022/09/11/89/</link>
+      <guid>http://novysodope.github.io/2022/09/11/89/</guid>
+      <pubDate>Sun, 11 Sep 2022 06:15:21 GMT</pubDate>
+      
+      <description>内网横向过程中提取密码碰撞的小技巧</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/09/11/89/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>java忽略ssl证书校验</title>
+      <link>http://novysodope.github.io/2022/07/07/87/</link>
+      <guid>http://novysodope.github.io/2022/07/07/87/</guid>
+      <pubDate>Thu, 07 Jul 2022 06:15:21 GMT</pubDate>
+      
+      <description>每次都是现写现用，直接记录吧累了，下次复制粘贴</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8/">工具利用</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8/">工具利用</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/07/07/87/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>base64编解码文件</title>
+      <link>http://novysodope.github.io/2022/07/06/86/</link>
+      <guid>http://novysodope.github.io/2022/07/06/86/</guid>
+      <pubDate>Wed, 06 Jul 2022 06:15:21 GMT</pubDate>
+      
+      <description>每次都是现写现用，直接记录吧累了，下次复制粘贴</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8/">工具利用</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8/">工具利用</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/07/06/86/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>记录一次应急响应</title>
+      <link>http://novysodope.github.io/2022/06/02/84/</link>
+      <guid>http://novysodope.github.io/2022/06/02/84/</guid>
+      <pubDate>Thu, 02 Jun 2022 06:14:21 GMT</pubDate>
+      
+      <description>挖矿事件应急响应</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/06/02/84/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>改造一个基于jrmp的AMF反序列化利用工具</title>
+      <link>http://novysodope.github.io/2022/06/01/85/</link>
+      <guid>http://novysodope.github.io/2022/06/01/85/</guid>
+      <pubDate>Wed, 01 Jun 2022 06:15:21 GMT</pubDate>
+      
+      <description>基于jrmp的AMF反序列化利用工具</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8/">工具利用</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%B7%A5%E5%85%B7%E5%88%A9%E7%94%A8/">工具利用</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/06/01/85/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>整合一个jsp webshell</title>
+      <link>http://novysodope.github.io/2022/06/01/83/</link>
+      <guid>http://novysodope.github.io/2022/06/01/83/</guid>
+      <pubDate>Wed, 01 Jun 2022 06:14:21 GMT</pubDate>
+      
+      <description>根据pmiaowu大佬的Java小trick之在懵逼中为Random跪下文章整合的jsp webshell</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/06/01/83/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>利用tomcat自动部署机制getshell</title>
+      <link>http://novysodope.github.io/2022/06/01/82/</link>
+      <guid>http://novysodope.github.io/2022/06/01/82/</guid>
+      <pubDate>Wed, 01 Jun 2022 02:14:21 GMT</pubDate>
+      
+      <description>一次实战中对蓝凌oa的代码执行的思考</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/06/01/82/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>tapestry反序列化 CVE-2021-27850分析</title>
+      <link>http://novysodope.github.io/2022/05/31/81/</link>
+      <guid>http://novysodope.github.io/2022/05/31/81/</guid>
+      <pubDate>Tue, 31 May 2022 02:14:21 GMT</pubDate>
+      
+      <description>tapestry反序列化</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">java代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/31/81/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>flex反序列化原理及利用链构造</title>
+      <link>http://novysodope.github.io/2022/05/30/105/</link>
+      <guid>http://novysodope.github.io/2022/05/30/105/</guid>
+      <pubDate>Mon, 30 May 2022 05:15:21 GMT</pubDate>
+      
+      <description>flex反序列化</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/30/105/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>luckyframeweb3.5 sql inject 3</title>
+      <link>http://novysodope.github.io/2022/05/11/80/</link>
+      <guid>http://novysodope.github.io/2022/05/11/80/</guid>
+      <pubDate>Wed, 11 May 2022 02:14:21 GMT</pubDate>
+      
+      <description>luckyframeweb sql inject</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">java代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/11/80/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>luckyframeweb3.5 sql inject 2</title>
+      <link>http://novysodope.github.io/2022/05/11/79/</link>
+      <guid>http://novysodope.github.io/2022/05/11/79/</guid>
+      <pubDate>Wed, 11 May 2022 01:15:21 GMT</pubDate>
+      
+      <description>luckyframeweb sql inject</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">java代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/11/79/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>luckyframeweb3.5 sql inject 1</title>
+      <link>http://novysodope.github.io/2022/05/11/78/</link>
+      <guid>http://novysodope.github.io/2022/05/11/78/</guid>
+      <pubDate>Wed, 11 May 2022 01:14:21 GMT</pubDate>
+      
+      <description>luckyframeweb sql inject</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">java代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/11/78/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Springboot devtools &lt;=2.6.4 rce</title>
+      <link>http://novysodope.github.io/2022/05/11/77/</link>
+      <guid>http://novysodope.github.io/2022/05/11/77/</guid>
+      <pubDate>Wed, 11 May 2022 00:14:21 GMT</pubDate>
+      
+      <description>Springboot devtools &lt;=2.6.4 rce</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">java代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/11/77/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>某报表微服务jdbc反序列化</title>
+      <link>http://novysodope.github.io/2022/05/09/98/</link>
+      <guid>http://novysodope.github.io/2022/05/09/98/</guid>
+      <pubDate>Mon, 09 May 2022 05:15:21 GMT</pubDate>
+      
+      <description>审计记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/05/09/98/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>s2-052</title>
+      <link>http://novysodope.github.io/2022/02/08/75/</link>
+      <guid>http://novysodope.github.io/2022/02/08/75/</guid>
+      <pubDate>Tue, 08 Feb 2022 00:14:21 GMT</pubDate>
+      
+      <description>不出网利用的小笔记</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/02/08/75/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>纠正一个漏洞</title>
+      <link>http://novysodope.github.io/2022/01/10/73/</link>
+      <guid>http://novysodope.github.io/2022/01/10/73/</guid>
+      <pubDate>Mon, 10 Jan 2022 05:14:21 GMT</pubDate>
+      
+      <description>惭愧，没仔细看的后果</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/01/10/73/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>细分一个漏洞</title>
+      <link>http://novysodope.github.io/2022/01/10/74/</link>
+      <guid>http://novysodope.github.io/2022/01/10/74/</guid>
+      <pubDate>Mon, 10 Jan 2022 05:14:21 GMT</pubDate>
+      
+      <description>细说之前的一个漏洞</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2022/01/10/74/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>O2OAgetshell前传</title>
+      <link>http://novysodope.github.io/2021/12/22/70/</link>
+      <guid>http://novysodope.github.io/2021/12/22/70/</guid>
+      <pubDate>Wed, 22 Dec 2021 05:14:21 GMT</pubDate>
+      
+      <description>之前懒得发，今天趁有点时间发一下</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/12/22/70/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>dtdparser1.21 SSRF</title>
+      <link>http://novysodope.github.io/2021/12/22/69/</link>
+      <guid>http://novysodope.github.io/2021/12/22/69/</guid>
+      <pubDate>Wed, 22 Dec 2021 02:14:21 GMT</pubDate>
+      
+      <description>(-∀-)</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/12/22/69/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>若依对sql注入的修复</title>
+      <link>http://novysodope.github.io/2021/12/21/68/</link>
+      <guid>http://novysodope.github.io/2021/12/21/68/</guid>
+      <pubDate>Tue, 21 Dec 2021 01:14:21 GMT</pubDate>
+      
+      <description>(-∀-)</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/12/21/68/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>o2oa 6.3.4后台getshell</title>
+      <link>http://novysodope.github.io/2021/11/30/67/</link>
+      <guid>http://novysodope.github.io/2021/11/30/67/</guid>
+      <pubDate>Tue, 30 Nov 2021 01:14:21 GMT</pubDate>
+      
+      <description>o2oa后台getshell</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%AE%9E%E6%88%98/">实战</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/11/30/67/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>o2oa的任意文件读取</title>
+      <link>http://novysodope.github.io/2021/11/01/65/</link>
+      <guid>http://novysodope.github.io/2021/11/01/65/</guid>
+      <pubDate>Mon, 01 Nov 2021 10:24:21 GMT</pubDate>
+      
+      <description>任意文件读取</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/JAVA/">JAVA</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">任意文件读取</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/11/01/65/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>wutkajox XXE</title>
+      <link>http://novysodope.github.io/2021/10/29/64/</link>
+      <guid>http://novysodope.github.io/2021/10/29/64/</guid>
+      <pubDate>Fri, 29 Oct 2021 10:24:21 GMT</pubDate>
+      
+      <description>A component found during a code audit at the customer site</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/JAVA/">JAVA</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/XXE/">XXE</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/10/29/64/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Log4j1.2.17 RCE</title>
+      <link>http://novysodope.github.io/2021/10/28/63/</link>
+      <guid>http://novysodope.github.io/2021/10/28/63/</guid>
+      <pubDate>Thu, 28 Oct 2021 10:24:21 GMT</pubDate>
+      
+      <description>not CVE-2019-17571 not CVE-2019-17571 not CVE-2019-17571</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/JAVA/">JAVA</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/JAVA%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">JAVA反序列化</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/10/28/63/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>模拟器里frida的简单学习</title>
+      <link>http://novysodope.github.io/2021/08/15/60/</link>
+      <guid>http://novysodope.github.io/2021/08/15/60/</guid>
+      <pubDate>Sun, 15 Aug 2021 01:14:21 GMT</pubDate>
+      
+      <description>frida hook学习</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%AE%89%E5%8D%93%E6%B5%8B%E8%AF%95/">安卓测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E5%AE%89%E5%8D%93%E6%B5%8B%E8%AF%95/">安卓测试</category>
+      
+      <category domain="http://novysodope.github.io/tags/frida/">frida</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/08/15/60/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>python3一些问题</title>
+      <link>http://novysodope.github.io/2021/06/09/59/</link>
+      <guid>http://novysodope.github.io/2021/06/09/59/</guid>
+      <pubDate>Wed, 09 Jun 2021 01:14:21 GMT</pubDate>
+      
+      <description>python3 cmd输出乱码解决及que库的问题</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/python/">python</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/python/">python</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/06/09/59/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>ysoserial URLDNS  gadget分析笔记</title>
+      <link>http://novysodope.github.io/2021/05/19/55/</link>
+      <guid>http://novysodope.github.io/2021/05/19/55/</guid>
+      <pubDate>Wed, 19 May 2021 09:14:21 GMT</pubDate>
+      
+      <description>gadget chain学习</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/ysoserial/">ysoserial</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/05/19/55/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>fastjson1.2.24反序列化jndi注入利用调试跟进</title>
+      <link>http://novysodope.github.io/2021/03/11/57/</link>
+      <guid>http://novysodope.github.io/2021/03/11/57/</guid>
+      <pubDate>Thu, 11 Mar 2021 02:14:21 GMT</pubDate>
+      
+      <description>jndi注入原理学习</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      <category domain="http://novysodope.github.io/tags/fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">fastjson反序列化</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/03/11/57/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>.getBean(&quot;&quot;) .callMethod(&quot;&quot;)的思路</title>
+      <link>http://novysodope.github.io/2021/01/12/47/</link>
+      <guid>http://novysodope.github.io/2021/01/12/47/</guid>
+      <pubDate>Tue, 12 Jan 2021 09:14:21 GMT</pubDate>
+      
+      <description>类跟方法的调用</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E5%AE%A1%E8%AE%A1/">java审计</category>
+      
+      <category domain="http://novysodope.github.io/tags/%E5%AE%A1%E8%AE%A1%E6%80%9D%E8%B7%AF/">审计思路</category>
+      
+      
+      <comments>http://novysodope.github.io/2021/01/12/47/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>java代码审计关键字讲解</title>
+      <link>http://novysodope.github.io/2020/12/24/46/</link>
+      <guid>http://novysodope.github.io/2020/12/24/46/</guid>
+      <pubDate>Thu, 24 Dec 2020 09:14:21 GMT</pubDate>
+      
+      <description>根据框架或路由定义自行去除斜杠</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E5%AE%A1%E8%AE%A1/">java审计</category>
+      
+      <category domain="http://novysodope.github.io/tags/%E5%AE%A1%E8%AE%A1%E6%80%9D%E8%B7%AF/">审计思路</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/24/46/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>2020年代码审计总结</title>
+      <link>http://novysodope.github.io/2020/12/24/45/</link>
+      <guid>http://novysodope.github.io/2020/12/24/45/</guid>
+      <pubDate>Thu, 24 Dec 2020 08:14:21 GMT</pubDate>
+      
+      <description>3月份学审计以来的心得总结</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/java%E5%AE%A1%E8%AE%A1/">java审计</category>
+      
+      <category domain="http://novysodope.github.io/tags/%E5%AE%A1%E8%AE%A1%E6%80%9D%E8%B7%AF/">审计思路</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/24/45/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>oasys SQL注入</title>
+      <link>http://novysodope.github.io/2020/12/15/44/</link>
+      <guid>http://novysodope.github.io/2020/12/15/44/</guid>
+      <pubDate>Tue, 15 Dec 2020 08:14:21 GMT</pubDate>
+      
+      <description>oasys漏洞</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</category>
+      
+      <category domain="http://novysodope.github.io/tags/oasys%E6%BC%8F%E6%B4%9E/">oasys漏洞</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/15/44/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>JFinalOA SQL注入</title>
+      <link>http://novysodope.github.io/2020/12/14/43/</link>
+      <guid>http://novysodope.github.io/2020/12/14/43/</guid>
+      <pubDate>Mon, 14 Dec 2020 08:14:21 GMT</pubDate>
+      
+      <description>Jfinal漏洞</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</category>
+      
+      <category domain="http://novysodope.github.io/tags/Jfinal%E6%BC%8F%E6%B4%9E/">Jfinal漏洞</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/14/43/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>某Struts框架平台sql注入记录</title>
+      <link>http://novysodope.github.io/2020/12/04/42/</link>
+      <guid>http://novysodope.github.io/2020/12/04/42/</guid>
+      <pubDate>Fri, 04 Dec 2020 08:14:21 GMT</pubDate>
+      
+      <description>漏洞记录</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">Java代码审计</category>
+      
+      <category domain="http://novysodope.github.io/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/04/42/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>jeecg boot快速开发平台2.4SQL注入</title>
+      <link>http://novysodope.github.io/2020/12/03/41/</link>
+      <guid>http://novysodope.github.io/2020/12/03/41/</guid>
+      <pubDate>Thu, 03 Dec 2020 08:14:21 GMT</pubDate>
+      
+      <description>jeecg漏洞</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">Java代码审计</category>
+      
+      <category domain="http://novysodope.github.io/tags/SQL%E6%B3%A8%E5%85%A5/">SQL注入</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/03/41/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MTV-漏洞复现/验证专用框架</title>
+      <link>http://novysodope.github.io/2020/12/02/38/</link>
+      <guid>http://novysodope.github.io/2020/12/02/38/</guid>
+      <pubDate>Wed, 02 Dec 2020 08:14:21 GMT</pubDate>
+      
+      <description>mytestvul-自己写的一个用来做漏洞复现/验证的小框架</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/Java/">Java</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/12/02/38/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>mblog4.0存储型XSS+权限绕过</title>
+      <link>http://novysodope.github.io/2020/11/20/36/</link>
+      <guid>http://novysodope.github.io/2020/11/20/36/</guid>
+      <pubDate>Fri, 20 Nov 2020 03:14:21 GMT</pubDate>
+      
+      <description>Mblog漏洞</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/shiro%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/">shiro权限绕过</category>
+      
+      <category domain="http://novysodope.github.io/tags/%E5%AD%98%E5%82%A8%E5%9E%8BXSS/">存储型XSS</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/11/20/36/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>手工提权-mssql启用cmdshell</title>
+      <link>http://novysodope.github.io/2020/10/28/32/</link>
+      <guid>http://novysodope.github.io/2020/10/28/32/</guid>
+      <pubDate>Wed, 28 Oct 2020 07:59:37 GMT</pubDate>
+      
+      <description>手工提权</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98/">渗透实战</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E6%8F%90%E6%9D%83/">提权</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/10/28/32/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>反序列化-在利用链里利用socket进行shell回显</title>
+      <link>http://novysodope.github.io/2020/10/20/33/</link>
+      <guid>http://novysodope.github.io/2020/10/20/33/</guid>
+      <pubDate>Tue, 20 Oct 2020 08:01:35 GMT</pubDate>
+      
+      <description>在利用链里利用socket进行shell回显</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/shell%E5%9B%9E%E6%98%BE/">shell回显</category>
+      
+      <category domain="http://novysodope.github.io/tags/JAVA%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">JAVA反序列化</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/10/20/33/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>burpsuite高亮插件</title>
+      <link>http://novysodope.github.io/2020/09/11/30/</link>
+      <guid>http://novysodope.github.io/2020/09/11/30/</guid>
+      <pubDate>Fri, 11 Sep 2020 07:48:16 GMT</pubDate>
+      
+      <description>burpsuite高亮插件,关键字高亮</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E6%8F%92%E4%BB%B6/">插件</category>
+      
+      
+      
+      <comments>http://novysodope.github.io/2020/09/11/30/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Cobalt Strike常用命令</title>
+      <link>http://novysodope.github.io/2020/09/10/20/</link>
+      <guid>http://novysodope.github.io/2020/09/10/20/</guid>
+      <pubDate>Thu, 10 Sep 2020 06:45:46 GMT</pubDate>
+      
+      <description>Cobalt Strike常用命令</description>
+      
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/tags/Cobalt-Strike/">Cobalt Strike</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/09/10/20/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>python批量解压</title>
+      <link>http://novysodope.github.io/2020/09/10/16/</link>
+      <guid>http://novysodope.github.io/2020/09/10/16/</guid>
+      <pubDate>Thu, 10 Sep 2020 05:49:03 GMT</pubDate>
+      
+      <description>python批量解压</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/python/">python</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/python%E5%B0%8F%E5%B7%A5%E5%85%B7/">python小工具</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/09/10/16/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>lambda表达式示例</title>
+      <link>http://novysodope.github.io/2020/08/20/28/</link>
+      <guid>http://novysodope.github.io/2020/08/20/28/</guid>
+      <pubDate>Thu, 20 Aug 2020 07:41:44 GMT</pubDate>
+      
+      <description>lambda表达式示例</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/JAVA/">JAVA</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/JAVA/">JAVA</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/08/20/28/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>C++后门免杀</title>
+      <link>http://novysodope.github.io/2020/08/18/9/</link>
+      <guid>http://novysodope.github.io/2020/08/18/9/</guid>
+      <pubDate>Tue, 18 Aug 2020 05:18:10 GMT</pubDate>
+      
+      <description>cobalt strike免杀</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%85%8D%E6%9D%80/">免杀</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/cobalt-strike%E5%90%8E%E9%97%A8/">cobalt strike后门</category>
+      
+      <category domain="http://novysodope.github.io/tags/%E5%85%8D%E6%9D%80/">免杀</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/08/18/9/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>python生成数字</title>
+      <link>http://novysodope.github.io/2020/08/10/25/</link>
+      <guid>http://novysodope.github.io/2020/08/10/25/</guid>
+      <pubDate>Mon, 10 Aug 2020 07:05:51 GMT</pubDate>
+      
+      <description>python生成字典</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/python/">python</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/python%E5%B0%8F%E5%B7%A5%E5%85%B7/">python小工具</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/08/10/25/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>xss bypass小记</title>
+      <link>http://novysodope.github.io/2020/08/10/23/</link>
+      <guid>http://novysodope.github.io/2020/08/10/23/</guid>
+      <pubDate>Mon, 10 Aug 2020 06:57:56 GMT</pubDate>
+      
+      <description>xss bypass</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/XSS%E7%BB%95%E8%BF%87/">XSS绕过</category>
+      
+      <category domain="http://novysodope.github.io/tags/OWASPTOP10%E6%BC%8F%E6%B4%9E/">OWASPTOP10漏洞</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/08/10/23/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>IDEA打包JAR包的两种方法</title>
+      <link>http://novysodope.github.io/2020/07/10/21/</link>
+      <guid>http://novysodope.github.io/2020/07/10/21/</guid>
+      <pubDate>Fri, 10 Jul 2020 06:48:18 GMT</pubDate>
+      
+      <description>java打包</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/JAVA/">JAVA</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/JAVA/">JAVA</category>
+      
+      <category domain="http://novysodope.github.io/tags/IDEA/">IDEA</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/07/10/21/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>cs免杀后门</title>
+      <link>http://novysodope.github.io/2020/07/10/8/</link>
+      <guid>http://novysodope.github.io/2020/07/10/8/</guid>
+      <pubDate>Fri, 10 Jul 2020 05:11:59 GMT</pubDate>
+      
+      <description>cobalt strike免杀</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%85%8D%E6%9D%80/">免杀</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/cobalt-strike%E5%90%8E%E9%97%A8/">cobalt strike后门</category>
+      
+      <category domain="http://novysodope.github.io/tags/%E5%85%8D%E6%9D%80/">免杀</category>
+      
+      
+      <comments>http://novysodope.github.io/2020/07/10/8/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>App测试从0到精通（四大组件之activity组件篇）</title>
+      <link>http://novysodope.github.io/2019/12/09/4/</link>
+      <guid>http://novysodope.github.io/2019/12/09/4/</guid>
+      <pubDate>Mon, 09 Dec 2019 09:56:45 GMT</pubDate>
+      
+      <description>app测试入门</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E5%AE%89%E5%8D%93%E6%B5%8B%E8%AF%95/">安卓测试</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/app%E6%B5%8B%E8%AF%95/">app测试</category>
+      
+      
+      <comments>http://novysodope.github.io/2019/12/09/4/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>python学习笔记day 2 -第一个扫描器</title>
+      <link>http://novysodope.github.io/2018/11/11/19/</link>
+      <guid>http://novysodope.github.io/2018/11/11/19/</guid>
+      <pubDate>Sun, 11 Nov 2018 05:55:56 GMT</pubDate>
+      
+      <description>python学习</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/python/">python</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/python/">python</category>
+      
+      
+      <comments>http://novysodope.github.io/2018/11/11/19/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>python学习笔记day 1</title>
+      <link>http://novysodope.github.io/2018/11/10/18/</link>
+      <guid>http://novysodope.github.io/2018/11/10/18/</guid>
+      <pubDate>Sat, 10 Nov 2018 05:55:56 GMT</pubDate>
+      
+      <description>python学习</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/python/">python</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/python/">python</category>
+      
+      
+      <comments>http://novysodope.github.io/2018/11/10/18/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

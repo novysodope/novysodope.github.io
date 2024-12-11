@@ -21,12 +21,12 @@
 <meta property="og:description" content="一次实战中对蓝凌oa的代码执行的思考">
 <meta property="og:locale">
 <meta property="og:image" content="http://novysodope.github.io/images/82/s2TtkoMTN_br_bkBZD1faEBKjxzYpWhliNWhVzu7n98.png">
-<meta property="og:image" content="http://novysodope.github.io/images/82/-RgrHDHKAPK-cxLprxF-SxdU5bTBN3Qpip4M49y_dwM.png">
+<meta property="og:image" content="http://novysodope.github.io/images/82/RgrHDHKAPK-cxLprxF-SxdU5bTBN3Qpip4M49y_dwM.png">
 <meta property="og:image" content="http://novysodope.github.io/images/82/aIcZ9gfx0HiM0smmSM1dQCtC1LOusM4FwbhdyIDWkHo.png">
 <meta property="og:image" content="http://novysodope.github.io/images/82/5MNzR55tOuuMUT-5KtKJEnPA3PbN6renm_uwDiRrXDg.png">
 <meta property="og:image" content="http://novysodope.github.io/images/82/2GZtMuY6DFjy8jvP659rrKH3OgRKjRTN1ziFcWh1Mk0.png">
 <meta property="article:published_time" content="2022-06-01T02:14:21.000Z">
-<meta property="article:modified_time" content="2024-09-22T10:18:30.265Z">
+<meta property="article:modified_time" content="2024-12-11T03:44:29.082Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary_large_image">
@@ -71,7 +71,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/rss2.xml" title="novy's Blog" type="application/rss+xml">
+</head>
 
 
 <body>
@@ -160,6 +161,18 @@
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友情链接
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss2.xml">
+                <i class="iconfont icon-rss-fill"></i>
+                RSS
               </a>
             </li>
           
@@ -270,7 +283,7 @@
 <h1 id="demo演示："><a href="#demo演示：" class="headerlink" title="demo演示："></a>demo演示：</h1><p>因为poc是将二进制数据写入到文件里，而war包正好是二进制数据，可以利用写进war包来绕过标签的限制达到获取权限的目的</p>
 <p>准备好一个恶意war包，并将war包编码成base64<br><code>cat exploit.war | base64 &gt; 1.txt</code></p>
 <p>发送请求将数据写入到war中</p>
-<p><img src="/images/82/-RgrHDHKAPK-cxLprxF-SxdU5bTBN3Qpip4M49y_dwM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/82/RgrHDHKAPK-cxLprxF-SxdU5bTBN3Qpip4M49y_dwM.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>其中str参数是war包的base64编码</p>
 <p>tomcat扫描到目录下的状态变化，开始更新，aaaa.war被释放</p>
 <p><img src="/images/82/aIcZ9gfx0HiM0smmSM1dQCtC1LOusM4FwbhdyIDWkHo.png" srcset="/img/loading.gif" lazyload alt="image"></p>
