@@ -15,8 +15,29 @@
     <atom:link href="http://novysodope.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 11 Dec 2024 03:31:58 GMT</pubDate>
+    <pubDate>Wed, 15 Jan 2025 08:16:05 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Intel HEX转ASCII</title>
+      <link>http://novysodope.github.io/2025/01/15/115/</link>
+      <guid>http://novysodope.github.io/2025/01/15/115/</guid>
+      <pubDate>Tue, 14 Jan 2025 18:13:21 GMT</pubDate>
+      
+      <description>Intel HEX转ASCII</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <comments>http://novysodope.github.io/2025/01/15/115/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>博客新增评论功能</title>

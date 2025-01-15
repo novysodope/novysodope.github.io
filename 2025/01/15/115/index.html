@@ -13,22 +13,23 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="新增评论功能">
+  <meta name="description" content="Intel HEX转ASCII">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客新增评论功能">
-<meta property="og:url" content="http://novysodope.github.io/2024/12/08/114/index.html">
+<meta property="og:title" content="Intel HEX转ASCII">
+<meta property="og:url" content="http://novysodope.github.io/2025/01/15/115/index.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="新增评论功能">
+<meta property="og:description" content="Intel HEX转ASCII">
 <meta property="og:locale">
-<meta property="og:image" content="http://novysodope.github.io/images/114/111.png">
-<meta property="article:published_time" content="2024-12-07T18:13:21.000Z">
-<meta property="article:modified_time" content="2024-12-11T03:31:58.420Z">
+<meta property="og:image" content="http://novysodope.github.io/images/115/2.png">
+<meta property="og:image" content="http://novysodope.github.io/images/115/1.png">
+<meta property="article:published_time" content="2025-01-14T18:13:21.000Z">
+<meta property="article:modified_time" content="2025-01-15T08:16:05.903Z">
 <meta property="article:author" content="novy">
-<meta property="article:tag" content="博客大事件">
+<meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://novysodope.github.io/images/114/111.png">
+<meta name="twitter:image" content="http://novysodope.github.io/images/115/2.png">
   
-  <title>博客新增评论功能 - novy&#39;s Blog</title>
+  <title>Intel HEX转ASCII - novy&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -197,7 +198,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="博客新增评论功能">
+            <span class="h2" id="subtitle" title="Intel HEX转ASCII">
               
             </span>
 
@@ -212,8 +213,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-12-08 02:13" pubdate>
-        December 8, 2024 am
+      <time datetime="2025-01-15 02:13" pubdate>
+        January 15, 2025 am
       </time>
     </span>
   
@@ -223,7 +224,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      82 字
+      1.6k 字
     </span>
   
 
@@ -232,7 +233,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      5 分钟
     </span>
   
 
@@ -269,11 +270,17 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">博客新增评论功能</h1>
+            <h1 style="display: none">Intel HEX转ASCII</h1>
             
             <div class="markdown-body">
-              <p>考虑了很久还是决定加一个评论功能，为了防止被骂所以用了utterances，评论需要先登录，这样谁骂我我就能看得一清二楚，而且恶评还可以删<br><img src="/images/114/111.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<p>另外加了个RSS和文章封面</p>
+              <p>有时候做刷写篡改，有的固件包无法用hexview工具篡改</p>
+<p><img src="/images/115/2.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>于是根据Intel HEX的原理（<a target="_blank" rel="noopener" href="https://blog.csdn.net/qfmzhu/article/details/129817980%EF%BC%89">https://blog.csdn.net/qfmzhu/article/details/129817980）</a> 写了个方便看明文的小脚本</p>
+<p>为了方便知道篡改哪里，顺便输出明文对应的hex位置</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_hex_and_map_to_plaintext</span>(<span class="hljs-params">file_path, output_path</span>):</span><br>    positions_and_data = []<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&#x27;r&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        <span class="hljs-keyword">for</span> line_num, line <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(file):<br>            <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">            记录类型：2 个十六进制字符，表示记录的类型:</span><br><span class="hljs-string">            00：数据记录</span><br><span class="hljs-string">            01：文件结束记录</span><br><span class="hljs-string">            02：扩展段地址记录</span><br><span class="hljs-string">            04：扩展线性地址记录</span><br><span class="hljs-string">            &#x27;&#x27;&#x27;</span><br>            <span class="hljs-keyword">if</span> line.startswith(<span class="hljs-string">&quot;:&quot;</span>):<br>                record_type = line[<span class="hljs-number">7</span>:<span class="hljs-number">9</span>]<br>                <span class="hljs-keyword">if</span> record_type == <span class="hljs-string">&quot;00&quot;</span>:<br>                    data_length = <span class="hljs-built_in">int</span>(line[<span class="hljs-number">1</span>:<span class="hljs-number">3</span>], <span class="hljs-number">16</span>)<br>                    data_start_index = <span class="hljs-number">9</span><br>                    data_end_index = data_start_index + data_length * <span class="hljs-number">2</span><br>                    data_hex = line[data_start_index:data_end_index]<br><br>                    ascii_text = <span class="hljs-string">&quot;&quot;</span><br>                    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(data_hex), <span class="hljs-number">2</span>):<br>                        hex_byte = data_hex[i:i+<span class="hljs-number">2</span>]<br>                        <span class="hljs-keyword">try</span>:<br>                            char = <span class="hljs-built_in">chr</span>(<span class="hljs-built_in">int</span>(hex_byte, <span class="hljs-number">16</span>))<br>                            ascii_text += char <span class="hljs-keyword">if</span> <span class="hljs-number">32</span> &lt;= <span class="hljs-built_in">ord</span>(char) &lt;= <span class="hljs-number">126</span> <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;.&#x27;</span><br>                        <span class="hljs-keyword">except</span> ValueError:<br>                            <span class="hljs-keyword">continue</span><br><br>                    positions_and_data.append(&#123;<br>                        <span class="hljs-string">&quot;line_num&quot;</span>: line_num + <span class="hljs-number">1</span>,<br>                        <span class="hljs-string">&quot;data_start&quot;</span>: data_start_index,<br>                        <span class="hljs-string">&quot;data_end&quot;</span>: data_end_index,<br>                        <span class="hljs-string">&quot;ascii_text&quot;</span>: ascii_text,<br>                        <span class="hljs-string">&quot;original_hex&quot;</span>: data_hex<br>                    &#125;)<br><br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(output_path, <span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> output_file:<br>        <span class="hljs-keyword">for</span> entry <span class="hljs-keyword">in</span> positions_and_data:<br>            output_file.write(<span class="hljs-string">f&quot;Line: <span class="hljs-subst">&#123;entry[<span class="hljs-string">&#x27;line_num&#x27;</span>]&#125;</span>, Start: <span class="hljs-subst">&#123;entry[<span class="hljs-string">&#x27;data_start&#x27;</span>]&#125;</span>, End: <span class="hljs-subst">&#123;entry[<span class="hljs-string">&#x27;data_end&#x27;</span>]&#125;</span>, Text: <span class="hljs-subst">&#123;entry[<span class="hljs-string">&#x27;ascii_text&#x27;</span>]&#125;</span>, Original HEX: <span class="hljs-subst">&#123;entry[<span class="hljs-string">&#x27;original_hex&#x27;</span>]&#125;</span>\n&quot;</span>)<br><br>file_path = <span class="hljs-string">&#x27;需要转换的hex文件&#x27;</span><br>output_path = <span class="hljs-string">&#x27;result.txt&#x27;</span><br><br>parse_hex_and_map_to_plaintext(file_path, output_path)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;output_path&#125;</span>&quot;</span>)<br><br></code></pre></div></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="/images/115/1.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 
             </div>
             <hr>
@@ -284,7 +291,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%8D%9A%E5%AE%A2%E5%A4%A7%E4%BA%8B%E4%BB%B6/">博客大事件</a>
+                      <a class="hover-with-bg" href="/categories/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</a>
                     
                   </div>
                 
@@ -292,7 +299,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8D%9A%E5%AE%A2%E5%A4%A7%E4%BA%8B%E4%BB%B6/">博客大事件</a>
+                      <a class="hover-with-bg" href="/tags/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</a>
                     
                   </div>
                 
@@ -319,18 +326,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/15/115/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Intel HEX转ASCII</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/08/113/">
-                        <span class="hidden-mobile">车联网安全入门指南</span>
+                      <a href="/2024/12/08/114/">
+                        <span class="hidden-mobile">博客新增评论功能</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
