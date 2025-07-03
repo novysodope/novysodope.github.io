@@ -4,31 +4,6 @@
   
   
   <entry>
-    <title>测试</title>
-    <link href="/2025/06/15/test/"/>
-    <url>/2025/06/15/test/</url>
-    
-    <content type="html"><![CDATA[<p>测试<br><a href="https://www.lovei.org/">读文件</a><br><a href="file:///sdcard">file本地</a></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>车联网</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>车联网</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Intel HEX转ASCII</title>
     <link href="/2025/01/15/115/"/>
     <url>/2025/01/15/115/</url>
@@ -133,7 +108,7 @@
     <link href="/2024/05/27/110/"/>
     <url>/2024/05/27/110/</url>
     
-    <content type="html"><![CDATA[<h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h1><p>One day. when I was using file-explorer#preview-pane-previewers’s feature.I found it would parse some HTML code. There fore, I discovered a denia of ervice vulnerability, after the vulnerability is triggered,all text editors (including any IDE code editors) will not function properly. Here is my environment and verification steps.</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">System environment: Windows 11 23H2(Professional/Home Edition)<br>Operating system version:  22631.3593<br></code></pre></div></td></tr></table></figure><p>Prepare the POC file in advance: create a new HTML file, enter payload in the file: </p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;LINK REL=<span class="hljs-string">&quot;stylesheet&quot;</span> HREF=<span class="hljs-string">&quot;javascript:&quot;</span>&gt;<br></code></pre></div></td></tr></table></figure><p>and in the Explorer,enable the preview. Then select the POC file，the preview pane will parse the HTML, at this point, the resource manager will experience a 1-2 second stuck. </p><p>Finally, we use Nodepad (or other editors) to open the POC file and input any character at will,for example: <code>aaa</code>, after entering any character, the file content is as follows:</p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;LINK REL=<span class="hljs-string">&quot;stylesheet&quot;</span> HREF=<span class="hljs-string">&quot;javascript:&quot;</span>&gt;aaa<br></code></pre></div></td></tr></table></figure><p>The time to trigger the vulnerability is coming! At this point, when we save the file, we will find that the text editor crashes, at this time, no text editor can be used normally, Unless the process ends in Task Manager, the lag will last for 10 minutes. After the editor returns to normal, you will find that the newly written content has not been saved.</p><p>By the way, if the initial content is <code>&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;javascript:&quot;&gt;aaa</code>, theoretically the <code>aaa</code> character will appear in the preview, but the <code>aaa</code> character will not be displayed in the preview, which is not in line with science. After experiments, I found that it seems to be a denial of service caused by improper handling of the <code>HREF</code> attribute of <code>LINK</code> tag,the key trigger character is <code>javascript:</code>.</p><p><strong>In addition to all editors (including IDE code editors, etc.) from running properly,after the vulnerability is triggered, renaming the POC file in the folder will also cause the resource manager to stop running, and cannot delete POC files.</strong></p><h1 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h1><p>Actually, this issue was first discovered on ‘everything’, and later it was discovered that ‘everything’ was using Windows Explorer.</p><p><strong>This issue may will create other vulnerabilities as well.</strong></p><h1 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h1><ul><li>May 27, 2024: Report the issue to MSRC.</li><li>May 29, 2024: MSRC begins to deal with the issue.</li><li>June 1, 2024: MSRC assesses the risk level as low risk and shares this report with the team responsible for maintaining the product or service.</li></ul><h1 id="VIDEO"><a href="#VIDEO" class="headerlink" title="VIDEO"></a>VIDEO</h1><iframe      width="100%"      height="450"      src="https://www.youtube.com/embed/Vc4c6QCrZa8"      scrolling="no"      border="0"      frameborder="no"      framespacing="0"      allowfullscreen="true"> </iframe> ]]></content>
+    <content type="html"><![CDATA[<h1 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h1><p>One day. when I was using file-explorer#preview-pane-previewers’s feature.I found it would parse some HTML code. There fore, I discovered a denia of service vulnerability, after the vulnerability is triggered,all text editors (including any IDE code editors) will not function properly. Here is my environment and verification steps.</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">System environment: Windows 11 23H2(Professional/Home Edition)<br>Operating system version:  22631.3593<br></code></pre></div></td></tr></table></figure><p>Prepare the POC file in advance: create a new HTML file, enter payload in the file: </p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;LINK REL=<span class="hljs-string">&quot;stylesheet&quot;</span> HREF=<span class="hljs-string">&quot;javascript:&quot;</span>&gt;<br></code></pre></div></td></tr></table></figure><p>and in the Explorer,enable the preview. Then select the POC file，the preview pane will parse the HTML, at this point, the resource manager will experience a 1-2 second stuck. </p><p>Finally, we use Nodepad (or other editors) to open the POC file and input any character at will,for example: <code>aaa</code>, after entering any character, the file content is as follows:</p><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript">&lt;LINK REL=<span class="hljs-string">&quot;stylesheet&quot;</span> HREF=<span class="hljs-string">&quot;javascript:&quot;</span>&gt;aaa<br></code></pre></div></td></tr></table></figure><p>The time to trigger the vulnerability is coming! At this point, when we save the file, we will find that the text editor crashes, at this time, no text editor can be used normally, Unless the process ends in Task Manager, the lag will last for 10 minutes. After the editor returns to normal, you will find that the newly written content has not been saved.</p><p>By the way, if the initial content is <code>&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;javascript:&quot;&gt;aaa</code>, theoretically the <code>aaa</code> character will appear in the preview, but the <code>aaa</code> character will not be displayed in the preview, which is not in line with science. After experiments, I found that it seems to be a denial of service caused by improper handling of the <code>HREF</code> attribute of <code>LINK</code> tag,the key trigger character is <code>javascript:</code>.</p><p><strong>In addition to all editors (including IDE code editors, etc.) from running properly,after the vulnerability is triggered, renaming the POC file in the folder will also cause the resource manager to stop running, and cannot delete POC files.</strong></p><h1 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h1><p>Actually, this issue was first discovered on ‘everything’, and later it was discovered that ‘everything’ was using Windows Explorer.</p><p><strong>This issue may will create other vulnerabilities as well.</strong></p><h1 id="Timeline"><a href="#Timeline" class="headerlink" title="Timeline"></a>Timeline</h1><ul><li>May 27, 2024: Report the issue to MSRC.</li><li>May 29, 2024: MSRC begins to deal with the issue.</li><li>June 1, 2024: MSRC assesses the risk level as low risk and shares this report with the team responsible for maintaining the product or service.</li></ul><h1 id="VIDEO"><a href="#VIDEO" class="headerlink" title="VIDEO"></a>VIDEO</h1><iframe      width="100%"      height="450"      src="https://www.youtube.com/embed/Vc4c6QCrZa8"      scrolling="no"      border="0"      frameborder="no"      framespacing="0"      allowfullscreen="true"> </iframe> ]]></content>
     
     
     <categories>
@@ -1004,11 +979,11 @@
   
   
   <entry>
-    <title>纠正一个漏洞</title>
-    <link href="/2022/01/10/73/"/>
-    <url>/2022/01/10/73/</url>
+    <title>细分一个漏洞</title>
+    <link href="/2022/01/10/74/"/>
+    <url>/2022/01/10/74/</url>
     
-    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
+    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
     
     
     <categories>
@@ -1029,11 +1004,11 @@
   
   
   <entry>
-    <title>细分一个漏洞</title>
-    <link href="/2022/01/10/74/"/>
-    <url>/2022/01/10/74/</url>
+    <title>纠正一个漏洞</title>
+    <link href="/2022/01/10/73/"/>
+    <url>/2022/01/10/73/</url>
     
-    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
+    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
     
     
     <categories>
