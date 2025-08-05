@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/77/bgYqKL3tfBjT_HByg0cIztEVDkn7syhXW4U8JR9Fv3g.png">
 <meta property="og:image" content="http://novysodope.github.io/images/77/S6b_3ebuYEa2Vs5PpauA1Q21JzRaM1gHxvw4KP768tA.png">
 <meta property="article:published_time" content="2022-05-11T00:14:21.000Z">
-<meta property="article:modified_time" content="2024-12-11T03:46:07.715Z">
+<meta property="article:modified_time" content="2025-08-05T03:32:49.231Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="java代码审计">
 <meta name="twitter:card" content="summary_large_image">
@@ -358,7 +358,7 @@
 <figure class="highlight plain"><figcaption><span>Text</span></figcaption><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Plain"> &lt;plugin&gt;<br>                &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;<br>                &lt;artifactId&gt;spring-boot-maven-plugin&lt;&#x2F;artifactId&gt;<br>                &lt;configuration&gt;<br>&lt;!-- Set to include devtools when packaging the project. If set to true, devtools -- &gt; will not be enabled after packaging the project--&gt;<br>                    &lt;excludeDevtools&gt;false&lt;&#x2F;excludeDevtools&gt;<br>                &lt;&#x2F;configuration&gt;<br>            &lt;&#x2F;plugin&gt;<br><br></code></pre></div></td></tr></table></figure>
 <p>There will be a prompt after the project is started</p>
 <p><img src="/images/77/bgYqKL3tfBjT_HByg0cIztEVDkn7syhXW4U8JR9Fv3g.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<p>Python writes a PoC to send data (Java or burp will prompt “invalid stream header” if it is sent directly. I don’t know why).</p>
+<p>use python writes a PoC to send data</p>
 <p>Send the serialized malicious data to the target to trigger:</p>
 <p><img src="/images/77/S6b_3ebuYEa2Vs5PpauA1Q21JzRaM1gHxvw4KP768tA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>I found the vulnerability and contacted the spring, but the spring thought they explained the problem in the document, and suggested that the developer change <code>&lt;excludedevtools&gt; false &lt;/excludedevtools&gt;</code> to <code>true</code> before releasing the formal environment, so that the production environment will not enable devtools, so it is not a vulnerability.</p>
