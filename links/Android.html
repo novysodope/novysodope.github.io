@@ -13,15 +13,15 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="原生设置页面跳转     点击跳转系统设置常见 Activity：             📶 Wi-Fi 设置     🔵 蓝牙设置     📍 位置信息设置     ✈️ 飞行模式设置     📶 移动数据设置     📄 关于手机     📱 应用管理     🔔 通知设置     💾 存储设置     🧩 辅助功能     💻 开发者选项     🌐">
+  <meta name="description" content="系统设置快捷入口           :root {       --primary-color: #4361ee;       --secondary-color: #3f37c9;       --text-color: #2b2d42;       --bg-color: #f8f9fa;       --card-bg: #ffffff;       --shado">
 <meta property="og:type" content="website">
 <meta property="og:title" content="page.title">
 <meta property="og:url" content="http://novysodope.github.io/links/Android.html">
 <meta property="og:site_name" content="novy&#39;s Blog">
-<meta property="og:description" content="原生设置页面跳转     点击跳转系统设置常见 Activity：             📶 Wi-Fi 设置     🔵 蓝牙设置     📍 位置信息设置     ✈️ 飞行模式设置     📶 移动数据设置     📄 关于手机     📱 应用管理     🔔 通知设置     💾 存储设置     🧩 辅助功能     💻 开发者选项     🌐">
+<meta property="og:description" content="系统设置快捷入口           :root {       --primary-color: #4361ee;       --secondary-color: #3f37c9;       --text-color: #2b2d42;       --bg-color: #f8f9fa;       --card-bg: #ffffff;       --shado">
 <meta property="og:locale">
-<meta property="article:published_time" content="2025-07-23T04:02:53.913Z">
-<meta property="article:modified_time" content="2025-07-23T04:02:53.913Z">
+<meta property="article:published_time" content="2025-08-05T02:14:49.441Z">
+<meta property="article:modified_time" content="2025-08-05T02:14:49.441Z">
 <meta property="article:author" content="novy">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -233,33 +233,632 @@
 <article class="page-content">
   
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>原生设置页面跳转</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>系统设置快捷入口</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --text-color: #2b2d42;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
+    }
+    
+    [data-theme="dark"] {
+      --primary-color: #4895ef;
+      --secondary-color: #4361ee;
+      --text-color: #f8f9fa;
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: var(--text-color);
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    
+    .category {
+      margin-bottom: 30px;
+    }
+    
+    .category-title {
+      display: flex;
+      align-items: center;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    
+    .category-title i {
+      margin-right: 10px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+    
+    .card i {
+      font-size: 1.2rem;
+      margin-right: 12px;
+      width: 24px;
+      text-align: center;
+      color: var(--primary-color);
+    }
+    
+    .card .badge {
+      margin-left: auto;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+    
+    .note {
+      background-color: rgba(67, 97, 238, 0.1);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      margin-top: 30px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
+<script>
+let engineerCode = "4636";
+
+function validateCode(input) {
+  return input.replace(/[^0-9]/g, '');
+}
+
+function openEngineerMode() {
+  const userCode = prompt("请输入工程模式代码（默认：4636）", engineerCode);
+  
+  if (userCode !== null) {
+    const cleanCode = validateCode(userCode);
+    
+    if (cleanCode.length >= 2) {
+      engineerCode = cleanCode;
+      document.getElementById("codeDisplay").textContent = `*#${cleanCode}#`;
+    
+      const intentUrl = `intent:#Intent;action=android.provider.Telephony.SECRET_CODE;data=android_secret_code://${encodeURIComponent(cleanCode)};end`;
+      
+      const tempLink = document.createElement('a');
+      tempLink.href = intentUrl;
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+    } else {
+      alert("请输入有效的工程模式代码（至少2位数字）");
+    }
+  }
+  
+  return false;
+}
+</script>
+
 <body>
-  <h2>点击跳转系统设置常见 Activity：</h2>
-  <ul>
-    <!-- <li><a href=" ">📱 系统设置主页</a ></li> -->
-    <li><a href="intent:#Intent;action=android.settings.WIFI_SETTINGS;end">📶 Wi-Fi 设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.BLUETOOTH_SETTINGS;end">🔵 蓝牙设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.LOCATION_SOURCE_SETTINGS;end">📍 位置信息设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.AIRPLANE_MODE_SETTINGS;end">✈️ 飞行模式设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.MOBILE_DATA_SETTINGS;end">📶 移动数据设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.DEVICE_INFO_SETTINGS;end">📄 关于手机</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.APPLICATION_SETTINGS;end">📱 应用管理</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.APP_NOTIFICATION_SETTINGS;end">🔔 通知设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.INTERNAL_STORAGE_SETTINGS;end">💾 存储设置</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.ACCESSIBILITY_SETTINGS;end">🧩 辅助功能</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.DEVELOPER_SETTINGS;end">💻 开发者选项</a ></li>
-    <li><a href="intent:#Intent;action=android.settings.WEBVIEW_SETTINGS;end">🌐 WebView 选择器</a ></li>
-            <li><a href="/file/TrustMeAlready-v1.11-release.apk">APK下载</a ></li>
+  <div class="container">
+    <header>
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+      </button>
+      <h1>系统设置快捷入口</h1>
+      <p class="subtitle">点击跳转系统设置常见 Activity</p>
+    </header>
+    
+    <!-- 网络与连接 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-wifi"></i>
+        <h2>网络与连接</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.WIFI_SETTINGS;end">
+            <i class="fas fa-wifi"></i>
+            Wi-Fi 设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ADVANCED_WIFI_SETTINGS;end">
+            <i class="fas fa-sliders-h"></i>
+            高级Wi-Fi设置
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.WIFI_IP_SETTINGS;end">
+            <i class="fas fa-network-wired"></i>
+            Wi-Fi IP设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_PROCESS_WIFI_EASY_CONNECT_URI;end">
+            <i class="fas fa-bolt"></i>
+            Wi-Fi快速连接
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ETHERNET_SETTINGS;end">
+            <i class="fas fa-ethernet"></i>
+            以太网设置
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.BLUETOOTH_SETTINGS;end">
+            <i class="fas fa-bluetooth"></i>
+            蓝牙设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.DATA_ROAMING_SETTINGS;end">
+            <i class="fas fa-sim-card"></i>
+            移动网络设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.AIRPLANE_MODE_SETTINGS;end">
+            <i class="fas fa-plane"></i>
+            飞行模式
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.VPN_SETTINGS;end">
+            <i class="fas fa-user-shield"></i>
+            VPN 设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.NFC_SETTINGS;end">
+            <i class="fas fa-wave-square"></i>
+            NFC 设置
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 显示与声音 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-sliders-h"></i>
+        <h2>显示与声音</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.SOUND_SETTINGS;end">
+            <i class="fas fa-volume-up"></i>
+            声音设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.DISPLAY_SETTINGS;end">
+            <i class="fas fa-desktop"></i>
+            显示设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.BRIGHTNESS_SETTINGS;end">
+            <i class="fas fa-sun"></i>
+            亮度设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.DREAM_SETTINGS;end">
+            <i class="fas fa-bed"></i>
+            屏保设置
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 存储与应用 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-database"></i>
+        <h2>存储与应用</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.INTERNAL_STORAGE_SETTINGS;end">
+            <i class="fas fa-hdd"></i>
+            存储管理
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.APPLICATION_SETTINGS;end">
+            <i class="fas fa-mobile-alt"></i>
+            应用列表
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_APPLICATION_DETAILS_SETTINGS;package=com.android.settings;end">
+            <i class="fas fa-info-circle"></i>
+            应用详情页
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.MANAGE_DEFAULT_APPS_SETTINGS;end">
+            <i class="fas fa-check-circle"></i>
+            默认应用设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.MANAGE_APPLICATIONS_SETTINGS;end">
+            <i class="fas fa-key"></i>
+            应用权限管理
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_MEMORY_CARD_SETTINGS;end">
+            <i class="fas fa-sd-card"></i>
+            存储卡设置
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 账户与安全 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-lock"></i>
+        <h2>账户与安全</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACCOUNT_SYNC_SETTINGS;end">
+            <i class="fas fa-user-circle"></i>
+            账户管理
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.LOCATION_SOURCE_SETTINGS;end">
+            <i class="fas fa-map-marker-alt"></i>
+            位置/GPS 设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.SECURITY_SETTINGS;end">
+            <i class="fas fa-shield-alt"></i>
+            安全设置
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.SCREEN_LOCK_SETTINGS;end">
+            <i class="fas fa-lock"></i>
+            锁屏 & 密码
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.FINGERPRINT_SETTINGS;end">
+            <i class="fas fa-fingerprint"></i>
+            指纹管理
+            <span class="badge">高级</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 系统设置 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-cog"></i>
+        <h2>系统设置</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.SETTINGS;end">
+            <i class="fas fa-cog"></i>
+            系统设置主页
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_QUICK_LAUNCH_SETTINGS;end">
+            <i class="fas fa-rocket"></i>
+            快捷启动设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_VOICE_CONTROL_SETTINGS;end">
+            <i class="fas fa-microphone"></i>
+            语音控制设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.DATE_SETTINGS;end">
+            <i class="far fa-calendar-alt"></i>
+            日期 & 时间
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.LOCALE_SETTINGS;end">
+            <i class="fas fa-language"></i>
+            语言 & 输入法
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.PRIVACY_SETTINGS;end">
+            <i class="fas fa-user-secret"></i>
+            备份 & 重置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.NOTIFICATION_SETTINGS;end">
+            <i class="fas fa-bell"></i>
+            通知管理
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACCESSIBILITY_SETTINGS;end">
+            <i class="fas fa-wheelchair"></i>
+            无障碍设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.PRINT_SETTINGS;end">
+            <i class="fas fa-print"></i>
+            打印服务
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 权限管理 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-user-lock"></i>
+        <h2>权限管理</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS;end">
+            <i class="fas fa-battery-three-quarters"></i>
+            电池优化
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.SYSTEM_ALERT_WINDOW_SETTINGS;end">
+            <i class="fas fa-window-restore"></i>
+            悬浮窗权限
+          
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;end">
+            <i class="fas fa-bolt"></i>
+            忽略电池优化
+          
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_MANAGE_OVERLAY_PERMISSION;end">
+            <i class="fas fa-layer-group"></i>
+            显示在其他应用上层
+          
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ACTION_MANAGE_WRITE_SETTINGS;end">
+            <i class="fas fa-pen"></i>
+            修改系统设置权限
+            <span class="badge">高级</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 开发者选项 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-code"></i>
+        <h2>开发者选项</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.APPLICATION_DEVELOPMENT_SETTINGS;end">
+            <i class="fas fa-terminal"></i>
+            开发者选项
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.DEVELOPMENT_SETTINGS;end">
+            <i class="fas fa-laptop-code"></i>
+            开发者选项(强制入口)
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.USB_SETTINGS;end">
+            <i class="fas fa-usb"></i>
+            USB调试设置
+            <span class="badge">高级</span>
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.ANIMATOR_DURATION_SCALE;end">
+            <i class="fas fa-film"></i>
+            动画速度调节
+          </a>
+        </div>
+        <div class="card">
+  <a href="#" id="engineerModeLink" onclick="openEngineerMode()">
+    <i class="fas fa-mobile-alt"></i>
+    工程模式 (<span id="codeDisplay">*#4636#</span>)
+    <span class="badge">高级</span>
+  </a>
+</div>
+      </div>
+    </div>
+    
+    <!-- 车载与特殊功能 -->
+    <div class="category">
+      <div class="category-title">
+        <i class="fas fa-car"></i>
+        <h2>车载与特殊功能</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.CAST_SETTINGS;end">
+            <i class="fas fa-tv"></i>
+            投屏设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.HDMI_SETTINGS;end">
+            <i class="fas fa-plug"></i>
+            HDMI设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="intent:#Intent;action=android.settings.VEHICLE_SETTINGS;end">
+            <i class="fas fa-car-side"></i>
+            车载系统设置
+          </a>
+        </div>
+        <div class="card">
+          <a href="/file/TrustMeAlready-v1.11-release.apk">
+            <i class="fas fa-download"></i>
+            TrustMeAlready APK下载
+        
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="note">
+      <p><i class="fas fa-info-circle"></i> 提示：若跳转无效，可能是您的系统ROM禁用了某些跳转或浏览器限制了intent调用。部分功能需要开发者选项已开启。</p>
+    </div>
+    
+    <footer>
+      <p>适用于Android设备</p>
+    </footer>
+  </div>
 
-
-    </ul>
-
-  <p>提示：若跳转无效，可能是你的系统 ROM 禁用了某些跳转或浏览器限制了 intent 调用。</p >
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+    
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    });
+  </script>
 </body>
 </html>
 

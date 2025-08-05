@@ -20,8 +20,8 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="Proof test for V8 or other component            &#x2F;*!  * Font Awesome Free 6.4.0 by @fontawesome - https:&#x2F;&#x2F;fontawesome.com  * License - https:&#x2F;&#x2F;fontawesome.com&#x2F;license&#x2F;free (Icons: CC B">
 <meta property="og:locale">
-<meta property="article:published_time" content="2025-07-23T04:29:36.637Z">
-<meta property="article:modified_time" content="2025-07-23T04:29:36.637Z">
+<meta property="article:published_time" content="2025-08-05T02:03:14.651Z">
+<meta property="article:modified_time" content="2025-08-05T02:03:14.651Z">
 <meta property="article:author" content="novy">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -633,7 +633,31 @@
                         </div>
                     </div>
                 </div>
-                </br>
+            </br>
+
+
+
+
+
+
+                <div class="cve-item">
+                    <a href="javaScriptInterface.html" target="_blank" class="cve-link">
+                        <i class="fas fa-bug"></i> WebView<span class="critical-tag">JavaScript Interface 滥用</span>
+                    </a>
+                    <p>如果应用在 WebView 中调用了 addJavascriptInterface(...) 并导出了接口，当加载任意网页时，恶意 JS 可以直接调用接口方法，导致信息泄露或远程执行</p>
+                </div>    
+
+
+                 <div class="cve-item">
+                    <a href="fileacc.html" target="_blank" class="cve-link">
+                        <i class="fas fa-bug"></i> WebView<span class="critical-tag">文件访问滥用</span>
+                    </a>
+                    <p>WebView 可通过 setAllowFileAccessFromFileURLs(true) 或 setAllowUniversalAccessFromFileURLs(true) 允许从 file:// 协议访问本地文件，如果显示Leaked file: 则可以利用</p>
+                </div>      
+
+
+
+
                 <div class="cve-item">
                     <a href="https://www.lovei.org/js.svg" target="_blank" class="cve-link">
                         <i class="fas fa-bug"></i>其他<span class="critical-tag">V8</span>
@@ -641,7 +665,7 @@
                     <p>验证是否为存在漏洞的V8版本，该POC会读取本地文件，如显示空白则不存在漏洞</p>
                 </div>
 
-            </div>
+           
 
 
 
@@ -649,7 +673,7 @@
 
 
 
-             <div class="tree-node">
+
                 <div class="cve-item">
                     <a href="Android.html" target="_blank" class="cve-link">
                         <i class="fas fa-bug"></i>安卓原生设置<span class="critical-tag">功能裁剪</span>
@@ -674,7 +698,7 @@
                     </div>
                 </div>
             </div>
-
+ </div>
 
 
 

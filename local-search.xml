@@ -979,11 +979,11 @@
   
   
   <entry>
-    <title>细分一个漏洞</title>
-    <link href="/2022/01/10/74/"/>
-    <url>/2022/01/10/74/</url>
+    <title>纠正一个漏洞</title>
+    <link href="/2022/01/10/73/"/>
+    <url>/2022/01/10/73/</url>
     
-    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
+    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
     
     
     <categories>
@@ -1004,11 +1004,11 @@
   
   
   <entry>
-    <title>纠正一个漏洞</title>
-    <link href="/2022/01/10/73/"/>
-    <url>/2022/01/10/73/</url>
+    <title>细分一个漏洞</title>
+    <link href="/2022/01/10/74/"/>
+    <url>/2022/01/10/74/</url>
     
-    <content type="html"><![CDATA[<p>在整理东西时突然发现一个以前的一个漏洞触发点我给分析错了，纠正一下<br>本来是这么想的<br>当上传完激活文件后就会进入到这里进行反序列化<br><img src="/images/73/1.png"></p><p>但后来发现并不是<br><img src="/images/73/2.png"></p><p>从文件上传的操作来看保存的文件名是随机的，并不是license.dat<br><img src="/images/73/3.png"><br>但是上传后的确又可以马上触发</p><p>于是继续看license.jsp后面，发现当文件上传完后，会做一次判断，如果文件不是符合要求（即文件格式不对的话）的话就会从默认的license里取出默认信息<br><img src="/images/73/4.png"><br>如果符合要求则从上传的文件里获取信息<br><img src="/images/73/5.png"><br>第一次漏洞也就是从这里触发，即上传文件就触发<br><img src="/images/73/6.png"><br>这个<code>licenseFilePath</code>就是从前端传过来的被上传的文件路径<br><img src="/images/73/7.png"><br><img src="/images/73/8.png"></p><p>事情还没结束</p><p>当op参数是change时，就会将上传的文件复制覆盖原来的license.dat<br><img src="/images/73/9.png"><br>然后走到<code>License</code>对象的<code>verify</code>方法对license.dat进行反序列化<br><img src="/images/73/10.png"></p><p>如果文件被替换，所以最后出现的<code>License.getInstance().init()</code>也会在每次访问页面时被触发<br><img src="/images/73/11.png"></p><p>以后得仔细看了</p>]]></content>
+    <content type="html"><![CDATA[<p>在进入LoggingReceiver的时候就已经开始线程了<br><img src="/images/74/1.png"><br>所以看<code>class LoggingReceiver extends Thread</code>里的run方法<br>线程启动后会监听4445端口，如果有连接，则从ServerSocket的accept方法中取出这条连接，没有连接则持续监听<br><img src="/images/74/2.png"><br>随后新线程走进Slurper对象，在该对象的run方法中，获取从accept取出的连接的输入流将输入流封装为ObjectInputStream对象，并调用了ObjectInputStream的readObject方法，通过反序列化恶意数据来触发漏洞<br><img src="/images/74/3.png"></p>]]></content>
     
     
     <categories>
