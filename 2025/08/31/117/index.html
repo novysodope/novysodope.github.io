@@ -20,17 +20,17 @@
 <meta property="og:site_name" content="novy&#39;s Blog">
 <meta property="og:description" content="一个几乎百搭、不改架构、低成本就能落地的整车防重放方案，不是什么颠覆性创新，但或许能给大家带来一点启发">
 <meta property="og:locale">
-<meta property="og:image" content="http://novysodope.github.io/2025/08/31/117/images/117/Ryx7-nJ9UwGhZbyQKTVrDEP_BSAuivKO9NOSdjCe2EA.png">
-<meta property="og:image" content="http://novysodope.github.io/2025/08/31/117/images/117/GNFlkRJklKbj5jQ3zR9uM33yfu9AFI3LFScKkiV3KOs.png">
-<meta property="og:image" content="http://novysodope.github.io/2025/08/31/117/images/117/pz1BM8JDwUL5aJbYLmdZBV7fTddax8qKoYxSeHQMHEE.png">
-<meta property="og:image" content="http://novysodope.github.io/2025/08/31/117/images/117/wy6LvdxDymo4TIyLJ1Xv2PgeldopjjXz3fkX9Tvxn6o.png">
-<meta property="og:image" content="http://novysodope.github.io/2025/08/31/117/images/117/P4iFQ1mqCnSGZfjhbHGLyBMqqVU3uplI0dbMS58Fgzg.png">
+<meta property="og:image" content="http://novysodope.github.io/images/117/Ryx7-nJ9UwGhZbyQKTVrDEP_BSAuivKO9NOSdjCe2EA.png">
+<meta property="og:image" content="http://novysodope.github.io/images/117/GNFlkRJklKbj5jQ3zR9uM33yfu9AFI3LFScKkiV3KOs.png">
+<meta property="og:image" content="http://novysodope.github.io/images/117/pz1BM8JDwUL5aJbYLmdZBV7fTddax8qKoYxSeHQMHEE.png">
+<meta property="og:image" content="http://novysodope.github.io/images/117/wy6LvdxDymo4TIyLJ1Xv2PgeldopjjXz3fkX9Tvxn6o.png">
+<meta property="og:image" content="http://novysodope.github.io/images/117/P4iFQ1mqCnSGZfjhbHGLyBMqqVU3uplI0dbMS58Fgzg.png">
 <meta property="article:published_time" content="2025-08-31T02:13:21.000Z">
-<meta property="article:modified_time" content="2025-09-05T03:20:18.686Z">
+<meta property="article:modified_time" content="2025-09-05T05:18:33.513Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://novysodope.github.io/2025/08/31/117/images/117/Ryx7-nJ9UwGhZbyQKTVrDEP_BSAuivKO9NOSdjCe2EA.png">
+<meta name="twitter:image" content="http://novysodope.github.io/images/117/Ryx7-nJ9UwGhZbyQKTVrDEP_BSAuivKO9NOSdjCe2EA.png">
   
   <title>利用影子认证帧在标准CAN上实现防重放的技术方案 - novy&#39;s Blog</title>
 
@@ -289,7 +289,7 @@
             
             <div class="markdown-body">
               <p>一个几乎百搭、不改架构、低成本就能落地的整车防重放方案，不是什么颠覆性创新，但或许能给大家带来一点启发：</p>
-<figure class="highlight plain"><figcaption><span>Text</span></figcaption><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Plain">把原来单独的业务指令（业务帧）变成一个 “指令+动态密码” 的组合，这个 “动态密码” 被打包在一个单独的帧里，这里称为认证帧。因为认证帧和指令帧绑定且紧随其后，就像影子一样，所以这里就叫它 “影子认证帧”<br></code></pre></div></td></tr></table></figure>
+<p><em>把原来单独的业务指令（业务帧）变成一个 “指令+动态密码” 的组合，这个 “动态密码” 被打包在一个单独的帧里，这里称为认证帧。因为认证帧和指令帧绑定且紧随其后，就像影子一样，所以这里就叫它 “影子认证帧”</em></p>
 <p>也就是说，要实现该方案只需要给每一个关键控制帧后面额外增加一帧即可。如果觉得单纯计数器不够安全、本身没有用CANFD、想低成本短时间满足要求的可以参考本文。下面，给大家解析这个方案该如何开展</p>
 <h2 id="确定保护范围"><a href="#确定保护范围" class="headerlink" title="确定保护范围"></a>确定保护范围</h2><p>因为方案是基于“<strong>庞大的整车电子电气架构牵一发而动全身，改造起来成本高昂、协同困难或没有多余的数据场位做校验</strong>”的原因考虑，所以在开始实施的阶段，我们只需要筛选出一些需要防重放的报文，而不是所有：</p>
 <ul>
@@ -314,7 +314,7 @@
 <td>0</td>
 <td>计数器<br>(<code>ctr</code>)</td>
 <td>1 Byte</td>
-<td>单调递增的计数值，范围<code>0x00\~0xFF（0-255）</code>，发送后递增</td>
+<td>单调递增的计数值，范围<code>0x00~0xFF（0-255）</code>，发送后递增</td>
 </tr>
 <tr>
 <td>1</td>
@@ -341,83 +341,76 @@
 <li>通过安全刷写将密钥 (<code>key</code>) 写入发送ECU和接收ECU的安全存储中，如果没有条件存储，可以将密钥编码在固件中</li>
 </ul>
 <h2 id="技术实现"><a href="#技术实现" class="headerlink" title="技术实现"></a>技术实现</h2><h3 id="发送端ECU实现"><a href="#发送端ECU实现" class="headerlink" title="发送端ECU实现"></a>发送端ECU实现</h3><p>发送端需要在原有发送流程中集成以下步骤：</p>
-<ol>
-<li><p>当应用层请求发送受保护的关键帧(<code>s</code>)时，获取当前计数器值(<code>ctr</code>)以及当前时间片 <code>Time_Stamp</code></p>
-</li>
-<li><p>构造CMAC计算所需的输入数据：<code>Input = s.ID (2B) || s.DATA (8B) || ctr (1B) || Time_Stamp (1B)</code> //此处时间戳假设为1个字节，如果不够，根据情况扩充</p>
-</li>
-<li><p>使用密钥(<code>key</code>)计算CMAC：<code>Full_Tag = CMAC(key, Input)</code></p>
-</li>
-<li><p>截取<code>Full_Tag</code>的前16个比特位作为本次发送的认证标签(<code>Tag16</code>) //2个字节，填充高低位</p>
-</li>
-<li><p>先发送业务帧(<code>s</code>)</p>
-</li>
-<li><p>然后发送影子认证帧(<code>x&#39;</code>)，数据场按数据结构的定义格式填充：</p>
-</li>
-</ol>
+<p>1.当应用层请求发送受保护的关键帧(<code>s</code>)时，获取当前计数器值(<code>ctr</code>)以及当前时间片 <code>Time_Stamp</code></p>
+<p>2.构造CMAC计算所需的输入数据：<code>Input = s.ID (2B) || s.DATA (8B) || ctr (1B) || Time_Stamp (1B)</code> //此处时间戳假设为1个字节，如果不够，根据情况扩充</p>
+<p>3.使用密钥(<code>key</code>)计算CMAC：<code>Full_Tag = CMAC(key, Input)</code></p>
+<p>4.截取<code>Full_Tag</code>的前16个比特位作为本次发送的认证标签(<code>Tag16</code>) //2个字节，填充高低位</p>
+<p>5.先发送业务帧(<code>s</code>)</p>
+<p>6.然后发送影子认证帧(<code>x&#39;</code>)，数据场按数据结构的定义格式填充：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs csharp">[<span class="hljs-meta">ctr, Tag_H, Tag_L, Time_Stamp, 0xAA, 0xAA, 0xAA, 0xAA</span>]<br></code></pre></div></td></tr></table></figure>
-<ol start="7">
-<li>发送成功后，更新计数器(<code>ctr</code>)</li>
-</ol>
+<p>7.发送成功后，更新计数器(<code>ctr</code>)</p>
 <h4 id="逻辑流程图如下"><a href="#逻辑流程图如下" class="headerlink" title="逻辑流程图如下"></a>逻辑流程图如下</h4><figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs graphql">graph TD<br>    A[开始发送] --&gt; B[获取ctr和Time_Stamp]<br>    B --&gt; C[构造CMAC输入数据]<br>    C --&gt; D[计算并截取Tag16]<br>    D --&gt; E[发送业务帧s]<br>    E --&gt; F[发送影子认证帧x&#39;]<br>    F --&gt; G[更新计数器]<br>    G --&gt; H[结束]<br></code></pre></div></td></tr></table></figure>
-<p><img src="images/117/Ryx7-nJ9UwGhZbyQKTVrDEP_BSAuivKO9NOSdjCe2EA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<h3 id="接收端ECU实现"><a href="#接收端ECU实现" class="headerlink" title="接收端ECU实现"></a>接收端ECU实现</h3><ol>
-<li>接收端需要实现一个新的验证状态机制：</li>
-<li>当收到业务帧(<code>s</code>)时，将其数据副本与接收时间戳存入缓存池，并暂停该帧的应用层处理</li>
-<li>启动一个定时器（根据业务和网络负载调整），等待对应的影子认证帧(<code>x&#39;</code>)</li>
-<li>超时处理：若超时仍未收到(<code>x&#39;</code>)，则从缓存中丢弃该业务帧(<code>s</code>)，不再处理</li>
-<li>若收到影子认证帧(<code>x&#39;</code>)：</li>
-</ol>
-<p><strong>a.</strong> 从缓存中查找与之匹配的业务帧(<code>s</code>)<br><strong>b.</strong> 从(<code>x&#39;</code>)数据场中提取 <code>ctr_recv</code> 和 <code>Tag16_recv</code>以及<code>Time_Stamp_recv</code><br><strong>c.</strong> 使用密钥 (<code>key</code>)、缓存的<code>s.ID</code>、<code>s.DATA</code> 以及提取的 <code>ctr_recv</code>、<code>Time_Stamp_recv</code>，按照发送流程重新计算期望的认证标签(<code>Tag16_calc</code>)<br><strong>d.</strong> 计算输入：<code>Input_calc = s.ID (2B) || s.DATA (8B) || ctr_recv (1B) || Time_Stamp_recv (1B)</code><br><strong>e.</strong> 计算：<code>Tag16_calc = Truncate(CMAC(key, Input_calc), 16)</code> //截断取前两个字节用作高低位<br><strong>f.</strong> 验证对比：</p>
+<p><img src="/images/117/Ryx7-nJ9UwGhZbyQKTVrDEP_BSAuivKO9NOSdjCe2EA.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<h3 id="接收端ECU实现"><a href="#接收端ECU实现" class="headerlink" title="接收端ECU实现"></a>接收端ECU实现</h3><p>接收端需要实现一个新的验证状态机制：</p>
+<p>1.当收到业务帧(<code>s</code>)时，将其数据副本与接收时间戳存入缓存池，并暂停该帧的应用层处理</p>
+<p>2.启动一个定时器（根据业务和网络负载调整），等待对应的影子认证帧(<code>x&#39;</code>)</p>
+<p>3.超时处理：若超时仍未收到(<code>x&#39;</code>)，则从缓存中丢弃该业务帧(<code>s</code>)，不再处理</p>
+<p>4.若收到影子认证帧(<code>x&#39;</code>)：</p>
+<p><strong>a.</strong> 从缓存中查找与之匹配的业务帧(<code>s</code>)</p>
+<p><strong>b.</strong> 从(<code>x&#39;</code>)数据场中提取 <code>ctr_recv</code> 和 <code>Tag16_recv</code>以及<code>Time_Stamp_recv</code></p>
+<p><strong>c.</strong> 使用密钥 (<code>key</code>)、缓存的<code>s.ID</code>、<code>s.DATA</code> 以及提取的 <code>ctr_recv</code>、<code>Time_Stamp_recv</code>，按照发送流程重新计算期望的认证标签(<code>Tag16_calc</code>)</p>
+<p><strong>d.</strong> 计算输入：<code>Input_calc = s.ID (2B) || s.DATA (8B) || ctr_recv (1B) || Time_Stamp_recv (1B)</code></p>
+<p><strong>e.</strong> 计算：<code>Tag16_calc = Truncate(CMAC(key, Input_calc), 16)</code> //截断取前两个字节用作高低位</p>
+<p><strong>f.</strong> 验证对比：</p>
 <ul>
 <li>若 <code>Tag16_calc != Tag16_recv</code>，验证失败，丢弃业务帧(<code>s</code>)，不再处理</li>
 <li>若 <code>Tag16_calc == Tag16_recv</code>，进行<code>Time_Stamp</code>有效性校验和计数器防重放检查</li>
 </ul>
-<ol start="6">
-<li>清除缓存中对应的业务帧(<code>s</code>)</li>
-<li>更新计数器</li>
-</ol>
+<p>5.清除缓存中对应的业务帧(<code>s</code>)</p>
+<p>6.更新计数器</p>
 <h4 id="逻辑流程图如下-1"><a href="#逻辑流程图如下-1" class="headerlink" title="逻辑流程图如下"></a>逻辑流程图如下</h4><figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs graphql">graph TD<br>    A[收到业务帧s] --&gt; B&#123;帧s.ID是否在&lt;br&gt;受保护列表?&#125;<br>    B -- 否 --&gt; C[提交应用层处理]<br>    B -- 是 --&gt; D[缓存s.ID与s.DATA&lt;br&gt;启动超时定时器]<br>    <br>    D --&gt; E&#123;在超时时间内&lt;br&gt;收到影子认证帧x&#39;?&#125;<br>    E -- 否 --&gt; F[丢弃缓存帧s&lt;br&gt;（可选项）：触发超时告警]<br>    <br>    E -- 是 --&gt; G[提取ctr_recv, Tag16_recv, Time_Stamp_recv]<br>    G --&gt; H[根据缓存数据计算&lt;br&gt;Tag16_calc]<br>    H --&gt; I&#123;Tag16_calc &#x3D;&#x3D;&lt;br&gt;Tag16_recv?&#125;<br>    I -- 否 --&gt; J[认证失败&lt;br&gt;丢弃帧s]<br>    <br>    I -- 是 --&gt; K&#123;Time_Stamp_recv有效?&lt;br&gt;（等于或接近My_Time_Stamp）&#125;<br>    K -- 否 --&gt; L[时间片无效→重放攻击&lt;br&gt;丢弃帧s]<br>    <br>    K -- 是 --&gt; M&#123;ctr_recv有效?&lt;br&gt;（在预期狭小窗口内）&#125;<br>    M -- 否 --&gt; N[计数器无效→重放攻击&lt;br&gt;丢弃帧s]<br>    <br>    M -- 是 --&gt; O[验证成功]<br>    O --&gt; P[提交业务帧s至应用层]<br>    O --&gt; Q[更新last_valid_ctr &#x3D; ctr_recv]<br>    <br>    J --&gt; R[结束]<br>    L --&gt; R<br>    N --&gt; R<br>    P --&gt; R<br>    Q --&gt; R<br>    <br>    subgraph 接收端统一清理<br>        R[清除缓存中本帧记录]<br>    end<br></code></pre></div></td></tr></table></figure>
-<p><img src="images/117/GNFlkRJklKbj5jQ3zR9uM33yfu9AFI3LFScKkiV3KOs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/117/GNFlkRJklKbj5jQ3zR9uM33yfu9AFI3LFScKkiV3KOs.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="发送端："><a href="#发送端：" class="headerlink" title="发送端："></a>发送端：</h4><p>场景： <code>100</code></p>
-<ol>
-<li>业务帧(<code>s</code>)：</li>
-</ol>
+<p>1.业务帧(<code>s</code>)：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs csharp">s.ID = <span class="hljs-number">0x100</span><br>s.DATA = [<span class="hljs-number">0x01</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>]<br></code></pre></div></td></tr></table></figure>
-<ol start="2">
-<li>获取静态配置：</li>
-</ol>
+<p>2.获取静态配置：</p>
 <ul>
 <li>密钥 <code>key = 0xsecretkey</code></li>
 <li>影子认证帧ID <code>x&#39; = 0x200</code></li>
 <li>当前计数器 <code>ctr = 0x0B</code></li>
 <li>当前时间片 <code>Time_Stamp = 0x03</code></li>
 </ul>
-<ol start="3">
-<li>执行流程：</li>
-</ol>
-<p><strong>a.</strong> 拼接 Input： <code>0x100 + [0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00] + 0x0B + 0x03</code><br><strong>b.</strong> 用 <code>key </code>计算 <code>Input </code>的<code>CMAC</code>，得到 <code>Tag16</code><br><strong>c.</strong> 发送第一帧（业务帧）：</p>
+<p>3.执行流程：</p>
+<p><strong>a.</strong> 拼接 Input： <code>0x100 + [0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00] + 0x0B + 0x03</code></p>
+<p><strong>b.</strong> 用 <code>key </code>计算 <code>Input </code>的<code>CMAC</code>，得到 <code>Tag16</code></p>
+<p><strong>c.</strong> 发送第一帧（业务帧）：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs csharp">ID=<span class="hljs-number">0x100</span>, Data=[<span class="hljs-number">0x01</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>]<br></code></pre></div></td></tr></table></figure>
 <p><strong>d.</strong> 发送第二帧（认证帧）：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs csharp">ID=<span class="hljs-number">0x200</span>, Data=[<span class="hljs-number">0x0B</span>, Tag_H, Tag_L, <span class="hljs-number">0x03</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0xAA</span>]<br></code></pre></div></td></tr></table></figure>
 <p><strong>e.</strong> 将 <code>0x100</code> 对应的计数器加一，变为 <code>0x0C</code></p>
 <h5 id="发送端示例流程图"><a href="#发送端示例流程图" class="headerlink" title="发送端示例流程图"></a>发送端示例流程图</h5><figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs graphql">flowchart TD<br>    A[应用层请求发送关键帧s] --&gt; B[获取ctr和Time_Stamp]<br>    B --&gt; C[构造输入数据: Input &#x3D; s.ID + s.DATA + ctr + Time_Stamp]<br>    C --&gt; D[计算Full_Tag &#x3D; CMACkey, Input]<br>    D --&gt; E[截取Tag16 &#x3D; 前16位]<br>    E --&gt; F[发送业务帧s]<br>    F --&gt; G[发送影子认证帧x&#39;&lt;br&gt;数据: ctr, Tag_H, Tag_L, Time_Stamp, 填充]<br>    G --&gt; H[更新计数器: ctr &#x3D; ctr + 1]<br>    H --&gt; I[发送完成]<br><br>    subgraph 示例配置<br>        J[帧ID: 0x100]<br>        K[数据: 0100000000000000]<br>        L[计数器: 0x0B]<br>        M[时间片: 0x03]<br>        N[影子认证帧ID: 0x200]<br>        O[密钥: 0xsecretkey]<br>    end<br></code></pre></div></td></tr></table></figure>
-<p><img src="images/117/pz1BM8JDwUL5aJbYLmdZBV7fTddax8qKoYxSeHQMHEE.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/117/pz1BM8JDwUL5aJbYLmdZBV7fTddax8qKoYxSeHQMHEE.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h4 id="接收端："><a href="#接收端：" class="headerlink" title="接收端："></a>接收端：</h4><p>接收端自身维护一个当前的有效时间片值<code>My_Time_Stamp</code>（比如由网关同步或根据自身系统时间计算得出）和为每个发送源（或每个帧ID）维护一个最后有效的计数器值(<code>last_valid_ctr</code>)</p>
 <p>校验流程：</p>
-<ol>
-<li>总线收到一帧：<code>ID=0x100, Data=[0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]</code></li>
-</ol>
-<p><strong>a.接收端逻辑</strong>：这是受保护的关键帧<code>s</code>，我需要等待它的影子认证帧进行验证<br><strong>b.动作</strong>：将这份数据<code>s.ID</code> 和 <code>s.DATA</code> 存入缓存池，并暂停对该帧的应用层处理，启动一个定时器（例如200ms）<br>2. 总线收到下一帧：<code>ID=0x200, Data=[0x0B, Tag_H, Tag_L, 0x03, 0xAA, 0xAA, 0xAA, 0xAA]</code><br><strong>a.接收端逻辑</strong>：这是我正在等待对应 <code>0x100</code> 的影子认证帧<br><strong>b.动作：</strong><br>1）从缓存中查找影子认证帧对应的<code>ID=0x100</code>业务帧数据<br>2）从影子认证帧数据场中提取：</p>
+<p>1.总线收到一帧：<code>ID=0x100, Data=[0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]</code></p>
+<p><strong>a.接收端逻辑</strong>：这是受保护的关键帧<code>s</code>，我需要等待它的影子认证帧进行验证</p>
+<p><strong>b.动作</strong>：将这份数据<code>s.ID</code> 和 <code>s.DATA</code> 存入缓存池，并暂停对该帧的应用层处理，启动一个定时器（例如200ms）</p>
+<p>2.总线收到下一帧：<code>ID=0x200, Data=[0x0B, Tag_H, Tag_L, 0x03, 0xAA, 0xAA, 0xAA, 0xAA]</code></p>
+<p><strong>a.接收端逻辑</strong>：这是我正在等待对应 <code>0x100</code> 的影子认证帧</p>
+<p><strong>b.动作：</strong></p>
+<p>1）从缓存中查找影子认证帧对应的<code>ID=0x100</code>业务帧数据<br>2）从影子认证帧数据场中提取：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs csharp">* ctr_recv = <span class="hljs-number">0x0B</span><br>* Tag16_recv = <span class="hljs-number">0x0102</span> (高字节<span class="hljs-number">0x01</span> + 低字节<span class="hljs-number">0x02</span>) <span class="hljs-comment">//Tag_H、Tag_L，此处假设是0102</span><br>* Time_Stamp_recv = <span class="hljs-number">0x03</span><br></code></pre></div></td></tr></table></figure>
-<ol start="3">
-<li>接收端开始重现发送端的计算过程：</li>
-</ol>
-<p><strong>a.</strong> <code>Input_calc = s.ID (2B) || s.DATA (8B) || ctr_recv (1B) || Time_Stamp_recv (1B) //拼接输入</code><br><strong>b.</strong> <code>Full_Tag_calc = CMAC(key, Input_calc) //计算CMAC</code><br><strong>c.</strong> <code>Tag16_calc = Truncate(Full_Tag_calc, 16) //取前两个字节</code><br>4. 比较 <code>Tag16_calc (0x0102)</code> 和 <code>Tag16_recv (0x0102)</code>，通过则下一步，不通过丢弃<br>5. 检查时间片：比较<code>Time_Stamp_recv</code>和接收端自己的<code>My_Time_Stamp</code>，通过则下一步，不通过丢弃<br>6. 检查计数器：接收端预期下一个计数器是 <code>0x0B</code>，收到的<code>ctr_recv</code>是<code>0x0B</code>，通过则执行动作，不通过丢弃<br>7. 更新 <code>last_valid_ctr = ctr_recv</code></p>
+<p>3.接收端开始重现发送端的计算过程：</p>
+<p><strong>a.</strong> <code>Input_calc = s.ID (2B) || s.DATA (8B) || ctr_recv (1B) || Time_Stamp_recv (1B) //拼接输入</code><br><strong>b.</strong> <code>Full_Tag_calc = CMAC(key, Input_calc) //计算CMAC</code></p>
+<p><strong>c.</strong> <code>Tag16_calc = Truncate(Full_Tag_calc, 16) //取前两个字节</code></p>
+<p>4.比较 <code>Tag16_calc (0x0102)</code> 和 <code>Tag16_recv (0x0102)</code>，通过则下一步，不通过丢弃</p>
+<p>5.检查时间片：比较<code>Time_Stamp_recv</code>和接收端自己的<code>My_Time_Stamp</code>，通过则下一步，不通过丢弃</p>
+<p>6.检查计数器：接收端预期下一个计数器是 <code>0x0B</code>，收到的<code>ctr_recv</code>是<code>0x0B</code>，通过则执行动作，不通过丢弃</p>
+<p>7.更新 <code>last_valid_ctr = ctr_recv</code></p>
 <h5 id="接收示例流程图"><a href="#接收示例流程图" class="headerlink" title="接收示例流程图"></a>接收示例流程图</h5><figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs graphql">flowchart TD<br>    A[收到业务帧s] --&gt; B&#123;受保护帧?&#125;<br>    B -- 否 --&gt; C[提交应用层]<br>    B -- 是 --&gt; D[缓存数据并启动定时器]<br>    D --&gt; E&#123;收到影子认证帧?&#125;<br>    E -- 超时 --&gt; F[丢弃帧s]<br>    E -- 收到 --&gt; G[提取ctr_recv, Tag16_recv, Time_Stamp_recv]<br>    G --&gt; H[计算Tag16_calc]<br>    H --&gt; I&#123;标签验证?&#125;<br>    I -- 失败 --&gt; J[认证失败→丢弃]<br>    I -- 成功 --&gt; K&#123;时间片有效?&#125;<br>    K -- 无效 --&gt; L[时间片无效→丢弃]<br>    K -- 有效 --&gt; M&#123;计数器有效?&#125;<br>    M -- 无效 --&gt; N[计数器无效→丢弃]<br>    M -- 有效 --&gt; O[验证成功]<br>    O --&gt; P[提交应用层]<br>    O --&gt; Q[更新last_valid_ctr]<br>    F --&gt; R[清理缓存]<br>    J --&gt; R<br>    L --&gt; R<br>    N --&gt; R<br>    P --&gt; R<br>    Q --&gt; R<br>    subgraph 示例数据<br>        S[业务帧: ID&#x3D;0x100, Data&#x3D;0100000000000000]<br>        T[影子认证帧: ID&#x3D;0x200, Data&#x3D;0B010203AAAAAAAA]<br>        U[提取: ctr&#x3D;0x0B, Time_Stamp&#x3D;0x03]<br>    end<br></code></pre></div></td></tr></table></figure>
-<p><img src="images/117/wy6LvdxDymo4TIyLJ1Xv2PgeldopjjXz3fkX9Tvxn6o.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p><img src="/images/117/wy6LvdxDymo4TIyLJ1Xv2PgeldopjjXz3fkX9Tvxn6o.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本方案结合了之前的项目，有成功落地的案例，并在此基础上做了优化，后面可以根据自身情况更改、删减一些做不到的或根据自身条件增加更多的验证</p>
-<p>最后，别感冒<br><img src="images/117/P4iFQ1mqCnSGZfjhbHGLyBMqqVU3uplI0dbMS58Fgzg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
+<p>最后，别感冒<br><img src="/images/117/P4iFQ1mqCnSGZfjhbHGLyBMqqVU3uplI0dbMS58Fgzg.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 
             </div>
             <hr>
