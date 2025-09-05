@@ -15,8 +15,29 @@
     <atom:link href="http://novysodope.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 11 Dec 2024 03:31:58 GMT</pubDate>
+    <pubDate>Fri, 05 Sep 2025 03:20:18 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>利用影子认证帧在标准CAN上实现防重放的技术方案</title>
+      <link>http://novysodope.github.io/2025/08/31/117/</link>
+      <guid>http://novysodope.github.io/2025/08/31/117/</guid>
+      <pubDate>Sun, 31 Aug 2025 02:13:21 GMT</pubDate>
+      
+      <description>一个几乎百搭、不改架构、低成本就能落地的整车防重放方案，不是什么颠覆性创新，但或许能给大家带来一点启发</description>
+      
+      
+      
+      
+      <category domain="http://novysodope.github.io/categories/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <category domain="http://novysodope.github.io/tags/%E8%BD%A6%E8%81%94%E7%BD%91/">车联网</category>
+      
+      
+      <comments>http://novysodope.github.io/2025/08/31/117/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>博客新增评论功能</title>
