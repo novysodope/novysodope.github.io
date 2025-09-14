@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/117/wy6LvdxDymo4TIyLJ1Xv2PgeldopjjXz3fkX9Tvxn6o.png">
 <meta property="og:image" content="http://novysodope.github.io/images/117/P4iFQ1mqCnSGZfjhbHGLyBMqqVU3uplI0dbMS58Fgzg.png">
 <meta property="article:published_time" content="2025-08-31T02:13:21.000Z">
-<meta property="article:modified_time" content="2025-09-05T05:18:33.513Z">
+<meta property="article:modified_time" content="2025-09-14T07:18:54.847Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
@@ -398,10 +398,12 @@
 <p>2.总线收到下一帧：<code>ID=0x200, Data=[0x0B, Tag_H, Tag_L, 0x03, 0xAA, 0xAA, 0xAA, 0xAA]</code></p>
 <p><strong>a.接收端逻辑</strong>：这是我正在等待对应 <code>0x100</code> 的影子认证帧</p>
 <p><strong>b.动作：</strong></p>
-<p>1）从缓存中查找影子认证帧对应的<code>ID=0x100</code>业务帧数据<br>2）从影子认证帧数据场中提取：</p>
+<p>1）从缓存中查找影子认证帧对应的<code>ID=0x100</code>业务帧数据</p>
+<p>2）从影子认证帧数据场中提取：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs csharp">* ctr_recv = <span class="hljs-number">0x0B</span><br>* Tag16_recv = <span class="hljs-number">0x0102</span> (高字节<span class="hljs-number">0x01</span> + 低字节<span class="hljs-number">0x02</span>) <span class="hljs-comment">//Tag_H、Tag_L，此处假设是0102</span><br>* Time_Stamp_recv = <span class="hljs-number">0x03</span><br></code></pre></div></td></tr></table></figure>
 <p>3.接收端开始重现发送端的计算过程：</p>
-<p><strong>a.</strong> <code>Input_calc = s.ID (2B) || s.DATA (8B) || ctr_recv (1B) || Time_Stamp_recv (1B) //拼接输入</code><br><strong>b.</strong> <code>Full_Tag_calc = CMAC(key, Input_calc) //计算CMAC</code></p>
+<p><strong>a.</strong> <code>Input_calc = s.ID (2B) || s.DATA (8B) || ctr_recv (1B) || Time_Stamp_recv (1B) //拼接输入</code></p>
+<p><strong>b.</strong> <code>Full_Tag_calc = CMAC(key, Input_calc) //计算CMAC</code></p>
 <p><strong>c.</strong> <code>Tag16_calc = Truncate(Full_Tag_calc, 16) //取前两个字节</code></p>
 <p>4.比较 <code>Tag16_calc (0x0102)</code> 和 <code>Tag16_recv (0x0102)</code>，通过则下一步，不通过丢弃</p>
 <p>5.检查时间片：比较<code>Time_Stamp_recv</code>和接收端自己的<code>My_Time_Stamp</code>，通过则下一步，不通过丢弃</p>
