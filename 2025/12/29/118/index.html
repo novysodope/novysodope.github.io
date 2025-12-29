@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/118/JpwAe6qwMamxAJVHbxrDebkECQIlogtB7njLUDdroOE.png">
 <meta property="og:image" content="http://novysodope.github.io/images/118/cTn2ogtPvmPraQzB8nMKIUoauyW5ZbSE_FejZYcdcAI.png">
 <meta property="article:published_time" content="2025-12-29T03:13:21.000Z">
-<meta property="article:modified_time" content="2025-12-29T08:34:20.438Z">
+<meta property="article:modified_time" content="2025-12-29T08:52:34.920Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
@@ -420,9 +420,9 @@
 <p><img src="/images/118/Nb7D0SWfYHUKYe2kIbWYi3MN8XnJjlkgEphoGNA6sgI.png" srcset="/img/loading.gif" lazyload alt="image"></p>
 <p>损害场景是指威胁场景成功后，对车辆、用户或相关方造成的技术层面直接不良后果（例如“刹车系统失效”“车辆关键功能瘫痪”），21434建议损害场景包含以下要素（RQ-15-01 NOTE 1）：</p>
 <ul>
-<li>Item功能与不良后果之间的关系；</li>
-<li>对道路使用者的伤害描述；</li>
-<li>相关资产。</li>
+<li>Item功能与不良后果之间的关系</li>
+<li>对道路使用者的伤害描述</li>
+<li>相关资产</li>
 </ul>
 <p><strong>示例</strong>：威胁场景“攻击者篡改车辆接收到的【ECU1】更新包，导致【ECU1】更新包的完整性遭到破坏”，该威胁场景的损害场景是：“篡改后的更新包被【ECU1】刷写，造成【ECU1】执行恶意或错误逻辑，导致刹车控制功能失效，车辆在行驶中无法正常制动，对道路使用者构成重伤或死亡风险”，对应的SFOP评级（对该损害场景的多维度评估）：</p>
 <ul>
@@ -431,7 +431,7 @@
 <li><strong>Operational = Major</strong>（车辆关键功能瘫痪）</li>
 <li><strong>Privacy = Negligible</strong>（无直接隐私数据泄露）</li>
 </ul>
-<p>如果损害场景对某个维度的影响足够严重，则可优先聚焦该维度，其他维度作为辅助参考，比如上面的例子，综合影响评级为“<strong>Severe</strong>”，也就是取最高值（PM-15-07）</p>
+<p>如果损害场景对某个维度的影响足够严重，则可优先聚焦该维度，其他维度作为辅助参考，比如上面的例子，综合影响评级为“Severe”，也就是取最高值（PM-15-07）</p>
 <p><strong>注意：</strong>整车级影响往往高于零部件级：同一威胁在零部件级可能仅影响局部功能（Operational=Moderate），但在整车集成后可能放大为安全风险（Safety=Severe），所以评级时需要有依据需提供评级准则（CFG，参考21434附录F）和会议纪要（功能安全评估，功能或零部件受到损害时，会不会影响车辆行驶）作为证据</p>
 <p>通过详细的损害场景分析和多维度评级，能为后续风险确定提供客观基础，确保高严重度风险得到优先缓解，而且在实践中，可以采用两种分析方向（从损害场景倒推威胁场景、从威胁场景正向扩展损害场景）结合的迭代方式，既能快速聚焦高风险，又能确保覆盖全面，避免单纯依赖经验导致遗漏其他场景</p>
 <p><img src="/images/118/-fnM0rly_ZIVh3AplLTnqH7f2YVPkMfQ-9SmzuaT7ew.png" srcset="/img/loading.gif" lazyload alt="image"></p>
