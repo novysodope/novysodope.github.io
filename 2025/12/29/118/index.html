@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://novysodope.github.io/images/118/JpwAe6qwMamxAJVHbxrDebkECQIlogtB7njLUDdroOE.png">
 <meta property="og:image" content="http://novysodope.github.io/images/118/cTn2ogtPvmPraQzB8nMKIUoauyW5ZbSE_FejZYcdcAI.png">
 <meta property="article:published_time" content="2025-12-29T03:13:21.000Z">
-<meta property="article:modified_time" content="2025-12-29T08:52:34.920Z">
+<meta property="article:modified_time" content="2025-12-29T10:23:41.240Z">
 <meta property="article:author" content="novy">
 <meta property="article:tag" content="车联网">
 <meta name="twitter:card" content="summary_large_image">
@@ -304,8 +304,9 @@
             <h1 style="display: none">UN R155认证视角下的TARA实施：方法论、概念与残余风险闭环</h1>
             
             <div class="markdown-body">
-              <h1 id="TARA是什么"><a href="#TARA是什么" class="headerlink" title="TARA是什么"></a>TARA是什么</h1><p>目前（截至编写文章时间-2025年底）R155法规已被包括欧盟所有成员国、日本、韩国、英国、澳大利亚、南非等在内等超过60多个国家采纳，对OEM而言，自2022年7月起，欧盟成员国内对所有现有架构新车型进行强制实施R155，所有适用的新车型出口欧洲均需通过Vehicle Type Approval（车辆型式认证，简称VTA），自2024年7月开始所有架构所有车型都需通过认证</p>
-<p>OEM要有效执行UN R155的合规要求，首先需要建立全面的网络安全管理体系，即Cybersecurity Management System (CSMS)，以确保汽车全生命周期中都有对应的流程措施用以控制相关风险，在这诸多要求中，威胁分析与风险评估（Threat Analysis and Risk Assessment，简称TARA）是贯穿始终的核心方法，要求从攻击者视角系统识别威胁场景、评估风险水平，并制定针对性的缓解措施，基于多年参与VTA认证项目的实践经验，本文重点探讨TARA的方法论与实施思路，特别是整车层面与零部件层面的差异、关键实践要点以及两者间的有效协同，以期为相关团队提供参考</p>
+              <p>在正文开始之前，请先允许我介绍一下TARA和TARA的作用</p>
+<h1 id="TARA是什么"><a href="#TARA是什么" class="headerlink" title="TARA是什么"></a>TARA是什么</h1><p>目前（截至编写文章时间-2025年底）R155法规已被包括欧盟所有成员国、日本、韩国、英国、澳大利亚、南非等在内等超过60多个国家采纳，对OEM而言，自2022年7月起，欧盟成员国内对所有现有架构新车型进行强制实施R155，所有适用的新车型出口欧洲均需通过Vehicle Type Approval（车辆型式认证，简称VTA），自2024年7月开始所有架构所有车型都需通过认证</p>
+<p>OEM要有效执行UN R155的合规要求，首先需要建立全面的网络安全管理体系，即Cybersecurity Management System (CSMS)，以确保汽车全生命周期中都有对应的流程措施用以控制相关风险，在这诸多要求中，威胁分析与风险评估（Threat Analysis and Risk Assessment，简称TARA）是贯穿始终的核心方法，要求从攻击者视角系统识别威胁场景、评估风险水平，并制定针对性的缓解措施，基于多年参与VTA认证项目的实践经验，在本文中我将重点探讨TARA的方法论与实施思路，以期为相关团队提供参考</p>
 <h1 id="TARA在UN-R155中的定位和要求"><a href="#TARA在UN-R155中的定位和要求" class="headerlink" title="TARA在UN R155中的定位和要求"></a><strong>TARA在UN R155中的定位和要求</strong></h1><p>UN R155法规的核心目标是要求OEM建立并运行有效的网络安全管理体系（CSMS），以确保车辆在全生命周期内抵御网络攻击风险，作为CSMS的关键组成部分，威胁分析与风险评估（TARA） 被视为实现这一目标的最基础工具，虽然法规正文未直接使用“TARA”这个术语，但其对风险识别、评估和管理的要求（第7条及Annex 5）本质上指向了TARA方法，TARA在UN R155中的定位和要求主要体现在以下几个方面：</p>
 <ul>
 <li>风险识别和评估的核心手段</li>
@@ -316,7 +317,7 @@
 </ul>
 <p>TARA并非一次性活动，而是贯穿CSMS全过程的要求：在概念阶段进行初步风险评估、在开发阶段细化并迭代、在生产和运营阶段持续监控新出现的威胁并复审、在车辆退役阶段评估残余风险，法规明确要求OEM在CSMS中建立持续监控和残余风险管理过程（详见GRVA的解释文档7.2.2.2 (f)(g)，这个文档对UN R155 CSMS审核的目的、依据和细节做了很详细的说明），确保风险评估结果保持最新，当出现新漏洞、新攻击技术或车辆配置变更等情况时，需重新评估残余风险的可接受性，并采取必要措施</p>
 <ul>
-<li>型式认证（VTA）的关键证据</li>
+<li>VTA的关键证据</li>
 </ul>
 <p>在车辆型式认证阶段，认证机构会重点审查OEM提交的风险评估结果及其衍生材料（包括威胁列表、风险值、安全目标等等），TARA报告是CSMS审计和VTA的核心证据之一，如果风险评估不完整或缺乏可追溯性，将直接导致认证失败</p>
 <ul>
@@ -328,7 +329,7 @@
 </ul>
 <p>UN R155明确规定车辆网络安全的最终责任由OEM承担，即使风险来源于供应商提供的零部件，认证机构追究责任的时候也是首先找的OEM，也就是说OEM在进行整车级TARA的时候必须要将供应商零部件的风险评估结果纳入其中，确保整车风险分析的完整性，为了实现这一要求，在进行整车TARA分析前期阶段，供应商要向OEM提供必要的TARA相关工作输入</p>
 <p><img src="/images/118/Bvhe9PIS8ynoqC_OQVMTiF5IOksikgRwKrP883WxR14.png" srcset="/img/loading.gif" lazyload alt="image"></p>
-<p>总体而言，TARA在UN R155中不仅是技术方法，更是合规证据链的核心环节，其输出直接决定后续网络安全需求的完整性和有效性，实践经验表明，认证审核中最常见的驳回原因往往源于TARA的深度不足（比如损害场景没有跟功能安全关联、威胁场景覆盖不全、攻击可行性评估过于乐观、风险处理决策缺乏依据等等）</p>
+<p>总的来说，TARA在UN R155中不仅是技术方法，更是合规证据链的核心环节，其输出直接决定后续网络安全需求的完整性和有效性，实践经验表明，认证审核中最常见的驳回原因往往源于TARA的深度不足（比如损害场景没有跟功能安全关联、威胁场景覆盖不全、攻击可行性评估过于乐观、风险处理决策缺乏依据等等）</p>
 <h1 id="TARA方法论"><a href="#TARA方法论" class="headerlink" title="TARA方法论"></a><strong>TARA方法论</strong></h1><p>在开展工作前，OEM必须准备好以下材料：</p>
 <ul>
 <li>EE架构图，需体现ECU之间的通信链路设计方案（通信方式、通信协议、外部接口），架构图需要通过网络安全评审</li>
